@@ -1,0 +1,19 @@
+#pragma once
+#include "cocos2d.h"
+#include "Entity.h"
+USING_NS_CC;
+class Plants:public Entity
+{
+private:
+	int _hp;
+	virtual void Attack()=0;
+	virtual void Die() = 0;
+	virtual void Self_Animation() = 0;
+	virtual void Attack_Animation() = 0;
+	virtual void Attacked() = 0;
+	bool isAttacking();
+public:
+	Plants(Sprite* img, Point position, int hp);
+	int getHp();
+	void setHp(int hp);
+};
