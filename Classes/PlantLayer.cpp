@@ -30,7 +30,7 @@ void PlantLayer::Produce_Plants(float t) {
 	if (prePlants.size() > 0) {
 		Plants *plant = prePlants.at(0);
 		std::cout << plant << std::endl;
-		this->addChild(plant->getImg());
+		//this->addChild(plant->getImg());
 		prePlants.erase(prePlants.begin());
 		
 	}
