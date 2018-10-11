@@ -7,7 +7,7 @@ class PeaBullet :public Bullet
 {
 public:
 	PeaBullet(Point position);
-	virtual void Hit_Animation();
-	virtual void Self_Animation();
-	virtual void move();
+	virtual void Hit_Animation(Sprite*sp);
+	virtual void Self_Animation(Sprite*sp);
+	virtual void move(Sprite* sp);
 };

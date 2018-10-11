@@ -8,10 +8,10 @@ public:
 	PeaShooter(Point position);
 	virtual void Attack();
 	virtual void Die();
-	virtual void Self_Animation();
-	virtual void Attack_Animation();
+	virtual void Self_Animation(Sprite*sp);
+	virtual void Attack_Animation(Sprite*sp);
 	virtual void Attacked();
 	virtual bool isAttacking();
-	virtual void CreateBullet();
+	virtual void CreateBullet(Sprite* sp);
 	
 };

@@ -22,13 +22,12 @@ bool BulletLayer::init() {
 
 //×Óµ¯Éú³É
 void BulletLayer::Produce_Bullets(float t) {
-	for (int i = 0;i<preBullet.size();i++) {
-		Bullet *bullet = preBullet.at(i);
-		this->addChild(bullet->getImg(),1);
-		readyBullet.push_back(preBullet.at(i));
-		bullet->move();
-		preBullet.erase(preBullet.begin() + i);
-		i--;
+	for (auto x : preBullet.keys()) {
+		Sprite* sp = preBullet.at(x);
+		this->addChild(sp);
+		readyBullet.insert(x,sp);
+		x->move(sp);
+		preBullet.erase(x);
 	}
 }
 

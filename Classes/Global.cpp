@@ -1,6 +1,6 @@
 #include "Global.h"
-
-std::vector <Bullet*> preBullet;
-std::vector <Plants*> prePlants;
-std::vector <Bullet*> readyBullet;
-std::vector <Plants*> readyPlants;
+Map <Bullet*, Sprite*> preBullet;
+Map <Plants*, Sprite*> prePlants;
+Map <Bullet*, Sprite*> readyBullet;
+Map <Plants*, Sprite*> readyPlants;
+Map<test*, Sprite*> testMap;

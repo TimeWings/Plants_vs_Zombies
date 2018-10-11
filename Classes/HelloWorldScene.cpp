@@ -21,7 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-
+#include <time.h>
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "BulletLayer.h"
@@ -51,10 +51,9 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	
 	Plants *plant = new PeaShooter(Point(130, 180));
-	std::cout << plant << std::endl;
-	prePlants.push_back(plant);
-	//this->addChild(BulletLayer::create());
+	this->addChild(BulletLayer::create());
 	this->addChild(PlantLayer::create());
     return true;
 }

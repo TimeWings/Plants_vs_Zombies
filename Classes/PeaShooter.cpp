@@ -1,15 +1,16 @@
 #include "PeaShooter.h"
 #include "PeaBullet.h"
 #include "Global.h"
-PeaShooter::PeaShooter(Point position) 
-{
+
+PeaShooter::PeaShooter(Point position) {
+	
 	Sprite*sp = Sprite::create("peaShooter.png");
-	this->setImg(sp);
-	this->getImg()->setPosition(position);
+	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(0.5);
-}
+	prePlants.insert(this, sp);
 
+}
 void PeaShooter::Attack()
 {
 
@@ -19,7 +20,7 @@ void PeaShooter::Die()
 {
 }
 
-void PeaShooter::Self_Animation()
+void PeaShooter::Self_Animation(Sprite *sp)
 {
 	Vector<SpriteFrame*> allframe;
 	for (int i = 0; i < 2; i++)
@@ -35,10 +36,10 @@ void PeaShooter::Self_Animation()
 
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.5);
-	getImg()->runAction(RepeatForever::create(Animate::create(an)));
+	sp->runAction(RepeatForever::create(Animate::create(an)));
 }
 
-void PeaShooter::Attack_Animation()
+void PeaShooter::Attack_Animation(Sprite*sp)
 {
 }
 
@@ -51,9 +52,8 @@ bool PeaShooter::isAttacking()
 	return false;
 }
 
-void PeaShooter::CreateBullet()
+void PeaShooter::CreateBullet(Sprite *sp)
 {
-	Bullet *pb = new PeaBullet(Point(getImg()->getPositionX()+getImg()->getContentSize().width / 2, getImg()->getContentSize().height / 2 + getImg()->getPositionY() / 2));
-	preBullet.push_back(pb);
+	Bullet *pb = new PeaBullet(Point(sp->getPositionX()+sp->getContentSize().width / 2, sp->getContentSize().height / 2 + sp->getPositionY() / 2));
 }
 

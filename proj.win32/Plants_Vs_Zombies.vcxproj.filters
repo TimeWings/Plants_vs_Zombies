@@ -45,6 +45,9 @@
     <ClCompile Include="..\Classes\PeaBullet.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\test.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -78,6 +81,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PeaBullet.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\test.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

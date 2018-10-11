@@ -1,5 +1,6 @@
 #include "Plants.h"
-
+#include <time.h>
+#include <sys/timeb.h>
 Plants::Plants() {
 
 }
@@ -18,4 +19,14 @@ double Plants::getInterval()
 void Plants::setInterval(double Interval)
 {
 	_BulletInterval = Interval;
+}
+
+int Plants::getBirthTime()
+{
+	return BirthTime;
+}
+
+void Plants::setBirthTime(int seconds)
+{
+	BirthTime = seconds;
 }

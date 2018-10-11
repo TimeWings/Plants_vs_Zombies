@@ -3,6 +3,8 @@
 #include "PeaShooter.h"
 #include <iostream>
 #include "Plants.h"
+#include <stdio.h>
+#include <math.h>
 PlantLayer* PlantLayer::create()
 {
 	PlantLayer *pRet = new PlantLayer();
@@ -19,35 +21,31 @@ PlantLayer* PlantLayer::create()
 }
 bool PlantLayer::init() {
 	//这里写时间定时器
-	//Produce_Plants(0.5);
-	this->scheduleOnce(schedule_selector(PlantLayer::Produce_Plants), 1);
-	//this->schedule(schedule_selector(PlantLayer::prepareBullet), 1);
+	this->schedule(schedule_selector(PlantLayer::Produce_Plants), 1);
+	this->schedule(schedule_selector(PlantLayer::Check_isAttack), 1);
 	return true;
+}
+
+void PlantLayer::Check_isAttack(float t)
+{
+	for (auto x : readyPlants.keys()) {
+		int seconds = time((time_t*)NULL);
+		int interval = seconds - x->getBirthTime();
+		if (fmod(interval, x->getInterval()) == 0) {
+			x->CreateBullet(readyPlants.at(x));
+		}
+	}
 }
 
 //植物生成
 void PlantLayer::Produce_Plants(float t) {
-	if (prePlants.size() > 0) {
-		Plants *plant = prePlants.at(0);
-		std::cout << plant << std::endl;
-		//this->addChild(plant->getImg());
-		prePlants.erase(prePlants.begin());
-		
+	for (auto x : prePlants.keys()) {
+		Sprite*sp = prePlants.at(x);
+		this->addChild(sp);
+		int seconds = time((time_t*)NULL);
+		x->setBirthTime(seconds);
+		readyPlants.insert(x, sp);
+		prePlants.erase(x);
 	}
 	
-	//Plants *plant = new PeaShooter(Point(130, 180));
-	//std::cout << plant << std::endl;
-	//prePlants.push_back(plant);
-	/*Plants* p = prePlants.front();
-	std::cout << p << std::endl;
-	this->addChild(p->getImg());
-	prePlants.erase(prePlants.begin());*/
 }
-
-//void PlantLayer::prepareBullet(float t) {
-//	/*for (int i = 0; i < readyPlants.size(); i++) {
-//		Plants *plant = prePlants.at(i);
-//		plant->CreateBullet();
-//	}*/
-//	
-//}
