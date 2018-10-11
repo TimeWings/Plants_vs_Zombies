@@ -1,11 +1,7 @@
 #include "Plants.h"
 
-Plants::Plants(Sprite * img, Point position, int hp, double Interval):Entity(img,position){
-	_Hp = hp;
-	_BulletInterval = Interval;
-}
-bool Plants::isAttacking() {
-	return true;
+Plants::Plants() {
+
 }
 int Plants::getHp() {
 	return _Hp;
@@ -16,9 +12,10 @@ void Plants::setHp(int hp) {
 
 double Plants::getInterval()
 {
-	return 0.0;
+	return _BulletInterval;
 }
 
 void Plants::setInterval(double Interval)
 {
+	_BulletInterval = Interval;
 }

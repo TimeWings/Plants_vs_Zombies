@@ -37,6 +37,14 @@ int WINAPI _tWinMain(HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // create the application instance
+#ifdef WIN32
+	_tsetlocale(LC_ALL, _T(""));
+	::AllocConsole();
+	::freopen("conout$", "w", stdout);
+	::freopen("CONIN$", "r", stdin);
+	::freopen("CONOUT$", "w", stderr);
+#endif
     AppDelegate app;
     return Application::getInstance()->run();
 }
+

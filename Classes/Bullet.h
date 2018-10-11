@@ -7,10 +7,13 @@ class Bullet : public Entity
 private:
 	int _Damage;
 	double _Speed;
-	Bullet(Sprite* img,Point position,int damage, double speed);
 	virtual void Hit_Animation() = 0;
 	virtual void Self_Animation() = 0;
 public:
+	Bullet(Sprite* img, Point position, int damage, double speed);
 	int getDamage();
 	void setDamage(int damage);
+	double getSpeed();
+	void setSpeed(double speed);
+	virtual void move() = 0;
 };

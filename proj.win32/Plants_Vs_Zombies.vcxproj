@@ -155,6 +155,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Entity.cpp" />
     <ClCompile Include="..\Classes\Global.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\PeaBullet.cpp" />
+    <ClCompile Include="..\Classes\PeaShooter.cpp" />
     <ClCompile Include="..\Classes\PlantLayer.cpp" />
     <ClCompile Include="..\Classes\Plants.cpp" />
     <ClCompile Include="main.cpp" />
@@ -168,6 +170,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\PlantLayer.h" />
     <ClInclude Include="..\Classes\Plants.h" />
+    <ClInclude Include="..\Classes\PeaShooter.h" />
+    <ClInclude Include="..\Classes\PeaBullet.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +188,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Desktop\peaBullet.png" />
+    <Image Include="..\..\..\..\..\Desktop\peaShooter.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

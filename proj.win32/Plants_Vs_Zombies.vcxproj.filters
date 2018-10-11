@@ -39,6 +39,12 @@
     <ClCompile Include="..\Classes\Plants.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PeaShooter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PeaBullet.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -68,10 +74,24 @@
     <ClInclude Include="..\Classes\Plants.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\PeaShooter.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PeaBullet.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\Desktop\peaShooter.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\..\..\..\..\Desktop\peaBullet.png">
+      <Filter>resource</Filter>
+    </Image>
   </ItemGroup>
 </Project>

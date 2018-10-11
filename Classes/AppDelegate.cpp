@@ -82,12 +82,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect("Plants_Vs_Zombies", cocos2d::Rect(0, 0, designResolutionSize.width, designResolutionSize.height));
-#else
-        glview = GLViewImpl::create("Plants_Vs_Zombies");
-#endif
-        director->setOpenGLView(glview);
+		glview = GLViewImpl::createWithRect("Plants_Vs_Zombies", Rect(0, 0, 1400, 900), 1.0);
+		//glview->setDesignResolutionSize(480, 852, kResolutionShowAll);
+		glview->setDesignResolutionSize(1400, 900, ResolutionPolicy::SHOW_ALL);
+		//glview->setFrameSize(480, 852);
+		director->setOpenGLView(glview);
     }
 
     // turn on display FPS

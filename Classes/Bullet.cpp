@@ -9,3 +9,13 @@ int Bullet::getDamage() {
 void Bullet::setDamage(int damage) {
 
 }
+
+double Bullet::getSpeed()
+{
+	return _Speed;
+}
+
+void Bullet::setSpeed(double speed)
+{
+	_Speed = speed;
+}
