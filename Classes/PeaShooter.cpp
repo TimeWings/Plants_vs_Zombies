@@ -9,7 +9,7 @@ PeaShooter::PeaShooter(Point position) {
 	sp->setScale(getScale());
 	sp->setPosition(position);
 	this->setHp(20);
-	this->setInterval(500);
+	this->setInterval(1000);
 	prePlants.insert(this, sp);
 
 }
@@ -24,9 +24,9 @@ void PeaShooter::Die()
 
 void PeaShooter::Self_Animation(Sprite *sp)
 {
-	ScaleBy * scaledown = ScaleBy::create(1.0f, 0.5f, 0.5f);
-	ScaleBy * scaleup = ScaleBy::create(1.0f, 2.0f, 2.0f);
-	Sequence *sequence = Sequence::create(scaledown, scaleup, NULL);
+	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
+	ScaleBy * scaleup = ScaleBy::create(0.5f, 1.25f, 1.25f);
+	Sequence *sequence = Sequence::create(scaleup, scaledown, NULL);
 	sp->runAction(RepeatForever::create(sequence));
 }
 
