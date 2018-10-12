@@ -21,6 +21,11 @@ PeaBullet::PeaBullet(Point position):Bullet(position, 20, 6)
 	preBullet.insert(this, sp);
 }
 
+void PeaBullet::work(Sprite * sp)
+{
+	Self_Animation(sp);
+}
+
 void PeaBullet::Hit_Animation(Sprite*sp)
 {
 	readyBullet.erase(this);
@@ -40,8 +45,8 @@ void PeaBullet::move(Sprite*sp)
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	double distance = 10;
 	double time = distance / getSpeed();
-	//MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width+sp->getContentSize().width, sp->getPosition().y));
-	MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width-50, sp->getPosition().y));
+	MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width+sp->getContentSize().width, sp->getPosition().y));
+	//MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width-50, sp->getPosition().y));
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear, this,this));
 	Sequence *sequence = Sequence::create(moveTo, actionDone, NULL);
 	sp->runAction(sequence);

@@ -18,8 +18,7 @@ BulletLayer* BulletLayer::create()
 bool BulletLayer::init() {
 	//这里写时间定时器
 	this->schedule(schedule_selector(BulletLayer::Produce_Bullets), 0.1);
-	this->schedule(schedule_selector(BulletLayer::test), 0.1);
-	this->schedule(schedule_selector(BulletLayer::test1), 6);
+	//this->schedule(schedule_selector(BulletLayer::test), 0.1);
 	return true;
 }
 

@@ -11,7 +11,7 @@ public:
 	void Self_Animation(Sprite*sp);
 	virtual void init(Sprite * sp);
 	virtual void Attack_Animation(Sprite*sp);
-	virtual void Attacked();
+	virtual void Attacked(Sprite* sp);
 	virtual bool isAttacking();
 	void CreateBullet(Sprite* sp);
 

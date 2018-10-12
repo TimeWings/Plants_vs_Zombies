@@ -20,6 +20,6 @@ public:
 	virtual void init(Sprite * sp) = 0;
 	virtual void work(Sprite * sp) = 0;
 	virtual void Die(Sprite *sp) = 0;
-	virtual void Attacked() = 0;
+	virtual void Attacked(Sprite* sp) = 0;
 	virtual bool isAttacking() = 0;
 };

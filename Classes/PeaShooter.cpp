@@ -34,7 +34,7 @@ void PeaShooter::Self_Animation(Sprite *sp)
 	ScaleBy * scaleup = ScaleBy::create(0.5f, 1.25f, 1.25f);
 	Sequence *sequence = Sequence::create(scaleup, scaledown, NULL);
 	sp->runAction(RepeatForever::create(sequence));
-
+	
 }
 
 void PeaShooter::init(Sprite * sp)
@@ -46,9 +46,10 @@ void PeaShooter::Attack_Animation(Sprite*sp)
 {
 }
 
-void PeaShooter::Attacked()
+void PeaShooter::Attacked(Sprite* sp)
 {
-
+	CCActionInterval * tintby = CCTintBy::create(0.6, 0, 255, 255);
+	sp->runAction(tintby);
 }
 
 bool PeaShooter::isAttacking()
