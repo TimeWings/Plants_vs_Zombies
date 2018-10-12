@@ -339,3 +339,4 @@ ASALocalRun/
 # End of https://www.gitignore.io/api/visualstudio
 /cocos2d/cocos/2d/Debug.win32/libcocos2d.tlog/link.10388.delete.1.tlog
 /proj.win32/Debug.win32
+/cocos2d/cocos/2d/Debug.win32/libcocos2d.tlog/link.3280.delete.1.tlog

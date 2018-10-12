@@ -6,12 +6,15 @@ class PeaShooter :public Plants
 {
 public:
 	PeaShooter(Point position);
-	virtual void Attack();
-	virtual void Die();
-	virtual void Self_Animation(Sprite*sp);
+	virtual void work(Sprite * sp);
+	virtual void Die(Sprite *sp);
+	void Self_Animation(Sprite*sp);
+	virtual void init(Sprite * sp);
 	virtual void Attack_Animation(Sprite*sp);
 	virtual void Attacked();
 	virtual bool isAttacking();
-	virtual void CreateBullet(Sprite* sp);
+	void CreateBullet(Sprite* sp);
+
+	void clear(Node * pSender, Plants* plant);
 	
 };

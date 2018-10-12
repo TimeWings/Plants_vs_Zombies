@@ -14,7 +14,7 @@ public:
 	void setDamage(int damage);
 	double getSpeed();
 	void setSpeed(double speed);
-	virtual void move(Sprite* sp,Bullet* bullet) = 0;
+	virtual void move(Sprite* sp) = 0;
 	virtual void Hit_Animation(Sprite*sp) = 0;
 	virtual void Self_Animation(Sprite*sp) = 0;
 };

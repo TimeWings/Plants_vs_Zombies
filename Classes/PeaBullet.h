@@ -9,6 +9,7 @@ public:
 	PeaBullet(Point position);
 	virtual void Hit_Animation(Sprite*sp);
 	virtual void Self_Animation(Sprite*sp);
-	virtual void move(Sprite* sp,Bullet*bullet);
+	virtual void move(Sprite* sp);
 	void clear(Node * pSender, Bullet * bullet);
+	void test(float t);
 };

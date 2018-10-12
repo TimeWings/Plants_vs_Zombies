@@ -51,10 +51,13 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	
 	Plants *plant = new PeaShooter(Point(130, 180));
 	this->addChild(BulletLayer::create());
 	this->addChild(PlantLayer::create());
+	//DrawNode* drawNode = DrawNode::create();
+	//this->addChild(drawNode);
+	//drawNode->drawDot(Vec2(130,180), 3, Color4F::RED);
+	
     return true;
 }
 

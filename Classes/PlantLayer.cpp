@@ -31,6 +31,7 @@ bool PlantLayer::init() {
 void PlantLayer::Check_isAttack(float t)
 {
 	for (auto x : readyPlants.keys()) {
+		//std::cout << readyPlants.at(x)->getPositionX()<<"  "<< readyPlants.at(x)->getPositionY() << std::endl;
 		struct timeb t1;
 		ftime(&t1);
 		long long seconds = t1.time * 1000 + t1.millitm;
@@ -38,23 +39,25 @@ void PlantLayer::Check_isAttack(float t)
 		//std::cout << (interval / 100L) * 100 << std::endl;
 		long long a = (interval / 100L) * 100;
 		if (a!=0&&(a% x->getInterval() == 0)) {
-			x->CreateBullet(readyPlants.at(x));
+			x->work(readyPlants.at(x));
 		}
 	}
 }
 
 //Ö²ÎïÉú³É
 void PlantLayer::Produce_Plants(float t) {
-	for (auto x : prePlants.keys()) {
+	for (auto x : prePlants.keys()) 
+	{
 		Sprite*sp = prePlants.at(x);
 		this->addChild(sp);
+		
 		struct timeb t1;
 		ftime(&t1);
 		long long seconds = t1.time * 1000+t1.millitm;
 		//std::cout << seconds <<std:: endl;
 		x->setBirthTime(seconds);
 		readyPlants.insert(x, sp);
-		x->Self_Animation(sp);
+		x->init(sp);
 		prePlants.erase(x);
 	}
 	
