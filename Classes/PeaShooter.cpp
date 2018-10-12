@@ -5,9 +5,11 @@
 PeaShooter::PeaShooter(Point position) {
 	
 	Sprite*sp = Sprite::create("peaShooter.png");
+	setScale(0.3);
+	sp->setScale(getScale());
 	sp->setPosition(position);
 	this->setHp(20);
-	this->setInterval(0.5);
+	this->setInterval(500);
 	prePlants.insert(this, sp);
 
 }
@@ -22,21 +24,10 @@ void PeaShooter::Die()
 
 void PeaShooter::Self_Animation(Sprite *sp)
 {
-	Vector<SpriteFrame*> allframe;
-	for (int i = 0; i < 2; i++)
-	{
-		if (i == 0) {
-			SpriteFrame *sp = SpriteFrame::create("peaShooter.png", Rect(0, 0, 512, 724));
-			allframe.pushBack(sp);
-		}
-		else {
-			SpriteFrame *sp = SpriteFrame::create("peaShooter.png", Rect(0, 0, 512, 724));
-			allframe.pushBack(sp);
-		}
-
-	}
-	Animation* an = Animation::createWithSpriteFrames(allframe, 0.5);
-	sp->runAction(RepeatForever::create(Animate::create(an)));
+	ScaleBy * scaledown = ScaleBy::create(1.0f, 0.5f, 0.5f);
+	ScaleBy * scaleup = ScaleBy::create(1.0f, 2.0f, 2.0f);
+	Sequence *sequence = Sequence::create(scaledown, scaleup, NULL);
+	sp->runAction(RepeatForever::create(sequence));
 }
 
 void PeaShooter::Attack_Animation(Sprite*sp)

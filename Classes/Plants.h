@@ -7,16 +7,16 @@ class Plants:public Entity
 {
 private:
 	int _Hp;
-	int BirthTime;
-	double _BulletInterval;
+	long long BirthTime;
+	long long _BulletInterval;
 public:
 	Plants();
 	int getHp();
 	void setHp(int hp);
-	double getInterval();
-	void setInterval(double BulletInterval);
-	int getBirthTime();
-	void setBirthTime(int seconds);
+	long long getInterval();
+	void setInterval(long long BulletInterval);
+	long long getBirthTime();
+	void setBirthTime(long long seconds);
 	virtual void Attack() = 0;
 	virtual void Die() = 0;
 	virtual void Self_Animation(Sprite* sp) = 0;

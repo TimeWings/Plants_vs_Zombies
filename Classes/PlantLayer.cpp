@@ -5,6 +5,8 @@
 #include "Plants.h"
 #include <stdio.h>
 #include <math.h>
+#include <sys/timeb.h>
+#include <time.h>
 PlantLayer* PlantLayer::create()
 {
 	PlantLayer *pRet = new PlantLayer();
@@ -22,16 +24,20 @@ PlantLayer* PlantLayer::create()
 bool PlantLayer::init() {
 	//这里写时间定时器
 	this->schedule(schedule_selector(PlantLayer::Produce_Plants), 1);
-	this->schedule(schedule_selector(PlantLayer::Check_isAttack), 1);
+	this->schedule(schedule_selector(PlantLayer::Check_isAttack), 0.1);
 	return true;
 }
 
 void PlantLayer::Check_isAttack(float t)
 {
 	for (auto x : readyPlants.keys()) {
-		int seconds = time((time_t*)NULL);
-		int interval = seconds - x->getBirthTime();
-		if (fmod(interval, x->getInterval()) == 0) {
+		struct timeb t1;
+		ftime(&t1);
+		long long seconds = t1.time * 1000 + t1.millitm;
+		long long interval = seconds - x->getBirthTime();
+		//std::cout << (interval / 100L) * 100 << std::endl;
+		long long a = (interval / 100L) * 100;
+		if (a!=0&&(a% x->getInterval() == 0)) {
 			x->CreateBullet(readyPlants.at(x));
 		}
 	}
@@ -42,9 +48,13 @@ void PlantLayer::Produce_Plants(float t) {
 	for (auto x : prePlants.keys()) {
 		Sprite*sp = prePlants.at(x);
 		this->addChild(sp);
-		int seconds = time((time_t*)NULL);
+		struct timeb t1;
+		ftime(&t1);
+		long long seconds = t1.time * 1000+t1.millitm;
+		//std::cout << seconds <<std:: endl;
 		x->setBirthTime(seconds);
 		readyPlants.insert(x, sp);
+		x->Self_Animation(sp);
 		prePlants.erase(x);
 	}
 	

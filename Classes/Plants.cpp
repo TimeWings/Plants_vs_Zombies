@@ -11,22 +11,22 @@ void Plants::setHp(int hp) {
 	_Hp = hp;
 }
 
-double Plants::getInterval()
+long long Plants::getInterval()
 {
 	return _BulletInterval;
 }
 
-void Plants::setInterval(double Interval)
+void Plants::setInterval(long long Interval)
 {
 	_BulletInterval = Interval;
 }
 
-int Plants::getBirthTime()
+long long Plants::getBirthTime()
 {
 	return BirthTime;
 }
 
-void Plants::setBirthTime(int seconds)
+void Plants::setBirthTime(long long seconds)
 {
 	BirthTime = seconds;
 }

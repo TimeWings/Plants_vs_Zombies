@@ -26,7 +26,7 @@ void BulletLayer::Produce_Bullets(float t) {
 		Sprite* sp = preBullet.at(x);
 		this->addChild(sp);
 		readyBullet.insert(x,sp);
-		x->move(sp);
+		x->move(sp,x);
 		preBullet.erase(x);
 	}
 }
