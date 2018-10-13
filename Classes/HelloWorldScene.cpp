@@ -30,6 +30,7 @@
 #include "PeaBullet.h"
 #include "Global.h"
 #include "PeaShooter.h"
+#include "Sunflower.h"
 #include <iostream>
 USING_NS_CC;
 
@@ -51,9 +52,21 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	Plants *plant = new PeaShooter(Point(130, 180));
-	this->addChild(BulletLayer::create());
+	Plants *plant1 = new Sunflower(Point(60, 250));
+	Plants *plant7 = new Sunflower(Point(110, 250));
+	Plants *plant = new PeaShooter(Point(110, 60));
+	Plants *plant2 = new PeaShooter(Point(60, 180));
+	Plants *plant3 = new PeaShooter(Point(60, 120));
+	Plants *plant4 = new PeaShooter(Point(60, 60));
+	Plants *plant5 = new PeaShooter(Point(110, 180));
+	Plants *plant6 = new PeaShooter(Point(110, 120));
+	Plants *plant8 = new Sunflower(Point(160, 250));
+	Plants *plant9 = new Sunflower(Point(160, 180));
+	Plants *plant10 = new Sunflower(Point(160, 120));
+	Plants *plant11 = new Sunflower(Point(160, 60));
 	this->addChild(PlantLayer::create());
+	this->addChild(BulletLayer::create());
+	
 	//DrawNode* drawNode = DrawNode::create();
 	//this->addChild(drawNode);
 	//drawNode->drawDot(Vec2(130,180), 3, Color4F::RED);

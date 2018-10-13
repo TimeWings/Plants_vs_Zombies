@@ -42,9 +42,6 @@ void PeaShooter::init(Sprite * sp)
 	Self_Animation(sp);
 }
 
-void PeaShooter::Attack_Animation(Sprite*sp)
-{
-}
 
 void PeaShooter::Attacked(Sprite* sp)
 {
@@ -59,14 +56,14 @@ bool PeaShooter::isAttacking()
 
 void PeaShooter::CreateBullet(Sprite *sp)
 {
-	std::cout << "ÉÁÉÁµÄ½£Éú³É" << std::endl;
+	//std::cout << "ÉÁÉÁµÄ½£Éú³É" << std::endl;
 	Point a = Point(sp->getPositionX() + sp->getContentSize().width/2, sp->getContentSize().height*sp->getScale()/ 4 + sp->getPositionY());
 	Bullet *pb = new PeaBullet(a);
 }
 
 void PeaShooter::clear(Node *pSender, Plants* plant)
 {
-	std::cout << "ÉÁÉÁËÀÍö" << std::endl;
+	//std::cout << "ÉÁÉÁËÀÍö" << std::endl;
 	pSender->removeFromParent();
 	readyPlants.erase(plant);
 }
