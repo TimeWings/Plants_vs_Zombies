@@ -67,7 +67,7 @@ bool PlantLayer::init() {
 	listener->onTouchEnded = CC_CALLBACK_2(PlantLayer::onTouchEnded, this);
 	listener->setSwallowTouches(false);
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
-	this->schedule(schedule_selector(PlantLayer::Produce_Plants), 0.01);
+	this->schedule(schedule_selector(PlantLayer::Produce_Plants), 0.1);
 	this->schedule(schedule_selector(PlantLayer::Check_isAttack), 0.1);
 	this->schedule(schedule_selector(PlantLayer::Produce_Sun), 0.1);
 	return true;
