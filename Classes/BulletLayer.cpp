@@ -17,7 +17,7 @@ BulletLayer* BulletLayer::create()
 }
 bool BulletLayer::init() {
 	//这里写时间定时器
-	this->schedule(schedule_selector(BulletLayer::Produce_Bullets), 0.1);
+	this->schedule(schedule_selector(BulletLayer::Produce_Bullets), 0.01);
 	//this->schedule(schedule_selector(BulletLayer::test), 0.1);
 	return true;
 }
@@ -28,13 +28,11 @@ void BulletLayer::Produce_Bullets(float t) {
 		Sprite* sp = preBullet.at(x);
 		this->addChild(sp);
 
-		Sprite * hole = Sprite::create("circle.png");
-		hole->setPosition(Vec2(sp->getPositionX()- sp->getContentSize().width*sp->getScale()/2,sp->getPositionY()));
-		this->addChild(hole);
-		ActionInterval * fadeout = FadeOut::create(0.3);
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(BulletLayer::clear1, this));
-		Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-		hole->runAction(sequence);
+		Sprite *hole = x->attack_Animation(sp);
+		if (hole != NULL)
+		{
+			this->addChild(hole);
+		}
 
 		readyBullet.insert(x,sp);
 		x->move(sp);

@@ -10,9 +10,12 @@ PeaShooter::PeaShooter(Point position) {
 	sp->setScale(getScale());
 	sp->setPosition(position);
 	this->setHp(20);
-	this->setInterval(1000);
+	this->setInterval(2000);
 	prePlants.insert(this, sp);
 
+}
+PeaShooter::PeaShooter() 
+{
 }
 void PeaShooter::work(Sprite* sp)
 {
@@ -56,8 +59,8 @@ bool PeaShooter::isAttacking()
 
 void PeaShooter::CreateBullet(Sprite *sp)
 {
-	//std::cout << "闪闪的剑生成" << std::endl;
-	Point a = Point(sp->getPositionX() + sp->getContentSize().width/2, sp->getContentSize().height*sp->getScale()/ 4 + sp->getPositionY());
+	//std::cout<<sp << "闪闪的剑生成" << std::endl;
+	Point a = ccp(sp->getPositionX() + sp->getContentSize().width*sp->getScale()/2, sp->getContentSize().height*sp->getScale()/ 4 + sp->getPositionY());
 	Bullet *pb = new PeaBullet(a);
 }
 

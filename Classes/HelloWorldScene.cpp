@@ -31,6 +31,7 @@
 #include "Global.h"
 #include "PeaShooter.h"
 #include "Sunflower.h"
+#include "DoublePeaShooter.h"
 #include <iostream>
 USING_NS_CC;
 
@@ -52,6 +53,7 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	Plants* plant12 = new DoublePeaShooter(Point(210, 60));
 	Plants *plant1 = new Sunflower(Point(60, 250));
 	Plants *plant7 = new Sunflower(Point(110, 250));
 	Plants *plant = new PeaShooter(Point(110, 60));

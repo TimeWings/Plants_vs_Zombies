@@ -71,7 +71,7 @@ void Sunflower::CreateSun(Sprite * sp)
 
 void Sunflower::clear(Node * pSender, Plants * plant)
 {
-	std::cout << "Ì«Ñô»¨ËÀÍö" << std::endl;
+	//std::cout << "Ì«Ñô»¨ËÀÍö" << std::endl;
 	pSender->removeFromParent();
 	readyPlants.erase(plant);
 }

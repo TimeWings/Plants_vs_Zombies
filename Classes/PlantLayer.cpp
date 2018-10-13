@@ -43,7 +43,7 @@ bool PlantLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_ev
 			ftime(&t1);
 			long long seconds = t1.time * 1000 + t1.millitm;
 			plant->setBirthTime(seconds);
-			std::cout << "获得太阳，当前太阳数：" << sunCnt.first << std::endl;
+			//std::cout << "获得太阳，当前太阳数：" << sunCnt.first << std::endl;
 			Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sun);
 			MoveTo *moveTo = MoveTo::create(2, ccp(sunCnt.second.first  ,sunCnt.second.second));
 			CCActionInterval * rotate = CCRotateTo::create(2, 180);
@@ -83,8 +83,13 @@ void PlantLayer::Check_isAttack(float t)
 		long long interval = seconds - x->getBirthTime();
 		//std::cout << (interval / 100L) * 100 << std::endl;
 		long long a = (interval / 100L) * 100;
-		if (a!=0&&(a% x->getInterval() == 0)) {
+		if (interval>x->getInterval()) {
+			//std::cout << x << "闪闪的剑生成" << std::endl;
 			x->work(readyPlants.at(x));
+			struct timeb t1;
+			ftime(&t1);
+			long long seconds = t1.time * 1000 + t1.millitm;
+			x->setBirthTime(seconds);
 		}
 	}
 }
@@ -93,10 +98,10 @@ void PlantLayer::Check_isAttack(float t)
 void PlantLayer::Produce_Plants(float t) {
 	for (auto x : prePlants.keys()) 
 	{
-		std::cout << "植物生成" << std::endl;
+		//std::cout << "植物生成" << std::endl;
 		Sprite*sp = prePlants.at(x);
 		this->addChild(sp);
-		
+		std::cout << "植物：" << sp->getPositionX() << "  " << sp->getPositionY() << std::endl;
 		struct timeb t1;
 		ftime(&t1);
 		long long seconds = t1.time * 1000+t1.millitm;
@@ -116,7 +121,7 @@ void PlantLayer::Produce_Sun(float t)
 	{
 		Sprite* sun = preSun.at(x);
 		this->addChild(sun);
-		std::cout << "太阳生成" << std::endl;
+		//std::cout << "太阳生成" << std::endl;
 		Point a = Point(x->getPositionX() - x->getContentSize().width / 2 * x->getScale() - sun->getContentSize().width / 2 * sun->getScale(), x->getPositionY());
 		float height = x->getContentSize().height/2*x->getScale();
 		CCActionInterval * jumpto = CCJumpTo::create(1, a, height, 1);
@@ -130,7 +135,7 @@ void PlantLayer::Produce_Sun(float t)
 
 void PlantLayer::clear(Node *pSender)
 {
-	std::cout << "太阳被清除" << std:: endl;
+	//std::cout << "太阳被清除" << std:: endl;
 	pSender->removeFromParent();
 }
 void PlantLayer::clear1(Node *pSender,Sprite *sunFlower)
@@ -147,7 +152,7 @@ void PlantLayer::clear1(Node *pSender,Sprite *sunFlower)
 	ftime(&t1);
 	long long seconds = t1.time * 1000 + t1.millitm;
 	plant->setBirthTime(seconds);
-	std::cout << "太阳没有被捡，自动被清除" << std::endl;
+	//std::cout << "太阳没有被捡，自动被清除" << std::endl;
 	pSender->removeFromParent();
 	readySun.erase(sunFlower);
 }

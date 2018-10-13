@@ -9,6 +9,7 @@ private:
 	int _Damage;
 	double _Speed;
 public:
+	Bullet();
 	Bullet(Point position, int damage, double speed);
 	int getDamage();
 	void setDamage(int damage);
@@ -17,4 +18,5 @@ public:
 	virtual void work(Sprite* sp) = 0;
 	virtual void move(Sprite* sp) = 0;
 	virtual void Hit_Animation(Sprite*sp) = 0;
+	virtual Sprite * attack_Animation(Sprite * sp)=0;
 };
