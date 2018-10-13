@@ -6,20 +6,20 @@ USING_NS_CC;
 class Plants:public Entity
 {
 private:
-	int _Hp;
-	long long BirthTime;
-	long long _BulletInterval;
+	int _Hp; //血量
+	long long BirthTime; //诞生时间
+	long long _BulletInterval; //攻击间隔
 public:
-	Plants();
-	int getHp();
+	Plants(); //构造函数
+	int getHp(); 
 	void setHp(int hp);
-	long long getInterval();
+	long long getInterval(); 
 	void setInterval(long long BulletInterval);
 	long long getBirthTime();
 	void setBirthTime(long long seconds);
-	virtual void init(Sprite * sp) = 0;
-	virtual void work(Sprite * sp) = 0;
-	virtual void Die(Sprite *sp) = 0;
+	virtual void init(Sprite * sp) = 0; //初始化
+	virtual void work(Sprite * sp) = 0; //工作
+	virtual void Die(Sprite *sp) = 0; //
 	virtual void Attacked(Sprite* sp) = 0;
 	virtual bool isAttacking() = 0;
 };

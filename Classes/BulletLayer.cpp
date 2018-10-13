@@ -22,6 +22,7 @@ bool BulletLayer::init() {
 	return true;
 }
 
+
 //×Óµ¯Éú³É
 void BulletLayer::Produce_Bullets(float t) {
 	for (auto x : preBullet.keys()) {
@@ -35,6 +36,7 @@ void BulletLayer::Produce_Bullets(float t) {
 		}
 
 		readyBullet.insert(x,sp);
+		x->work(sp);
 		x->move(sp);
 		preBullet.erase(x);
 	}

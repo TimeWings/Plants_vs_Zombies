@@ -31,8 +31,9 @@ void PeaBullet::work(Sprite * sp)
 	Self_Animation(sp);
 }
 
-void PeaBullet::Hit_Animation(Sprite*sp)
+void PeaBullet::Hit_Animation(Sprite *sp1)
 {
+	Sprite* sp = readyBullet.at(this);
 	readyBullet.erase(this);
 	ActionInterval * fadeout = FadeOut::create(0.3);
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
@@ -40,6 +41,7 @@ void PeaBullet::Hit_Animation(Sprite*sp)
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
 	sp->runAction(sequence);
 }
+
 Sprite* PeaBullet::attack_Animation(Sprite *sp)
 {
 	Sprite * hole = Sprite::create("circle.png");
@@ -51,7 +53,7 @@ Sprite* PeaBullet::attack_Animation(Sprite *sp)
 	hole->runAction(sequence);
 	return hole;
 }
-void PeaBullet::Self_Animation(Sprite*sp)
+void PeaBullet::Self_Animation(Sprite *sp)
 {
 }
 
