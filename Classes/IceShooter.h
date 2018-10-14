@@ -8,5 +8,5 @@ class IceShooter :public PeaShooter
 {
 public:
 	IceShooter(Point position);
-	void CreateBullet(Sprite* sp);
+	void CreateBullet();
 };

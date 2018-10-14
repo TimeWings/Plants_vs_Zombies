@@ -8,6 +8,14 @@ Entity::Entity(Point position, double rotate, double scale)
 	_rotate = rotate;
 	_scale = scale;
 }
+Sprite * Entity::getImg()
+{
+	return _img;
+}
+void Entity::setImg(Sprite * img)
+{
+	_img = img;
+}
 double Entity::getRotate() {
 	return _rotate;
 }

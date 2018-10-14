@@ -32,11 +32,11 @@ bool PlantLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_ev
 		{
 			sunCnt.first++;
 			Plants *plant;
-			for (auto y : readyPlants.keys())
+			for (int i = 0; i < readyPlants.size(); i++) 
 			{
-				if (readyPlants.at(y) == x)
+				if (readyPlants.at(i)->getImg() == x)
 				{
-					plant = y;
+					plant = readyPlants.at(i);
 				}
 			}
 			struct timeb t1;
@@ -67,7 +67,7 @@ bool PlantLayer::init() {
 	listener->onTouchEnded = CC_CALLBACK_2(PlantLayer::onTouchEnded, this);
 	listener->setSwallowTouches(false);
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
-	this->schedule(schedule_selector(PlantLayer::Produce_Plants), 0.1);
+	this->schedule(schedule_selector(PlantLayer::Produce_Plants), 0.01);
 	this->schedule(schedule_selector(PlantLayer::Check_isAttack), 0.1);
 	this->schedule(schedule_selector(PlantLayer::Produce_Sun), 0.1);
 	return true;
@@ -75,17 +75,18 @@ bool PlantLayer::init() {
 
 void PlantLayer::Check_isAttack(float t)
 {
-	for (auto x : readyPlants.keys()) {
-		//std::cout << readyPlants.at(x)->getPositionX()<<"  "<< readyPlants.at(x)->getPositionY() << std::endl;
+	for (int i = 0; i < readyPlants.size(); i++) 
+	{
+		Plants* x = readyPlants.at(i);
 		struct timeb t1;
 		ftime(&t1);
 		long long seconds = t1.time * 1000 + t1.millitm;
 		long long interval = seconds - x->getBirthTime();
 		//std::cout << (interval / 100L) * 100 << std::endl;
 		long long a = (interval / 100L) * 100;
-		if (interval>x->getInterval()) {
+		if (interval > x->getInterval()) {
 			//std::cout << x << "闪闪的剑生成" << std::endl;
-			x->work(readyPlants.at(x));
+			x->work();
 			struct timeb t1;
 			ftime(&t1);
 			long long seconds = t1.time * 1000 + t1.millitm;
@@ -96,20 +97,20 @@ void PlantLayer::Check_isAttack(float t)
 
 //植物生成
 void PlantLayer::Produce_Plants(float t) {
-	for (auto x : prePlants.keys()) 
+	for (int i = 0; i < prePlants.size(); i++) 
 	{
-		//std::cout << "植物生成" << std::endl;
-		Sprite*sp = prePlants.at(x);
+		Plants*x = prePlants.at(i);
+		Sprite*sp = x->getImg();
 		this->addChild(sp);
 		std::cout << "植物：" << sp->getPositionX() << "  " << sp->getPositionY() << std::endl;
 		struct timeb t1;
 		ftime(&t1);
-		long long seconds = t1.time * 1000+t1.millitm;
+		long long seconds = t1.time * 1000 + t1.millitm;
 		//std::cout << seconds <<std:: endl;
 		x->setBirthTime(seconds);
-		readyPlants.insert(x, sp);
-		x->init(sp);
-		prePlants.erase(x);
+		readyPlants.push_back(x);
+		x->init();
+		prePlants.erase(prePlants.begin()+i);
 	}
 	
 }
@@ -141,9 +142,9 @@ void PlantLayer::clear(Node *pSender)
 void PlantLayer::clear1(Node *pSender,Sprite *sunFlower)
 {
 	Plants *plant;
-	for (auto x : readyPlants.keys())
+	for (auto x : readyPlants)
 	{
-		if (readyPlants.at(x) == sunFlower)
+		if (x->getImg() == sunFlower)
 		{
 			plant = x;
 		}

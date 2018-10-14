@@ -7,7 +7,7 @@ class DoublePeaShooter :public PeaShooter
 {
 public:
 	DoublePeaShooter(Point position);
-	void CreateBullet(Sprite* sp);
+	void CreateBullet();
 	void addBullet(Node * pSender, Sprite* plant);
 
 };

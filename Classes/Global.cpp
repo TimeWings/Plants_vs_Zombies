@@ -1,11 +1,11 @@
 #include "Global.h"
-Map <Bullet*, Sprite*> preBullet;
-Map <Plants*, Sprite*> prePlants;
-Map <Bullet*, Sprite*> readyBullet;
-Map <Plants*, Sprite*> readyPlants;
-Map<Sprite*, Sprite*>preSun;
+std::vector <Bullet*> preBullet;
+std::vector <Plants*> prePlants;
+std::vector <Bullet*> readyBullet;
+std::vector <Plants*> readyPlants;
+Map<Sprite*, Sprite*>preSun;//Ö²Îï¾«Áé£¬Ì«Ñô¾«Áé
 Map<Sprite*, Sprite*>readySun;
-Vector<Sprite*> testMap;
+std::vector<Sprite*> testMap;
 std::vector<int> debuff;
 std::pair<int, std::pair<double, double> >sunCnt(0,std::make_pair(0,0));
 int speed_ = 10;

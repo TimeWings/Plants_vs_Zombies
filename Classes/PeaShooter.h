@@ -7,14 +7,14 @@ class PeaShooter :public Plants
 public:
 	PeaShooter(Point position);
 	PeaShooter();
-	virtual void work(Sprite * sp);
-	virtual void Die(Sprite *sp);
-	void Self_Animation(Sprite*sp);
-	virtual void init(Sprite * sp);
-	virtual void Attacked(Sprite* sp);
+	virtual void work();
+	virtual void Die();
+	void Self_Animation();
+	virtual void init();
+	virtual void Attacked();
 	virtual bool isAttacking();
-	virtual void CreateBullet(Sprite* sp);
+	virtual void CreateBullet();
 
-	void clear(Node * pSender, Plants* plant);
+	void clear(Node * pSender);
 	
 };

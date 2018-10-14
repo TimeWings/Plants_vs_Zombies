@@ -3,12 +3,14 @@
 DoubleBullet::DoubleBullet(Point position):PeaBullet()
 {
 	Sprite *sp = Sprite::create("doubleBullet.png");
+	this->setImg(sp);
+	sp->retain();
 	sp->setScale(0.3);
 	sp->setPosition(position.x + sp->getContentSize().width*sp->getScale() / 2, position.y);
-	preBullet.insert(this, sp);
+	preBullet.push_back(this);
 }
 
-Sprite * DoubleBullet::attack_Animation(Sprite * sp)
+Sprite * DoubleBullet::attack_Animation()
 {
 	return NULL;
 }

@@ -8,12 +8,11 @@ class PeaBullet :public Bullet
 public:
 	PeaBullet();
 	PeaBullet(Point position);
-	virtual void work(Sprite*sp);
-	virtual void Hit_Animation(Sprite * sp, std::vector<int>debuff, int tag);
-	virtual Sprite * attack_Animation(Sprite * sp);
-	void Self_Animation(Sprite*sp);
-	virtual void move(Sprite* sp);
-	void clear(Node * pSender, Bullet * bullet);
+	virtual void work();
+	virtual void Hit_Animation(Sprite * sp, std::vector<int>debuff,Vector<Action*>action);
+	virtual Sprite * attack_Animation();
+	void Self_Animation();
+	virtual void move();
+	void clear(Node * pSender);
 	void clear1(Node * pSender);
-	void test(float t);
 };

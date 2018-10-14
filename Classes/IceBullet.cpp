@@ -4,47 +4,56 @@
 IceBullet::IceBullet(Point position)
 {
 	Sprite *sp = Sprite::create("sword1.png");
+	this->setImg(sp);
+	sp->retain();
 	sp->setScale(0.15);
 	sp->setPosition(position.x + sp->getContentSize().width*sp->getScale() / 2, position.y);
-	preBullet.insert(this, sp);
+	preBullet.push_back(this);
 }
 
-void IceBullet::work(Sprite * sp)
+void IceBullet::work()
 {
-	Self_Animation(sp);
+	Self_Animation();
 }
 
-void IceBullet::Hit_Animation(Sprite * sp, std::vector<int>debuff1, int tag)
+void IceBullet::Hit_Animation(Sprite * sp, std::vector<int>debuff1, Vector<Action*>action)
 {
-	//删除子弹
-	Sprite* bulletSprite = readyBullet.at(this);
-	bulletSprite->removeFromParent();
-	readyBullet.erase(this);
-
-	auto visibleSize = Director::getInstance()->getVisibleSize();
-	for (auto x : debuff)
-	{
-		if (x == Icing)
-		{
-			std:: cout<< "此僵尸正在被冰冻" << std::endl;
-			return;
-		}
-	}
-	debuff.push_back(Icing);
-	Action  * action = sp->getActionByTag(tag);
-	sp->stopAction(action);
-	speed_ /= 2;
-	std::vector<int>a;
-	std::cout << speed_ << std::endl;
-	float distance = sp->getPositionX();
-	double time = distance / speed_;
-	MoveTo *moveTo = MoveTo::create(time, ccp(0, sp->getPositionY()));
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(IceBullet::resume, this,moveTo,debuff1));
-	Sequence *sequence = Sequence::create(moveTo, CCDelayTime::create(0.5),actionDone,NULL);
-	sp->runAction(sequence);
+	////删除子弹
+	//Sprite*bulletSprite=this->getImg();
+	//bulletSprite->removeFromParent();
+	//
+	//for (int i = 0; i < readyBullet.size(); i++)
+	//{
+	//	if (readyBullet.at(i) == this)
+	//	{
+	//		readyBullet.erase(readyBullet.begin() + i);
+	//		break;
+	//	}
+	//}
+	//auto visibleSize = Director::getInstance()->getVisibleSize();
+	//for (auto x : debuff)
+	//{
+	//	if (x == Icing)
+	//	{
+	//		std:: cout<< "此僵尸正在被冰冻" << std::endl;
+	//		return;
+	//	}
+	//}
+	//debuff.push_back(Icing);
+	//Action  * action = sp->getActionByTag(tag);
+	//sp->stopAction(action);
+	//speed_ /= 2;
+	//std::vector<int>a;
+	//std::cout << speed_ << std::endl;
+	//float distance = sp->getPositionX();
+	//double time = distance / speed_;
+	//MoveTo *moveTo = MoveTo::create(time, ccp(0, sp->getPositionY()));
+	//auto actionDone = CallFuncN::create(CC_CALLBACK_1(IceBullet::resume, this,moveTo,debuff1));
+	//Sequence *sequence = Sequence::create(moveTo, CCDelayTime::create(0.5),actionDone,NULL);
+	//sp->runAction(sequence);
 }
 
-Sprite * IceBullet::attack_Animation(Sprite * sp)
+Sprite * IceBullet::attack_Animation()
 {
 	//Sprite * ice = Sprite::create("iceHit.png");
 	//ice->setScale(0.3);
@@ -56,7 +65,7 @@ Sprite * IceBullet::attack_Animation(Sprite * sp)
 	return NULL;
 }
 
-void IceBullet::Self_Animation(Sprite * sp)
+void IceBullet::Self_Animation()
 {
 	//ActionInterval * rotateto = RotateBy::create(0.5, 180);
     //sp->runAction(RepeatForever::create(rotateto));

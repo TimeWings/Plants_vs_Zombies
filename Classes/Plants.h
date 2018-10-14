@@ -17,9 +17,9 @@ public:
 	void setInterval(long long BulletInterval);
 	long long getBirthTime();
 	void setBirthTime(long long seconds);
-	virtual void init(Sprite * sp) = 0; //初始化
-	virtual void work(Sprite * sp) = 0; //工作
-	virtual void Die(Sprite *sp) = 0; //
-	virtual void Attacked(Sprite* sp) = 0;
+	virtual void init() = 0; //初始化
+	virtual void work() = 0; //工作
+	virtual void Die() = 0; //
+	virtual void Attacked() = 0;
 	virtual bool isAttacking() = 0;
 };

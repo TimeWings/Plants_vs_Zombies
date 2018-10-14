@@ -5,16 +5,19 @@
 DoublePeaShooter::DoublePeaShooter(Point position):PeaShooter()
 {
 	Sprite*sp = Sprite::create("doubleShooter.png");
+	this->setImg(sp);
+	sp->retain();
 	setScale(0.2);
 	sp->setScale(getScale());
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
-	prePlants.insert(this, sp);
+	prePlants.push_back(this);
 }
 
-void DoublePeaShooter::CreateBullet(Sprite * sp)
+void DoublePeaShooter::CreateBullet()
 {
+	Sprite *sp = this->getImg();
 	Point a = ccp(sp->getPositionX() + sp->getContentSize().width*sp->getScale() / 2, sp->getContentSize().height*sp->getScale() / 4 + sp->getPositionY());
 	Bullet *pb = new DoubleBullet(a);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(DoublePeaShooter::addBullet, this,sp));

@@ -8,5 +8,5 @@ class DoubleBullet : public PeaBullet
 {
 public:
 	DoubleBullet(Point position);
-	Sprite * attack_Animation(Sprite * sp);
+	virtual Sprite * attack_Animation();
 }; 

@@ -15,8 +15,8 @@ public:
 	void setDamage(int damage);
 	double getSpeed();
 	void setSpeed(double speed);
-	virtual void work(Sprite* sp) = 0;
-	virtual void move(Sprite* sp) = 0;
-	virtual void Hit_Animation(Sprite * sp, std::vector<int>debuff,int tag) = 0;
-	virtual Sprite * attack_Animation(Sprite * sp)=0;
+	virtual void work() = 0;
+	virtual void move() = 0;
+	virtual void Hit_Animation(Sprite * Zombie, std::vector<int>debuff,Vector<Action*>action) = 0;
+	virtual Sprite * attack_Animation()=0;
 };
