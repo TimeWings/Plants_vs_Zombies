@@ -28,11 +28,11 @@
 #include "PlantLayer.h"
 #include "Bullet.h"
 #include "PeaBullet.h"
-#include "Global.h"
 #include "PeaShooter.h"
 #include "Sunflower.h"
 #include "DoublePeaShooter.h"
 #include "IceShooter.h"
+#include "Global.h"
 #include <iostream>
 USING_NS_CC;
 
@@ -54,8 +54,18 @@ bool HelloWorld::init()
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	Plants* plant13 = new IceShooter(Point(210, 120));
-	Plants* plant12 = new DoublePeaShooter(Point(210, 60));
+	Plants* plant13 = new IceShooter(Point(60, 120));
+	Sprite *sp = Sprite::create("sunFlower.png");
+	sp->setScale(0.3);
+	sp->setPosition(300, 120);
+	float distance = 300;
+	double time = distance / speed_;
+	MoveTo *moveTo = MoveTo::create(time, ccp(0, sp->getPositionY()));
+	moveTo->setTag(100);
+	sp->runAction(moveTo);
+	testMap.pushBack(sp);
+	this->addChild(sp);
+	/*Plants* plant12 = new DoublePeaShooter(Point(210, 60));
 	Plants *plant1 = new Sunflower(Point(60, 250));
 	Plants *plant7 = new Sunflower(Point(110, 250));
 	Plants *plant = new PeaShooter(Point(110, 60));
@@ -67,7 +77,7 @@ bool HelloWorld::init()
 	Plants *plant8 = new Sunflower(Point(160, 250));
 	Plants *plant9 = new Sunflower(Point(160, 180));
 	Plants *plant10 = new Sunflower(Point(160, 120));
-	Plants *plant11 = new Sunflower(Point(160, 60));
+	Plants *plant11 = new Sunflower(Point(160, 60));*/
 	this->addChild(PlantLayer::create());
 	this->addChild(BulletLayer::create());
 	

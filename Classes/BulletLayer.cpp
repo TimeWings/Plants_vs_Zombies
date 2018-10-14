@@ -18,7 +18,7 @@ BulletLayer* BulletLayer::create()
 bool BulletLayer::init() {
 	//这里写时间定时器
 	this->schedule(schedule_selector(BulletLayer::Produce_Bullets), 0.01);
-	//this->schedule(schedule_selector(BulletLayer::test), 0.1);
+	this->schedule(schedule_selector(BulletLayer::test), 0.1);
 	return true;
 }
 
@@ -47,12 +47,14 @@ void BulletLayer::test(float t)
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	for (auto x : readyBullet.keys())
 	{
-		Sprite*sp = readyBullet.at(x);
-		if (sp->getPositionX() > visibleSize.width - 200)
+		Sprite* bullet = readyBullet.at(x);
+		for (auto y : testMap)
 		{
-			//std::cout << "闪闪击中僵尸" << std::endl;
-			x->Hit_Animation(sp);
-			
+			if (bullet->boundingBox().intersectsRect(y->getBoundingBox()))
+			{
+				std::cout << "碰撞了" << std::endl;
+				x->Hit_Animation(y, debuff,100);
+			}
 		}
 	}
 }

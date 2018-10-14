@@ -31,7 +31,7 @@ void PeaBullet::work(Sprite * sp)
 	Self_Animation(sp);
 }
 
-void PeaBullet::Hit_Animation(Sprite *sp1)
+void PeaBullet::Hit_Animation(Sprite * sp1, std::vector<int>debuff, int tag)
 {
 	Sprite* sp = readyBullet.at(this);
 	readyBullet.erase(this);

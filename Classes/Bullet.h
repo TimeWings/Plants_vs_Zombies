@@ -17,6 +17,6 @@ public:
 	void setSpeed(double speed);
 	virtual void work(Sprite* sp) = 0;
 	virtual void move(Sprite* sp) = 0;
-	virtual void Hit_Animation(Sprite*sp) = 0;
+	virtual void Hit_Animation(Sprite * sp, std::vector<int>debuff,int tag) = 0;
 	virtual Sprite * attack_Animation(Sprite * sp)=0;
 };

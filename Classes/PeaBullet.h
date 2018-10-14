@@ -9,7 +9,7 @@ public:
 	PeaBullet();
 	PeaBullet(Point position);
 	virtual void work(Sprite*sp);
-	virtual void Hit_Animation(Sprite*sp);
+	virtual void Hit_Animation(Sprite * sp, std::vector<int>debuff, int tag);
 	virtual Sprite * attack_Animation(Sprite * sp);
 	void Self_Animation(Sprite*sp);
 	virtual void move(Sprite* sp);
