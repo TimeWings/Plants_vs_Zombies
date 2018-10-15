@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Plants.h"
 #include "test.h"
+#include "TestZombie.h"
 #define Icing 0
 USING_NS_CC;
 
