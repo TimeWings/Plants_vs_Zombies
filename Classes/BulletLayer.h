@@ -8,5 +8,6 @@ public:
 	static BulletLayer* create();
 private:
 	void Produce_Bullets(float t);
+	void test(float t);
 	void clear1(Node * pSender);
 };

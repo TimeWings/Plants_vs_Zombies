@@ -11,7 +11,7 @@ int Bullet::getDamage() {
 	return true;
 }
 void Bullet::setDamage(int damage) {
-
+	_Damage = damage;
 }
 
 double Bullet::getSpeed()

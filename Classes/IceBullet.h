@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "PeaBullet.h"
+#include "TestZombie.h"
 USING_NS_CC;
 
 class IceBullet :public PeaBullet
@@ -8,8 +9,9 @@ class IceBullet :public PeaBullet
 public:
 	IceBullet(Point position);
 	virtual void work();
-	virtual void Hit_Animation(Sprite * sp, std::vector<int>debuff, Vector<Action*>action);
+	virtual void Hit_Animation(TestZombie* zombie);
 	virtual Sprite * attack_Animation();
 	void Self_Animation();
-	void resume(Node * pSender, Action * action, std::vector<int>debuff);
+	void resume(Node * pSender, TestZombie* zombie);
+	void resume1(Node * pSender);
 };

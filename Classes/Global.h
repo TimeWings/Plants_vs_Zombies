@@ -12,8 +12,5 @@ extern std::vector <Bullet*> readyBullet;
 extern std::vector <Plants*> readyPlants;
 extern Map<Sprite*,Sprite*>preSun;//Ö²Îï¾«Áé£¬Ì«Ñô¾«Áé
 extern Map<Sprite*,Sprite*>readySun;
-extern std::vector<Sprite*> testMap;
+extern std::vector<TestZombie*> testMap;
 extern std::pair<int ,std::pair<double,double>>sunCnt;
-extern std::vector<int> debuff;
-
-extern int speed_;

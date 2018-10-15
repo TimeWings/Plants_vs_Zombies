@@ -33,7 +33,7 @@ void PeaBullet::work()
 	Self_Animation();
 }
 
-void PeaBullet::Hit_Animation(Sprite * sp1, std::vector<int>debuff, Vector<Action*>action)
+void PeaBullet::Hit_Animation(TestZombie* zombie)
 {
 	Sprite* sp = this->getImg();
 	for (int i = 0; i < readyBullet.size(); i++)

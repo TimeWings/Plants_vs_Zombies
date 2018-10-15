@@ -1,5 +1,6 @@
 #include "IceBullet.h"
 #include "Global.h"
+#include "TestZombie.h"
 #include <iostream>
 IceBullet::IceBullet(Point position)
 {
@@ -16,52 +17,46 @@ void IceBullet::work()
 	Self_Animation();
 }
 
-void IceBullet::Hit_Animation(Sprite * sp, std::vector<int>debuff1, Vector<Action*>action)
+void IceBullet::Hit_Animation(TestZombie* zombie)
 {
 	////删除子弹
-	//Sprite*bulletSprite=this->getImg();
-	//bulletSprite->removeFromParent();
-	//
-	//for (int i = 0; i < readyBullet.size(); i++)
-	//{
-	//	if (readyBullet.at(i) == this)
-	//	{
-	//		readyBullet.erase(readyBullet.begin() + i);
-	//		break;
-	//	}
-	//}
-	//auto visibleSize = Director::getInstance()->getVisibleSize();
-	//for (auto x : debuff)
-	//{
-	//	if (x == Icing)
-	//	{
-	//		std:: cout<< "此僵尸正在被冰冻" << std::endl;
-	//		return;
-	//	}
-	//}
-	//debuff.push_back(Icing);
-	//Action  * action = sp->getActionByTag(tag);
-	//sp->stopAction(action);
-	//speed_ /= 2;
-	//std::vector<int>a;
-	//std::cout << speed_ << std::endl;
-	//float distance = sp->getPositionX();
-	//double time = distance / speed_;
-	//MoveTo *moveTo = MoveTo::create(time, ccp(0, sp->getPositionY()));
-	//auto actionDone = CallFuncN::create(CC_CALLBACK_1(IceBullet::resume, this,moveTo,debuff1));
-	//Sequence *sequence = Sequence::create(moveTo, CCDelayTime::create(0.5),actionDone,NULL);
-	//sp->runAction(sequence);
+	Sprite*bulletSprite=this->getImg();
+	bulletSprite->removeFromParent();
+	
+	for (int i = 0; i < readyBullet.size(); i++)
+	{
+		if (readyBullet.at(i) == this)
+		{
+			readyBullet.erase(readyBullet.begin() + i);
+			break;
+		}
+	}
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	for (auto x : zombie->debuff)
+	{
+		if (x == Icing)
+		{
+			std:: cout<< "此僵尸正在被冰冻" << std::endl;
+			return;
+		}
+	}
+	zombie->debuff.push_back(Icing);
+	zombie->_Speed /= 2;
+	zombie->sched1->setTimeScale(0.5);
+	CallFuncN* actionDone= actionDone = CallFuncN::create(CC_CALLBACK_1(IceBullet::resume, this, zombie));
+	CCSequence*sequence = CCSequence::create(CCDelayTime::create(0.5), actionDone,NULL);
+	zombie->getImg()->runAction(sequence);
 }
 
 Sprite * IceBullet::attack_Animation()
 {
-	//Sprite * ice = Sprite::create("iceHit.png");
-	//ice->setScale(0.3);
-	//Point a = ccp(sp->getPositionX() - sp->getContentSize().width / 2 * sp->getScale(), sp->getPositionY());
-	//ice->setPosition(a);
-	////CCFollow * follow = CCFollow::create(sp,CCRectMake(0, 0, 600, 600));
-	////ice-> runAction(follow);
-	//return ice;
+	/*Sprite * ice = sprite::create("icehit.png");
+	ice->setscale(0.3);
+	Point a = ccp(sp->getpositionx() - sp->getcontentsize().width / 2 * sp->getscale(), sp->getpositiony());
+	ice->setposition(a);
+	CCfollow * follow = ccfollow::create(sp,ccrectmake(0, 0, 600, 600));
+	ice-> runaction(follow);
+	return ice;*/
 	return NULL;
 }
 
@@ -71,21 +66,19 @@ void IceBullet::Self_Animation()
     //sp->runAction(RepeatForever::create(rotateto));
 }
 
-void IceBullet::resume(Node *pSender, Action *action, std::vector<int>debuff)
+void IceBullet::resume(Node *pSender, TestZombie* zombie)
 {
 	std::cout << "cnm" << std::endl;
-	for (int i = 0; i < debuff.size(); i++)
+	for (int i = 0; i < zombie->debuff.size(); i++)
 	{
-		if (debuff.at(i) == Icing)
+		if (zombie->debuff.at(i) == Icing)
 		{
-			debuff.erase(debuff.begin() + i);
+			zombie->debuff.erase(zombie->debuff.begin() + i);
 			std::cout << "恢复！！！" << std::endl;;
 			break;
 		}
 	}
-	pSender->stopAction(action);
-	speed_ *= 2;
-	float distance = pSender->getPositionX();
-	double time = distance / speed_;
-	MoveTo *moveTo = MoveTo::create(time, ccp(0, pSender->getPositionY()));
+	zombie->_Speed *= 2;
+	zombie->sched1->setTimeScale(1);
 }
+
