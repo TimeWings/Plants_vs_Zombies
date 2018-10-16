@@ -1,7 +1,6 @@
 #pragma once
 #include "cocos2d.h"
 #include "Entity.h"
-#include "Bullet.h"
 USING_NS_CC;
 class TestZombie : public Entity
 {

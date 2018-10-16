@@ -8,8 +8,7 @@ PeaShooter::PeaShooter(Point position) {
 	Sprite*sp = Sprite::create("peaShooter.png");
 	this->setImg(sp);
 	sp->retain();
-	setScale(0.3);
-	sp->setScale(getScale());
+	sp->setScale(0.3);
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
@@ -34,15 +33,23 @@ void PeaShooter::Die()
 	sp->runAction(sequence);
 }
 
-void PeaShooter::Self_Animation()
-{
-	Sprite *sp = this->getImg();
-	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
-	ScaleBy * scaleup = ScaleBy::create(0.5f, 1.25f, 1.25f);
-	Sequence *sequence = Sequence::create(scaleup, scaledown, NULL);
-	sp->runAction(RepeatForever::create(sequence));
-	
-}
+//void PeaShooter::Self_Animation()
+//{
+//	Sprite *sp = this->getImg();
+//	float preScale = sp->getScaleX();
+//	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale+0.05);
+//	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale, preScale);
+//	Sequence *sequence1 = Sequence::create(scaleup, scaledown, NULL);
+//	CCActionInterval * moveBy = CCMoveBy::create(1, ccp(8, 0));
+//	CCActionInterval * actionmoveback = moveBy->reverse();
+//	CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
+//	CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
+//	Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
+//	//CCActionInterval * easeBackIn = CCEaseBackIn::create(moveBy);
+//	
+//	sp->runAction(CCRepeatForever::create(sequence2));
+//	
+//}
 
 void PeaShooter::init()
 {
@@ -64,9 +71,14 @@ bool PeaShooter::isAttacking()
 
 void PeaShooter::CreateBullet()
 {
+	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 1.0f, 1.25f);
+	CCScaleBy * scaledown = CCScaleBy::create(0.07f, 1.0f, 0.64f);
+	CCScaleBy * scaleup1 = CCScaleBy::create(0.2f, 1.0f, 1.25f);
+	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
+	this->getImg()->runAction(sequence);
 	Sprite *sp = this->getImg();
 	//std::cout<<sp << "ÉÁÉÁµÄ½£Éú³É" << std::endl;
-	Point a = ccp(sp->getPositionX() + sp->getContentSize().width*sp->getScale()/2, sp->getContentSize().height*sp->getScale()/ 4 + sp->getPositionY());
+	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleY()/ 4 + sp->getPositionY());
 	Bullet *pb = new PeaBullet(a);
 }
 

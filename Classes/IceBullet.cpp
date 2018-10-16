@@ -7,7 +7,7 @@ IceBullet::IceBullet(Point position)
 	Sprite *sp = Sprite::create("sword1.png");
 	this->setImg(sp);
 	sp->retain();
-	sp->setScale(0.15);
+	sp->setScale(0.2);
 	sp->setPosition(position.x + sp->getContentSize().width*sp->getScale() / 2, position.y);
 	preBullet.push_back(this);
 }
@@ -47,6 +47,7 @@ void IceBullet::Hit_Animation(TestZombie* zombie)
 	CCSequence*sequence = CCSequence::create(CCDelayTime::create(0.5), actionDone,NULL);
 	zombie->getImg()->runAction(sequence);
 }
+
 
 Sprite * IceBullet::attack_Animation()
 {

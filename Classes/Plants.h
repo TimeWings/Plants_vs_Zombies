@@ -22,4 +22,5 @@ public:
 	virtual void Die() = 0; //
 	virtual void Attacked() = 0;
 	virtual bool isAttacking() = 0;
+	void Self_Animation();
 };

@@ -11,7 +11,7 @@ public:
 	virtual void init();
 	virtual void Attacked();
 	virtual bool isAttacking();
-	void Self_Animation();
+	//void Self_Animation();
 	void CreateSun();
 	void clear(Node * pSender);
 

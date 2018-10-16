@@ -1,8 +1,8 @@
 #pragma once
 #include "cocos2d.h"
-#include "Entity.h"
-#include "Bullet.h"
 #include "TestZombie.h"
+#include "Entity.h"
+#include "test.h"
 USING_NS_CC;
 class Bullet : public Entity
 {

@@ -3,10 +3,9 @@
 Entity::Entity() {
 
 }
-Entity::Entity(Point position, double rotate, double scale)
+Entity::Entity(Point position, double rotate)
 {
 	_rotate = rotate;
-	_scale = scale;
 }
 Sprite * Entity::getImg()
 {
@@ -19,12 +18,6 @@ void Entity::setImg(Sprite * img)
 double Entity::getRotate() {
 	return _rotate;
 }
-double Entity::getScale() {
-	return _scale;
-}
 void Entity::setRotate(double rotate) {
 	_rotate = rotate;
-}
-void Entity::setScale(double scale) {
-	_scale = scale;
 }

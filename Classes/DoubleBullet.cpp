@@ -6,7 +6,7 @@ DoubleBullet::DoubleBullet(Point position):PeaBullet()
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.3);
-	sp->setPosition(position.x + sp->getContentSize().width*sp->getScale() / 2, position.y);
+	sp->setPosition(position.x , position.y);
 	preBullet.push_back(this);
 }
 

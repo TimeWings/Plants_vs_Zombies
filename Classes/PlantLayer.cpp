@@ -123,8 +123,8 @@ void PlantLayer::Produce_Sun(float t)
 		Sprite* sun = preSun.at(x);
 		this->addChild(sun);
 		//std::cout << "Ì«ÑôÉú³É" << std::endl;
-		Point a = Point(x->getPositionX() - x->getContentSize().width / 2 * x->getScale() - sun->getContentSize().width / 2 * sun->getScale(), x->getPositionY());
-		float height = x->getContentSize().height/2*x->getScale();
+		Point a = Point(x->getPositionX() - x->getContentSize().width / 2 * x->getScaleX() - sun->getContentSize().width / 2 * sun->getScale(), x->getPositionY());
+		float height = x->getContentSize().height/2*x->getScaleX();
 		CCActionInterval * jumpto = CCJumpTo::create(1, a, height, 1);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PlantLayer::clear1, this,x));
 		CCFiniteTimeAction * reveseseq = CCSequence::create(jumpto, CCDelayTime::create(3.2), actionDone, NULL);

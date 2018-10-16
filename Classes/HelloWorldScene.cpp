@@ -52,28 +52,26 @@ bool HelloWorld::init()
     {
         return false;
     }
-	
-
 
     auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    /*Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	Plants* plant13 = new IceShooter(Point(60, 120));
-	
-	TestZombie *zombie =new TestZombie(Point(300, 120));
+	*/
+	TestZombie *zombie =new TestZombie(Point(360, 60));
 	this->addChild(zombie->init());
-	/*Plants* plant12 = new DoublePeaShooter(Point(210, 60));
+	Plants* plant12 = new DoublePeaShooter(Point(210, 60));
 	Plants *plant1 = new Sunflower(Point(60, 250));
 	Plants *plant7 = new Sunflower(Point(110, 250));
 	Plants *plant = new PeaShooter(Point(110, 60));
 	Plants *plant2 = new PeaShooter(Point(60, 180));
 	Plants *plant3 = new PeaShooter(Point(60, 120));
-	Plants *plant4 = new PeaShooter(Point(60, 60));*/
-	/*Plants *plant5 = new PeaShooter(Point(110, 180));
+	Plants *plant4 = new PeaShooter(Point(60, 60));
+	Plants *plant5 = new PeaShooter(Point(110, 180));
 	Plants *plant6 = new PeaShooter(Point(110, 120));
 	Plants *plant8 = new Sunflower(Point(160, 250));
 	Plants *plant9 = new Sunflower(Point(160, 180));
 	Plants *plant10 = new Sunflower(Point(160, 120));
-	Plants *plant11 = new Sunflower(Point(160, 60));*/
+	Plants *plant11 = new Sunflower(Point(160, 60));
 	this->addChild(PlantLayer::create());
 	this->addChild(BulletLayer::create());
 	

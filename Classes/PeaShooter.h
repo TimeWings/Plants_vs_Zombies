@@ -9,7 +9,7 @@ public:
 	PeaShooter();
 	virtual void work();
 	virtual void Die();
-	void Self_Animation();
+	//void Self_Animation();
 	virtual void init();
 	virtual void Attacked();
 	virtual bool isAttacking();

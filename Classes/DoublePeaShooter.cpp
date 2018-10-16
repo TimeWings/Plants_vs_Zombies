@@ -7,8 +7,7 @@ DoublePeaShooter::DoublePeaShooter(Point position):PeaShooter()
 	Sprite*sp = Sprite::create("doubleShooter.png");
 	this->setImg(sp);
 	sp->retain();
-	setScale(0.2);
-	sp->setScale(getScale());
+	sp->setScale(0.2);
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
@@ -17,8 +16,13 @@ DoublePeaShooter::DoublePeaShooter(Point position):PeaShooter()
 
 void DoublePeaShooter::CreateBullet()
 {
+	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 1.0f, 1.25f);
+	CCScaleBy * scaledown = CCScaleBy::create(0.07f, 1.0f, 0.64f);
+	CCScaleBy * scaleup1 = CCScaleBy::create(0.2f, 1.0f, 1.25f);
+	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
+	this->getImg()->runAction(sequence);
 	Sprite *sp = this->getImg();
-	Point a = ccp(sp->getPositionX() + sp->getContentSize().width*sp->getScale() / 2, sp->getContentSize().height*sp->getScale() / 4 + sp->getPositionY());
+	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleX() / 4 + sp->getPositionY());
 	Bullet *pb = new DoubleBullet(a);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(DoublePeaShooter::addBullet, this,sp));
 	CCFiniteTimeAction * reveseseq = CCSequence::create(CCDelayTime::create(0.2) , actionDone, NULL);
@@ -27,6 +31,11 @@ void DoublePeaShooter::CreateBullet()
 
 void DoublePeaShooter::addBullet(Node * pSender, Sprite * sp)
 {
-	Point a = ccp(sp->getPositionX() + sp->getContentSize().width*sp->getScale() / 2, sp->getContentSize().height*sp->getScale() / 4 + sp->getPositionY());
+	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 1.0f, 1.25f);
+	CCScaleBy * scaledown = CCScaleBy::create(0.07f, 1.0f, 0.64f);
+	CCScaleBy * scaleup1 = CCScaleBy::create(0.2f, 1.0f, 1.25f);
+	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
+	this->getImg()->runAction(sequence);
+	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleX() / 4 + sp->getPositionY());
 	Bullet *pb = new DoubleBullet(a);
 }

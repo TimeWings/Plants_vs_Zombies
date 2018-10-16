@@ -7,8 +7,7 @@ Sunflower::Sunflower(Point position)
 	Sprite*sp = Sprite::create("sunFlower.png");
 	this->setImg(sp);
 	sp->retain();
-	setScale(0.3);
-	sp->setScale(getScale());
+	sp->setScale(0.3);
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(5000);
@@ -47,21 +46,21 @@ bool Sunflower::isAttacking()
 	return false;
 }
 
-void Sunflower::Self_Animation()
-{
-	Sprite * sp = this->getImg();
-	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
-	ScaleBy * scaleup = ScaleBy::create(0.5f, 1.25f, 1.25f);
-	Sequence *sequence = Sequence::create(scaleup, scaledown, NULL);
-	sp->runAction(RepeatForever::create(sequence));
-}
+//void Sunflower::Self_Animation()
+//{
+//	Sprite * sp = this->getImg();
+//	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
+//	ScaleBy * scaleup = ScaleBy::create(0.5f, 1.25f, 1.25f);
+//	Sequence *sequence = Sequence::create(scaleup, scaledown, NULL);
+//	sp->runAction(RepeatForever::create(sequence));
+//}
 
 void Sunflower::CreateSun()
 {
 	Sprite * sp = this->getImg();
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	Sprite *spSun = Sprite::create("sun.png");
-	Point a = Point(sp->getPositionX(), sp->getPositionY() + sp->getContentSize().height / 2 * sp->getScale());
+	Point a = Point(sp->getPositionX(), sp->getPositionY() + sp->getContentSize().height / 2 * sp->getScaleX());
 	spSun->setPosition(a);
 	spSun->setScale(0.5);
 	if ((preSun.find(sp) != preSun.end()) || (readySun.find(sp) != readySun.end()))

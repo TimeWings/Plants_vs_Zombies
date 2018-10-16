@@ -2,7 +2,6 @@
 #include "cocos2d.h"
 #include "PeaBullet.h"
 #include "Bullet.h"
-#include "TestZombie.h"
 USING_NS_CC;
 class PeaBullet :public Bullet
 {

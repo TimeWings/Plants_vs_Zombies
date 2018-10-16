@@ -24,6 +24,8 @@ TestZombie::TestZombie(Point position)
 	sp->setActionManager(actionManager1);
 	sp->runAction(sequence);
 	testMap.push_back(this);
+	/*CCMotionStreak* streak = CCMotionStreak::create(0.8, 10, 10, ccRED, "circle.png");
+	streak->runAction(moveTo);*/
 }
 
 Sprite*TestZombie::init()
