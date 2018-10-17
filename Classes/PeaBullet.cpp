@@ -1,11 +1,11 @@
 #include "PeaBullet.h"
 #include "Global.h"
+#include "Bullet.h"
+#include "Entity.h"
 #include <iostream>
 
 PeaBullet::PeaBullet()
 {
-	this->setDamage(20);
-	this->setSpeed(6);
 }
 PeaBullet::PeaBullet(Point position):Bullet(position, 20, 6)
 {
@@ -25,12 +25,9 @@ PeaBullet::PeaBullet(Point position):Bullet(position, 20, 6)
 	sp->retain();
 	//std::cout << sp->getContentSize().width << std::endl;
 	sp->setPosition(position.x+sp->getContentSize().width*sp->getScaleX()/2,position.y);
-	preBullet.push_back(this);
-}
-
-void PeaBullet::work()
-{
-	Self_Animation();
+	this->addLayer(sp);
+	readyBullet.push_back(this);
+	this->move();
 }
 
 void PeaBullet::Hit_Animation(TestZombie* zombie)
@@ -46,26 +43,23 @@ void PeaBullet::Hit_Animation(TestZombie* zombie)
 	}
 	ActionInterval * fadeout = FadeOut::create(0.3);
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear, this));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clearNode, this));
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
 	sp->runAction(sequence);
 }
 
 
-Sprite* PeaBullet::attack_Animation()
+void PeaBullet::attack_Animation()
 {
 	Sprite*sp = this->getImg();
 	Sprite * hole = Sprite::create("circle.png");
 	hole->setPosition(Vec2(sp->getPositionX() - sp->getContentSize().width*(sp->getScaleX() ), sp->getPositionY()));
 	//std::cout << "光环：" << hole->getPositionX() << "  " << hole->getPositionY() << std::endl;
 	ActionInterval * fadeout = FadeOut::create(0.7);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear1, this));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clearNode, this));
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+	this->addLayer(hole);
 	hole->runAction(sequence);
-	return hole;
-}
-void PeaBullet::Self_Animation()
-{
 }
 
 void PeaBullet::move()
@@ -81,9 +75,8 @@ void PeaBullet::move()
 	sp->runAction(sequence);
 }
 
-void PeaBullet::clear(Node *pSender) 
+void PeaBullet::clear(Node * pSender)
 {
-	//std::cout << "闪闪的剑被清除" << std:: endl;
 	pSender->removeFromParent();
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
@@ -94,10 +87,11 @@ void PeaBullet::clear(Node *pSender)
 		}
 	}
 }
-void PeaBullet::clear1(Node *pSender)
+
+void PeaBullet::clearNode(Node * pSender)
 {
-	//std::cout << "双刀被清除" << std:: endl;
 	pSender->removeFromParent();
 }
+
 
 

@@ -1,8 +1,10 @@
 #include "Plants.h"
+#include "BulletLayer.h"
+#include "Global.h"
 #include <time.h>
 #include <sys/timeb.h>
 Plants::Plants() {
-
+	this->BirthTime = 0;
 }
 int Plants::getHp() {
 	return _Hp;
@@ -13,12 +15,12 @@ void Plants::setHp(int hp) {
 
 long long Plants::getInterval()
 {
-	return _BulletInterval;
+	return _WorkInterval;
 }
 
 void Plants::setInterval(long long Interval)
 {
-	_BulletInterval = Interval;
+	_WorkInterval = Interval;
 }
 
 long long Plants::getBirthTime()
@@ -31,18 +33,11 @@ void Plants::setBirthTime(long long seconds)
 	BirthTime = seconds;
 }
 
-void Plants::Self_Animation()
+void Plants::addLayer(Node * entity)
 {
-	Sprite *sp = this->getImg();
-	float preScale = sp->getScaleX();
-	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale + 0.05);
-	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale, preScale);
-	Sequence *sequence1 = Sequence::create(scaleup, scaledown, NULL);
-	CCActionInterval * moveBy = CCMoveBy::create(1, ccp(8, 0));
-	CCActionInterval * actionmoveback = moveBy->reverse();
-	CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
-	CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
-	Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
+	BulletLayer* bl = BulletLayer::getInstance();
+	bl->addChild(entity);
 
-	sp->runAction(CCRepeatForever::create(sequence2));
 }
+
+

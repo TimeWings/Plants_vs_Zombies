@@ -21,3 +21,5 @@ double Entity::getRotate() {
 void Entity::setRotate(double rotate) {
 	_rotate = rotate;
 }
+
+

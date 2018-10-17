@@ -12,11 +12,17 @@ PeaShooter::PeaShooter(Point position) {
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
-	prePlants.push_back(this);
+	this->Self_Animation();
+	addLayer(sp);
+	readyPlants.push_back(this);
 
 }
 PeaShooter::PeaShooter() 
 {
+}
+bool PeaShooter::isWorking()
+{
+	return true;
 }
 void PeaShooter::work()
 {
@@ -32,24 +38,6 @@ void PeaShooter::Die()
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
 	sp->runAction(sequence);
 }
-
-//void PeaShooter::Self_Animation()
-//{
-//	Sprite *sp = this->getImg();
-//	float preScale = sp->getScaleX();
-//	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale+0.05);
-//	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale, preScale);
-//	Sequence *sequence1 = Sequence::create(scaleup, scaledown, NULL);
-//	CCActionInterval * moveBy = CCMoveBy::create(1, ccp(8, 0));
-//	CCActionInterval * actionmoveback = moveBy->reverse();
-//	CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
-//	CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
-//	Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
-//	//CCActionInterval * easeBackIn = CCEaseBackIn::create(moveBy);
-//	
-//	sp->runAction(CCRepeatForever::create(sequence2));
-//	
-//}
 
 void PeaShooter::init()
 {
@@ -68,12 +56,25 @@ bool PeaShooter::isAttacking()
 {
 	return false;
 }
-
+void PeaShooter::Self_Animation()
+{
+	Sprite *sp = this->getImg();
+	float preScale = sp->getScaleX();
+	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale + 0.05);
+	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale, preScale);
+	Sequence *sequence1 = Sequence::create(scaleup, scaledown, NULL);
+	CCActionInterval * moveBy = CCMoveBy::create(1, ccp(7, 0));
+	CCActionInterval * actionmoveback = moveBy->reverse();
+	CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
+	CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
+	Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
+	sp->runAction(CCRepeatForever::create(sequence2));
+}
 void PeaShooter::CreateBullet()
 {
-	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 1.0f, 1.25f);
-	CCScaleBy * scaledown = CCScaleBy::create(0.07f, 1.0f, 0.64f);
-	CCScaleBy * scaleup1 = CCScaleBy::create(0.2f, 1.0f, 1.25f);
+	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
+	CCScaleBy * scaledown = CCScaleBy::create(0.2f, 1.5625f, 0.64f);
+	CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
 	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
 	this->getImg()->runAction(sequence);
 	Sprite *sp = this->getImg();

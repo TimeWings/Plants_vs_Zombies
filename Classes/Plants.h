@@ -8,19 +8,19 @@ class Plants:public Entity
 private:
 	int _Hp; //血量
 	long long BirthTime; //诞生时间
-	long long _BulletInterval; //攻击间隔
+	long long _WorkInterval; //工作间隔
 public:
 	Plants(); //构造函数
 	int getHp(); 
 	void setHp(int hp);
 	long long getInterval(); 
-	void setInterval(long long BulletInterval);
+	void setInterval(long long Interval);
 	long long getBirthTime();
 	void setBirthTime(long long seconds);
-	virtual void init() = 0; //初始化
+	void addLayer(Node* entity);
 	virtual void work() = 0; //工作
-	virtual void Die() = 0; //
+	virtual bool isWorking() = 0;//是否能工作
+	virtual void Die() = 0; 
 	virtual void Attacked() = 0;
-	virtual bool isAttacking() = 0;
-	void Self_Animation();
+	
 };

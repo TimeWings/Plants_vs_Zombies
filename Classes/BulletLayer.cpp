@@ -1,9 +1,10 @@
 #include "BulletLayer.h"
 #include "Global.h"
 #include <iostream>
+BulletLayer* BulletLayer::pRet=NULL;
 BulletLayer* BulletLayer::create()
 {
-	BulletLayer *pRet = new BulletLayer();
+	BulletLayer::pRet = new BulletLayer();
 	if (pRet && pRet->init())
 	{
 		pRet->autorelease();
@@ -17,31 +18,9 @@ BulletLayer* BulletLayer::create()
 }
 bool BulletLayer::init() {
 	//这里写时间定时器
-	this->schedule(schedule_selector(BulletLayer::Produce_Bullets), 0.01);
 	this->schedule(schedule_selector(BulletLayer::test), 0.1);
 	return true;
 }
-
-
-//子弹生成
-void BulletLayer::Produce_Bullets(float t) {
-	if (preBullet.size() != 0) 
-	{
-		Bullet* bullet = preBullet.front();
-		Sprite *sp = bullet->getImg();
-		this->addChild(sp);
-		Sprite *hole = bullet->attack_Animation();
-		if (hole != NULL)
-		{
-			this->addChild(hole);
-		}
-		readyBullet.push_back(bullet);
-		bullet->work();
-		bullet->move();
-		preBullet.erase(preBullet.begin());
-	}
-}
-
 void BulletLayer::test(float t)
 {
 	auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -59,9 +38,5 @@ void BulletLayer::test(float t)
 		}
 	}
 }
-void BulletLayer::clear1(Node *pSender)
-{
-	//std::cout << "闪闪的剑洞被清除了" << std::endl;
-	pSender->removeFromParent();
-}
+
 

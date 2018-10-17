@@ -12,17 +12,19 @@ IceShooter::IceShooter(Point position)
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
-	prePlants.push_back(this);
+	this->addLayer(sp);
+	this->Self_Animation();
+	readyPlants.push_back(this);
 }
 
 void IceShooter::CreateBullet()
 {
-	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 1.0f, 1.25f);
-	CCScaleBy * scaledown = CCScaleBy::create(0.07f, 1.0f, 0.64f);
-	CCScaleBy * scaleup1 = CCScaleBy::create(0.2f, 1.0f, 1.25f);
+	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
+	CCScaleBy * scaledown = CCScaleBy::create(0.2f, 1.5625f, 0.64f);
+	CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
 	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
 	this->getImg()->runAction(sequence);
 	Sprite*sp = this->getImg();
-	Point a = ccp(sp->getPositionX() + sp->getContentSize().width*sp->getScale() / 2, sp->getContentSize().height*sp->getScale() / 4 + sp->getPositionY());
+	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
 	Bullet *pb = new IceBullet(a);
 }

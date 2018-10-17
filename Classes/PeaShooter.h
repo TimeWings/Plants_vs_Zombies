@@ -7,14 +7,14 @@ class PeaShooter :public Plants
 public:
 	PeaShooter(Point position);
 	PeaShooter();
+	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();
-	//void Self_Animation();
+	void Self_Animation();
 	virtual void init();
 	virtual void Attacked();
 	virtual bool isAttacking();
 	virtual void CreateBullet();
-
 	void clear(Node * pSender);
 	
 };

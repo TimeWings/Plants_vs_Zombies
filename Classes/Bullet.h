@@ -16,8 +16,8 @@ public:
 	void setDamage(int damage);
 	double getSpeed();
 	void setSpeed(double speed);
-	virtual void work() = 0;
+	void cal_damage(TestZombie* zombie);
+	void addLayer(Node* entity);
 	virtual void move() = 0;
 	virtual void Hit_Animation(TestZombie* zombie) = 0;
-	virtual Sprite * attack_Animation()=0;
 };
