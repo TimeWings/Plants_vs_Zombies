@@ -26,6 +26,7 @@ PeaBullet::PeaBullet(Point position):Bullet(position, 20, 6)
 	//std::cout << sp->getContentSize().width << std::endl;
 	sp->setPosition(position.x+sp->getContentSize().width*sp->getScaleX()/2,position.y);
 	this->addLayer(sp);
+	this->attack_Animation();
 	readyBullet.push_back(this);
 	this->move();
 }
