@@ -33,6 +33,11 @@ void Plants::setBirthTime(long long seconds)
 	BirthTime = seconds;
 }
 
+void Plants::getHurt(int Damage)
+{
+	this->_Hp -= Damage;
+}
+
 void Plants::addLayer(Node * entity)
 {
 	BulletLayer* bl = BulletLayer::getInstance();

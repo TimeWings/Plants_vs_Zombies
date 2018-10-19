@@ -21,16 +21,21 @@ PeaBullet::PeaBullet(Point position):Bullet(position, 20, 6)
 	else
 		sp = Sprite::create("sword4.png");
 	sp->setScale(0.2);
+	//方便以后获取子弹精灵
 	this->setImg(sp);
 	sp->retain();
 	//std::cout << sp->getContentSize().width << std::endl;
+	//子弹发射位置微调
 	sp->setPosition(position.x+sp->getContentSize().width*sp->getScaleX()/2,position.y);
 	this->addLayer(sp);
+	//子弹的特效（产生时的特效，或者拖尾效果）
 	this->attack_Animation();
 	readyBullet.push_back(this);
+	//移动函数
 	this->move();
 }
 
+//击中僵尸的效果
 void PeaBullet::Hit_Animation(TestZombie* zombie)
 {
 	Sprite* sp = this->getImg();
@@ -72,6 +77,7 @@ void PeaBullet::move()
 	MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width+sp->getContentSize().width*sp->getScaleX(), sp->getPosition().y));
 	//MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width-50, sp->getPosition().y));
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear, this));
+	//动画序列顺序播放
 	Sequence *sequence = Sequence::create(moveTo, actionDone, NULL);
 	sp->runAction(sequence);
 }

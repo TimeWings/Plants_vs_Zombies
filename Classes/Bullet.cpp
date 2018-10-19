@@ -5,12 +5,12 @@ Bullet::Bullet()
 {
 
 }
-Bullet::Bullet(Point position, int damage, double speed):Entity(position) {
+Bullet::Bullet(Point position, int damage, double speed) {
 	_Damage = damage;
 	_Speed = speed;
 }
 int Bullet::getDamage() {
-	return true;
+	return _Damage;
 }
 void Bullet::setDamage(int damage) {
 	_Damage = damage;
@@ -30,6 +30,7 @@ void Bullet::setSpeed(double speed)
 
 void Bullet::cal_damage(TestZombie * zombie)
 {
+	zombie->_hp -= this->getDamage();
 }
 
 void Bullet::addLayer(Node * entity)

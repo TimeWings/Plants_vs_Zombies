@@ -19,6 +19,8 @@ BulletLayer* BulletLayer::create()
 bool BulletLayer::init() {
 	//这里写时间定时器
 	this->schedule(schedule_selector(BulletLayer::test), 0.1);
+	this->schedule(schedule_selector(BulletLayer::test2), 0.001);
+	this->schedule(schedule_selector(BulletLayer::test3), 0.1);
 	return true;
 }
 void BulletLayer::test(float t)
@@ -32,8 +34,53 @@ void BulletLayer::test(float t)
 		{
 			if (sp->boundingBox().intersectsRect(testMap.at(j)->getImg()->getBoundingBox()))
 			{
-				std::cout << "碰撞了" << std::endl;
+				std::cout << "子弹碰撞了" << std::endl;
+				bullet->cal_damage(testMap.at(j));
 				bullet->Hit_Animation(testMap.at(j));
+				
+			}
+		}
+	}
+}
+
+void BulletLayer::test2(float t)
+{
+	for (int j = 0; j < readyPlants.size(); j++)
+	{
+		Plants* plant = readyPlants.at(j);
+		Sprite* sp = plant->getImg();
+		if (plant->getHp() <= 0)
+			plant->Die();
+	}
+	for (int j = 0; j < testMap.size(); j++)
+	{
+		TestZombie* zb = testMap.at(j);
+		Sprite* sp = zb->getImg();
+		if (zb->_hp <= 0)
+		{
+			std::cout << "这个僵尸死了" << std::endl;
+			testMap.erase(testMap.begin()+j);
+			sp->removeFromParent();
+		}
+
+	}
+
+}
+void BulletLayer::test3(float t)
+{
+
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		Sprite*sp = readyPlants.at(i)->getImg();
+		for (int j = 0; j < testMap.size(); j++)
+		{
+			
+			if (sp->boundingBox().intersectsRect(testMap.at(j)->getImg()->getBoundingBox()))
+			{
+				std::cout << "碰撞了" << std::endl;
+				readyPlants.at(i)->getHurt(1);
+				readyPlants.at(i)->Attacked();
+
 			}
 		}
 	}

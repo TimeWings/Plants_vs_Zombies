@@ -13,4 +13,6 @@ public:
 	static BulletLayer *pRet;
 private:
 	void test(float t);
+	void test2(float t);
+	void test3(float t);
 };

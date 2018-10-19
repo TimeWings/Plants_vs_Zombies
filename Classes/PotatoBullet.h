@@ -2,14 +2,12 @@
 #include "cocos2d.h"
 #include "Bullet.h"
 USING_NS_CC;
-class PeaBullet :public Bullet
+class PotatoBullet :public Bullet
 {
 public:
-	PeaBullet();
-	PeaBullet(Point position);
+	PotatoBullet(Point position);
 	virtual void move();
 	void clear(Node * pSender);
 	void clearNode(Node * pSender);
-	virtual void attack_Animation();
 	virtual void Hit_Animation(TestZombie* zombie);
 };
