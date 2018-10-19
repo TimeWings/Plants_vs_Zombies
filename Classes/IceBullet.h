@@ -6,12 +6,11 @@ USING_NS_CC;
 
 class IceBullet :public PeaBullet
 {
+private:
+	MotionStreak* streak;
 public:
 	IceBullet(Point position);
-	virtual void work();
-	virtual void Hit_Animation(TestZombie* zombie);
-	virtual Sprite * attack_Animation();
-	void Self_Animation();
+	void Hit_Animation(TestZombie* zombie);
+	void attack_Animation();
 	void resume(Node * pSender, TestZombie* zombie);
-	void resume1(Node * pSender);
 };

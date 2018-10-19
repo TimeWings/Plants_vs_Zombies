@@ -9,5 +9,4 @@ public:
 	DoublePeaShooter(Point position);
 	void CreateBullet();
 	void addBullet(Node * pSender, Sprite* plant);
-
 };

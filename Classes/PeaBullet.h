@@ -8,11 +8,9 @@ class PeaBullet :public Bullet
 public:
 	PeaBullet();
 	PeaBullet(Point position);
-	virtual void work();
-	virtual void Hit_Animation(TestZombie* zombie);
-	virtual Sprite * attack_Animation();
-	void Self_Animation();
 	virtual void move();
 	void clear(Node * pSender);
-	void clear1(Node * pSender);
+	void clearNode(Node * pSender);
+	virtual void attack_Animation();
+	virtual void Hit_Animation(TestZombie* zombie);
 };

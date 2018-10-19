@@ -6,13 +6,15 @@ class Sunflower :public Plants
 {
 public:
 	Sunflower(Point position);
-	virtual void work();
-	virtual void Die();
-	virtual void init();
-	virtual void Attacked();
-	virtual bool isAttacking();
-	//void Self_Animation();
+	void work();
+	void Die();
+	void Attacked();
+	bool isAttacking();
+	void Self_Animation();
 	void CreateSun();
+	bool isWorking();//是否能工作
+	void clearSun(Node * pSender, Sprite * sunFlower);
+
 	void clear(Node * pSender);
 
 };

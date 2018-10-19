@@ -6,8 +6,11 @@ class BulletLayer : public cocos2d::Layer
 public:
 	virtual bool init();
 	static BulletLayer* create();
+	static BulletLayer* getInstance()
+	{
+		return pRet;
+	}
+	static BulletLayer *pRet;
 private:
-	void Produce_Bullets(float t);
 	void test(float t);
-	void clear1(Node * pSender);
 };
