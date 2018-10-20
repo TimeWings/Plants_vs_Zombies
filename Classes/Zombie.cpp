@@ -44,16 +44,6 @@ void Zombie::setWalkSpeed(int WalkSpeed)
 	_WalkSpeed = WalkSpeed;
 }
 
-int Zombie::getWalkDirection()
-{
-	return _WalkDirection;
-}
-
-void Zombie::setWalkDirection(int WalkDirection)
-{
-	_WalkDirection = WalkDirection;
-}
-
 bool Zombie::hasHead()
 {
 	return _Head;
@@ -74,6 +64,7 @@ void Zombie::setHand(bool Hand)
 	_Hand = Hand;
 }
 
-void Zombie::Self_Animation()
+std::vector<int> Zombie::getDebuff() 
 {
+	return debuff;
 }

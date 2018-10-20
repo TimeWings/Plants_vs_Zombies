@@ -9,9 +9,9 @@ private:
 	long long BirthTime; //诞生时间
 	long long _BiteInterval; //攻击间隔
 	int _WalkSpeed; //移动速度
-	int _WalkDirection; //移动方向
 	bool _Head;
 	bool _Hand;
+	std::vector<int> debuff;
 
 public:
 	Zombie(); //构造函数
@@ -23,14 +23,15 @@ public:
 	void setBirthTime(long long seconds);
 	int getWalkSpeed();
 	void setWalkSpeed(int WalkSpeed);
-	int getWalkDirection();
-	void setWalkDirection(int WalkDirection);
 	bool hasHead();
 	void setHead(bool Head);
 	bool hasHand();
 	void setHand(bool Hand);
-	virtual void init() = 0; //初始化
-	virtual void work() = 0; //工作
-	virtual void Die() = 0; //
-	void Self_Animation();
+	std::vector<int> getDebuff();
+	virtual void attack() = 0; //工作
+	virtual bool isAttacking() = 0;
+	virtual void Die() = 0;
+	virtual void Attacked() = 0;
+	virtual void LostHand() = 0;
+	virtual void LostHead() = 0;
 };
