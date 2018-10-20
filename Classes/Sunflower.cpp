@@ -31,6 +31,7 @@ void Sunflower::Die()
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Sunflower::clear, this));
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
 	sp->runAction(sequence);
+	clear(sp);
 }
 
 void Sunflower::Attacked()
@@ -38,11 +39,6 @@ void Sunflower::Attacked()
 	Sprite * sp = this->getImg();
 	CCActionInterval * tintby = CCTintBy::create(0.6, 0, 255, 255);
 	sp->runAction(tintby);
-}
-
-bool Sunflower::isAttacking()
-{
-	return false;
 }
 
 void Sunflower::Self_Animation()

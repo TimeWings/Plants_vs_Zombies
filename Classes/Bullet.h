@@ -16,8 +16,12 @@ public:
 	void setDamage(int damage);
 	double getSpeed();
 	void setSpeed(double speed);
+	//计算伤害（扣僵尸的血量）
 	void cal_damage(TestZombie* zombie);
+	//直接添加到子弹层
 	void addLayer(Node* entity);
+	//子弹路径移动
 	virtual void move() = 0;
+	//僵尸被该子弹攻击之后的效果（减速，debuff）
 	virtual void Hit_Animation(TestZombie* zombie) = 0;
 };

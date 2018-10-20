@@ -9,7 +9,6 @@ public:
 	void work();
 	void Die();
 	void Attacked();
-	bool isAttacking();
 	void Self_Animation();
 	void CreateSun();
 	bool isWorking();//是否能工作

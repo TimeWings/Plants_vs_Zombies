@@ -73,6 +73,7 @@ bool PlantLayer::init() {
 	return true;
 }
 
+//检测植物是否工作
 void PlantLayer::Check_isAttack(float t)
 {
 	for (int i = 0; i < readyPlants.size(); i++) 
@@ -85,6 +86,7 @@ void PlantLayer::Check_isAttack(float t)
 		//std::cout << interval<<"   "<< x->getInterval() << std::endl;
 		//long long a = (interval / 100L) * 100;
 		if (interval > x->getInterval()) {
+			//调用工作函数
 			x->work();
 			struct timeb t1;
 			ftime(&t1);
@@ -97,22 +99,4 @@ void PlantLayer::clearNode(Node * pSender)
 {
 	pSender->removeFromParent();
 }
-//void PlantLayer::Produce_Sun(float t)
-//{
-//	auto visibleSize = Director::getInstance()->getVisibleSize();
-//	for (auto x : preSun.keys())
-//	{
-//		Sprite* sun = preSun.at(x);
-//		this->addChild(sun);
-//		//std::cout << "太阳生成" << std::endl;
-//		Point a = Point(x->getPositionX() - x->getContentSize().width / 2 * x->getScaleX() - sun->getContentSize().width / 2 * sun->getScale(), x->getPositionY());
-//		float height = x->getContentSize().height/2*x->getScaleX();
-//		CCActionInterval * jumpto = CCJumpTo::create(1, a, height, 1);
-//		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PlantLayer::clear1, this,x));
-//		CCFiniteTimeAction * reveseseq = CCSequence::create(jumpto, CCDelayTime::create(3.2), actionDone, NULL);
-//		sun->runAction(reveseseq);
-//		readySun.insert(x, sun);
-//		preSun.erase(x);
-//	}
-//}
 

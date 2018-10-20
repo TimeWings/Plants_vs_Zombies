@@ -32,6 +32,7 @@
 #include "Sunflower.h"
 #include "DoublePeaShooter.h"
 #include "IceShooter.h"
+#include "PotatoMine.h"
 #include "Global.h"
 #include "TestZombie.h"
 #include <iostream>
@@ -58,22 +59,33 @@ bool HelloWorld::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 	
 	
-	TestZombie *zombie =new TestZombie(Point(360, 180));
+	TestZombie *zombie =new TestZombie(Point(360, 120));
 	this->addChild(zombie->init());
-	Plants* plant13 = new IceShooter(Point(60, 180));
-	Plants* plant12 = new DoublePeaShooter(Point(210, 60));
-	Plants *plant1 = new Sunflower(Point(60, 250));
-	Plants *plant7 = new Sunflower(Point(110, 250));
-	Plants *plant = new PeaShooter(Point(110, 60));
-	Plants *plant3 = new PeaShooter(Point(60, 120));
-	Plants *plant4 = new PeaShooter(Point(60, 60));
-	Plants *plant5 = new PeaShooter(Point(110, 180));
-	Plants *plant6 = new PeaShooter(Point(110, 120));
-	Plants *plant8 = new Sunflower(Point(160, 250));
-	Plants *plant9 = new Sunflower(Point(160, 180));
-	Plants *plant10 = new Sunflower(Point(160, 120));
-	Plants *plant11 = new Sunflower(Point(160, 60));
-	
+	TestZombie *zombie1 = new TestZombie(Point(400, 120));
+	this->addChild(zombie1->init());
+	TestZombie *zombie2 = new TestZombie(Point(440, 120));
+	this->addChild(zombie2->init());
+	TestZombie *zombie3 = new TestZombie(Point(500, 120));
+	this->addChild(zombie3->init());
+	TestZombie *zombie4 = new TestZombie(Point(550, 120));
+	this->addChild(zombie4->init());
+	TestZombie *zombie5 = new TestZombie(Point(600, 120));
+	this->addChild(zombie5->init());
+	/*Plants* plant13 = new IceShooter(Point(60, 180));
+	Plants* plant12 = new IceShooter(Point(210, 60));
+	Plants *plant1 = new IceShooter(Point(60, 250));
+	Plants *plant7 = new IceShooter(Point(110, 250));
+	Plants *plant = new IceShooter(Point(110, 60));
+	Plants *plant3 = new IceShooter(Point(60, 120));
+	Plants *plant4 = new IceShooter(Point(60, 60));
+	Plants *plant5 = new IceShooter(Point(110, 180));
+	Plants *plant6 = new IceShooter(Point(110, 120));
+	Plants *plant8 = new IceShooter(Point(160, 250));
+	Plants *plant9 = new IceShooter(Point(160, 180));
+	Plants *plant10 = new IceShooter(Point(160, 120));
+	Plants *plant11 = new IceShooter(Point(160, 60));*/
+
+	Plants *plant10 = new PotatoMine(Point(160, 120));
 	
 	//DrawNode* drawNode = DrawNode::create();
 	//this->addChild(drawNode);

@@ -16,6 +16,7 @@ TestZombie::TestZombie(Point position)
 	sp->setScale(0.3);
 	sp->setPosition(position);
 	_Speed = 10;
+	_hp = 20;
 	float distance = 100;
 	double time = distance / _Speed;
 	MoveTo *moveTo = MoveTo::create(time, ccp(0, sp->getPositionY()));

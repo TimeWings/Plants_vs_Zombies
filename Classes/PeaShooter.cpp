@@ -3,20 +3,25 @@
 #include "Global.h"
 #include <iostream>
 
+//相当于init
 PeaShooter::PeaShooter(Point position) {
-	
 	Sprite*sp = Sprite::create("peaShooter.png");
 	this->setImg(sp);
+	//一定要retain，否则会自动释放
 	sp->retain();
 	sp->setScale(0.3);
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
+	//普通植物直接播放自身动画
 	this->Self_Animation();
+	//添加到植物层
 	addLayer(sp);
+	//添加到已创建植物容器，其他行为操作都在此处
 	readyPlants.push_back(this);
 
 }
+
 PeaShooter::PeaShooter() 
 {
 }
@@ -37,11 +42,7 @@ void PeaShooter::Die()
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
 	sp->runAction(sequence);
-}
-
-void PeaShooter::init()
-{
-	Self_Animation();
+	clear(sp);
 }
 
 
@@ -52,10 +53,6 @@ void PeaShooter::Attacked()
 	sp->runAction(tintby);
 }
 
-bool PeaShooter::isAttacking()
-{
-	return false;
-}
 void PeaShooter::Self_Animation()
 {
 	Sprite *sp = this->getImg();
@@ -78,7 +75,7 @@ void PeaShooter::CreateBullet()
 	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
 	this->getImg()->runAction(sequence);
 	Sprite *sp = this->getImg();
-	//std::cout<<sp << "闪闪的剑生成" << std::endl;
+	//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
 	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleY()/ 4 + sp->getPositionY());
 	Bullet *pb = new PeaBullet(a);
 }
