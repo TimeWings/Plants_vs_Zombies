@@ -39,13 +39,10 @@ void PotatoMine::work()
 void PotatoMine::Die()
 {
 	std::cout << "哈桑爆炸" << std::endl;
-	//马上移除容器
+	//马上移除容器并消除精灵
 	clear(this->getImg());
-	//消除哈桑图片
-	this->getImg()->removeFromParent();
 	//定义爆炸效果
 	Sprite* sp = Sprite::create("Explode1.png");
-	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.6);
 	sp->setPosition(this->position);
@@ -64,13 +61,13 @@ void PotatoMine::Die()
 	//播放完动画之后消除精灵
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::removeSprite, this));
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
-	this->getImg()->runAction(sequence);
+	sp->runAction(sequence);
 }
 
 void PotatoMine::removeSprite(Node *pSender)
 {
 	std::cout << "精灵移除" << std::endl;
-	this->getImg()->removeFromParent();
+	pSender->removeFromParent();
 }
 
 void PotatoMine::Self_Animation()

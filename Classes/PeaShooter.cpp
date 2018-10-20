@@ -36,13 +36,20 @@ void PeaShooter::work()
 
 void PeaShooter::Die()
 {
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
 	Sprite*sp = this->getImg();
 	ActionInterval * fadeout = FadeOut::create(0.5);
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
 	sp->runAction(sequence);
-	clear(sp);
 }
 
 
@@ -84,13 +91,6 @@ void PeaShooter::clear(Node *pSender)
 {
 	//std::cout << "ÉÁÉÁËÀÍö" << std::endl;
 	pSender->removeFromParent();
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
+	
 }
 
