@@ -9,5 +9,6 @@ public:
 	virtual void move();
 	void clear(Node * pSender);
 	void clearNode(Node * pSender);
+	void removeSprite();
 	virtual void Hit_Animation(TestZombie* zombie);
 };

@@ -61,6 +61,16 @@ bool HelloWorld::init()
 	
 	TestZombie *zombie =new TestZombie(Point(360, 120));
 	this->addChild(zombie->init());
+	TestZombie *zombie1 = new TestZombie(Point(400, 120));
+	this->addChild(zombie1->init());
+	TestZombie *zombie2 = new TestZombie(Point(440, 120));
+	this->addChild(zombie2->init());
+	TestZombie *zombie3 = new TestZombie(Point(500, 120));
+	this->addChild(zombie3->init());
+	TestZombie *zombie4 = new TestZombie(Point(550, 120));
+	this->addChild(zombie4->init());
+	TestZombie *zombie5 = new TestZombie(Point(600, 120));
+	this->addChild(zombie5->init());
 	/*Plants* plant13 = new IceShooter(Point(60, 180));
 	Plants* plant12 = new IceShooter(Point(210, 60));
 	Plants *plant1 = new IceShooter(Point(60, 250));

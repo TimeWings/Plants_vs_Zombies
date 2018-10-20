@@ -6,11 +6,13 @@ class PotatoMine :public Plants
 {
 private: 
 	bool bornFinish = false;
+	Point position;
 public:
 	PotatoMine(Point position);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();
+	void removeSprite(Node * pSender);
 	//出生之后的自身动画
 	void Self_Animation();
 	//出生的动画，土豆雷特有

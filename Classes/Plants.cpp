@@ -42,7 +42,6 @@ void Plants::addLayer(Node * entity)
 {
 	BulletLayer* bl = BulletLayer::getInstance();
 	bl->addChild(entity);
-
 }
 
 
