@@ -68,3 +68,22 @@ std::vector<int> Zombie::getDebuff()
 {
 	return debuff;
 }
+
+void Zombie::addLayer(Node * entity)
+{
+	ZombieLayer* zl = ZombieLayer::getInstance();
+	zl->addChild(entity);
+}
+
+void Zombie::setActionManger(Node* sprite)
+{
+	CCActionManager *actionManager;
+	CCScheduler *defaultScheduler = CCDirector::sharedDirector()->getScheduler();
+	// Create a new scheduler, and link it to the main scheduler
+	sched = new CCScheduler();
+	defaultScheduler->scheduleUpdateForTarget(sched, 0, false);
+	// Create a new ActionManager, and link it to the new scheudler
+	actionManager = new CCActionManager();
+	sched->scheduleUpdateForTarget(actionManager, 0, false);
+	sprite->setActionManager(actionManager);
+}

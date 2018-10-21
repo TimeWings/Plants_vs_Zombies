@@ -1,9 +1,11 @@
 #pragma once
 #include "Entity.h"
 #include "cocos2d.h"
+#include "ZombieLayer.h"
 USING_NS_CC;
 
-class Zombie : public Entity {
+class Zombie : public Entity 
+{
 private:
 	int _Hp; //血量
 	long long BirthTime; //诞生时间
@@ -12,6 +14,7 @@ private:
 	bool _Head;
 	bool _Hand;
 	std::vector<int> debuff;
+	CCScheduler *sched;
 
 public:
 	Zombie(); //构造函数
@@ -28,6 +31,8 @@ public:
 	bool hasHand();
 	void setHand(bool Hand);
 	std::vector<int> getDebuff();
+	void addLayer(Node* entity);
+	void setActionManger(Node * sprite);
 	virtual void attack() = 0; //工作
 	virtual bool isAttacking() = 0;
 	virtual void Die() = 0;
