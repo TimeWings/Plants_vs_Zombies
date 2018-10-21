@@ -18,7 +18,8 @@ BulletLayer* BulletLayer::create()
 }
 bool BulletLayer::init() {
 	//这里写时间定时器
-	this->schedule(schedule_selector(BulletLayer::test), 0.1);
+	schedule(schedule_selector(BulletLayer::test), 0.1);
+
 	this->schedule(schedule_selector(BulletLayer::test2), 0.1);
 	this->schedule(schedule_selector(BulletLayer::test3), 0.1);
 	return true;
@@ -50,7 +51,10 @@ void BulletLayer::test2(float t)
 		Plants* plant = readyPlants.at(j);
 		Sprite* sp = plant->getImg();
 		if (plant->getHp() <= 0)
+		{
 			plant->Die();
+			j--;
+		}
 	}
 	for (int j = 0; j < testMap.size(); j++)
 	{
@@ -60,22 +64,20 @@ void BulletLayer::test2(float t)
 		{
 			std::cout << "这个僵尸死了" << std::endl;
 			testMap.erase(testMap.begin()+j);
+			j--;
 			sp->removeFromParent();
 		}
 
 	}
-
 }
 void BulletLayer::test3(float t)
 {
-
 	for (int i = 0; i < readyPlants.size(); i++)
 	{
 		Plants*plant = readyPlants.at(i);
 		Sprite*sp = plant->getImg();
 		for (int j = 0; j < testMap.size(); j++)
 		{
-		
 			if (sp->boundingBox().intersectsRect(testMap.at(j)->getImg()->getBoundingBox()))
 			{
 				std::cout << "碰撞了" << std::endl;
