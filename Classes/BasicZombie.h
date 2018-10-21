@@ -14,5 +14,6 @@ public:
 	virtual void Attacked();
 	virtual void LostHand();
 	virtual void LostHead();
+	virtual void Move();
 	void clear(Node * pSender);
 };

@@ -39,4 +39,5 @@ public:
 	virtual void Attacked() = 0;
 	virtual void LostHand() = 0;
 	virtual void LostHead() = 0;
+	virtual void Move() = 0;
 };

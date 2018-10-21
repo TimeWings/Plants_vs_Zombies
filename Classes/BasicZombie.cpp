@@ -8,7 +8,7 @@ BasicZombie::BasicZombie()
 
 BasicZombie::BasicZombie(Point position)
 {
-	setWalkSpeed(5);
+	setWalkSpeed(10);
 	setHp(12);
 	setHand(true);
 	setHead(true);
@@ -20,6 +20,7 @@ BasicZombie::BasicZombie(Point position)
 	sp->setScale(0.3);
 	sp->setPosition(position);
 	this->Self_Animation();
+	this->Move();
 	addLayer(sp);
 	readyZombies.push_back(this);
 }
@@ -46,17 +47,7 @@ void BasicZombie::Die()
 
 void BasicZombie::Self_Animation()
 {
-	float distance = 100;
-	double time = distance / getWalkSpeed();
-	Sprite *sp = this->getImg();
-	setActionManger(sp);
-	MoveTo *moveTo = MoveTo::create(time, ccp(0, sp->getPositionY()));
-	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
-	CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
-	sp->runAction(sequence);
 	
-	/*CCMotionStreak* streak = CCMotionStreak::create(0.8, 10, 10, ccRED, "circle.png");
-	streak->runAction(moveTo);*/
 }
 
 void BasicZombie::Attacked()
@@ -72,6 +63,21 @@ void BasicZombie::LostHand()
 
 void BasicZombie::LostHead()
 {
+}
+
+void BasicZombie::Move()
+{
+	Sprite *sp = this->getImg();
+	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
+	double time = distance / getWalkSpeed();
+	setActionManger(sp);
+	MoveTo *moveTo = MoveTo::create(time, ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY()));
+	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
+	CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
+	sp->runAction(sequence);
+
+	/*CCMotionStreak* streak = CCMotionStreak::create(0.8, 10, 10, ccRED, "circle.png");
+	streak->runAction(moveTo);*/
 }
 
 void BasicZombie::clear(Node * pSender)
