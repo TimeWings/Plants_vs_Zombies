@@ -12,7 +12,6 @@ public:
 	virtual void Die();
 	void Self_Animation();
 	virtual void Attacked();
-	virtual void LostHand();
 	virtual void LostHead();
 	virtual void Move();
 	void clear(Node * pSender);
