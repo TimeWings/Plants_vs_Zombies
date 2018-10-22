@@ -29,12 +29,11 @@ void ZombieLayer::Check_isAttack(float t)
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		Zombie* x = readyZombies.at(i);
+		if (x->isAttacking() == false) continue;
 		struct timeb t1;
 		ftime(&t1);
 		long long seconds = t1.time * 1000 + t1.millitm;
 		long long interval = seconds - x->getBirthTime();
-		//std::cout << interval<<"   "<< x->getInterval() << std::endl;
-		//long long a = (interval / 100L) * 100;
 		if (interval > x->getInterval()) {
 			//调用工作函数
 			x->attack();

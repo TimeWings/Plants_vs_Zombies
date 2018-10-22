@@ -54,16 +54,6 @@ void Zombie::setHead(bool Head)
 	_Head = Head;
 }
 
-bool Zombie::hasHand()
-{
-	return _Hand;
-}
-
-void Zombie::setHand(bool Hand)
-{
-	_Hand = Hand;
-}
-
 std::vector<int> Zombie::getDebuff() 
 {
 	return debuff;
