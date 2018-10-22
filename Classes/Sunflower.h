@@ -13,7 +13,6 @@ public:
 	void CreateSun();
 	bool isWorking();//是否能工作
 	void clearSun(Node * pSender, Sprite * sunFlower);
-
 	void clear(Node * pSender);
 
 };

@@ -3,21 +3,21 @@
 #include "TestZombie.h"
 #include "BulletLayer.h"
 #include <iostream>
+#include   <windows.h>  
 IceBullet::IceBullet(Point position)
 {
 	this->setDamage(20);
 	this->setSpeed(6);
-	Sprite *sp = Sprite::create("sword1.png");
+	Sprite *sp = Sprite::create("ice_Bullet.png");
 	this->setImg(sp);
 	sp->retain();
-	sp->setScale(0.2);
+	sp->setScale(0.08);
 	sp->setPosition(position.x + sp->getContentSize().width*sp->getScale() / 2, position.y);
 	this->addLayer(sp);
 	this->attack_Animation();
 	this->move();
 	readyBullet.push_back(this);
 }
-
 void IceBullet::Hit_Animation(TestZombie* zombie)
 {
 	////删除子弹
@@ -53,7 +53,7 @@ void IceBullet::Hit_Animation(TestZombie* zombie)
 void IceBullet::attack_Animation()
 {
 	auto visibleSize = Director::getInstance()->getVisibleSize();
-	streak = MotionStreak::create(0.5, 1, 10, Color3B(0, 0, 255), "ice_effect.png");
+	streak = MotionStreak::create(1, 1, 10, Color3B(152,245,255), "ice_effect2.png");
 	double distance = (visibleSize.width  - this->getImg()->getPositionX())/15;
 	double time = distance / getSpeed();
 	streak->setPosition(this->getImg()->getPosition());
@@ -66,7 +66,22 @@ void IceBullet::attack_Animation()
 	};
 	auto call = CallFuncN::create(fun);
 	streak->runAction(Sequence::create(moveto, call, NULL));
-	addLayer(streak);
+	//addLayer(streak);
+
+	ParticleSystem* ps = ParticleMeteor::create();
+	//因为偷懒，我直接用helloWorld里的close 图片当雪花  
+	ps->setTexture(Director::getInstance()->getTextureCache()->addImage("ice_effect3.png"));
+	//ps->setEmitterMode(ParticleSystem::Mode::GRAVITY);
+	//ps->setStartSize(50);
+	//ps->setDuration(-1);
+	//ps->setEmissionRate(10);
+	//ps->setStartRadius(10);
+	//ps->setAutoRemoveOnFinish(true);
+	//ps->setPositionType(kCCPositionTypeRelative);
+	//ps->setColor(Color4F(152, 245, 255,0));
+	ps->setPosition(this->getImg()->getPosition());//生成的雪花从这个坐标往下落  
+	this->getImg()->addChild(ps,0);
+	//addLayer(ps);
 }
 
 void IceBullet::resume(Node *pSender, TestZombie* zombie)
