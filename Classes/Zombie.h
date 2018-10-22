@@ -12,7 +12,6 @@ private:
 	long long _BiteInterval; //攻击间隔
 	int _WalkSpeed; //移动速度
 	bool _Head;
-	bool _Hand;
 	std::vector<int> debuff;
 	CCScheduler *sched;
 
@@ -28,8 +27,6 @@ public:
 	void setWalkSpeed(int WalkSpeed);
 	bool hasHead();
 	void setHead(bool Head);
-	bool hasHand();
-	void setHand(bool Hand);
 	std::vector<int> getDebuff();
 	void addLayer(Node* entity);
 	void setActionManger(Node * sprite);
@@ -37,7 +34,6 @@ public:
 	virtual bool isAttacking() = 0;
 	virtual void Die() = 0;
 	virtual void Attacked() = 0;
-	virtual void LostHand() = 0;
 	virtual void LostHead() = 0;
 	virtual void Move() = 0;
 };
