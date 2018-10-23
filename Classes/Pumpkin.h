@@ -11,7 +11,7 @@ private:
 	float jumpDuration;
 	bool isJumping;
 public:
-	Pumpkin(Point position);
+	Pumpkin(Point position,int row);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	void CheckZombies();

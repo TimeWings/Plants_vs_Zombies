@@ -5,8 +5,9 @@
 #include <iostream>
 USING_NS_CC;
 
-PotatoBullet::PotatoBullet(Point position):Bullet(position,50,0)
+PotatoBullet::PotatoBullet(Point position, int Plant_row):Bullet(position,50,0)
 {
+	this->getRange()->push_back(Plant_row);
 	Sprite *sp = Sprite::create("sword1.png");
 	//能不能改变大小
 	this->setImg(sp);
@@ -40,7 +41,7 @@ void PotatoBullet::clearNode(Node * pSender)
 	pSender->removeFromParent();
 }
 
-void PotatoBullet::Hit_Animation(TestZombie * zombie)
+void PotatoBullet::Hit_Animation(Zombie* zombie)
 {
 	//爆炸字
 	std::cout << "子弹碰到僵尸" << std::endl;

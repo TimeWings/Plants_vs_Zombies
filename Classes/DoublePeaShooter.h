@@ -6,7 +6,7 @@ USING_NS_CC;
 class DoublePeaShooter :public PeaShooter
 {
 public:
-	DoublePeaShooter(Point position);
+	DoublePeaShooter(Point position,int row);
 	void CreateBullet();
 	void addBullet(Node * pSender, Sprite* plant);
 };

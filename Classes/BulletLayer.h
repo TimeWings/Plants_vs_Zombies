@@ -12,7 +12,6 @@ public:
 	}
 	static BulletLayer *pRet;
 private:
-	void test(float t);
-	void test2(float t);
-	void test3(float t);
+	void Check_Collision(float t);
+	void Check_Death(float t);
 };

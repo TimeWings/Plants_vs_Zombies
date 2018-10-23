@@ -5,10 +5,10 @@ USING_NS_CC;
 class PotatoBullet :public Bullet
 {
 public:
-	PotatoBullet(Point position);
+	PotatoBullet(Point position, int Plant_row);
 	virtual void move();
 	void clear(Node * pSender);
 	void clearNode(Node * pSender);
 	void removeSprite();
-	virtual void Hit_Animation(TestZombie* zombie);
+	virtual void Hit_Animation(Zombie* zombie);
 };

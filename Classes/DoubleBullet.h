@@ -7,5 +7,5 @@ USING_NS_CC;
 class DoubleBullet : public PeaBullet
 {
 public:
-	DoubleBullet(Point position);
+	DoubleBullet(Point position,int Plant_row);
 }; 

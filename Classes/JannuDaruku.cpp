@@ -1,8 +1,9 @@
 #include "JannuDaruku.h"
 #include "Global.h"
 #include <iostream>
-JannuDaruku::JannuDaruku(Point position)
+JannuDaruku::JannuDaruku(Point position,int row)
 {
+	this->setRow(row);
 	Sprite*sp = Sprite::create("Jannu.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
@@ -48,13 +49,13 @@ void JannuDaruku::MyFire(Node *pSender)
 	//火焰效果
 	creatFire();
 	//清除同排僵尸
-	for (int i = 0; i < testMap.size(); i++)
+	for (int i = 0; i < readyZombies.size(); i++)
 	{
-		if (testMap.at(i)->getImg()->getPositionY() == this->position.y)
+		if (readyZombies.at(i)->getImg()->getPositionY() == this->position.y)
 		{
 			std::cout << "清除僵尸" << std::endl;
-			zombiesDie(testMap.at(i)->getImg());
-			testMap.erase(testMap.begin() + i);
+			zombiesDie(readyZombies.at(i)->getImg());
+			readyZombies.erase(readyZombies.begin() + i);
 			i--;
 		}
 	}

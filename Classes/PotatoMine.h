@@ -8,7 +8,7 @@ private:
 	bool bornFinish = false;
 	Point position;
 public:
-	PotatoMine(Point position);
+	PotatoMine(Point position,int row);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();

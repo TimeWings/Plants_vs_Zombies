@@ -7,14 +7,16 @@ BasicZombie::BasicZombie()
 
 }
 
-BasicZombie::BasicZombie(Point position)
+BasicZombie::BasicZombie(Point position,int row)
 {
+	this->setRow(row);
 	setWalkSpeed(7);
 	setHp(12);
 	setHead(true);
 	setMeeting(false);
 	setInterval(0.1);
 	Sprite *sp = Sprite::create("Zombies\\BasicZombie\\BasicZombie.png");
+	this->setSche(sp);
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(1.5);
@@ -23,6 +25,7 @@ BasicZombie::BasicZombie(Point position)
 	this->Self_Animation();
 	addLayer(sp);
 	readyZombies.push_back(this);
+	
 }
 
 bool BasicZombie::isAttacking()
@@ -32,7 +35,7 @@ bool BasicZombie::isAttacking()
 
 void BasicZombie::attack(Plants *plant)
 {
-	std::cout << "fuck" << std::endl;
+	std::cout << "½©Ê¬¹¥»÷" << std::endl;
 	Sprite *sp = this->getImg();
 	sp->getActionManager()->removeAllActionsFromTarget(sp);
 	SpriteFrame *spf;
@@ -133,14 +136,11 @@ void BasicZombie::Move()
 	sp->getActionManager()->removeAllActionsFromTarget(sp);
 	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
 	double time = distance / getWalkSpeed();
-	setActionManger(sp);
 	MoveTo *moveTo = MoveTo::create(time, ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY()));
 	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
 	CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
 	sp->runAction(sequence);
 
-	/*CCMotionStreak* streak = CCMotionStreak::create(0.8, 10, 10, ccRED, "circle.png");
-	streak->runAction(moveTo);*/
 
 	SpriteFrame *spf;
 	Vector<SpriteFrame*> allframe;

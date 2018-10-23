@@ -1,7 +1,6 @@
 #pragma once
 #include "cocos2d.h"
 #include "Entity.h"
-#include "Bullet.h"
 USING_NS_CC;
 class Plants:public Entity
 {
@@ -9,6 +8,7 @@ private:
 	int _Hp; //血量
 	long long BirthTime; //诞生时间
 	long long _WorkInterval; //工作间隔
+	int _row;
 public:
 	Plants(); //构造函数
 	int getHp(); 
@@ -18,6 +18,8 @@ public:
 	long long getBirthTime();
 	void setBirthTime(long long seconds);
 	void getHurt(int Damage);
+	void setRow(int row);
+	int getRow();
 	//把精灵直接放到图层上
 	void addLayer(Node* entity);
 	virtual void work() = 0; //工作

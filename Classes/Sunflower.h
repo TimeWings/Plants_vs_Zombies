@@ -5,7 +5,7 @@ USING_NS_CC;
 class Sunflower :public Plants
 {
 public:
-	Sunflower(Point position);
+	Sunflower(Point position,int row);
 	void work();
 	void Die();
 	void Attacked();

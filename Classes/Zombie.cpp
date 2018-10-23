@@ -1,5 +1,5 @@
 #include "Zombie.h"
-
+#include "ZombieLayer.h"
 Zombie::Zombie()
 {
 }
@@ -12,6 +12,16 @@ int Zombie::getHp()
 void Zombie::setHp(int hp)
 {
 	_Hp = hp;
+}
+
+int Zombie::getRow()
+{
+	return _row;
+}
+
+void Zombie::setRow(int row)
+{
+	_row = row;
 }
 
 double Zombie::getInterval()
@@ -54,9 +64,14 @@ void Zombie::setMeeting(bool meeting)
 	_meeting = meeting;
 }
 
-std::vector<int> Zombie::getDebuff() 
+std::vector<int>* Zombie::getRange()
 {
-	return debuff;
+	return &range;
+}
+
+std::vector<int>* Zombie::getDebuff() 
+{
+	return &debuff;
 }
 
 void Zombie::addLayer(Node * entity)
@@ -65,7 +80,7 @@ void Zombie::addLayer(Node * entity)
 	zl->addChild(entity);
 }
 
-void Zombie::setActionManger(Node* sprite)
+void Zombie::setSche(Node* sprite)
 {
 	CCActionManager *actionManager;
 	CCScheduler *defaultScheduler = CCDirector::sharedDirector()->getScheduler();
@@ -76,4 +91,9 @@ void Zombie::setActionManger(Node* sprite)
 	actionManager = new CCActionManager();
 	sched->scheduleUpdateForTarget(actionManager, 0, false);
 	sprite->setActionManager(actionManager);
+}
+
+CCScheduler * Zombie::getScheduler()
+{
+	return sched;
 }

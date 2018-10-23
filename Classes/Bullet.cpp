@@ -26,11 +26,16 @@ void Bullet::setSpeed(double speed)
 	_Speed = speed;
 }
 
-
-
-void Bullet::cal_damage(TestZombie * zombie)
+std::vector<int>* Bullet::getRange()
 {
-	zombie->_hp -= this->getDamage();
+	return &range;
+}
+
+
+
+void Bullet::cal_damage(Zombie * zombie)
+{
+	zombie->setHp(zombie->getHp()- this->getDamage());
 }
 
 void Bullet::addLayer(Node * entity)

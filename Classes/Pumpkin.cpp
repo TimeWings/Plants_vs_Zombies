@@ -2,8 +2,9 @@
 #include "Global.h"
 #include <iostream>
 
-Pumpkin::Pumpkin(Point position)
+Pumpkin::Pumpkin(Point position,int row)
 {
+	this->setRow(row);
 	this->position = position;
 	this->attackRange = 50.0f;
 	this->jumpDuration = 1.0f;

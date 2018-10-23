@@ -38,6 +38,16 @@ void Plants::getHurt(int Damage)
 	this->_Hp -= Damage;
 }
 
+void Plants::setRow(int row)
+{
+	_row = row;
+}
+
+int Plants::getRow()
+{
+	return _row;
+}
+
 void Plants::addLayer(Node * entity)
 {
 	BulletLayer* bl = BulletLayer::getInstance();

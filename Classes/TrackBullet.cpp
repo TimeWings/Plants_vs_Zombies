@@ -4,9 +4,12 @@
 #include <iostream>
 
 
-//子弹的向量有点错误，需要修改
-TrackBullet::TrackBullet(Point position):Bullet(position, 2, 6)
+TrackBullet::TrackBullet(Point position, int Plant_row):Bullet(position, 2, 6)
 {
+	for (int i = 0; i < 10; i++)
+	{
+		this->getRange()->push_back(i);
+	}
 	Sprite *sp = Sprite::create("TrackBullet.png");
 	sp->setScale(0.5);
 	this->setImg(sp);
@@ -30,7 +33,7 @@ void TrackBullet::move()
 
 void TrackBullet::Rotate(Node* pSender)
 {
-	if (testMap.size() == 0)
+	if (readyZombies.size() == 0)
 	{
 		Sprite* sp = this->getImg();
 		for (int i = 0; i < readyBullet.size(); i++)
@@ -45,10 +48,10 @@ void TrackBullet::Rotate(Node* pSender)
 		return;
 	}
 	double minDistance = 100000000;
-	TestZombie* zombie=NULL;
-	for (int i = 0; i < testMap.size(); i++)
+	Zombie* zombie=NULL;
+	for (int i = 0; i < readyZombies.size(); i++)
 	{
-		Sprite *sp = testMap.at(i)->getImg();
+		Sprite *sp = readyZombies.at(i)->getImg();
 		double x1 = pSender->getPositionX();
 		double x2 = sp->getPositionX();
 		double y1 = pSender->getPositionY();
@@ -58,7 +61,7 @@ void TrackBullet::Rotate(Node* pSender)
 		{
 			
 			minDistance = dis;
-			zombie = testMap.at(i);
+			zombie = readyZombies.at(i);
 		}
 	}
 	double rotation = pSender->getRotation()/180*3.14;
@@ -75,7 +78,7 @@ void TrackBullet::Rotate(Node* pSender)
     angle = -angle;
 	double time = minDistance / this->getSpeed() / 20;
 	ccBezierConfig tr0;
-	tr0.endPosition = Point((endPoint.x-zombie->_Speed*time),endPoint.y);//终点  
+	tr0.endPosition = Point((endPoint.x-zombie->getWalkSpeed()*time),endPoint.y);//终点  
 	tr0.controlPoint_1 = Vec2(startPoint.x+(endPoint.x-startPoint.x)/4, startPoint.y+ (endPoint.y - startPoint.y) / 4);//控制点1  
 	tr0.controlPoint_2 = Vec2(startPoint.x + (endPoint.x - startPoint.x) / 2, startPoint.y + (endPoint.y - startPoint.y) / 2);//控制点2
 	ActionInterval* bezierForward = BezierTo::create(time, tr0);
@@ -119,7 +122,7 @@ void TrackBullet::clearNode(Node * pSender)
 	pSender->removeFromParent();
 }
 
-void TrackBullet::Hit_Animation(TestZombie * zombie)
+void TrackBullet::Hit_Animation(Zombie* zombie)
 {
 	Sprite* sp = this->getImg();
 	for (int i = 0; i < readyBullet.size(); i++)

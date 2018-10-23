@@ -1,7 +1,6 @@
 #pragma once
-#include "Entity.h"
+//#include "Entity.h"
 #include "cocos2d.h"
-#include "ZombieLayer.h"
 #include "Plants.h"
 USING_NS_CC;
 
@@ -14,6 +13,8 @@ private:
 	int _WalkSpeed; //移动速度
 	bool _Head;
 	bool _meeting;
+	int _row;
+	std::vector<int>range;
 	std::vector<int> debuff;
 	CCScheduler *sched;
 
@@ -21,6 +22,8 @@ public:
 	Zombie(); //构造函数
 	int getHp();
 	void setHp(int hp);
+	int getRow();
+	void setRow(int row);
 	double getInterval();
 	void setInterval(double BiteInterval);
 	int getWalkSpeed();
@@ -29,9 +32,11 @@ public:
 	void setHead(bool Head);
 	bool isMeeting();
 	void setMeeting(bool meeting);
-	std::vector<int> getDebuff();
+	std::vector<int>*getRange();
+	std::vector<int>*getDebuff();
 	void addLayer(Node* entity);
-	void setActionManger(Node * sprite);
+	void setSche(Node * sprite);
+	CCScheduler* getScheduler();
 	virtual void attack(Plants *plant) = 0; //工作
 	virtual bool isAttacking() = 0;
 	virtual void Die() = 0;

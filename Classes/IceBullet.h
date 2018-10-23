@@ -9,10 +9,8 @@ class IceBullet :public PeaBullet
 private:
 	MotionStreak* streak;
 public:
-	IceBullet(Point position);
-	void TimerProc(HWND hWnd, UINT nMsg, UINT nTimerid, DWORD dwTime);
-	void test(float t);
-	void Hit_Animation(TestZombie* zombie);
+	IceBullet(Point position,int Plant_row);
+	void Hit_Animation(Zombie* zombie);
 	void attack_Animation();
-	void resume(Node * pSender, TestZombie* zombie);
+	void resume(Node * pSender, Zombie* zombie);
 };

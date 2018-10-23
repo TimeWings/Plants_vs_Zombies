@@ -3,8 +3,9 @@
 #include "IceBullet.h"
 #include <iostream>
 
-IceShooter::IceShooter(Point position)
+IceShooter::IceShooter(Point position,int row)
 {
+	this->setRow(row);
 	Sprite*sp = Sprite::create("iceShooter.png");
 	this->setImg(sp);
 	sp->retain();
@@ -26,5 +27,5 @@ void IceShooter::CreateBullet()
 	this->getImg()->runAction(sequence);
 	Sprite*sp = this->getImg();
 	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
-	Bullet *pb = new IceBullet(a);
+	Bullet *pb = new IceBullet(a,this->getRow());
 }

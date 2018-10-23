@@ -2,8 +2,9 @@
 #include "Global.h"
 #include "TrackBullet.h"
 #include <iostream>
-Weeds::Weeds(Point position)
+Weeds::Weeds(Point position,int row)
 {
+	this->setRow(row);
 	Sprite*sp = Sprite::create("Weeds.png");
 	this->setImg(sp);
 	sp->retain();
@@ -25,5 +26,5 @@ void Weeds::CreateBullet()
 	this->getImg()->runAction(sequence);
 	Sprite*sp = this->getImg();
 	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
-	Bullet *pb = new TrackBullet(a);
+	Bullet *pb = new TrackBullet(a,this->getRow());
 }

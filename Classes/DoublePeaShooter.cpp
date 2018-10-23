@@ -2,8 +2,9 @@
 #include "PeaBullet.h"
 #include "Global.h"
 #include "DoubleBullet.h"
-DoublePeaShooter::DoublePeaShooter(Point position):PeaShooter()
+DoublePeaShooter::DoublePeaShooter(Point position,int row):PeaShooter()
 {
+	this->setRow(row);
 	Sprite*sp = Sprite::create("doubleShooter.png");
 	this->setImg(sp);
 	sp->retain();
@@ -25,7 +26,7 @@ void DoublePeaShooter::CreateBullet()
 	this->getImg()->runAction(sequence);
 	Sprite *sp = this->getImg();
 	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleX() / 4 + sp->getPositionY());
-	Bullet *pb = new DoubleBullet(a);
+	Bullet *pb = new DoubleBullet(a,this->getRow());
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(DoublePeaShooter::addBullet, this,sp));
 	CCFiniteTimeAction * reveseseq = CCSequence::create(CCDelayTime::create(0.2) , actionDone, NULL);
 	sp->runAction(reveseseq);
@@ -34,5 +35,5 @@ void DoublePeaShooter::CreateBullet()
 void DoublePeaShooter::addBullet(Node * pSender, Sprite * sp)
 {
 	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleX() / 4 + sp->getPositionY());
-	Bullet *pb = new DoubleBullet(a);
+	Bullet *pb = new DoubleBullet(a,this->getRow());
 }

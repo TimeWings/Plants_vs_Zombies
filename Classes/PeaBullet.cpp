@@ -7,8 +7,9 @@
 PeaBullet::PeaBullet()
 {
 }
-PeaBullet::PeaBullet(Point position):Bullet(position, 20, 6)
+PeaBullet::PeaBullet(Point position, int Plant_row):Bullet(position, 20, 6)
 {
+	this->getRange()->push_back(Plant_row);
 	srand((unsigned)time(NULL));
 	int cnt = rand() % 4+1;
 	Sprite *sp;
@@ -36,7 +37,7 @@ PeaBullet::PeaBullet(Point position):Bullet(position, 20, 6)
 }
 
 //击中僵尸的效果
-void PeaBullet::Hit_Animation(TestZombie* zombie)
+void PeaBullet::Hit_Animation(Zombie* zombie)
 {
 	Sprite* sp = this->getImg();
 	for (int i = 0; i < readyBullet.size(); i++)

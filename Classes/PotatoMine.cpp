@@ -5,8 +5,9 @@
 
 
 
-PotatoMine::PotatoMine(Point position)
+PotatoMine::PotatoMine(Point position,int row)
 {
+	this->setRow(row);
 	Sprite*sp = Sprite::create("1.1.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
@@ -149,7 +150,7 @@ void PotatoMine::CreateBullet()
 	//产生坐标
 	Point a = ccp(sp->getPositionX()+sp->getContentSize().width/2*sp->getScaleX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
 	//只需要new一颗自己的子弹就行
-	Bullet *pb = new PotatoBullet(a);
+	Bullet *pb = new PotatoBullet(a,this->getRow());
 }
 
 void PotatoMine::clear(Node *pSender)

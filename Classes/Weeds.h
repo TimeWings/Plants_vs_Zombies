@@ -7,6 +7,6 @@ USING_NS_CC;
 class Weeds :public PeaShooter
 {
 public:
-	Weeds(Point position);
+	Weeds(Point position,int row);
 	void CreateBullet();
 };

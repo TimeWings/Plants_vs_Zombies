@@ -6,10 +6,10 @@ class PeaBullet :public Bullet
 {
 public:
 	PeaBullet();
-	PeaBullet(Point position);
+	PeaBullet(Point position,int Plant_row);
 	virtual void move();
 	void clear(Node * pSender);
 	void clearNode(Node * pSender);
 	virtual void attack_Animation();
-	virtual void Hit_Animation(TestZombie* zombie);
+	virtual void Hit_Animation(Zombie* zombie);
 };

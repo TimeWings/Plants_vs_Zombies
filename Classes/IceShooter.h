@@ -7,6 +7,6 @@ USING_NS_CC;
 class IceShooter :public PeaShooter
 {
 public:
-	IceShooter(Point position);
+	IceShooter(Point position,int row);
 	void CreateBullet();
 };

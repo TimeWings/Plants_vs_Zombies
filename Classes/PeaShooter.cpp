@@ -4,7 +4,8 @@
 #include <iostream>
 
 //相当于init
-PeaShooter::PeaShooter(Point position) {
+PeaShooter::PeaShooter(Point position,int row) {
+	this->setRow(row);
 	Sprite*sp = Sprite::create("peaShooter.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
@@ -84,7 +85,7 @@ void PeaShooter::CreateBullet()
 	Sprite *sp = this->getImg();
 	//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
 	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleY()/ 4 + sp->getPositionY());
-	Bullet *pb = new PeaBullet(a);
+	Bullet *pb = new PeaBullet(a,this->getRow());
 }
 
 void PeaShooter::clear(Node *pSender)
