@@ -11,7 +11,7 @@ PeaShooter::PeaShooter(Point position) {
 	sp->retain();
 	sp->setScale(0.3);
 	sp->setPosition(position);
-	this->setHp(20);
+	this->setHp(6);
 	this->setInterval(2000);
 	//普通植物直接播放自身动画
 	this->Self_Animation();

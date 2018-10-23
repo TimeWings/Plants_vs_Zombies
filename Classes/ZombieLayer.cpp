@@ -28,20 +28,26 @@ void ZombieLayer::Check_isAttack(float t)
 {
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
-		Zombie* x = readyZombies.at(i);
-		if (x->isAttacking() == false) continue;
-		struct timeb t1;
-		ftime(&t1);
-		long long seconds = t1.time * 1000 + t1.millitm;
-		long long interval = seconds - x->getBirthTime();
-		if (interval > x->getInterval()) {
-			//调用工作函数
-			x->attack();
-			struct timeb t1;
-			ftime(&t1);
-			long long seconds = t1.time * 1000 + t1.millitm;
-			x->setBirthTime(seconds);
+		Zombie *zombie = readyZombies.at(i);
+		Sprite *sp = zombie->getImg();
+		Plants *p;
+		bool flag = false;
+		for (int j = 0; j < readyPlants.size(); j++)
+		{
+			Plants *plant = readyPlants.at(j);
+			if (sp->boundingBox().intersectsRect(plant->getImg()->getBoundingBox()))
+			{
+				flag = true;
+				p = plant;
+			}
 		}
+		if (zombie -> isMeeting() && !flag) {
+			zombie->Move();
+		}
+		else if (!zombie->isMeeting() && flag) {
+			zombie->attack(p);
+		}
+		zombie->setMeeting(flag);
 	}
 }
 

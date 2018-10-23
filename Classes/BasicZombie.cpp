@@ -12,8 +12,8 @@ BasicZombie::BasicZombie(Point position)
 	setWalkSpeed(7);
 	setHp(12);
 	setHead(true);
-	setInterval(1000);
-	setBirthTime(0);
+	setMeeting(false);
+	setInterval(0.1);
 	Sprite *sp = Sprite::create("Zombies\\BasicZombie\\BasicZombie.png");
 	this->setImg(sp);
 	sp->retain();
@@ -30,7 +30,7 @@ bool BasicZombie::isAttacking()
 	return false;
 }
 
-void BasicZombie::attack()
+void BasicZombie::attack(Plants *plant)
 {
 	std::cout << "fuck" << std::endl;
 	Sprite *sp = this->getImg();
@@ -38,14 +38,43 @@ void BasicZombie::attack()
 	SpriteFrame *spf;
 	Vector<SpriteFrame*> allframe;
 	char str[100] = { 0 };
-	for (int i = 1; i <= 21; i++)
+	for (int i = 1; i <= 6; i++)
 	{
 		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
 		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
 		allframe.pushBack(spf);
 	}
-	Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
-	this->getImg()->runAction(CCRepeatForever::create(Animate::create(an)));
+	Animation* an = Animation::createWithSpriteFrames(allframe, this->getInterval());
+	allframe.clear();
+
+	for (int i = 7; i <= 11; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
+		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
+		allframe.pushBack(spf);
+	}
+	Animation* an1 = Animation::createWithSpriteFrames(allframe, this->getInterval());
+	allframe.clear();
+
+	for (int i = 12; i <= 18; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
+		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
+		allframe.pushBack(spf);
+	}
+	Animation* an2 = Animation::createWithSpriteFrames(allframe, this->getInterval());
+	allframe.clear();
+
+	for (int i = 19; i <= 21; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
+		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
+		allframe.pushBack(spf);
+	}
+	Animation* an3 = Animation::createWithSpriteFrames(allframe, this->getInterval());
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plant));
+	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, Animate::create(an2), actionDone, Animate::create(an3), NULL);
+	this->getImg()->runAction(CCRepeatForever::create(seq));
 }
 
 void BasicZombie::Die()
@@ -60,9 +89,18 @@ void BasicZombie::Die()
 	clear(sp);
 }
 
+
+
+
 void BasicZombie::Self_Animation()
 {
 	
+}
+
+void BasicZombie::Damage(Node * pSender, Plants * plant)
+{
+	plant->getHurt(1);
+	plant->Attacked();
 }
 
 void BasicZombie::Attacked()

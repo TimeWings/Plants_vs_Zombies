@@ -14,24 +14,14 @@ void Zombie::setHp(int hp)
 	_Hp = hp;
 }
 
-long long Zombie::getInterval()
+double Zombie::getInterval()
 {
 	return _BiteInterval;
 }
 
-void Zombie::setInterval(long long BiteInterval)
+void Zombie::setInterval(double BiteInterval)
 {
 	_BiteInterval = BiteInterval;
-}
-
-long long Zombie::getBirthTime()
-{
-	return BirthTime;
-}
-
-void Zombie::setBirthTime(long long seconds)
-{
-	BirthTime = seconds;
 }
 
 int Zombie::getWalkSpeed()
@@ -52,6 +42,16 @@ bool Zombie::hasHead()
 void Zombie::setHead(bool Head)
 {
 	_Head = Head;
+}
+
+bool Zombie::isMeeting()
+{
+	return _meeting;
+}
+
+void Zombie::setMeeting(bool meeting)
+{
+	_meeting = meeting;
 }
 
 std::vector<int> Zombie::getDebuff() 
