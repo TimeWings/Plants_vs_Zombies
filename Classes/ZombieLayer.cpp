@@ -35,7 +35,15 @@ void ZombieLayer::Check_isAttack(float t)
 		for (int j = 0; j < readyPlants.size(); j++)
 		{
 			Plants *plant = readyPlants.at(j);
-			if (sp->boundingBox().intersectsRect(plant->getImg()->getBoundingBox()))
+			Sprite *sp_plant = plant->getImg();
+			int row = plant->getRow();
+			int startRange = zombie->getRange()->at(0);
+			int endRange = zombie->getRange()->at(1);
+			if (row<startRange || row>endRange)
+			{
+				continue;
+			}
+			if (fabs(sp->getPositionX()- sp_plant->getPositionX())<sp->getContentSize().width/2*sp->getScaleX()+ sp_plant->getContentSize().width / 2 * sp_plant->getScaleX()+10)
 			{
 				flag = true;
 				p = plant;

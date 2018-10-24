@@ -9,6 +9,8 @@ BasicZombie::BasicZombie()
 
 BasicZombie::BasicZombie(Point position,int row)
 {
+	this->getRange()->push_back(row);
+	this->getRange()->push_back(row);
 	this->setRow(row);
 	setWalkSpeed(7);
 	setHp(12);

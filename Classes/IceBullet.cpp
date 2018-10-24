@@ -23,7 +23,7 @@ void IceBullet::Hit_Animation(Zombie* zombie)
 	////删除子弹
 	Sprite*bulletSprite=this->getImg();
 	bulletSprite->removeFromParent();
-	streak->removeFromParent();
+	//streak->removeFromParent();
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
 		if (readyBullet.at(i) == this)
@@ -56,7 +56,7 @@ void IceBullet::attack_Animation()
 	streak = MotionStreak::create(2, 1, 10, Color3B(255,255,255), "ice_effect.png");
 	double distance = (visibleSize.width  - this->getImg()->getPositionX())/15;
 	double time = distance / getSpeed();
-	streak->setPosition(this->getImg()->getPosition());
+	/*streak->setPosition(this->getImg()->getPosition());
 	this->streak = streak;
 	Point a = ccp(visibleSize.width , this->getImg()->getPosition().y);
 	auto moveto = MoveTo::create(time, a);
@@ -67,17 +67,17 @@ void IceBullet::attack_Animation()
 	};
 	auto call = CallFuncN::create(fun);
 	CCActionInterval *colorAction =(CCActionInterval *)CCSequence::create(
-		CCTintTo::create(0.5f, 255, 0, 0),
-		CCTintTo::create(0.5f, 0, 255, 0),
-		CCTintTo::create(0.5f, 0, 0, 255),
-		CCTintTo::create(0.5f, 0, 255, 255),
-		CCTintTo::create(0.5f, 255, 255, 0),
-		CCTintTo::create(0.5f, 255, 0, 255),
-		CCTintTo::create(0.5f, 255, 255, 255),
+		CCTintTo::create(0.2f, 255, 0, 0),
+		CCTintTo::create(0.2f, 0, 255, 0),
+		CCTintTo::create(0.2f, 0, 0, 255),
+		CCTintTo::create(0.2f, 0, 255, 255),
+		CCTintTo::create(0.2f, 255, 255, 0),
+		CCTintTo::create(0.2f, 255, 0, 255),
+		CCTintTo::create(0.2f, 255, 255, 255),
 		NULL);
 	Spawn* spawn = Spawn::create(moveto, colorAction,NULL);
 	streak->runAction(Sequence::create(spawn, call, NULL));
-	addLayer(streak);
+	addLayer(streak);*/
 	ParticleSystem* ps = ParticleMeteor::create();
 	//因为偷懒，我直接用helloWorld里的close 图片当雪花  
 	ps->setTexture(Director::getInstance()->getTextureCache()->addImage("ice_effect3.png"));

@@ -35,7 +35,6 @@
 #include "IceShooter.h"
 #include "PotatoMine.h"
 #include "Global.h"
-#include "TestZombie.h"
 #include "BasicZombie.h"
 #include <iostream>
 #include "Weeds.h"

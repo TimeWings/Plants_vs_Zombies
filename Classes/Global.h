@@ -2,7 +2,6 @@
 #include "cocos2d.h"
 #include "Bullet.h"
 #include "Plants.h"
-#include "TestZombie.h"
 #include "Zombie.h"
 #define Icing 0
 USING_NS_CC;
