@@ -31,7 +31,7 @@ void ZombieLayer::Check_isAttack(float t)
 		Zombie *zombie = readyZombies.at(i);
 		Sprite *sp = zombie->getImg();
 		Plants *p;
-		bool flag = false;
+		bool flagin = false, flagout = true;
 		for (int j = 0; j < readyPlants.size(); j++)
 		{
 			Plants *plant = readyPlants.at(j);
@@ -43,19 +43,25 @@ void ZombieLayer::Check_isAttack(float t)
 			{
 				continue;
 			}
-			if (fabs(sp->getPositionX()- sp_plant->getPositionX())<sp->getContentSize().width/2*sp->getScaleX()+ sp_plant->getContentSize().width / 2 * sp_plant->getScaleX()+10)
+			if (fabs(sp->getPositionX()- sp_plant->getPositionX())<sp->getContentSize().width/2*sp->getScaleX()+ sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() - 10)
 			{
-				flag = true;
+				flagin = true;
+				p = plant;
+			}
+			if (fabs(sp->getPositionX() - sp_plant->getPositionX()) < sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() + 10)
+			{
+				flagout = false;
 				p = plant;
 			}
 		}
-		if (zombie -> isMeeting() && !flag) {
+		if (zombie->isMeeting() && flagout) {
 			zombie->Move();
+			zombie->setMeeting(false);
 		}
-		else if (!zombie->isMeeting() && flag) {
+		else if (!zombie->isMeeting() && flagin) {
 			zombie->attack(p);
+			zombie->setMeeting(true);
 		}
-		zombie->setMeeting(flag);
 	}
 }
 

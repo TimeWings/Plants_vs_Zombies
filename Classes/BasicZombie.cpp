@@ -21,7 +21,7 @@ BasicZombie::BasicZombie(Point position,int row)
 	this->setSche(sp);
 	this->setImg(sp);
 	sp->retain();
-	sp->setScale(1.5);
+	sp->setScale(2);
 	sp->setPosition(position);
 	this->Move();
 	this->Self_Animation();
