@@ -62,7 +62,11 @@ bool HelloWorld::init()
 		sprintf(str, "PeaShooter\\Death\\%d.png", i);
 		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
 	}
-	
+	for (int i = 1; i <= 5; i++)
+	{
+		sprintf(str, "NutPlus\\Attacked\\%d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
     return true;
 }
 

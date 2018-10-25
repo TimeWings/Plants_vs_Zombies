@@ -32,6 +32,7 @@ bool PeaShooter::isWorking()
 }
 void PeaShooter::work()
 {
+	if(isWorking())
 	CreateBullet();
 }
 

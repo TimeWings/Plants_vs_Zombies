@@ -36,7 +36,7 @@ public:
 
 	void ResourceCallBack(cocos2d::Texture2D *texture);
 	int loadingSprite = 0;
-	int tot_loadingSprite = 27;
+	int tot_loadingSprite = 32;
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };
