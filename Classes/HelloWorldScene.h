@@ -33,10 +33,10 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
-    
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
-    
+
+	void ResourceCallBack(cocos2d::Texture2D *texture);
+	int loadingSprite = 0;
+	int tot_loadingSprite = 27;
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };

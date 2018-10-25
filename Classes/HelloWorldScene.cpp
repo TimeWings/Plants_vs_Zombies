@@ -56,15 +56,27 @@ bool HelloWorld::init()
     {
         return false;
     }
-	this->addChild(PlantLayer::create());
-	this->addChild(BulletLayer::create());
-	this->addChild(ZombieLayer::create());
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-	test a =test();
-
-	
+	char str[100] = { 0 };
+	for (int i = 1; i <= 27; i++)
+	{
+		sprintf(str, "PeaShooter\\Death\\%d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
 	
     return true;
+}
+
+void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
+{
+	loadingSprite++;
+	if (loadingSprite == tot_loadingSprite)
+	{
+		this->addChild(PlantLayer::create());
+		this->addChild(BulletLayer::create());
+		this->addChild(ZombieLayer::create());
+		auto visibleSize = Director::getInstance()->getVisibleSize();
+		test a = test();
+	}
 }
 
 
