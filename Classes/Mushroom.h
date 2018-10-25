@@ -3,6 +3,7 @@
 #include "Plants.h"
 #include "Bullet.h"
 #include "PeaShooter.h"
+#include "MushroomBullet.h"
 USING_NS_CC;
 
 class Mushroom : public PeaShooter
@@ -15,5 +16,6 @@ public:
 	void CreateBullet();
 	void Self_Animation();
 	void clear(Node *pSender);
-	void clearBullet(Node *pSender, Bullet *bp);
+	void clearBullet(Node *pSender, MushroomBullet *bp);
+	void Die();
 };
