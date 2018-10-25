@@ -32,6 +32,7 @@ bool PeaShooter::isWorking()
 }
 void PeaShooter::work()
 {
+	if(isWorking())
 	CreateBullet();
 }
 
@@ -46,10 +47,22 @@ void PeaShooter::Die()
 		}
 	}
 	Sprite*sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
+
+	//SpriteFrame *sp1;
+	char str[100] = { 0 };
+	Vector<SpriteFrame*> allframe;
+	for (int i = 1; i <= 27; i++)
+	{
+		sprintf(str, "PeaShooter\\Death\\%d.png", i);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
+	}
+	Animation* an = Animation::createWithSpriteFrames(allframe, 0.05);
+	//ActionInterval * fadeout = FadeOut::create(0.5);
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	sp->runAction(sequence);
 }
 

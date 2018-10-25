@@ -32,6 +32,11 @@ void IceBullet::Hit_Animation(Zombie* zombie)
 			break;
 		}
 	}
+	ParticleSystem* ps = CCParticleGalaxy::create();
+	ps->setPosition(zombie->getImg()->getPosition());
+	ps->setLife(1);
+	ps->setDuration(0.5);
+	addLayer(ps);
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	for (auto x : *(zombie->getDebuff()))
 	{
@@ -53,9 +58,9 @@ void IceBullet::Hit_Animation(Zombie* zombie)
 void IceBullet::attack_Animation()
 {
 	auto visibleSize = Director::getInstance()->getVisibleSize();
-	streak = MotionStreak::create(2, 1, 10, Color3B(255,255,255), "ice_effect.png");
-	double distance = (visibleSize.width  - this->getImg()->getPositionX())/15;
-	double time = distance / getSpeed();
+	//streak = MotionStreak::create(2, 1, 10, Color3B(255,255,255), "ice_effect.png");
+	//double distance = (visibleSize.width  - this->getImg()->getPositionX())/15;
+	//double time = distance / getSpeed();
 	/*streak->setPosition(this->getImg()->getPosition());
 	this->streak = streak;
 	Point a = ccp(visibleSize.width , this->getImg()->getPosition().y);
