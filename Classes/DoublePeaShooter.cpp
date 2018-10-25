@@ -19,6 +19,7 @@ DoublePeaShooter::DoublePeaShooter(Point position,int row):PeaShooter()
 
 void DoublePeaShooter::CreateBullet()
 {
+	setNewBirthTime();
 	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
 	CCScaleBy * scaledown = CCScaleBy::create(0.2f, 1.5625f, 0.64f);
 	CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
@@ -34,6 +35,7 @@ void DoublePeaShooter::CreateBullet()
 
 void DoublePeaShooter::addBullet(Node * pSender, Sprite * sp)
 {
+	
 	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleX() / 4 + sp->getPositionY());
 	Bullet *pb = new DoubleBullet(a,this->getRow());
 }

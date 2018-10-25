@@ -20,6 +20,7 @@ public:
 	void getHurt(int Damage);
 	void setRow(int row);
 	int getRow();
+	void setNewBirthTime();
 	//把精灵直接放到图层上
 	void addLayer(Node* entity);
 	virtual void work() = 0; //工作

@@ -48,6 +48,14 @@ int Plants::getRow()
 	return _row;
 }
 
+void Plants::setNewBirthTime()
+{
+	struct timeb t1;
+	ftime(&t1);
+	long long seconds = t1.time * 1000 + t1.millitm;
+	this->setBirthTime(seconds);
+}
+
 void Plants::addLayer(Node * entity)
 {
 	BulletLayer* bl = BulletLayer::getInstance();

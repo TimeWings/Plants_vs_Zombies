@@ -6,6 +6,8 @@ ZombieLayer* ZombieLayer::pRet = nullptr;
 bool ZombieLayer::init()
 {
 	this->schedule(schedule_selector(ZombieLayer::Check_isAttack), 0.1);
+	this->schedule(schedule_selector(ZombieLayer::Check_Death), 0.1);
+	
 	return true;
 }
 
@@ -61,6 +63,19 @@ void ZombieLayer::Check_isAttack(float t)
 		else if (!zombie->isMeeting() && flagin) {
 			zombie->attack(p);
 			zombie->setMeeting(true);
+		}
+	}
+}
+void ZombieLayer::Check_Death(float t)
+{
+	for (int j = 0; j < readyZombies.size(); j++)
+	{
+		Zombie* zombie = readyZombies.at(j);
+		Sprite* sp = zombie->getImg();
+		if (zombie->getHp() <= 0)
+		{
+			zombie->Die();
+			j--;
 		}
 	}
 }

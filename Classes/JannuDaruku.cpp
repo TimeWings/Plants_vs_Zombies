@@ -51,7 +51,7 @@ void JannuDaruku::MyFire(Node *pSender)
 	//清除同排僵尸
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
-		if (readyZombies.at(i)->getImg()->getPositionY() == this->position.y)
+		if (readyZombies.at(i)->getRow() == this->getRow())
 		{
 			std::cout << "清除僵尸" << std::endl;
 			zombiesDie(readyZombies.at(i)->getImg());
@@ -90,26 +90,29 @@ void JannuDaruku::zombiesDie(Node* pSender)
 //产生多个精灵，实现一列火焰
 void JannuDaruku::creatFire()
 {
-	auto visibleSize = Director::getInstance()->getVisibleSize();
+	Sprite*sp = Sprite::create("Fire1.png");
+	sp->retain();
+	sp->setScale(1.5);
+
 	SpriteFrame *sp1;
 	Vector<SpriteFrame*> allframe;
+	auto visibleSize = Director::getInstance()->getVisibleSize();
 	char str[100] = { 0 };
-	for (int i = 1; i <= 11; i++)
+	for (int i = 1; i <= 7; i++)
 	{
 		sprintf(str, "Fire%d.png", i);
-		sp1 = SpriteFrame::create(str, Rect(0, 0, 80, 100));
+		sp1 = SpriteFrame::create(str, sp->getDisplayFrame()->getRect());
 		allframe.pushBack(sp1);
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 
-
-	for (int x = 20; x < visibleSize.width; x += 30)
+	for (int x = 0; x < visibleSize.width; x += 200)
 	{
-		Sprite*sp = Sprite::create("Fire4.png");
+		Sprite*sp = Sprite::create("Fire8.png");
 		sp->retain();
-		sp->setScale(0.45);
+		sp->setScale(1.5);
 		//sp->setPosition(this->position);
-		sp->setPosition(Point(x, this->position.y));
+		sp->setPosition(Point(x, this->position.y - 10));
 		addLayer(sp);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);

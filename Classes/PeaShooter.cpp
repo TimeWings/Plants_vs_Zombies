@@ -57,8 +57,10 @@ void PeaShooter::Die()
 void PeaShooter::Attacked()
 {
 	Sprite* sp = this->getImg();
-	CCActionInterval * tintby = CCTintBy::create(0.6, 0, 255, 255);
-	sp->runAction(tintby);
+	CCActionInterval * tintto1 = CCTintTo::create(0.2, 255, 0, 0);
+	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
+	Sequence *sequence = Sequence::create(tintto1, tintto2, NULL);
+	sp->runAction(sequence);
 }
 
 void PeaShooter::Self_Animation()
@@ -86,12 +88,12 @@ void PeaShooter::CreateBullet()
 	//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
 	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleY()/ 4 + sp->getPositionY());
 	Bullet *pb = new PeaBullet(a,this->getRow());
+	setNewBirthTime();
 }
 
 void PeaShooter::clear(Node *pSender)
 {
 	//std::cout << "闪闪死亡" << std::endl;
 	pSender->removeFromParent();
-	
 }
 

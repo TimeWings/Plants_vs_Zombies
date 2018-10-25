@@ -8,14 +8,12 @@ USING_NS_CC;
 PotatoBullet::PotatoBullet(Point position, int Plant_row):Bullet(position,50,0)
 {
 	this->getRange()->push_back(Plant_row);
-	Sprite *sp = Sprite::create("sword1.png");
-	//能不能改变大小
+	Sprite *sp = Sprite::create("none.png");
 	this->setImg(sp);
 	sp->setScale(0.1);
 	sp->retain();
 	sp->setPosition(position.x + sp->getContentSize().width*sp->getScaleX() / 2, position.y);
 	this->addLayer(sp);
-	
 	readyBullet.push_back(this);
 }
 

@@ -44,9 +44,11 @@ void Sunflower::Die()
 
 void Sunflower::Attacked()
 {
-	Sprite * sp = this->getImg();
-	CCActionInterval * tintby = CCTintBy::create(0.6, 0, 255, 255);
-	sp->runAction(tintby);
+	Sprite* sp = this->getImg();
+	CCActionInterval * tintto1 = CCTintTo::create(0.2, 255, 0, 0);
+	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
+	Sequence *sequence = Sequence::create(tintto1, tintto2, NULL);
+	sp->runAction(sequence);
 }
 
 void Sunflower::Self_Animation()
@@ -85,6 +87,7 @@ void Sunflower::CreateSun()
 	CCFiniteTimeAction * reveseseq = CCSequence::create(jumpto, CCDelayTime::create(3.2), actionDone, NULL);
 	spSun->runAction(reveseseq);
 	readySun.insert(sp, spSun);
+	setNewBirthTime();
 }
 
 bool Sunflower::isWorking()

@@ -88,10 +88,6 @@ void PlantLayer::Check_isAttack(float t)
 		if (interval > x->getInterval()) {
 			//调用工作函数
 			x->work();
-			struct timeb t1;
-			ftime(&t1);
-			long long seconds = t1.time * 1000 + t1.millitm;
-			x->setBirthTime(seconds);
 		}
 	}
 }

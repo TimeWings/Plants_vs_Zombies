@@ -3,7 +3,7 @@
 DoubleBullet::DoubleBullet(Point position,int Plant_row):PeaBullet()
 {
 	this->getRange()->push_back(Plant_row);
-	this->setDamage(20);
+	this->setDamage(1);
 	this->setSpeed(6);
 	Sprite *sp = Sprite::create("doubleBullet.png");
 	this->setImg(sp);

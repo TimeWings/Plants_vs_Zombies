@@ -50,6 +50,7 @@ void BulletLayer::Check_Collision(float t)
 				std::cout << "×Óµ¯Åö×²ÁË" << std::endl;
 				bullet->cal_damage(zombie);
 				bullet->Hit_Animation(zombie);
+				zombie->Attacked();
 				
 			}
 		}

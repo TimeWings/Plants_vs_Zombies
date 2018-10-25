@@ -111,8 +111,10 @@ void BasicZombie::Damage(Node * pSender, Plants * plant)
 void BasicZombie::Attacked()
 {
 	Sprite* sp = this->getImg();
-	CCActionInterval * tintby = CCTintBy::create(0.6, 0, 255, 255);
-	sp->runAction(tintby);
+	CCActionInterval * tintto1 = CCTintTo::create(0.2, 255, 0, 0);
+	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
+	Sequence *sequence = Sequence::create(tintto1, tintto2, NULL);
+	sp->runAction(sequence);
 }
 
 void BasicZombie::LostHead()

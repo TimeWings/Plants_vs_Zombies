@@ -15,5 +15,6 @@ public:
 	static ZombieLayer *pRet;
 private:
 	void Check_isAttack(float t);
+	void Check_Death(float t);
 	void clearNode(Node * pSender);
 };

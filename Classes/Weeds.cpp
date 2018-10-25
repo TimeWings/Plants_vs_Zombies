@@ -27,4 +27,5 @@ void Weeds::CreateBullet()
 	Sprite*sp = this->getImg();
 	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
 	Bullet *pb = new TrackBullet(a,this->getRow());
+	setNewBirthTime();
 }

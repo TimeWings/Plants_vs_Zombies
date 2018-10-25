@@ -2,7 +2,7 @@
 #include "cocos2d.h"
 #include "Zombie.h"
 #include "Entity.h"
-#include "test.h"
+
 USING_NS_CC;
 class Bullet : public Entity
 {

@@ -7,7 +7,7 @@
 PeaBullet::PeaBullet()
 {
 }
-PeaBullet::PeaBullet(Point position, int Plant_row):Bullet(position, 20, 6)
+PeaBullet::PeaBullet(Point position, int Plant_row):Bullet(position,1, 6)
 {
 	this->getRange()->push_back(Plant_row);
 	srand((unsigned)time(NULL));
