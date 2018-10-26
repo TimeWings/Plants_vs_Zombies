@@ -1,5 +1,6 @@
 #include "ZombieLayer.h"
 #include "Global.h"
+#include <iostream>
 
 ZombieLayer* ZombieLayer::pRet = nullptr;
 
@@ -57,6 +58,7 @@ void ZombieLayer::Check_isAttack(float t)
 			}
 		}
 		if (zombie->isMeeting() && flagout) {
+			std::cout << "ÒÆ¶¯" << std::endl;
 			zombie->Move();
 			zombie->setMeeting(false);
 		}
