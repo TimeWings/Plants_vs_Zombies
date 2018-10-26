@@ -34,14 +34,26 @@ void Zombie::setInterval(double BiteInterval)
 	_BiteInterval = BiteInterval;
 }
 
-int Zombie::getWalkSpeed()
+void Zombie::setWalkSpeed(double WalkSpeed)
 {
-	return _WalkSpeed;
+	_WalkSpeed=WalkSpeed;
 }
 
-void Zombie::setWalkSpeed(int WalkSpeed)
+double Zombie::getWalkSpeed()
 {
-	_WalkSpeed = WalkSpeed;
+	if (isMeeting())
+	{
+		return 0;
+	}
+	else
+	{
+		return _WalkSpeed * sched->getTimeScale();
+	}
+}
+
+double Zombie::getPreWalkSpeed()
+{
+	return _WalkSpeed;
 }
 
 bool Zombie::hasHead()

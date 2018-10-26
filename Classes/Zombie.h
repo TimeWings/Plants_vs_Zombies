@@ -12,7 +12,7 @@ private:
 	int _Hp; //血量
 	//long long BirthTime; //诞生时间
 	double _BiteInterval; //攻击间隔
-	int _WalkSpeed; //移动速度
+	double  _WalkSpeed; //移动速度
 	bool _Head;
 	bool _meeting;
 	int _row;
@@ -28,8 +28,9 @@ public:
 	void setRow(int row);
 	double getInterval();
 	void setInterval(double BiteInterval);
-	int getWalkSpeed();
-	void setWalkSpeed(int WalkSpeed);
+	void setWalkSpeed(double WalkSpeed);
+	double getWalkSpeed();//得到当前速度
+	double getPreWalkSpeed();//得到原来的速度
 	bool hasHead();
 	void setHead(bool Head);
 	bool isMeeting();
