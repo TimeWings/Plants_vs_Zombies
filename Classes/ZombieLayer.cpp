@@ -27,6 +27,7 @@ ZombieLayer * ZombieLayer::create()
 	}
 }
 
+//有BUG，当两个植物重叠放的时候，僵尸会播放攻击动画，但是没有对植物造成伤害
 void ZombieLayer::Check_isAttack(float t)
 {
 	for (int i = 0; i < readyZombies.size(); i++)
