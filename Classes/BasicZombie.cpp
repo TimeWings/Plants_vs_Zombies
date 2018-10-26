@@ -39,7 +39,7 @@ void BasicZombie::attack(Plants *plant)
 {
 	std::cout << "½©Ê¬¹¥»÷" << std::endl;
 	Sprite *sp = this->getImg();
-	sp->getActionManager()->removeAllActionsFromTarget(sp);
+	sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
 	SpriteFrame *spf;
 	Vector<SpriteFrame*> allframe;
 	char str[100] = { 0 };
@@ -79,7 +79,9 @@ void BasicZombie::attack(Plants *plant)
 	Animation* an3 = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plant));
 	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, Animate::create(an2), actionDone, Animate::create(an3), NULL);
-	this->getImg()->runAction(CCRepeatForever::create(seq));
+	CCRepeatForever *rf = CCRepeatForever::create(seq);
+	rf->setTag(Animation_Tag);
+	this->getImg()->runAction(rf);
 }
 
 void BasicZombie::Die()
@@ -137,12 +139,13 @@ void BasicZombie::LostHead()
 void BasicZombie::Move()
 {
 	Sprite *sp = this->getImg();
-	sp->getActionManager()->removeAllActionsFromTarget(sp);
+	sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
 	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
 	double time = distance / getWalkSpeed();
 	MoveTo *moveTo = MoveTo::create(time, ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY()));
 	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
 	CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
+	sequence->setTag(Animation_Tag);
 	sp->runAction(sequence);
 
 
@@ -156,7 +159,9 @@ void BasicZombie::Move()
 		allframe.pushBack(spf);
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
-	this->getImg()->runAction(CCRepeatForever::create(Animate::create(an)));
+	CCRepeatForever *rf = CCRepeatForever::create(Animate::create(an));
+	rf->setTag(Animation_Tag);
+	this->getImg()->runAction(rf);
 }
 
 void BasicZombie::clear(Node * pSender)

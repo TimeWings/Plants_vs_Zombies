@@ -4,6 +4,8 @@
 #include "Plants.h"
 USING_NS_CC;
 
+#define Animation_Tag 1
+
 class Zombie : public Entity 
 {
 private:
