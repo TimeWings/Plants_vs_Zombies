@@ -26,6 +26,7 @@ test::test()
 	Plants* plant5 = new Mushroom(Point(200, 120), 3);
 	//Card<Mushroom>* card = new Card<Mushroom>(Point(100, 100), 3);
 	Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
+	Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
 	//card->BindPlant<Mushroom>();
 	//card->PutPlant<Mushroom>(Point(100, 200), 3);
 }
