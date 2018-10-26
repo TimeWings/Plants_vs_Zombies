@@ -62,4 +62,10 @@ void Plants::addLayer(Node * entity)
 	bl->addChild(entity);
 }
 
+void Plants::removeLayer(Node * entity)
+{
+	BulletLayer* bl = BulletLayer::getInstance();
+	bl->removeChild(entity);
+}
+
 

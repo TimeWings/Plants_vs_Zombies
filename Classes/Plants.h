@@ -30,4 +30,6 @@ public:
 	//被攻击之后的动画以及效果（爆炸等）
 	virtual void Attacked() = 0;
 	
+	//Plants(Point position, int row);
+	void removeLayer(Node * entity);
 };

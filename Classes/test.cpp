@@ -9,8 +9,9 @@
 #include "Mushroom.h"
 #include "Weeds.h"
 #include "Sunflower.h"
+#include "Card.h"
 #include <iostream>
-
+#include <typeinfo>
 
 test::test()
 {
@@ -22,5 +23,10 @@ test::test()
 	/*Plants* plant3 = new IceShooter(Point(60, 100));
 	Plants* plant4 = new IceShooter(Point(60, 120));*/
 	//Plants* plant5 = new IceShooter(Point(60, 120),3);
-	Plants* plant5 = new Mushroom(Point(200, 120), 3);
+	//Plants* plant5 = new Mushroom(Point(200, 120), 3);
+	//Card<Mushroom>* card = new Card<Mushroom>(Point(100, 100), 3);
+	Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
+	Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
+	//card->BindPlant<Mushroom>();
+	//card->PutPlant<Mushroom>(Point(100, 200), 3);
 }
