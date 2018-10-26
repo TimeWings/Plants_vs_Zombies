@@ -11,7 +11,7 @@ IceShooter::IceShooter(Point position,int row)
 	sp->retain();
 	sp->setScale(0.3);
 	sp->setPosition(position);
-	this->setHp(20);
+	this->setHp(3);
 	this->setInterval(2000);
 	this->addLayer(sp);
 	this->Self_Animation();

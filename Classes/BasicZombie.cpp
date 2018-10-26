@@ -142,7 +142,9 @@ void BasicZombie::Move()
 	sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
 	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
 	double time = distance / getWalkSpeed();
-	MoveTo *moveTo = MoveTo::create(time, ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY()));
+	Point a = ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY());
+	MoveTo *moveTo = MoveTo::create(time, a);
+	std::cout <<a.x<<"	"<<a.y<<std::endl;
 	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
 	CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
 	sequence->setTag(Animation_Tag);
