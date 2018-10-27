@@ -1,6 +1,6 @@
 #include "Bullet.h"
 #include "Global.h"
-#include "BulletLayer.h"
+#include "EntityLayer.h"
 Bullet::Bullet()
 {
 
@@ -40,7 +40,7 @@ void Bullet::cal_damage(Zombie * zombie)
 
 void Bullet::addLayer(Node * entity)
 {
-	BulletLayer* bl = BulletLayer::getInstance();
-	bl->addChild(entity);
+	EntityLayer* bl = EntityLayer::getInstance();
+	bl->addChild(entity,100);
 }
 

@@ -12,3 +12,4 @@ void Entity::setImg(Sprite * img)
 	_img = img;
 }
 
+

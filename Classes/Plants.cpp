@@ -1,5 +1,5 @@
 #include "Plants.h"
-#include "BulletLayer.h"
+#include "EntityLayer.h"
 #include "Global.h"
 #include <time.h>
 #include <sys/timeb.h>
@@ -58,14 +58,9 @@ void Plants::setNewBirthTime()
 
 void Plants::addLayer(Node * entity)
 {
-	BulletLayer* bl = BulletLayer::getInstance();
-	bl->addChild(entity);
+	EntityLayer* bl = EntityLayer::getInstance();
+	bl->addChild(entity, _row*2-2);
 }
 
-void Plants::removeLayer(Node * entity)
-{
-	BulletLayer* bl = BulletLayer::getInstance();
-	bl->removeChild(entity);
-}
 
 

@@ -1,5 +1,5 @@
 #include "Zombie.h"
-#include "ZombieLayer.h"
+#include "EntityLayer.h"
 Zombie::Zombie()
 {
 }
@@ -88,8 +88,8 @@ std::vector<int>* Zombie::getDebuff()
 
 void Zombie::addLayer(Node * entity)
 {
-	ZombieLayer* zl = ZombieLayer::getInstance();
-	zl->addChild(entity);
+	EntityLayer* zl = EntityLayer::getInstance();
+	zl->addChild(entity, _row*2-1);
 }
 
 void Zombie::setSche(Node* sprite)

@@ -24,9 +24,7 @@
 #include <time.h>
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
-#include "BulletLayer.h"
-#include "PlantLayer.h"
-#include "ZombieLayer.h"
+#include "EntityLayer.h"
 #include "Bullet.h"
 #include "PeaBullet.h"
 #include "PeaShooter.h"
@@ -80,9 +78,7 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	loadingSprite++;
 	if (loadingSprite == tot_loadingSprite)
 	{
-		this->addChild(PlantLayer::create());
-		this->addChild(BulletLayer::create());
-		this->addChild(ZombieLayer::create());
+		this->addChild(EntityLayer::create(),0);
 		auto visibleSize = Director::getInstance()->getVisibleSize();
 		test a = test();
 	}

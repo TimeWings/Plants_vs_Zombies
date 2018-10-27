@@ -31,5 +31,4 @@ public:
 	virtual void Attacked() = 0;
 	
 	//Plants(Point position, int row);
-	void removeLayer(Node * entity);
 };
