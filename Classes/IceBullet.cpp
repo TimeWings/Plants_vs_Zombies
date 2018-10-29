@@ -5,7 +5,6 @@
 IceBullet::IceBullet(Point position,int Plant_row)
 {
 	this->getRange()->push_back(Plant_row);
-	std::cout << this->getRange()->size();
 	this->setDamage(1);
 	this->setSpeed(6);
 	Sprite *sp = Sprite::create("ice_Bullet.png");
@@ -14,8 +13,8 @@ IceBullet::IceBullet(Point position,int Plant_row)
 	sp->setScale(0.08);
 	sp->setPosition(position.x + sp->getContentSize().width*sp->getScale() / 2, position.y);
 	this->addLayer(sp);
-	this->attack_Animation();
 	this->move();
+	this->attack_Animation();
 	readyBullet.push_back(this);
 }
 void IceBullet::Hit_Animation(Zombie* zombie)
@@ -82,19 +81,21 @@ void IceBullet::attack_Animation()
 	Spawn* spawn = Spawn::create(moveto, colorAction,NULL);
 	streak->runAction(Sequence::create(spawn, call, NULL));
 	addLayer(streak);*/
+	Sprite*sp = this->getImg();
 	ParticleSystem* ps = ParticleMeteor::create();
 	//因为偷懒，我直接用helloWorld里的close 图片当雪花  
 	ps->setTexture(Director::getInstance()->getTextureCache()->addImage("ice_effect3.png"));
 	//ps->setEmitterMode(ParticleSystem::Mode::GRAVITY);
-	ps->setStartSize(50);
+	ps->setStartSize(40);
+	//ps->setLife(1);
 	//ps->setDuration(-1);
 	//ps->setEmissionRate(200);
 	//ps->setStartRadius(10);
 	//ps->setAutoRemoveOnFinish(true);
 	ps->setPositionType(kCCPositionTypeRelative);
 	//ps->setColor(Color4F(152, 245, 255,0));
-	ps->setPosition(this->getImg()->getPosition());//生成的雪花从这个坐标往下落  
-	this->getImg()->addChild(ps,0);
+	ps->setPosition(sp->getContentSize().width/2,sp->getContentSize().height/2);
+	this->getImg()->addChild(ps);
 }
 
 void IceBullet::resume(Node *pSender, Zombie* zombie)

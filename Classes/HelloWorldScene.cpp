@@ -83,7 +83,7 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	loadingSprite++;
 	if (loadingSprite == tot_loadingSprite)
 	{
-		this->addChild(EntityLayer::create(),0);
+		this->addChild(EntityLayer::create());
 		auto visibleSize = Director::getInstance()->getVisibleSize();
 		test a = test();
 	}
