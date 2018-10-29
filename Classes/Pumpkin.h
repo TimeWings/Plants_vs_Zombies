@@ -12,7 +12,7 @@ private:
 	bool isChecking;
 	bool isJumping;
 public:
-	Pumpkin(Point position, int row);
+	Pumpkin(Point position, int row,int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	void CheckZombies();

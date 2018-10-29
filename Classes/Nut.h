@@ -4,7 +4,7 @@ USING_NS_CC;
 class Nut :public Plants
 {
 public:
-	Nut(Point position, int row);
+	Nut(Point position, int row,int col);
 	Nut();
 	virtual bool isWorking();//是否能工作
 	virtual void work();

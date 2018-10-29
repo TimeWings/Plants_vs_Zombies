@@ -25,7 +25,14 @@ void Zombie::setRow(int row)
 	if(this->getImg() != NULL)
 		this->getImg()->setZOrder(_row * 2 - 1);
 }
-
+void Zombie::setCol(int col)
+{
+	_col = col;
+}
+int Zombie::getCol()
+{
+	return _col;
+}
 double Zombie::getInterval()
 {
 	return _BiteInterval;

@@ -2,7 +2,7 @@
 #include "Global.h"
 #include "EntityLayer.h"
 #include <iostream>
-
+using namespace map;
 Landslock::Landslock(Point position, int row)
 {
 	this->setRow(row);

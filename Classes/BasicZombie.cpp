@@ -7,9 +7,10 @@ BasicZombie::BasicZombie()
 
 }
 
-BasicZombie::BasicZombie(Point position,int row)
+BasicZombie::BasicZombie(Point position,int row,int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	setWalkSpeed(7);
 	setHp(12);
 	setHead(true);

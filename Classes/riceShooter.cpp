@@ -3,9 +3,10 @@
 #include "riceBullet.h"
 #include <iostream>
 
-riceShooter::riceShooter(Point position, int row)
+riceShooter::riceShooter(Point position, int row,int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("riceShooter.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放

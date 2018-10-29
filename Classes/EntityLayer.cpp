@@ -7,7 +7,7 @@
 #include <sys/timeb.h>
 #include <time.h>
 #include <iostream>
-
+using namespace map;
 EntityLayer* EntityLayer::pRet = NULL;
 EntityLayer* EntityLayer::create()
 {

@@ -3,10 +3,11 @@
 #include "Global.h"
 #include <iostream>
 
-Mushroom::Mushroom(Point position, int row)
+Mushroom::Mushroom(Point position, int row,int col)
 {
 	this->haveBullet = false;
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("Mushroom.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放

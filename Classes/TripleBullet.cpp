@@ -1,7 +1,7 @@
 #include "TripleBullet.h"
 #include "Global.h"
 #include <iostream>
-
+using namespace map;
 TripleBullet::TripleBullet(Point position, int Plant_row, int type) :Bullet(position, 1, 6)
 {
 	_type = type;
@@ -38,16 +38,16 @@ void TripleBullet::move()
 {
 	Sprite*sp = this->getImg();
 	auto visibleSize = Director::getInstance()->getVisibleSize();
-	double distance = sqrt(BlockSize.first*BlockSize.first+ BlockSize.second*BlockSize.second)/15;
+	double distance = sqrt(map::BlockSize.first*map::BlockSize.first+ map::BlockSize.second*map::BlockSize.second)/15;
 	double time = distance / getSpeed();
 	Point a;
 	if (_type == 1)
 	{
-		a = Point(sp->getPositionX()+BlockSize.first, sp->getPositionY() + BlockSize.second);
+		a = Point(sp->getPositionX()+map::BlockSize.first, sp->getPositionY() + BlockSize.second);
 	}
 	else if (_type == 2)
 	{
-		a = Point(sp->getPositionX() + BlockSize.first, sp->getPositionY());
+		a = Point(sp->getPositionX() + map::BlockSize.first, sp->getPositionY());
 	}
 	else
 	{

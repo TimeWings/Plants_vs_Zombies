@@ -3,9 +3,10 @@
 #include "IceBullet.h"
 #include <iostream>
 
-IceShooter::IceShooter(Point position,int row)
+IceShooter::IceShooter(Point position,int row,int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("iceShooter.png");
 	this->setImg(sp);
 	sp->retain();

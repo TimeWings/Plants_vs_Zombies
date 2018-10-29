@@ -1,9 +1,10 @@
 #include "JannuDaruku.h"
 #include "Global.h"
 #include <iostream>
-JannuDaruku::JannuDaruku(Point position,int row)
+JannuDaruku::JannuDaruku(Point position,int row,int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("Jannu.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放

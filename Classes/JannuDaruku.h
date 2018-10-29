@@ -7,7 +7,7 @@ class JannuDaruku : public Plants
 private:
 	Point position;
 public:
-	JannuDaruku(Point position,int row);
+	JannuDaruku(Point position,int row,int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();

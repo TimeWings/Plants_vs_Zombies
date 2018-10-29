@@ -12,7 +12,7 @@ private:
 	bool haveBullet;
 	float Scale;
 public:
-	Mushroom(Point position, int row);
+	Mushroom(Point position, int row,int col);
 	void CreateBullet();
 	void Self_Animation();
 	void clear(Node *pSender);

@@ -48,6 +48,16 @@ int Plants::getRow()
 	return _row;
 }
 
+void Plants::setCol(int col)
+{
+	_col = col;
+}
+
+int Plants::getCol()
+{
+	return _col;
+}
+
 void Plants::setNewBirthTime()
 {
 	struct timeb t1;

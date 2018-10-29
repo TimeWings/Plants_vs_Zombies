@@ -5,7 +5,7 @@ USING_NS_CC;
 class PeaShooter :public Plants
 {
 public:
-	PeaShooter(Point position,int row);
+	PeaShooter(Point position,int row,int col);
 	PeaShooter();
 	virtual bool isWorking();//是否能工作
 	virtual void work();

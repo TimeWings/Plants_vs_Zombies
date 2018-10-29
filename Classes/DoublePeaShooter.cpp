@@ -2,9 +2,10 @@
 #include "PeaBullet.h"
 #include "Global.h"
 #include "DoubleBullet.h"
-DoublePeaShooter::DoublePeaShooter(Point position,int row):PeaShooter()
+DoublePeaShooter::DoublePeaShooter(Point position,int row,int col):PeaShooter()
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("doubleShooter.png");
 	this->setImg(sp);
 	sp->retain();

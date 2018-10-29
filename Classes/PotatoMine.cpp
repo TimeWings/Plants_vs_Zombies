@@ -5,10 +5,11 @@
 
 
 
-PotatoMine::PotatoMine(Point position, int row)
+PotatoMine::PotatoMine(Point position, int row,int col)
 {
 	this->maxHp = 10;
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("1.1.png");
 	this->setImg(sp);
 	this->birthDelay = 5;

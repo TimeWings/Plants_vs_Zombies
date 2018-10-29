@@ -7,7 +7,7 @@ class BasicZombie : public Zombie
 {
 public:
 	BasicZombie();
-	BasicZombie(Point position,int row);
+	BasicZombie(Point position,int row,int col);
 	virtual bool isAttacking();
 	virtual void attack(Plants *plant);
 	virtual void Die();

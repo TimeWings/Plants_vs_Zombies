@@ -10,7 +10,7 @@ private:
 	int maxHp;
 	int birthDelay;
 public:
-	PotatoMine(Point position, int row);
+	PotatoMine(Point position, int row,int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();

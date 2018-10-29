@@ -9,6 +9,7 @@ private:
 	long long BirthTime; //诞生时间
 	long long _WorkInterval; //工作间隔
 	int _row;
+	int _col;
 public:
 	Plants(); //构造函数
 	int getHp(); 
@@ -20,6 +21,8 @@ public:
 	void getHurt(int Damage);
 	void setRow(int row);
 	int getRow();
+	void setCol(int col);
+	int getCol();
 	void setNewBirthTime();
 	//把精灵直接放到图层上
 	void addLayer(Node* entity);

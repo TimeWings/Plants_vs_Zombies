@@ -2,9 +2,10 @@
 #include "Global.h"
 #include "TrackBullet.h"
 #include <iostream>
-Weeds::Weeds(Point position,int row)
+Weeds::Weeds(Point position,int row,int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("Weeds.png");
 	this->setImg(sp);
 	sp->retain();

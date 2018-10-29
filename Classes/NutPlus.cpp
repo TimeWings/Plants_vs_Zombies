@@ -1,9 +1,10 @@
 #include "NutPlus.h"
 #include "Global.h"
 
-NutPlus::NutPlus(Point position, int row)
+NutPlus::NutPlus(Point position, int row,int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("Nut2.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放

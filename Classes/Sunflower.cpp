@@ -3,10 +3,11 @@
 #include <time.h>
 #include <iostream>
 #include <sys/timeb.h>
-Sunflower::Sunflower(Point position,int row)
+Sunflower::Sunflower(Point position,int row,int col)
 {
 	//std::cout << "Ì«Ñô»¨Éú³É" << std::endl;
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("sunFlower.png");
 	this->setImg(sp);
 	sp->retain();

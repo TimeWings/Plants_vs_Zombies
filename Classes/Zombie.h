@@ -16,6 +16,7 @@ private:
 	bool _Head;
 	bool _meeting;
 	int _row;
+	int _col;
 	std::vector<int> debuff;
 	CCScheduler *sched;
 protected:
@@ -26,6 +27,8 @@ public:
 	void setHp(int hp);
 	int getRow();
 	void setRow(int row);
+	int getCol();
+	void setCol(int col);
 	double getInterval();
 	void setInterval(double BiteInterval);
 	double getWalkSpeed();//得到当前速度
