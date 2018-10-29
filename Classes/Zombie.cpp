@@ -22,6 +22,8 @@ int Zombie::getRow()
 void Zombie::setRow(int row)
 {
 	_row = row;
+	if(this->getImg() != NULL)
+		this->getImg()->setZOrder(_row * 2 - 1);
 }
 
 double Zombie::getInterval()
@@ -76,10 +78,6 @@ void Zombie::setMeeting(bool meeting)
 	_meeting = meeting;
 }
 
-std::vector<int>* Zombie::getRange()
-{
-	return &range;
-}
 
 std::vector<int>* Zombie::getDebuff() 
 {

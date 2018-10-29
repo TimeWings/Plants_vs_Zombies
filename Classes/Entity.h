@@ -4,7 +4,7 @@ USING_NS_CC;
 class Entity
 {
 private:
-	Sprite* _img;
+	Sprite* _img = NULL;
 public:
 	Entity();
 	Sprite*getImg();

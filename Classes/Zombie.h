@@ -16,10 +16,10 @@ private:
 	bool _Head;
 	bool _meeting;
 	int _row;
-	std::vector<int>range;
 	std::vector<int> debuff;
 	CCScheduler *sched;
-
+protected:
+	void setWalkSpeed(double WalkSpeed);
 public:
 	Zombie(); //构造函数
 	int getHp();
@@ -28,14 +28,12 @@ public:
 	void setRow(int row);
 	double getInterval();
 	void setInterval(double BiteInterval);
-	void setWalkSpeed(double WalkSpeed);
 	double getWalkSpeed();//得到当前速度
 	double getPreWalkSpeed();//得到原来的速度
 	bool hasHead();
 	void setHead(bool Head);
 	bool isMeeting();
 	void setMeeting(bool meeting);
-	std::vector<int>*getRange();
 	std::vector<int>*getDebuff();
 	void addLayer(Node* entity);
 	void setSche(Node * sprite);

@@ -18,5 +18,4 @@ public:
 	virtual void CreateBullet();
 	//ÇåÀí¾«Áé
 	void clear(Node * pSender);
-	
 };

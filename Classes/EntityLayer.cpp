@@ -133,6 +133,8 @@ void EntityLayer::Check_isAttack_Plant(float t)
 }
 
 //有BUG，当两个植物重叠放的时候，僵尸会播放攻击动画，但是没有对植物造成伤害
+//有BUG，僵尸会攻击其自身后面的植物（不能用fbs判断）
+//有BUG，不要设置太多标记（被大蒜赶跑后就不会攻击）
 void EntityLayer::Check_isAttack_Zombie(float t)
 {
 	for (int i = 0; i < readyZombies.size(); i++)
@@ -146,18 +148,18 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			Plants *plant = readyPlants.at(j);
 			Sprite *sp_plant = plant->getImg();
 			int row = plant->getRow();
-			int startRange = zombie->getRange()->at(0);
-			int endRange = zombie->getRange()->at(1);
-			if (row<startRange || row>endRange)
+			int zombieRow = zombie->getRow();
+
+			if (row!= zombieRow)
 			{
 				continue;
 			}
-			if (fabs(sp->getPositionX() - sp_plant->getPositionX())<sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() - 10)
+			if (sp->getPositionY() == plant->getImg()->getPositionY() && fabs(sp->getPositionX() - sp_plant->getPositionX())<sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() - 10)
 			{
 				flagin = true;
 				p = plant;
 			}
-			if (fabs(sp->getPositionX() - sp_plant->getPositionX()) < sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() + 10)
+			if (sp->getPositionY() == plant->getImg()->getPositionY() && fabs(sp->getPositionX() - sp_plant->getPositionX()) < sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() + 10)
 			{
 				flagout = false;
 				p = plant;

@@ -1,6 +1,6 @@
 #include "IceBullet.h"
 #include "Global.h"
-#include "BulletLayer.h"
+#include "EntityLayer.h"
 #include <iostream>
 IceBullet::IceBullet(Point position,int Plant_row)
 {

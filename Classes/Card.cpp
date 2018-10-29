@@ -1,5 +1,5 @@
 #include "Card.h"
-#include "BulletLayer.h"
+#include "EntityLayer.h"
 #include "Mushroom.h"
 using namespace std;
 using namespace cocos2d;

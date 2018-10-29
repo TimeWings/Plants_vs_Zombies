@@ -5,7 +5,7 @@
 iceCabbage::iceCabbage(Point position, int row)
 {
 	this->setRow(row);
-	Sprite*sp = Sprite::create("iceCabbage.png");
+	Sprite*sp = Sprite::create("IceCabbage\\IceCabbage.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
@@ -75,16 +75,27 @@ void iceCabbage::freezeZombie(Zombie* zombie)
 	zombie->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, zombie->getImg());
 	
 	//产生冰冻精灵
-	Sprite*sp = Sprite::create("ice.png");
+	char str[100] = { 0 };
+	Vector<SpriteFrame*> allframe;
+	for (int i = 1; i <= 16; i++)
+	{
+		sprintf(str, "IceCabbage\\ice%d.png", i);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
+	}
+	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
+
+	Sprite*sp = Sprite::create("IceCabbage\\ice16.png");
 	sp->setPosition(freezePoint);
 	sp->retain();
-	sp->setScale(0.5);
+	sp->setScale(1.4);
 	EntityLayer* bl = EntityLayer::getInstance();
 	bl->addChild(sp, 100);
 	//冰冻时间
 	CCDelayTime* delayTime = CCDelayTime::create(3);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clearIceSprite, this, sp, zombie));
-	Sequence *sequence = Sequence::create(delayTime, actionDone, NULL);
+	Sequence *sequence = Sequence::create(Animate::create(an), delayTime, actionDone, NULL);
 	sp->runAction(sequence);
 }
 

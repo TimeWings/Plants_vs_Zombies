@@ -34,7 +34,7 @@ PotatoMine::PotatoMine(Point position, int row)
 
 bool PotatoMine::isWorking()
 {
-	return false;
+	return true;
 }
 
 void PotatoMine::work()

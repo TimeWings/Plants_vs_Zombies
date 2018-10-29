@@ -9,8 +9,6 @@ BasicZombie::BasicZombie()
 
 BasicZombie::BasicZombie(Point position,int row)
 {
-	this->getRange()->push_back(row);
-	this->getRange()->push_back(row);
 	this->setRow(row);
 	setWalkSpeed(7);
 	setHp(12);
@@ -37,10 +35,10 @@ bool BasicZombie::isAttacking()
 
 void BasicZombie::attack(Plants *plant)
 {
-	setWalkSpeed(0);
 	std::cout << "½©Ê¬¹¥»÷" << std::endl;
 	Sprite *sp = this->getImg();
-	sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
+	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
+		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
 	SpriteFrame *spf;
 	Vector<SpriteFrame*> allframe;
 	char str[100] = { 0 };
@@ -140,11 +138,16 @@ void BasicZombie::LostHead()
 void BasicZombie::Move()
 {
 	Sprite *sp = this->getImg();
-	sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
+	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
+	{
+		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
+	}
 	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
 	double time = distance / getPreWalkSpeed();
+	std::cout << distance <<" "<< getPreWalkSpeed() << std::endl;
 	Point a = ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY());
 	MoveTo *moveTo = MoveTo::create(time, a);
+
 	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
 	CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
 	sequence->setTag(Animation_Tag);

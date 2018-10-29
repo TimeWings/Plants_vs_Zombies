@@ -2,7 +2,7 @@
 #include <iostream>
 #include <typeinfo>
 #include "Entity.h"
-#include "BulletLayer.h"
+#include "EntityLayer.h"
 #include "Plants.h"
 using namespace std;
 using namespace cocos2d;
