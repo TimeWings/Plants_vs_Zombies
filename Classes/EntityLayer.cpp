@@ -142,19 +142,21 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		Zombie *zombie = readyZombies.at(i);
 		Sprite *sp = zombie->getImg();
 		Plants *p;
-		bool flagin = false, flagout = true;
+		bool flag = false;
+		double zombiex = sp->getPositionX();
 		for (int j = 0; j < readyPlants.size(); j++)
 		{
 			Plants *plant = readyPlants.at(j);
 			Sprite *sp_plant = plant->getImg();
 			int row = plant->getRow();
 			int zombieRow = zombie->getRow();
+			double plantx = Rank2Point(plant->getRow(), plant->getCol()).x;
 
 			if (row!= zombieRow)
 			{
 				continue;
 			}
-			if (sp->getPositionY() == plant->getImg()->getPositionY() && fabs(sp->getPositionX() - sp_plant->getPositionX())<sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() - 10)
+			/*if (sp->getPositionY() == plant->getImg()->getPositionY() && fabs(sp->getPositionX() - sp_plant->getPositionX())<sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() - 10)
 			{
 				flagin = true;
 				p = plant;
@@ -163,14 +165,21 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			{
 				flagout = false;
 				p = plant;
+			}*/
+			/*std::cout << zombiex << " " << plantx << std::endl;
+			std::cout << plant->getRow() << " " << plant->getCol() << std::endl;*/
+			if (sp->getPositionY() == plant->getImg()->getPositionY() && zombiex >= plantx && zombiex - plantx <= (sp->getContentSize().width)*(sp->getScaleX()) * 0.75)
+			{
+				flag = true;
+				p = plant;
 			}
 		}
-		if (zombie->isMeeting() && flagout) {
+		if (zombie->isMeeting() && !flag) {
 			std::cout << "ÒÆ¶¯" << std::endl;
 			zombie->Move();
 			zombie->setMeeting(false);
 		}
-		else if (!zombie->isMeeting() && flagin) {
+		else if (!zombie->isMeeting() && flag) {
 			zombie->attack(p);
 			zombie->setMeeting(true);
 		}
