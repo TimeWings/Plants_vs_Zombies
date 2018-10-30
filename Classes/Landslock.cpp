@@ -3,9 +3,10 @@
 #include "EntityLayer.h"
 #include <iostream>
 using namespace map;
-Landslock::Landslock(Point position, int row)
+Landslock::Landslock(Point position, int row,int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("Landslock.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放

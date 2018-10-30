@@ -6,7 +6,7 @@ USING_NS_CC;
 class Landslock :public Plants
 {
 public:
-	Landslock(Point position, int row);
+	Landslock(Point position, int row ,int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();
