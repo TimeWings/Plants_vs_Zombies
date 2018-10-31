@@ -2,9 +2,10 @@
 #include "Global.h"
 #include "EntityLayer.h"
 #include <iostream>
-iceCabbage::iceCabbage(Point position, int row)
+iceCabbage::iceCabbage(Point position, int row, int col)
 {
 	this->setRow(row);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("IceCabbage\\IceCabbage.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
@@ -68,7 +69,6 @@ void iceCabbage::iceWorld(Node *pSender)
 void iceCabbage::freezeZombie(Zombie* zombie)
 {
 	Point freezePoint = zombie->getImg()->getPosition();
-	float scale = zombie->getImg()->getScale();
 	//覆盖一层淡蓝色
 	CCActionInterval * tintto2 = CCTintTo::create(3, 0, 255, 255);
 	zombie->getImg()->runAction(tintto2);
@@ -80,6 +80,7 @@ void iceCabbage::freezeZombie(Zombie* zombie)
 	for (int i = 1; i <= 16; i++)
 	{
 		sprintf(str, "IceCabbage\\ice%d.png", i);
+		//一定用这种加载方法
 		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
 		auto frame = sprite->getSpriteFrame();
 		allframe.pushBack(frame);

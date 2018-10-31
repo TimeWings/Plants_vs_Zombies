@@ -75,6 +75,16 @@ bool HelloWorld::init()
 		sprintf(str, "IceCabbage\\ice%d.png", i);
 		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
 	}
+	for (int i = 1; i <= 11; i++)
+	{
+		sprintf(str, "Doom\\Boom%d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
+	for (int i = 1; i <= 20; i++)
+	{
+		sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
     return true;
 }
 
