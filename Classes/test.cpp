@@ -8,11 +8,14 @@
 #include "DoublePeaShooter.h"
 #include "Mushroom.h"
 #include "Weeds.h"
+#include "NutPlus.h"
 #include "Sunflower.h"
 #include "Doom_shroom.h"
 #include "JannuDaruku.h"
+#include "StarShooter.h"
 #include "iceCabbage.h"
 #include "Card.h"
+#include "Cushaw.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -29,7 +32,8 @@ test::test()
 	//Plants* plant1 = new PotatoMine(Point(100, 60), 4);
 	//Plants* plant2 = new Weeds(Point(60, 250),1);
 	//std::cout << Rank2Point(1, 1).x<<"	" <<Rank2Point(1, 1).y << std::endl;
-	new JannuDaruku(Rank2Point(6,5),6,5);
+	new Nut(Rank2Point(3,3),3,3);
+	new Cushaw(Rank2Point(3, 3), 3, 3);
 	//Plants* plant4 = new IceShooter(Point(60, 120),1,1);
 	//Plants* plant5 = new IceShooter(Point(60, 120),3);
 	//Plants* plant5 = new Mushroom(Point(200, 120), 3);
