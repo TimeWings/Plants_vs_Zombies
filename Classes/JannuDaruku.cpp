@@ -68,25 +68,27 @@ void JannuDaruku::zombiesDie(Node* pSender)
 	Point zombiePoint = pSender->getPosition();
 	float scale = pSender->getScale();
 	//停止僵尸所有动作
-	pSender->getActionManager()->removeAllActionsFromTarget(pSender);
-	//僵尸渐渐消灭
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	//僵尸被颜色覆盖
-	CCActionInterval * tintby = CCTintTo::create(0.5, 0, 0, 0);
+	pSender->removeFromParent();
+	//僵尸粉碎动画
+	char str[100] = { 0 };
+	Vector<SpriteFrame*> allframe;
+	for (int i = 2; i <= 20; i++)
+	{
+		sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
+	}
+	Animation* an = Animation::createWithSpriteFrames(allframe, 0.15);
+
+	Sprite*sp = Sprite::create("Boom_Die\\Boom_Die1.png");
+	sp->setPosition(zombiePoint);
+	sp->retain();
+	sp->setScale(scale);
+	addLayer(sp);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
-	Sequence *sequence = Sequence::create(tintby, fadeout, actionDone,NULL);
-	pSender->runAction(sequence);
-	//僵尸死亡粒子效果
-	CCParticleSystem* particleSystem = CCParticleExplosion::create();
-	particleSystem->setStartColor(Color4F(0, 0, 0, 255));
-	particleSystem->setPosition(zombiePoint);
-	particleSystem->setLife(1);
-	particleSystem->setGravity(Point(zombiePoint.x - this->position.x, zombiePoint.y - this->position.y + 50));
-	particleSystem->setTexture(CCTextureCache::sharedTextureCache()->addImage("grain1.png"));
-	particleSystem->setScale(0.3);
-	particleSystem->setStartSize(90.0f);
-	particleSystem->setEndSize(5.0f);
-	addLayer(particleSystem);
+	Sequence *sequence = Sequence::create(Animate::create(an), CCDelayTime::create(0.5), actionDone, NULL);
+	sp->runAction(sequence);
 }
 //产生多个精灵，实现一列火焰
 void JannuDaruku::creatFire()
