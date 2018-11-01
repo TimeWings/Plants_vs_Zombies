@@ -6,7 +6,7 @@ iceCabbage::iceCabbage(Point position, int row, int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("IceCabbage\\IceCabbage.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("IceCabbage\\IceCabbage.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();

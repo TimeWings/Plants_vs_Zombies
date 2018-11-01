@@ -7,7 +7,7 @@ IceShooter::IceShooter(Point position,int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("iceShooter.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("iceShooter.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.3);

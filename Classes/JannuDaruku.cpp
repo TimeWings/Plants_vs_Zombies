@@ -5,7 +5,7 @@ JannuDaruku::JannuDaruku(Point position,int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("Jannu.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Jannu.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
