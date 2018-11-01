@@ -29,9 +29,9 @@ test::test()
 	new BasicZombie(Rank2Point(3, 6), 3, 6);
 	new BasicZombie(Rank2Point(2, 6), 2, 6);
 	new BasicZombie(Rank2Point(1, 6), 1, 6);*/
+	/*new BasicZombie(Rank2Point(3, 6), 3, 6);
 	new BasicZombie(Rank2Point(3, 6), 3, 6);
-	new BasicZombie(Rank2Point(3, 6), 3, 6);
-	new BasicZombie(Rank2Point(3, 6), 3, 6);
+	new BasicZombie(Rank2Point(3, 6), 3, 6);*/
 	//Zombie* zombie2 = new BasicZombie(Point(120, 60), 4); 
 	//Plants* plant1 = new PotatoMine(Point(100, 60), 4);
 	//Plants* plant2 = new Weeds(Point(60, 250),1);

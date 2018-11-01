@@ -3,7 +3,7 @@
 Chomper::Chomper(Point position, int row, int col)
 {
 	this->setRow(row);
-	this->setRow(col);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("Chomper\\Self_Animation\\1.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
@@ -27,20 +27,20 @@ bool Chomper::isWorking()
 
 void Chomper::work()
 {
-	//if (isWorking())
-	//{
-	//	for (int i = 0; i < readyZombies.size(); i++)
-	//	{
-	//		Zombie*zombie = readyZombies.at(i);
-	//		auto sp_zombie = zombie->getImg();
-	//		auto sp_plant = this->getImg();
-	//		if (zombie->getRow() == this->getRow() && sp_zombie->boundingBox().intersectsRect(sp_plant->getBoundingBox()))
-	//		{
-	//			Eat(zombie);
-	//			return;
-	//		}
-	//	}
-	//}
+	if (isWorking())
+	{
+		for (int i = 0; i < readyZombies.size(); i++)
+		{
+			Zombie*zombie = readyZombies.at(i);
+			auto sp_zombie = zombie->getImg();
+			auto sp_plant = this->getImg();
+			if (zombie->getRow() == this->getRow() && sp_zombie->boundingBox().intersectsRect(sp_plant->getBoundingBox()))
+			{
+				Eat(zombie);
+				return;
+			}
+		}
+	}
 	
 }
 void Chomper::Eat(Zombie*zombie)
