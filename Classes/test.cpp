@@ -16,24 +16,27 @@
 #include "iceCabbage.h"
 #include "Card.h"
 #include "Cushaw.h"
+#include "Chomper.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
 test::test()
 {
 	//Plants* plant1 = new Weeds(Point(60, 120),4);      
-	new BasicZombie(Rank2Point(6, 6), 6, 5);
+	/*new BasicZombie(Rank2Point(6, 6), 6, 5);
 	new BasicZombie(Rank2Point(5, 6), 5, 6);
 	new BasicZombie(Rank2Point(4, 6), 4, 6);
 	new BasicZombie(Rank2Point(3, 6), 3, 6);
 	new BasicZombie(Rank2Point(2, 6), 2, 6);
-	new BasicZombie(Rank2Point(1, 6), 1, 6);
+	new BasicZombie(Rank2Point(1, 6), 1, 6);*/
+	new BasicZombie(Rank2Point(3, 6), 3, 6);
+	new BasicZombie(Rank2Point(3, 6), 3, 6);
+	new BasicZombie(Rank2Point(3, 6), 3, 6);
 	//Zombie* zombie2 = new BasicZombie(Point(120, 60), 4); 
 	//Plants* plant1 = new PotatoMine(Point(100, 60), 4);
 	//Plants* plant2 = new Weeds(Point(60, 250),1);
 	//std::cout << Rank2Point(1, 1).x<<"	" <<Rank2Point(1, 1).y << std::endl;
-	new Nut(Rank2Point(3,3),3,3);
-	new Cushaw(Rank2Point(3, 3), 3, 3);
+	new Chomper(Rank2Point(3, 3), 3, 3);
 	//Plants* plant4 = new IceShooter(Point(60, 120),1,1);
 	//Plants* plant5 = new IceShooter(Point(60, 120),3);
 	//Plants* plant5 = new Mushroom(Point(200, 120), 3);
