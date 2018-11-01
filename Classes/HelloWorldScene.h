@@ -26,7 +26,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-
+using namespace std;
 class HelloWorld : public cocos2d::Scene
 {
 public:
@@ -34,9 +34,13 @@ public:
 
     virtual bool init();
 
+	void preLoading();
+
 	void ResourceCallBack(cocos2d::Texture2D *texture);
+	string & replace_all(string & str, const string & old_value, const string & new_value);
+	void getFiles(string prePath, string path, vector<string>& files, vector<string>& ownname);
 	int loadingSprite = 0;
-	int tot_loadingSprite = 90;
+	int tot_loadingSprite = 0;
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 };
