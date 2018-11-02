@@ -21,6 +21,7 @@ PeaBullet::PeaBullet(Point position, int Plant_row):Bullet(position,1, 6)
 		sp = Sprite::create("sword3.png");
 	else
 		sp = Sprite::create("sword4.png");
+	sp->setTag(En_Burn);
 	sp->setScale(0.2);
 	//方便以后获取子弹精灵
 	this->setImg(sp);

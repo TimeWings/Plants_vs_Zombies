@@ -9,6 +9,7 @@ IceBullet::IceBullet(Point position,int Plant_row)
 	this->setSpeed(6);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("ice_Bullet.png"));
 	this->setImg(sp);
+	sp->setTag(En_Burn);
 	sp->retain();
 	sp->setScale(0.08);
 	sp->setPosition(position.x + sp->getContentSize().width*sp->getScale() / 2, position.y);

@@ -46,8 +46,8 @@ void TripleShooter::CreateBullet()
 	Sprite *sp = this->getImg();
 	//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
 	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
-	Bullet *pb = new TripleBullet(a, this->getRow(),1);
+	Bullet *pb = new TripleBullet(a, this->getRow()-1,1);
 	Bullet *pb1 = new TripleBullet(a, this->getRow(), 2);
-	Bullet *pb2 = new TripleBullet(a, this->getRow(), 3);
+	Bullet *pb2 = new TripleBullet(a, this->getRow()+1, 3);
 	setNewBirthTime();
 }
