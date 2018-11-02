@@ -170,7 +170,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			zombie->setMeeting(false);
 		}
 		else if (!zombie->isMeeting() && flag) {
-			zombie->attack(p);
+			zombie->Attack(p);
 			zombie->setMeeting(true);
 		}
 	}

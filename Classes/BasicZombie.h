@@ -8,14 +8,15 @@ class BasicZombie : public Zombie
 public:
 	BasicZombie();
 	BasicZombie(Point position,int row,int col);
-	virtual bool isAttacking();
-	virtual void attack(Plants *plant);
+	virtual void Attack(Plants *plant);
 	virtual void Die(Node * pSender);
-	void Self_Animation();
+	void BasicDie(Node * pSender);
 	void Damage(Node * pSender, Plants* plant);
 	virtual void Attacked();
 	virtual void LostHead();
 	virtual void Move();
+	void BasicMove();
+	void BasicAttack(Plants *plant);
 	void clear(Node * pSender);
-	void clearhead(Node * pSender);
+	void clear_from_vector(Node * pSender);
 };

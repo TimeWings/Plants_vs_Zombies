@@ -10,7 +10,7 @@ class Zombie : public Entity
 {
 private:
 	int _Hp; //血量
-	//long long BirthTime; //诞生时间
+
 	double _BiteInterval; //攻击间隔
 	double  _WalkSpeed; //移动速度
 	bool _Head;
@@ -41,8 +41,7 @@ public:
 	void addLayer(Node* entity);
 	void setSche(Node * sprite);
 	CCScheduler* getScheduler();
-	virtual void attack(Plants *plant) = 0; //工作
-	virtual bool isAttacking() = 0;
+	virtual void Attack(Plants *plant) = 0;
 	virtual void Die(Node * pSender) = 0;
 	virtual void Attacked() = 0;
 	virtual void LostHead() = 0;
