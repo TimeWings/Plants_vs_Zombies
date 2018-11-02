@@ -1,6 +1,8 @@
 #include "BasicZombie.h"
 #include "Global.h"
 #include "iostream"
+#include "EntityLayer.h"
+#include "string"
 
 BasicZombie::BasicZombie()
 {
@@ -16,7 +18,7 @@ BasicZombie::BasicZombie(Point position,int row,int col)
 	setHead(true);
 	setMeeting(false);
 	setInterval(0.1);
-	Sprite *sp = Sprite::create("Zombies\\BasicZombie\\BasicZombie.png");
+	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\BasicZombie\\BasicZombie.png"));
 	this->setSche(sp);
 	this->setImg(sp);
 	sp->retain();
@@ -40,51 +42,72 @@ void BasicZombie::attack(Plants *plant)
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
 		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
-	SpriteFrame *spf;
 	Vector<SpriteFrame*> allframe;
+	std::string prestr;
+	CCRepeatForever *rf;
+	
+	prestr = "Zombies\\BasicZombie\\Attackgif\\";
+
 	char str[100] = { 0 };
+	char str1[100] = { 0 };
 	for (int i = 1; i <= 6; i++)
 	{
-		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
-		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-		allframe.pushBack(spf);
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	allframe.clear();
 
 	for (int i = 7; i <= 11; i++)
 	{
-		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
-		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-		allframe.pushBack(spf);
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
 	Animation* an1 = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	allframe.clear();
 
 	for (int i = 12; i <= 18; i++)
 	{
-		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
-		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-		allframe.pushBack(spf);
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
 	Animation* an2 = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	allframe.clear();
 
 	for (int i = 19; i <= 21; i++)
 	{
-		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
-		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-		allframe.pushBack(spf);
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
 	Animation* an3 = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plant));
 	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, Animate::create(an2), actionDone, Animate::create(an3), NULL);
-	CCRepeatForever *rf = CCRepeatForever::create(seq);
+	rf = CCRepeatForever::create(seq);
+	
+	
+		
+	
 	rf->setTag(Animation_Tag);
 	this->getImg()->runAction(rf);
 }
 
-void BasicZombie::Die()
+void BasicZombie::Die(Node * pSender)
 {
 	Sprite *sp = this->getImg();
 	sp->getActionManager()->removeAllActionsFromTarget(sp);
@@ -106,6 +129,12 @@ void BasicZombie::Self_Animation()
 
 void BasicZombie::Damage(Node * pSender, Plants * plant)
 {
+	std::cout << plant << std::endl;
+	if (plant->getHp() <= 0) {
+		this->Move();
+		this->setMeeting(false);
+		return;
+	}
 	plant->getHurt(1);
 	plant->Attacked();
 }
@@ -121,19 +150,88 @@ void BasicZombie::Attacked()
 
 void BasicZombie::LostHead()
 {
-	/*Sprite *sp = this->getImg();
-	sp->getActionManager()->removeAllActionsFromTarget(sp);
-	SpriteFrame *spf;
+	this->setHead(false);
+	std::cout << "µôÍ·" << std::endl;
+	Sprite *sp = this->getImg();
+	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
+		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
 	Vector<SpriteFrame*> allframe;
-	char str[100] = { 0 };
-	for (int i = 1; i <= 22; i++)
-	{
-		sprintf(str, "Zombies\\BasicZombie\\Walkgif\\%02d.png", i);
-		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-		allframe.pushBack(spf);
+
+	std::string prestr;
+
+	CCRepeatForever *rf;
+	Animation* an;
+	if (this->isMeeting()) {
+		prestr = "Zombies\\BasicZombie\\Attackgif_without_head\\";
+		char str[100] = { 0 };
+		char str1[100] = { 0 };
+		for (int i = 1; i <= 5; i++)
+		{
+			strcpy(str, prestr.c_str());
+			sprintf(str1, "%02d.png", i);
+			strcat(str, str1);
+			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+			auto frame = sprite->getSpriteFrame();
+			allframe.pushBack(frame);
+		}
+		an = Animation::createWithSpriteFrames(allframe, this->getInterval());
+		allframe.clear();
+		
 	}
-	Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
-	this->getImg()->runAction(CCRepeatForever::create(Animate::create(an)));*/
+	else {
+		if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
+		{
+			sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
+		}
+		float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
+		double time = distance / getPreWalkSpeed();
+		std::cout << distance << " " << getPreWalkSpeed() << std::endl;
+		Point a = ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY());
+		MoveTo *moveTo = MoveTo::create(time, a);
+
+		ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
+		CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
+		//sequence->setTag(Animation_Tag);
+		sp->runAction(sequence);
+		prestr = "Zombies\\BasicZombie\\Walkgif_without_head\\";
+		char str[100] = { 0 };
+		char str1[100] = { 0 };
+		for (int i = 1; i <= 5; i++)
+		{
+			strcpy(str, prestr.c_str());
+			sprintf(str1, "%02d.png", i);
+			strcat(str, str1);
+			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+			auto frame = sprite->getSpriteFrame();
+			allframe.pushBack(frame);
+		}
+		an = Animation::createWithSpriteFrames(allframe, 0.2);
+		allframe.clear();
+	}
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Die, this));
+	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
+	this->getImg()->runAction(sequence);
+	
+	prestr = "Zombies\\BasicZombie\\LostHead\\";
+	Sprite *lh = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
+	char str[100] = { 0 };
+	char str1[100] = { 0 };
+	for (int i = 1; i <= 12; i++)
+	{
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
+	}
+	lh->setScale(sp->getScale());
+	auto actionDonehead = CallFuncN::create(CC_CALLBACK_1(BasicZombie::clearhead, this));
+	Sequence *sequencehead = Sequence::create(Animate::create(Animation::createWithSpriteFrames(allframe, 0.2)), actionDonehead, NULL);
+	lh->runAction(sequencehead);
+	allframe.clear();
+	lh->setPosition(sp->getPosition());
+	addLayer(lh);
 }
 
 void BasicZombie::Move()
@@ -154,15 +252,18 @@ void BasicZombie::Move()
 	sequence->setTag(Animation_Tag);
 	sp->runAction(sequence);
 
-
-	SpriteFrame *spf;
 	Vector<SpriteFrame*> allframe;
+	std::string prestr = "Zombies\\BasicZombie\\Walkgif\\";
 	char str[100] = { 0 };
+	char str1[100] = { 0 };
 	for (int i = 1; i <= 22; i++)
 	{
-		sprintf(str, "Zombies\\BasicZombie\\Walkgif\\%02d.png", i);
-		spf = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-		allframe.pushBack(spf);
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
 	CCRepeatForever *rf = CCRepeatForever::create(Animate::create(an));
@@ -181,5 +282,10 @@ void BasicZombie::clear(Node * pSender)
 			break;
 		}
 	}
+}
+
+void BasicZombie::clearhead(Node * pSender)
+{
+	pSender->removeFromParent();
 }
 

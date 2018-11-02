@@ -43,7 +43,7 @@ public:
 	CCScheduler* getScheduler();
 	virtual void attack(Plants *plant) = 0; //นคื๗
 	virtual bool isAttacking() = 0;
-	virtual void Die() = 0;
+	virtual void Die(Node * pSender) = 0;
 	virtual void Attacked() = 0;
 	virtual void LostHead() = 0;
 	virtual void Move() = 0;

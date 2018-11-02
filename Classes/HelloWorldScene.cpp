@@ -75,6 +75,31 @@ bool HelloWorld::init()
 		sprintf(str, "IceCabbage\\ice%d.png", i);
 		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
 	}
+	for (int i = 1; i <= 21; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
+	for (int i = 1; i <= 11; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\Attackgif_without_head\\%02d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
+	for (int i = 1; i <= 12; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\LostHead\\%02d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
+	for (int i = 1; i <= 22; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\Walkgif\\%02d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
+	for (int i = 1; i <= 18; i++)
+	{
+		sprintf(str, "Zombies\\BasicZombie\\Walkgif_without_head\\%02d.png", i);
+		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
     return true;
 }
 
