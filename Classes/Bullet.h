@@ -2,7 +2,7 @@
 #include "cocos2d.h"
 #include "Zombie.h"
 #include "Entity.h"
-
+#define En_Burn 11111
 USING_NS_CC;
 class Bullet : public Entity
 {

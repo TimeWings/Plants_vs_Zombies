@@ -47,7 +47,6 @@ void Chomper::Eat(Zombie*zombie)
 {
 	isEating = true;
 	auto sp = zombie->getImg();
-	sp->getActionManager()->removeAllActionsFromTarget(sp);
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		if (readyZombies.at(i) == zombie)
@@ -139,5 +138,6 @@ void Chomper::clear(Node * pSender)
 }
 void Chomper::clear1(Node * pSender,Sprite* sp)
 {
+	sp->getActionManager()->removeAllActionsFromTarget(sp);
 	sp->removeFromParent();
 }
