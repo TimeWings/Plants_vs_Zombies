@@ -133,9 +133,6 @@ void EntityLayer::Check_isAttack_Plant(float t)
 	}
 }
 
-//有BUG，当两个植物重叠放的时候，僵尸会播放攻击动画，但是没有对植物造成伤害
-//有BUG，僵尸会攻击其自身后面的植物（不能用fbs判断）
-//有BUG，不要设置太多标记（被大蒜赶跑后就不会攻击）
 void EntityLayer::Check_isAttack_Zombie(float t)
 {
 	for (int i = 0; i < readyZombies.size(); i++)
