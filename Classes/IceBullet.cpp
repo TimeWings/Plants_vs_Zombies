@@ -7,7 +7,7 @@ IceBullet::IceBullet(Point position,int Plant_row)
 	this->getRange()->push_back(Plant_row);
 	this->setDamage(1);
 	this->setSpeed(6);
-	Sprite *sp = Sprite::create("ice_Bullet.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("ice_Bullet.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.08);

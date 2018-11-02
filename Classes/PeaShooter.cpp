@@ -6,7 +6,7 @@
 //相当于init
 PeaShooter::PeaShooter(Point position,int row,int col) {
 	this->setRow(row);
-	this->setRow(col);
+	this->setCol(col);
 	Sprite*sp = Sprite::create("peaShooter.png");
 	this->setImg(sp);
 	//一定要retain，否则会自动释放

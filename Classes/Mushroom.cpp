@@ -8,7 +8,7 @@ Mushroom::Mushroom(Point position, int row,int col)
 	this->haveBullet = false;
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("Mushroom.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Mushroom.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();

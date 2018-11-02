@@ -78,7 +78,7 @@ void PotatoMine::Die()
 		for (int i = 2; i <= 4; i++)
 		{
 			sprintf(str, "Explode%d.png", i);
-			sp1 = SpriteFrame::create(str, Rect(0, 0, 150, 100));
+			sp1 = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
 			allframe.pushBack(sp1);
 		}
 		Animation* an = Animation::createWithSpriteFrames(allframe, 0.2);

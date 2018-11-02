@@ -8,7 +8,7 @@ class iceCabbage : public Plants
 private:
 	Point position;
 public:
-	iceCabbage(Point position, int row);
+	iceCabbage(Point position, int row, int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();

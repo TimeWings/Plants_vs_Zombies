@@ -2,10 +2,11 @@
 #include "Global.h"
 #include "EntityLayer.h"
 #include <iostream>
-iceCabbage::iceCabbage(Point position, int row)
+iceCabbage::iceCabbage(Point position, int row, int col)
 {
 	this->setRow(row);
-	Sprite*sp = Sprite::create("IceCabbage\\IceCabbage.png");
+	this->setCol(col);
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("IceCabbage\\IceCabbage.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
@@ -46,16 +47,38 @@ void iceCabbage::iceWorld(Node *pSender)
 {
 	//把旧精灵移除
 	this->getImg()->removeFromParent();
-	//半个地图覆盖冰雪
-	Point minPointInX = readyZombies.at(0)->getImg()->getPosition();
-	for (int i = 1; i < readyZombies.size(); i++)
+
+	//爆炸动画
+	SpriteFrame *sp1;
+	char str[100] = { 0 };
+	Vector<SpriteFrame*> allframe;
+	for (int i = 1; i <= 11; i++)
 	{
-		if (readyZombies.at(i)->getImg()->getPositionX() < minPointInX.x)
-		{
-			minPointInX = readyZombies.at(i)->getImg()->getPosition();
-		}
+		sprintf(str, "IceCabbage\\Boom%d.png", i);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
-	//半个地图覆盖冰雪
+	Sprite* sp = Sprite::create("IceCabbage\\Boom1.png");
+	sp->retain();
+	sp->setScale(1.5);
+	sp->setPosition(Point(this->position.x, this->position.y));
+	addLayer(sp);
+	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clear, this));
+	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
+	sp->runAction(sequence);
+
+	////半个地图覆盖冰雪
+	//Point minPointInX = readyZombies.at(0)->getImg()->getPosition();
+	//for (int i = 1; i < readyZombies.size(); i++)
+	//{
+	//	if (readyZombies.at(i)->getImg()->getPositionX() < minPointInX.x)
+	//	{
+	//		minPointInX = readyZombies.at(i)->getImg()->getPosition();
+	//	}
+	//}
+	////半个地图覆盖冰雪
 
 	//使僵尸冰冻
 	for (int i = 0; i < readyZombies.size(); i++)
@@ -68,7 +91,6 @@ void iceCabbage::iceWorld(Node *pSender)
 void iceCabbage::freezeZombie(Zombie* zombie)
 {
 	Point freezePoint = zombie->getImg()->getPosition();
-	float scale = zombie->getImg()->getScale();
 	//覆盖一层淡蓝色
 	CCActionInterval * tintto2 = CCTintTo::create(3, 0, 255, 255);
 	zombie->getImg()->runAction(tintto2);
@@ -80,6 +102,7 @@ void iceCabbage::freezeZombie(Zombie* zombie)
 	for (int i = 1; i <= 16; i++)
 	{
 		sprintf(str, "IceCabbage\\ice%d.png", i);
+		//一定用这种加载方法
 		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
 		auto frame = sprite->getSpriteFrame();
 		allframe.pushBack(frame);
@@ -87,11 +110,11 @@ void iceCabbage::freezeZombie(Zombie* zombie)
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 
 	Sprite*sp = Sprite::create("IceCabbage\\ice16.png");
-	sp->setPosition(freezePoint);
+	sp->setPosition(Point(freezePoint.x + 5, freezePoint.y + 5));
 	sp->retain();
 	sp->setScale(1.4);
 	EntityLayer* bl = EntityLayer::getInstance();
-	bl->addChild(sp, 100);
+	bl->addChild(sp, zombie->getRow()*2-1);
 	//冰冻时间
 	CCDelayTime* delayTime = CCDelayTime::create(3);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clearIceSprite, this, sp, zombie));

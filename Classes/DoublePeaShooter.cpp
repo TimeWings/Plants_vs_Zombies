@@ -6,7 +6,7 @@ DoublePeaShooter::DoublePeaShooter(Point position,int row,int col):PeaShooter()
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("doubleShooter.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("doubleShooter.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.2);

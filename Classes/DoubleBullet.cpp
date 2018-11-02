@@ -5,7 +5,7 @@ DoubleBullet::DoubleBullet(Point position,int Plant_row):PeaBullet()
 	this->getRange()->push_back(Plant_row);
 	this->setDamage(1);
 	this->setSpeed(6);
-	Sprite *sp = Sprite::create("doubleBullet.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("doubleBullet.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.3);

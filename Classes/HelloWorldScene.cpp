@@ -36,9 +36,12 @@
 #include "BasicZombie.h"
 #include <iostream>
 #include "Weeds.h"
+#include <io.h>
+#include <string>
 #include "test.h"
+#include <direct.h>
 USING_NS_CC;
-
+using namespace std;
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -54,58 +57,26 @@ bool HelloWorld::init()
     {
         return false;
     }
-	char str[100] = { 0 };
-	for (int i = 1; i <= 27; i++)
-	{
-		sprintf(str, "PeaShooter\\Death\\%d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 5; i++)
-	{
-		sprintf(str, "NutPlus\\Attacked\\%d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 11; i++)
-	{
-		sprintf(str, "Mushroom\\Attack\\%d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 16; i++)
-	{
-		sprintf(str, "IceCabbage\\ice%d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 21; i++)
-	{
-		sprintf(str, "Zombies\\BasicZombie\\Attackgif\\%02d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 11; i++)
-	{
-		sprintf(str, "Zombies\\BasicZombie\\Attackgif_without_head\\%02d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 12; i++)
-	{
-		sprintf(str, "Zombies\\BasicZombie\\LostHead\\%02d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 22; i++)
-	{
-		sprintf(str, "Zombies\\BasicZombie\\Walkgif\\%02d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
-	for (int i = 1; i <= 18; i++)
-	{
-		sprintf(str, "Zombies\\BasicZombie\\Walkgif_without_head\\%02d.png", i);
-		TextureCache::getInstance()->addImageAsync(str, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
-	}
+	preLoading();
     return true;
 }
 
+void HelloWorld::preLoading()
+{
+	vector<string>files;
+	vector<string>ownnames;
+	getFiles("..\\Resources","..\\Resources", files, ownnames);
+	tot_loadingSprite = files.size();
+	for (string x : files)
+	{
+		//cout << x << endl;
+		TextureCache::getInstance()->addImageAsync(x, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
+	}
+}
 void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 {
 	loadingSprite++;
+	cout << loadingSprite << endl;
 	if (loadingSprite == tot_loadingSprite)
 	{
 		this->addChild(EntityLayer::create());
@@ -114,4 +85,46 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	}
 }
 
+string&  HelloWorld::replace_all(string&   str, const   string&   old_value, const   string&   new_value)
+{
+	while (true) {
+		string::size_type   pos(0);
+		if ((pos = str.find(old_value)) != string::npos)
+			str.replace(pos, old_value.length(), new_value);
+		else   break;
+	}
+	return   str;
+}
+void HelloWorld::getFiles(string prePath,string path, vector<string>& files, vector<string> &ownname)
+{
+	/*files存储文件的路径及名称(eg.   C:\Users\WUQP\Desktop\test_devided\data1.txt)
+	 ownname只存储文件的名称(eg.     data1.txt)*/
+
+	 //文件句柄  
+	long   hFile = 0;
+	//文件信息  
+	struct _finddata_t fileinfo;
+	string p;
+	if ((hFile = _findfirst(p.assign(path).append("\\*").c_str(), &fileinfo)) != -1)
+	{
+		do
+		{
+			//如果是目录,迭代之  
+			//如果不是,加入列表  
+			if ((fileinfo.attrib &  _A_SUBDIR))
+			{  
+				if(strcmp(fileinfo.name,".") != 0  &&  strcmp(fileinfo.name,"..") != 0)
+					getFiles(prePath, p.assign(path).append("\\").append(fileinfo.name), files, ownname );
+			}
+			else
+			{
+				string str0 = p.assign(path).append("\\").append(fileinfo.name);
+				string str1 = replace_all(str0, prePath + "\\", "");
+				files.push_back(str1);
+				ownname.push_back(fileinfo.name);
+			}
+		} while (_findnext(hFile, &fileinfo) == 0);
+		_findclose(hFile);
+	}
+}
 
