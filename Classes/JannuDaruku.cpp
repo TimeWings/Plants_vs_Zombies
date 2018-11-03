@@ -1,11 +1,14 @@
 #include "JannuDaruku.h"
 #include "Global.h"
 #include <iostream>
+JannuDaruku::JannuDaruku()
+{
+}
 JannuDaruku::JannuDaruku(Point position,int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Jannu.png"));
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Jannu\\Jannu.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
@@ -16,18 +19,22 @@ JannuDaruku::JannuDaruku(Point position,int row,int col)
 	this->setInterval(2000);
 	//添加到植物层（显示）
 	addLayer(sp);
-	//立即调用die
-	Die();
+	//开始工作
+	work();
 }
 
 bool JannuDaruku::isWorking()
 {
-	return false;
+	return true;
 }
 
 void JannuDaruku::work()
 {
-	
+	if (this->isWorking())
+	{
+		//立即调用die
+		this->Die();
+	}
 }
 
 void JannuDaruku::Die()
@@ -37,63 +44,65 @@ void JannuDaruku::Die()
 	float preScale = sp->getScaleX();
 	CCScaleTo * scaleup = CCScaleTo::create(1.0f, preScale + 0.05, preScale + 0.01);
 	//贞德变大和放火函数合成队列
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::MyFire, this));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::Effect, this));
 	Sequence *sequence = Sequence::create(scaleup, actionDone, NULL);
 
 	sp->runAction(sequence);
 }
 
-void JannuDaruku::MyFire(Node *pSender)
+void JannuDaruku::Effect(Node *pSender)
 {
 	//把旧精灵移除
 	this->getImg()->removeFromParent();
 	//火焰效果
-	creatFire();
+	this->creatSprite();
 	//清除同排僵尸
+	this->zombiesDie();
+}
+
+void JannuDaruku::zombiesDie()
+{
+	//遍历僵尸
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		if (readyZombies.at(i)->getRow() == this->getRow())
 		{
-			std::cout << "清除僵尸" << std::endl;
-			zombiesDie(readyZombies.at(i)->getImg());
+			Sprite* pSender = readyZombies.at(i)->getImg();
+			//记录下原本僵尸的必要信息
+			Point zombiePoint = pSender->getPosition();
+			float scale = pSender->getScale();
+			//停止僵尸所有动作
+			pSender->removeFromParent();
+			//僵尸粉碎动画
+			char str[100] = { 0 };
+			Vector<SpriteFrame*> allframe;
+			for (int i = 2; i <= 20; i++)
+			{
+				sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
+				auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+				auto frame = sprite->getSpriteFrame();
+				allframe.pushBack(frame);
+			}
+			Animation* an = Animation::createWithSpriteFrames(allframe, 0.15);
+
+			auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Boom_Die\\Boom_Die1.png"));
+			sp->setPosition(zombiePoint);
+			sp->retain();
+			sp->setScale(scale);
+			addLayer(sp);
+			auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
+			Sequence *sequence = Sequence::create(Animate::create(an), CCDelayTime::create(0.5), actionDone, NULL);
+			sp->runAction(sequence);
+			//移除数组
 			readyZombies.erase(readyZombies.begin() + i);
 			i--;
 		}
 	}
 }
-
-void JannuDaruku::zombiesDie(Node* pSender)
-{
-	//记录下原本僵尸的必要信息
-	Point zombiePoint = pSender->getPosition();
-	float scale = pSender->getScale();
-	//停止僵尸所有动作
-	pSender->removeFromParent();
-	//僵尸粉碎动画
-	char str[100] = { 0 };
-	Vector<SpriteFrame*> allframe;
-	for (int i = 2; i <= 20; i++)
-	{
-		sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
-		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
-		auto frame = sprite->getSpriteFrame();
-		allframe.pushBack(frame);
-	}
-	Animation* an = Animation::createWithSpriteFrames(allframe, 0.15);
-
-	Sprite*sp = Sprite::create("Boom_Die\\Boom_Die1.png");
-	sp->setPosition(zombiePoint);
-	sp->retain();
-	sp->setScale(scale);
-	addLayer(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
-	Sequence *sequence = Sequence::create(Animate::create(an), CCDelayTime::create(0.5), actionDone, NULL);
-	sp->runAction(sequence);
-}
 //产生多个精灵，实现一列火焰
-void JannuDaruku::creatFire()
+void JannuDaruku::creatSprite()
 {
-	Sprite*sp = Sprite::create("Fire1.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Jannu\\Fire1.png"));
 	sp->retain();
 	sp->setScale(1.5);
 
@@ -103,19 +112,20 @@ void JannuDaruku::creatFire()
 	char str[100] = { 0 };
 	for (int i = 1; i <= 7; i++)
 	{
-		sprintf(str, "Fire%d.png", i);
-		sp1 = SpriteFrame::create(str, sp->getDisplayFrame()->getRect());
-		allframe.pushBack(sp1);
+		sprintf(str, "Jannu\\Fire%d.png", i);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 
-	for (int x = 0; x < visibleSize.width; x += 200)
+	for (int x = 0; x < visibleSize.width; x += 100)
 	{
-		Sprite*sp = Sprite::create("Fire8.png");
+		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Jannu\\Fire8.png"));
 		sp->retain();
-		sp->setScale(1.5);
+		sp->setScale(1);
 		//sp->setPosition(this->position);
-		sp->setPosition(Point(x, this->position.y - 10));
+		sp->setPosition(Point(x, this->position.y - this->getImg()->getContentSize().height *this->getImg()->getScaleY() / 4));
 		addLayer(sp);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);

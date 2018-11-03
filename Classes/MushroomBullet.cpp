@@ -5,7 +5,7 @@
 MushroomBullet::MushroomBullet(Point position, int Plant_row) :Bullet(position, 0.1, 0)
 {
 	this->getRange()->push_back(Plant_row);
-	Sprite *sp = Sprite::create("Mushroom\\Attack\\1.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Mushroom\\Attack\\1.png"));
 	sp->setAnchorPoint(Point::ZERO);
 	//方便以后获取子弹精灵
 	this->setImg(sp);
@@ -58,19 +58,11 @@ void MushroomBullet::attack_Animation()
 		auto frame = sprite->getSpriteFrame();
 		allframe.pushBack(frame);
 	}
-	//for (int j = 8; j >= 1; j--)
-	//{
-	//	sprintf(str, "Mushroom\\Attack\\%d.png", j);
-	//	auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
-	//	auto frame = sprite->getSpriteFrame();
-	//	allframe.pushBack(frame);
-	//}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 	this->getImg()->runAction(CCRepeatForever::create(Animate::create(an)));
 }
 
-//子弹击中后的效果
 void MushroomBullet::Hit_Animation(Zombie * zombie)
 {
-
 }
+
