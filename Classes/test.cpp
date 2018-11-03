@@ -26,7 +26,7 @@ using namespace map;
 test::test()
 {
 	//Plants* plant1 = new Weeds(Point(60, 120),4);      
-	new BasicZombie(Rank2Point(6, 6), 6, 5);
+	new BasicZombie(Rank2Point(6, 6), 6, 6);
 	new BasicZombie(Rank2Point(5, 6), 5, 6);
 	new BasicZombie(Rank2Point(4, 6), 4, 6);
 	new BasicZombie(Rank2Point(3, 6), 3, 6);
@@ -39,7 +39,7 @@ test::test()
 	//Plants* plant1 = new PotatoMine(Point(100, 60), 4);
 	//Plants* plant2 = new Weeds(Point(60, 250),1);
 	//std::cout << Rank2Point(1, 1).x<<"	" <<Rank2Point(1, 1).y << std::endl;
-	new Melancholy(Rank2Point(4, 3), 4, 6);
+	new Melancholy(Rank2Point(4, 3), 4, 3);
 	/*new TripleShooter(Rank2Point(3, 3), 3, 3);
 	new Torch(Rank2Point(4, 6), 4, 6);
 	new Torch(Rank2Point(3, 6), 3, 6);
