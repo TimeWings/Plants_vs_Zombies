@@ -37,6 +37,7 @@ bool EntityLayer::init()
 	listener->setSwallowTouches(false);
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Zombie), 0.1);
+	this->schedule(schedule_selector(EntityLayer::Check_Lost_head_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Plant), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	return true;
@@ -134,14 +135,12 @@ void EntityLayer::Check_isAttack_Plant(float t)
 	}
 }
 
-//有BUG，当两个植物重叠放的时候，僵尸会播放攻击动画，但是没有对植物造成伤害
-//有BUG，僵尸会攻击其自身后面的植物（不能用fbs判断）
-//有BUG，不要设置太多标记（被大蒜赶跑后就不会攻击）
 void EntityLayer::Check_isAttack_Zombie(float t)
 {
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		Zombie *zombie = readyZombies.at(i);
+		if (!zombie->hasHead()) continue;
 		Sprite *sp = zombie->getImg();
 		Plants *p;
 		bool flag = false;
@@ -158,19 +157,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			{
 				continue;
 			}
-			/*if (sp->getPositionY() == plant->getImg()->getPositionY() && fabs(sp->getPositionX() - sp_plant->getPositionX())<sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() - 10)
-			{
-				flagin = true;
-				p = plant;
-			}
-			if (sp->getPositionY() == plant->getImg()->getPositionY() && fabs(sp->getPositionX() - sp_plant->getPositionX()) < sp->getContentSize().width / 2 * sp->getScaleX() + sp_plant->getContentSize().width / 2 * sp_plant->getScaleX() + 10)
-			{
-				flagout = false;
-				p = plant;
-			}*/
-			/*std::cout << zombiex << " " << plantx << std::endl;
-			std::cout << plant->getRow() << " " << plant->getCol() << std::endl;*/
-			if (sp->getPositionY() == plant->getImg()->getPositionY() && zombiex >= plantx && zombiex - plantx <= (sp->getContentSize().width)*(sp->getScaleX()) * 0.75)
+			if (sp->getPositionY() == Rank2Point(plant->getRow(), plant->getCol()).y && zombiex >= plantx && zombiex - plantx <= (sp->getContentSize().width)*(sp->getScaleX()) * 0.35 + (sp_plant->getContentSize().width)*(sp_plant->getScaleX()) * 0.35)
 			{
 				flag = true;
 				p = plant;
@@ -182,11 +169,22 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			zombie->setMeeting(false);
 		}
 		else if (!zombie->isMeeting() && flag) {
-			zombie->attack(p);
+			zombie->Attack(p);
 			zombie->setMeeting(true);
 		}
 	}
 }
+
+void EntityLayer::Check_Lost_head_Zombie(float t) {
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		Zombie *zombie = readyZombies.at(i);
+		if (zombie->getHp() <= 2 && zombie->hasHead()) {
+			zombie->LostHead();
+		}
+	}
+}
+
 void EntityLayer::Check_Death(float t)
 {
 	for (int j = 0; j < readyPlants.size(); j++)
@@ -199,7 +197,7 @@ void EntityLayer::Check_Death(float t)
 			j--;
 		}
 	}
-	for (int j = 0; j < readyZombies.size(); j++)
+	/*for (int j = 0; j < readyZombies.size(); j++)
 	{
 		Zombie* zombie = readyZombies.at(j);
 		Sprite* sp = zombie->getImg();
@@ -208,7 +206,7 @@ void EntityLayer::Check_Death(float t)
 			zombie->Die();
 			j--;
 		}
-	}
+	}*/
 }
 
 void EntityLayer::clearNode(Node * pSender)

@@ -1,6 +1,7 @@
 #include "StarShooter.h"
 #include "Global.h"
 #include "PeaBulletPlus.h"
+#include "MelancholyBullet.h"
 
 StarShooter::StarShooter(Point position, int row, int col)
 {
@@ -27,11 +28,13 @@ void StarShooter::CreateBullet()
 	this->getImg()->runAction(sequence);
 	Sprite *sp = this->getImg();
 	//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
-	Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
-	new PeaBulletPlus(a, this->getRow(), 30);
-	new PeaBulletPlus(a, this->getRow(),120);
-	new PeaBulletPlus(a, this->getRow(), 180);
-	new PeaBulletPlus(a, this->getRow(), -120);
-	new PeaBulletPlus(a, this->getRow(), -30);
+	Point a = ccp(sp->getPositionX(),sp->getPositionY());
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	double distance = sqrt(visibleSize.width*visibleSize.width + visibleSize.height*visibleSize.height);
+	new PeaBulletPlus(a, this->getRow(), 30, distance);
+	new PeaBulletPlus(a, this->getRow(),90, distance);
+	new PeaBulletPlus(a, this->getRow(), 180, distance);
+	new PeaBulletPlus(a, this->getRow(), -90, distance);
+	new PeaBulletPlus(a, this->getRow(), -30, distance);
 	setNewBirthTime();
 }

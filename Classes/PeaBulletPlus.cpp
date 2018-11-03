@@ -3,8 +3,13 @@
 #include "Global.h"
 #include <iostream>
 
-PeaBulletPlus::PeaBulletPlus(Point position, int Plant_row, double angle)
+PeaBulletPlus::PeaBulletPlus()
 {
+}
+
+PeaBulletPlus::PeaBulletPlus(Point position, int Plant_row, double angle,double distance)
+{
+	this->_distance = distance;
 	this->_angle = angle;
 	for (int i = 0; i < 10; i++)
 	{
@@ -29,12 +34,11 @@ void PeaBulletPlus::move()
 	Point a;
 	auto sp = this->getImg();
 	auto visibleSize = Director::getInstance()->getVisibleSize();
-	double xie = sqrt(visibleSize.width*visibleSize.width + visibleSize.height*visibleSize.height);
-	a.x = sp->getPositionX() + xie *cos(_angle / 180 * std::_Pi);
-	a.y = sp->getPositionY() + xie *sin(_angle / 180 * std::_Pi);
+	//double xie = sqrt(visibleSize.width*visibleSize.width + visibleSize.height*visibleSize.height);
+	a.x = sp->getPositionX() + _distance *cos(_angle / 180 * std::_Pi);
+	a.y = sp->getPositionY() + _distance *sin(_angle / 180 * std::_Pi);
 	double distance =sqrt(pow((sp->getPositionX()-a.x),2)+pow((sp->getPositionY() - a.y), 2));
 	double time = distance / getSpeed();
-	std::cout << xie << std::endl;
 	MoveTo *moveTo = MoveTo::create(time, a);
 	//MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width-50, sp->getPosition().y));
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear, this));
