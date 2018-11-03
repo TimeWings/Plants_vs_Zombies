@@ -1,7 +1,8 @@
 #pragma once
 #include "cocos2d.h"
 #include "Entity.h"
-#define Paul_tag 2222
+#define Penetrable_tag 159159//穿透tag
+#define Pitcher_tag 158158//投手tag
 USING_NS_CC;
 class Plants:public Entity
 {
@@ -26,13 +27,11 @@ public:
 	int getCol();
 	void setNewBirthTime();
 	//把精灵直接放到图层上
-	virtual void addLayer(Node* entity);
+	void addLayer(Node* entity);
 	virtual void work() = 0; //工作
 	virtual bool isWorking() = 0;//是否能工作(僵尸出来之后或者土豆雷出生之后)
 	//播放死亡动画&清理内存
 	virtual void Die() = 0; 
 	//被攻击之后的动画以及效果（爆炸等）
 	virtual void Attacked() = 0;
-	
-	//Plants(Point position, int row);
 };

@@ -8,8 +8,8 @@ TripleBullet::TripleBullet(Point position, int Plant_row, int type) :Bullet(posi
 	auto sp = Sprite::create("TripleBullet.png");
 	if (type == 1)
 	{
-		this->getRange()->push_back(Plant_row);
 		this->getRange()->push_back(Plant_row-1);
+		this->getRange()->push_back(Plant_row);
 
 	}
 	else if (type == 2)
@@ -18,8 +18,8 @@ TripleBullet::TripleBullet(Point position, int Plant_row, int type) :Bullet(posi
 	}
 	else
 	{
-		this->getRange()->push_back(Plant_row);
 		this->getRange()->push_back(Plant_row + 1);
+		this->getRange()->push_back(Plant_row);
 	}
 	sp->setTag(En_Burn);
 	sp->setScale(0.2);
@@ -65,6 +65,10 @@ void TripleBullet::move()
 }
 void TripleBullet::afterMove(Node *pSender)
 {
+	if (this->getRange()->size() >= 2)
+	{
+		this->getRange()->erase(this->getRange()->begin() + 1);
+	}
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	double distance = (visibleSize.width + pSender->getContentSize().width*pSender->getScaleX() - pSender->getPositionX()) / 15;
 	double time = distance / getSpeed();

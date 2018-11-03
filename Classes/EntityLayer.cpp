@@ -68,9 +68,19 @@ void EntityLayer::Check_Collision(float t)
 			if (sp->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
 			{
 				std::cout << "×Óµ¯Åö×²ÁË" << std::endl;
-				bullet->cal_damage(zombie);
 				bullet->Hit_Animation(zombie);
-				zombie->Attacked();
+				if (sp->getTag() == Penetrable_tag)
+				{
+					zombie->DamageBoth(bullet->getDamage());
+				}
+				else if (sp->getTag()== Pitcher_tag)
+				{
+					zombie->DamageZombie(bullet->getDamage());
+				}
+				else
+				{
+					zombie->DamageEquip(bullet->getDamage());
+				}
 
 			}
 		}
@@ -157,6 +167,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			{
 				continue;
 			}
+			//std::cout << sp->getPositionY() << " " << Rank2Point(plant->getRow(), plant->getCol()).y << std::endl;
 			if (sp->getPositionY() == Rank2Point(plant->getRow(), plant->getCol()).y && zombiex >= plantx && zombiex - plantx <= (sp->getContentSize().width)*(sp->getScaleX()) * 0.35 + (sp_plant->getContentSize().width)*(sp_plant->getScaleX()) * 0.35)
 			{
 				flag = true;

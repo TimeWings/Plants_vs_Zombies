@@ -1,7 +1,6 @@
 #pragma once
 #include "Entity.h"
 #include "cocos2d.h"
-#include "Zombie.h"
 USING_NS_CC;
 
 class ZombieEquipment : public Entity
@@ -14,6 +13,7 @@ public:
 	void setHp(int Hp);
 	bool isMetal();
 	void setMetal(bool Metal);
-	void addLayer(Node* entity, Zombie* zombie);
+	//void addLayer(Node* entity, Zombie* zombie);
+	virtual void Damage(int damage) = 0;
 	virtual void Die() = 0;
 };
