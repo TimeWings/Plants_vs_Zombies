@@ -4,16 +4,17 @@
 USING_NS_CC;
 class JannuDaruku : public Plants
 {
-private:
+protected:
 	Point position;
 public:
+	JannuDaruku();
 	JannuDaruku(Point position,int row,int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	virtual void Die();
-	void MyFire(Node *pSender);
-	void zombiesDie(Node* pSender);
-	void creatFire();
+	void Effect(Node * pSender);
+	void zombiesDie();
+	void creatSprite();
 	virtual void Attacked();
 	//产生子弹
 	virtual void CreateBullet();

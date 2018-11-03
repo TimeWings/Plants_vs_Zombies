@@ -2,6 +2,7 @@
 #include "Global.h"
 #include "Zombie.h"
 #include "Bullet.h"
+#include "PaulBullet.h"
 #include <stdio.h>
 #include <math.h>
 #include <sys/timeb.h>
@@ -25,6 +26,7 @@ EntityLayer* EntityLayer::create()
 }
 bool EntityLayer::init()
 {
+	this->PaulReady = false;
 	schedule(schedule_selector(EntityLayer::Check_Collision), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	//这里写时间定时器
@@ -36,6 +38,7 @@ bool EntityLayer::init()
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Lost_head_Zombie), 0.1);
+	this->schedule(schedule_selector(EntityLayer::Check_Lost_Equip_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Plant), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	return true;
@@ -66,9 +69,19 @@ void EntityLayer::Check_Collision(float t)
 			if (sp->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
 			{
 				std::cout << "子弹碰撞了" << std::endl;
-				bullet->cal_damage(zombie);
 				bullet->Hit_Animation(zombie);
-				zombie->Attacked();
+				if (sp->getTag() == Penetrable_tag)
+				{
+					zombie->DamageBoth(bullet->getDamage());
+				}
+				else if (sp->getTag()== Pitcher_tag)
+				{
+					zombie->DamageZombie(bullet->getDamage());
+				}
+				else
+				{
+					zombie->DamageEquip(bullet->getDamage());
+				}
 
 			}
 		}
@@ -81,8 +94,8 @@ bool EntityLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_e
 	for (auto x : readySun.keys())
 	{
 		Sprite *sun = readySun.at(x);
-		if (touchPos.x > sun->getPositionX() - sun->getContentSize().width / 2 * sun->getScale() && touchPos.x < sun->getPositionX() + sun->getContentSize().width / 2 * sun->getScale()
-			&& touchPos.y< sun->getPositionY() + sun->getContentSize().height / 2 * sun->getScale() && touchPos.y>sun->getPositionY() - sun->getContentSize().height / 2 * sun->getScale())
+		if (touchPos.x > sun->getPositionX() - sun->getContentSize().width / 2 * sun->getScaleX() && touchPos.x < sun->getPositionX() + sun->getContentSize().width / 2 * sun->getScaleX()
+			&& touchPos.y< sun->getPositionY() + sun->getContentSize().height / 2 * sun->getScaleY() && touchPos.y>sun->getPositionY() - sun->getContentSize().height / 2 * sun->getScaleY())
 		{
 			sunCnt.first++;
 			Plants *plant;
@@ -180,6 +193,18 @@ void EntityLayer::Check_Lost_head_Zombie(float t) {
 		Zombie *zombie = readyZombies.at(i);
 		if (zombie->getHp() <= 2 && zombie->hasHead()) {
 			zombie->LostHead();
+		}
+	}
+}
+
+void EntityLayer::Check_Lost_Equip_Zombie(float t) {
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		Zombie *zombie = readyZombies.at(i);
+		if (zombie->hasEquip() && zombie->getEquip()->getHp() < 0) {
+			zombie->setEquip(nullptr);
+			zombie->setMeeting(false);
+			zombie->Move();
 		}
 	}
 }

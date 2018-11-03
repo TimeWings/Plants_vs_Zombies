@@ -8,14 +8,14 @@ Mushroom::Mushroom(Point position, int row,int col)
 	this->haveBullet = false;
 	this->setRow(row);
 	this->setCol(col);
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Mushroom.png"));
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Mushroom\\Mushroom.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(0.3);
+	sp->setScale(0.25);
 	this->Scale = this->getImg()->getScale();
 	sp->setPosition(position);
-	this->setHp(6);
+	this->setHp(10);
 	this->setInterval(1200);
 	//普通植物直接播放自身动画
 	this->Self_Animation();
@@ -62,17 +62,12 @@ void Mushroom::Self_Animation()
 	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale + 0.05);
 	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale, preScale);
 	Sequence *sequence1 = Sequence::create(scaleup, scaledown, NULL);
-	CCActionInterval * moveBy = CCMoveBy::create(1, ccp(7, 0));
-	CCActionInterval * actionmoveback = moveBy->reverse();
-	CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
-	CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
-	Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
-	sp->runAction(CCRepeatForever::create(sequence2));
-}
-
-void Mushroom::clear(Node * pSender)
-{
-	pSender->removeFromParent();
+	//CCActionInterval * moveBy = CCMoveBy::create(1, ccp(7, 0));
+	//CCActionInterval * actionmoveback = moveBy->reverse();
+	//CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
+	//CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
+	//Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
+	sp->runAction(CCRepeatForever::create(sequence1));
 }
 
 void Mushroom::clearBullet(Node *pSender, MushroomBullet *bp)

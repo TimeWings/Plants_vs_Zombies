@@ -1,5 +1,6 @@
 #include "RoadblockZombie.h"
 #include "Global.h"
+#include <iostream>
 
 RoadblockZombie::RoadblockZombie()
 {
@@ -141,6 +142,7 @@ void RoadblockZombie::DamageEquip(int damage)
 {
 	if (hasEquip()) {
 		getEquip()->Damage(damage);
+		std::cout << getEquip()->getHp() << std::endl;
 	}
 	else {
 		setHp(getHp() - damage);

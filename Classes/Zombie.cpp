@@ -122,7 +122,7 @@ ZombieEquipment * Zombie::getEquip()
 
 bool Zombie::hasEquip()
 {
-	return equip != nullptr && getEquip()->getHp()>0;
+	return equip != nullptr;
 }
 
 CCScheduler * Zombie::getScheduler()

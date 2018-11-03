@@ -110,7 +110,6 @@ void Sunflower::clearSun(Node *pSender, Sprite *sunFlower)
 	ftime(&t1);
 	long long seconds = t1.time * 1000 + t1.millitm;
 	plant->setBirthTime(seconds);
-	//std::cout << "太阳没有被捡，自动被清除" << std::endl;
 	pSender->removeFromParent();
 	readySun.erase(sunFlower);
 }

@@ -12,8 +12,8 @@ Melancholy::Melancholy(Point position, int row, int col)
 	sp->setScale(0.2);
 	sp->setPosition(position);
 	this->setHp(6);
-	this->setInterval(1000);
 	addLayer(sp);
+	this->setInterval(1000);
 	this->Self_Animation();
 	readyPlants.push_back(this);
 }

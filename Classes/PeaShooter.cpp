@@ -33,8 +33,11 @@ bool PeaShooter::isWorking()
 }
 void PeaShooter::work()
 {
-	if(isWorking())
-	CreateBullet();
+	if (isWorking())
+	{
+		CreateBullet();
+	}
+		
 }
 
 void PeaShooter::Die()

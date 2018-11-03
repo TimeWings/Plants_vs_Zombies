@@ -3,11 +3,15 @@
 #include "riceBullet.h"
 #include <iostream>
 
+riceShooter::riceShooter()
+{
+}
+
 riceShooter::riceShooter(Point position, int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("riceShooter.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\riceShooter.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
@@ -25,16 +29,28 @@ riceShooter::riceShooter(Point position, int row,int col)
 
 bool riceShooter::isWorking()
 {
-	return true;
+	Sprite *sp = this->getImg();
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		if (readyZombies.at(i)->getRow() == this->getRow())
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void riceShooter::work()
 {
-	CreateBullet();
+	if (isWorking())
+	{
+		CreateBullet();
+	}
 }
 
 void riceShooter::Die()
 {
+	clear(this->getImg());
 	for (int i = 0; i < readyPlants.size(); i++)
 	{
 		if (readyPlants.at(i) == this)
@@ -73,25 +89,17 @@ void riceShooter::Attacked()
 
 void riceShooter::CreateBullet()
 {
-	Sprite *sp = this->getImg();
-	for (int i = 0; i < readyZombies.size(); i++)
-	{
-		if (readyZombies.at(i)->getRow() == this->getRow())
-		{
-			//放大，准备放子弹
-			CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
-			CCScaleBy * scaledown = CCScaleBy::create(0.2f, 1.5625f, 0.64f);
-			CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
-			Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
-			sp->runAction(sequence);
-			//子弹以及僵尸的坐标
-			Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
-			//Point b = readyZombies.at(i)->getImg()->getPosition();
-			//产生子弹
-			Bullet *pb = new riceBullet(a, readyZombies.at(i), this->getRow());
-			setNewBirthTime();
-		}
-	}
+	//放大，准备放子弹
+	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
+	CCScaleBy * scaledown = CCScaleBy::create(0.2f, 1.5625f, 0.64f);
+	CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
+	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
+	this->getImg()->runAction(sequence);
+	//子弹以及僵尸的坐标
+	Point a = ccp(this->getImg()->getPositionX(), this->getImg()->getContentSize().height * this->getImg()->getScaleY() / 4 + this->getImg()->getPositionY());
+	//产生子弹
+	Bullet *pb = new riceBullet(a, this->getRow());
+	setNewBirthTime();
 }
 
 void riceShooter::clear(Node * pSender)
