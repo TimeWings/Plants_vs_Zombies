@@ -155,6 +155,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			{
 				continue;
 			}
+			//std::cout << sp->getPositionY() << " " << Rank2Point(plant->getRow(), plant->getCol()).y << std::endl;
 			if (sp->getPositionY() == Rank2Point(plant->getRow(), plant->getCol()).y && zombiex >= plantx && zombiex - plantx <= (sp->getContentSize().width)*(sp->getScaleX()) * 0.35 + (sp_plant->getContentSize().width)*(sp_plant->getScaleX()) * 0.35)
 			{
 				flag = true;

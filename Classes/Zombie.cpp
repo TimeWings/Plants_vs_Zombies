@@ -110,6 +110,21 @@ void Zombie::setSche(Node* sprite)
 	sprite->setActionManager(actionManager);
 }
 
+void Zombie::setEquip(ZombieEquipment * equip)
+{
+	this->equip = equip;
+}
+
+ZombieEquipment * Zombie::getEquip()
+{
+	return equip;
+}
+
+bool Zombie::hasEquip()
+{
+	return equip != nullptr && getEquip()->getHp()>0;
+}
+
 CCScheduler * Zombie::getScheduler()
 {
 	return sched;
