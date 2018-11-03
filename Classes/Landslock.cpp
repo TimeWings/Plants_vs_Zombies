@@ -7,7 +7,7 @@ Landslock::Landslock(Point position, int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Landslock.png"));
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Landslock\\Landslock.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
@@ -39,7 +39,8 @@ void Landslock::driveOut(Zombie* zombie)
 	//暂停僵尸的动作
 	zombie->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, zombie->getImg());
 	//惊吓效果
-	Sprite*sp_frigthen = Sprite::create("frigthen.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Landslock\\frigthen.png"));
+	Sprite*sp_frigthen = Sprite::create();
 	sp_frigthen->setPosition(Point(sp_zb->getPositionX() + sp_zb->getContentSize().width / 4, sp_zb->getPositionY() + sp_zb->getContentSize().height));
 	sp_frigthen->retain();
 	sp_frigthen->setScale(1);
@@ -89,12 +90,12 @@ void Landslock::driveOut(Zombie* zombie)
 	zombie->setRow(zombie->getRow() + moveRow);
 
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Landslock::clearNode, this, sp_frigthen));
-	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Landslock::afterDriveOut, this, zombie, moveRow));
+	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Landslock::afterDriveOut, this, zombie));
 	Sequence *sequence = Sequence::create(CCDelayTime::create(0.5), actionDone, moveTo, actionDone1, NULL);
 	sp_zb->runAction(sequence);
 }
 
-void Landslock::afterDriveOut(Node* pSender, Zombie* zombie, int changeRow)
+void Landslock::afterDriveOut(Node* pSender, Zombie* zombie)
 {
 	//恢复动画
 	zombie->Move();

@@ -2,6 +2,7 @@
 #include "Global.h"
 #include "Zombie.h"
 #include "Bullet.h"
+#include "PaulBullet.h"
 #include <stdio.h>
 #include <math.h>
 #include <sys/timeb.h>
@@ -25,6 +26,7 @@ EntityLayer* EntityLayer::create()
 }
 bool EntityLayer::init()
 {
+	this->PaulReady = false;
 	schedule(schedule_selector(EntityLayer::Check_Collision), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	//这里写时间定时器
@@ -67,9 +69,19 @@ void EntityLayer::Check_Collision(float t)
 			if (sp->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
 			{
 				std::cout << "子弹碰撞了" << std::endl;
-				bullet->cal_damage(zombie);
 				bullet->Hit_Animation(zombie);
-				zombie->Attacked();
+				if (sp->getTag() == Penetrable_tag)
+				{
+					zombie->DamageBoth(bullet->getDamage());
+				}
+				else if (sp->getTag()== Pitcher_tag)
+				{
+					zombie->DamageZombie(bullet->getDamage());
+				}
+				else
+				{
+					zombie->DamageEquip(bullet->getDamage());
+				}
 
 			}
 		}
@@ -82,8 +94,8 @@ bool EntityLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_e
 	for (auto x : readySun.keys())
 	{
 		Sprite *sun = readySun.at(x);
-		if (touchPos.x > sun->getPositionX() - sun->getContentSize().width / 2 * sun->getScale() && touchPos.x < sun->getPositionX() + sun->getContentSize().width / 2 * sun->getScale()
-			&& touchPos.y< sun->getPositionY() + sun->getContentSize().height / 2 * sun->getScale() && touchPos.y>sun->getPositionY() - sun->getContentSize().height / 2 * sun->getScale())
+		if (touchPos.x > sun->getPositionX() - sun->getContentSize().width / 2 * sun->getScaleX() && touchPos.x < sun->getPositionX() + sun->getContentSize().width / 2 * sun->getScaleX()
+			&& touchPos.y< sun->getPositionY() + sun->getContentSize().height / 2 * sun->getScaleY() && touchPos.y>sun->getPositionY() - sun->getContentSize().height / 2 * sun->getScaleY())
 		{
 			sunCnt.first++;
 			Plants *plant;

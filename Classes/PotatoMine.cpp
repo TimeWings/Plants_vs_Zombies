@@ -10,17 +10,17 @@ PotatoMine::PotatoMine(Point position, int row,int col)
 	this->maxHp = 10;
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("1.1.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("PotatoMine\\1.1.png"));
 	this->setImg(sp);
 	this->birthDelay = 5;
 
 	//一定要retain，否则会自动释放
 	sp->retain();
 	sp->setScale(0.5);
-	sp->setPosition(Point(position.x, position.y - 15));
+	sp->setPosition(Point(position.x, position.y - 12));
 	this->setHp(this->maxHp);
 	this->setInterval(2000);
-	this->position = Point(position.x, position.y - 15);
+	this->position = Point(position.x, position.y - 12);
 	//延迟出生
 	CCDelayTime* delayTime = CCDelayTime::create(this->birthDelay);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::Born_Animation, this));
@@ -66,20 +66,20 @@ void PotatoMine::Die()
 		//马上移除容器并消除精灵
 		clear(this->getImg());
 		//定义爆炸效果
-		Sprite* sp = Sprite::create("Explode1.png");
+		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("PotatoMine\\Explode1.png"));
 		sp->retain();
 		sp->setScale(0.6);
 		sp->setPosition(Point(position.x + 10, position.y + 20));
 		addLayer(sp);
 		//爆炸动画
-		SpriteFrame *sp1;
 		char str[100] = { 0 };
 		Vector<SpriteFrame*> allframe;
 		for (int i = 2; i <= 4; i++)
 		{
-			sprintf(str, "Explode%d.png", i);
-			sp1 = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-			allframe.pushBack(sp1);
+			sprintf(str, "PotatoMine\\Explode%d.png", i);
+			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+			auto frame = sprite->getSpriteFrame();
+			allframe.pushBack(frame);
 		}
 		Animation* an = Animation::createWithSpriteFrames(allframe, 0.2);
 		//播放完动画之后消除精灵
@@ -110,15 +110,17 @@ void PotatoMine::Self_Animation()
 		char str[100] = { 0 };
 		for (int i = 8; i <= 13; i++)
 		{
-			sprintf(str, "%d.1.png", i);
-			sp = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-			allframe.pushBack(sp);
+			sprintf(str, "PotatoMine\\%d.1.png", i);
+			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+			auto frame = sprite->getSpriteFrame();
+			allframe.pushBack(frame);
 		}
 		for (int j = 13; j >= 8; j--)
 		{
-			sprintf(str, "%d.1.png", j);
-			sp = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-			allframe.pushBack(sp);
+			sprintf(str, "PotatoMine\\%d.1.png", j);
+			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+			auto frame = sprite->getSpriteFrame();
+			allframe.pushBack(frame);
 		}
 		Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 		this->getImg()->runAction(CCRepeatForever::create(Animate::create(an)));
@@ -133,9 +135,10 @@ void PotatoMine::Born_Animation(Node *pSender)
 	SpriteFrame *sp;
 	for (int i = 2; i <= 8; i++)
 	{
-		sprintf(str, "%d.1.png", i);
-		sp = SpriteFrame::create(str, this->getImg()->getDisplayFrame()->getRect());
-		allframe.pushBack(sp);
+		sprintf(str, "PotatoMine\\%d.1.png", i);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::afterBornHandle, this));
@@ -157,7 +160,7 @@ void PotatoMine::afterBornHandle(Node *pSender)
 	this->bornFinish = true;
 	//重新定义精灵图片
 	this->getImg()->removeFromParent();
-	Sprite* sp = Sprite::create("9.1.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("PotatoMine\\9.1.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.5);

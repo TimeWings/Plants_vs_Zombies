@@ -15,7 +15,6 @@ public:
 	Mushroom(Point position, int row,int col);
 	void CreateBullet();
 	void Self_Animation();
-	void clear(Node *pSender);
 	void clearBullet(Node *pSender, MushroomBullet *bp);
 	void Die();
 };

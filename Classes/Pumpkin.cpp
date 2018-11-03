@@ -12,7 +12,7 @@ Pumpkin::Pumpkin(Point position, int row,int col)
 	this->isJumping = false;
 	this->isChecking = false;
 
-	Sprite*sp = Sprite::create("Pumpkin.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Pumpkin\\Pumpkin.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();

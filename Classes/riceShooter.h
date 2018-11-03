@@ -5,6 +5,7 @@ USING_NS_CC;
 class riceShooter :public Plants
 {
 public:
+	riceShooter();
 	riceShooter(Point position, int row,int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
