@@ -2,6 +2,7 @@
 //#include "Entity.h"
 #include "cocos2d.h"
 #include "Plants.h"
+#include "ZombieEquipment.h"
 USING_NS_CC;
 
 #define Animation_Tag 1
@@ -10,7 +11,6 @@ class Zombie : public Entity
 {
 private:
 	int _Hp; //血量
-
 	double _BiteInterval; //攻击间隔
 	double  _WalkSpeed; //移动速度
 	bool _Head;
@@ -19,6 +19,7 @@ private:
 	int _col;
 	std::vector<int> debuff;
 	CCScheduler *sched;
+	ZombieEquipment *equip;
 protected:
 	void setWalkSpeed(double WalkSpeed);
 public:
@@ -40,10 +41,16 @@ public:
 	std::vector<int>*getDebuff();
 	void addLayer(Node* entity);
 	void setSche(Node * sprite);
+	void setEquip(ZombieEquipment *equip);
+	ZombieEquipment *getEquip();
+	bool hasEquip();
 	CCScheduler* getScheduler();
 	virtual void Attack(Plants *plant) = 0;
 	virtual void Die(Node * pSender) = 0;
 	virtual void Attacked() = 0;
 	virtual void LostHead() = 0;
 	virtual void Move() = 0;
+	virtual void DamageZombie(int damage) = 0;
+	virtual void DamageEquip(int damage) = 0;
+	virtual void DamageBoth(int damage) = 0;
 };

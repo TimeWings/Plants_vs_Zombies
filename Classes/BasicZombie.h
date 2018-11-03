@@ -19,4 +19,7 @@ public:
 	void BasicAttack(Plants *plant);
 	void clear(Node * pSender);
 	void clear_from_vector(Node * pSender);
+	virtual void DamageZombie(int damage);
+	virtual void DamageEquip(int damage);
+	virtual void DamageBoth(int damage);
 };

@@ -14,6 +14,7 @@ BasicZombie::BasicZombie(Point position,int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
+	this->setEquip(nullptr);
 	setWalkSpeed(7);
 	setHp(12);
 	setHead(true);
@@ -304,6 +305,22 @@ void BasicZombie::clear_from_vector(Node * pSender)
 			break;
 		}
 	}
+}
+
+void BasicZombie::DamageZombie(int damage)
+{
+	setHp(getHp() - damage);
+	Attacked();
+}
+
+void BasicZombie::DamageEquip(int damage)
+{
+	DamageZombie(damage);
+}
+
+void BasicZombie::DamageBoth(int damage)
+{
+	DamageZombie(damage);
 }
 
 
