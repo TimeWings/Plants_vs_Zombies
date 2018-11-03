@@ -13,6 +13,7 @@ riceBullet::riceBullet(Point a, int Plant_row)
 	this->getRange()->push_back(Plant_row);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\rice.png"));
 	sp->setScale(0.5);
+	this->getImg()->setTag(Pitcher_tag);
 	this->setImg(sp);
 	sp->retain();
 	sp->setPosition(a.x + sp->getContentSize().width*sp->getScaleX() / 2, a.y);

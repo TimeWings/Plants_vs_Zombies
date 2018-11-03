@@ -9,6 +9,7 @@ LancerGun::LancerGun(Point a, int Plant_row)
 	auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Cannon\\Gun.png"));
 	sprite->setScale(0.2);
 	this->setImg(sprite);
+	this->getImg()->setTag(Pitcher_tag);
 	sprite->retain();
 	sprite->setPosition(a.x + sprite->getContentSize().width*sprite->getScaleX() / 2, a.y);
 	this->addLayer(sprite);

@@ -9,6 +9,7 @@ MelancholyBullet::MelancholyBullet(Point position, int Plant_row, double angle, 
 	this->getRange()->push_back(Plant_row-1);
 	this->getRange()->push_back(Plant_row+1);
 	auto sp = Sprite::create("DragBullet.png");
+	sp->setTag(Penetrable_tag);
 	sp->setRotation(-angle);
 	//sp->setScale(0.2);
 	this->setDamage(1);

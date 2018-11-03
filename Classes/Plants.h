@@ -3,6 +3,8 @@
 #include "Entity.h"
 #define Penetrable_tag 159159//穿透tag
 #define Pitcher_tag 158158//投手tag
+#define Paul_tag 158157//投手tag
+
 USING_NS_CC;
 class Plants:public Entity
 {

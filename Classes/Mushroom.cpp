@@ -15,7 +15,7 @@ Mushroom::Mushroom(Point position, int row,int col)
 	sp->setScale(0.25);
 	this->Scale = this->getImg()->getScale();
 	sp->setPosition(position);
-	this->setHp(6);
+	this->setHp(10);
 	this->setInterval(1200);
 	//普通植物直接播放自身动画
 	this->Self_Animation();

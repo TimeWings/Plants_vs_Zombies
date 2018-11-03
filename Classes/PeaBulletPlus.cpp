@@ -16,6 +16,10 @@ PeaBulletPlus::PeaBulletPlus(Point position, int Plant_row, double angle,double 
 		this->getRange()->push_back(i);
 	}
 	auto sp = Sprite::create("StarBullet.png");
+	if (angle == -90 || angle == 90 || angle == 180)
+	{
+		sp->setTag(Pitcher_tag);
+	}
 	sp->setRotation(-angle);
 	sp->setScale(0.2);
 	this->setDamage(1);

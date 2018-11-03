@@ -9,6 +9,8 @@ MushroomBullet::MushroomBullet(Point position, int Plant_row) :Bullet(position, 
 	sp->setAnchorPoint(Point::ZERO);
 	//方便以后获取子弹精灵
 	this->setImg(sp);
+	this->setDamage(1);
+	this->getImg()->setTag(Penetrable_tag);
 	sp->retain();
 	sp->setScale(1.5);
 	sp->setPosition(position.x + sp->getContentSize().width * sp->getScaleX() / 0.8, position.y);
