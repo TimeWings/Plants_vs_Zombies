@@ -7,13 +7,14 @@ Melancholy::Melancholy(Point position, int row, int col)
 	this->setRow(row);
 	this->setCol(col);
 	Sprite*sp = Sprite::create("StarShooter.png");
+	sp->setTag(Penetrable_tag);
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.2);
 	sp->setPosition(position);
 	this->setHp(6);
-	this->setInterval(1000);
 	addLayer(sp);
+	this->setInterval(1000);
 	this->Self_Animation();
 	readyPlants.push_back(this);
 }

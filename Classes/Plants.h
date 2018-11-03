@@ -1,6 +1,8 @@
 #pragma once
 #include "cocos2d.h"
 #include "Entity.h"
+#define Penetrable_tag 159159//穿透tag
+#define Pitcher_tag 158158//投手tag
 USING_NS_CC;
 class Plants:public Entity
 {
@@ -32,6 +34,4 @@ public:
 	virtual void Die() = 0; 
 	//被攻击之后的动画以及效果（爆炸等）
 	virtual void Attacked() = 0;
-	
-	//Plants(Point position, int row);
 };
