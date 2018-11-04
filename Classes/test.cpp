@@ -31,13 +31,13 @@ test::test()
 {
 	new Background();
 	//Plants* plant1 = new Weeds(Point(60, 120),4);      
-	new BasicZombie(Rank2Point(6, 6), 6, 6);
+	/*new BasicZombie(Rank2Point(6, 6), 6, 6);
 	new BasicZombie(Rank2Point(5, 6), 5, 6);
 	new BasicZombie(Rank2Point(4, 6), 4, 6);
 	new BasicZombie(Rank2Point(3, 6), 3, 6);
 	new BasicZombie(Rank2Point(2, 6), 2, 6);
-	new BasicZombie(Rank2Point(1, 6), 1, 6);
-	new RoadblockZombie(Rank2Point(6, 6), 6, 6);
+	new BasicZombie(Rank2Point(1, 6), 1, 6);*/
+	//new RoadblockZombie(Rank2Point(6, 6), 6, 6);
 	new RoadblockZombie(Rank2Point(5, 6), 5, 6);
 	new RoadblockZombie(Rank2Point(4, 6), 4, 6);
 	new RoadblockZombie(Rank2Point(3, 6), 3, 6);
@@ -67,9 +67,24 @@ test::test()
 			plant->col = 10-i;
 			plantableList.push_back(plant);
 		}
-	Card<Mushroom>* card = new Card<Mushroom>(Point(100, 290));
-	Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(150, 290));
-	Card<Melancholy>* card3 = new Card<Melancholy>(Point(200, 290));
+	new Card<IceShooter>(Point(20, 290));
+	new Card<Mushroom>(Point(50, 290));
+	new Card<PeaShooter>(Point(80, 290));
+	new Card<Melancholy>(Point(110, 290));
+	new Card<Sunflower>(Point(140, 290));
+	new Card<Weeds>(Point(170, 290));
+	new Card<NutPlus>(Point(200, 290));
+	new Card<Doom_shroom>(Point(230, 290));
+	new Card<JannuDaruku>(Point(260, 290));
+	new Card<StarShooter>(Point(290, 290));
+	new Card<TripleShooter>(Point(320, 290));
+	new Card<iceCabbage>(Point(350, 290));
+	new Card<Torch>(Point(380, 290));
+	new Card<Cushaw>(Point(410, 290));
+	new Card<Chomper>(Point(440, 290));
+	new Card<PotatoMine>(Point(470, 290));
+	new Card<Pumpkin>(Point(500, 290));
+	//new Card<NutPlus>(Point(350, 290));
 	//Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
 	//Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
 	//card->BindPlant<Mushroom>();

@@ -7,7 +7,7 @@ std::vector<Plantable*> plantableList;
 namespace map
 {
 	std::pair<int, std::pair<double, double> >sunCnt(0, std::make_pair(0, 0));
-	std::pair<float, float >BlockSize(35.0f, 45.0f);
+	std::pair<float, float >BlockSize(35.0f, 52.0f);
 	int MapRow = 5;
 	int MapCol = 9;
 	int BlockStatus[50][50] = { 0 };
