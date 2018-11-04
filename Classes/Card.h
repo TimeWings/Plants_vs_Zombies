@@ -125,24 +125,24 @@ public:
 			Point clickLocation = touch->getLocation();
 			if (isFollowingMouse == true)
 			{
-				for (int i = 0; i < plantableList.size(); i++)
-				{
-					Size s = plantableList[i]->sprite->getContentSize();
-					auto position = plantableList[i]->sprite->getPosition();
-					Rect rect = Rect(position.x - s.width / 2, position.y - s.height / 2, s.width, s.height);
+				//for (int i = 0; i < plantableList.size(); i++)
+				//{
+				//	Size s = plantableList[i]->sprite->getContentSize();
+				//	auto position = plantableList[i]->sprite->getPosition();
+				//	Rect rect = Rect(position.x - s.width / 2, position.y - s.height / 2, s.width, s.height);
 
-					// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
-					if (rect.containsPoint(clickLocation) && plantableList[i]->hasPlant == false)
-					{
-						removeLayer(plantFollowSprite);
-						plantableList[i]->hasPlant = true;
-						PutPlant<T>(position, plantableList[i]->row, plantableList[i]->col);
-						return;
-					}
-				}
+				//	// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
+				//	if (rect.containsPoint(clickLocation) && plantableList[i]->hasPlant == false)
+				//	{
+				//		removeLayer(plantFollowSprite);
+				//		plantableList[i]->hasPlant = true;
+				//		PutPlant<T>(position, plantableList[i]->row, plantableList[i]->col);
+				//		return;
+				//	}
+				//}
 				removeLayer(plantFollowSprite);
-				//auto rank = Point2Rank(clickLocation);
-				//PutPlant<T>(Rank2Point(rank.first,rank.second), rank.first, rank.second);
+				auto rank = Point2Rank(clickLocation);
+				PutPlant<T>(Rank2Point(rank.first,rank.second), rank.first, rank.second);
 			}
 			//return true;
 		};
