@@ -45,7 +45,6 @@ void PotatoMine::work()
 	{
 		for (int i = 0; i < readyZombies.size(); i++)
 		{
-
 			Zombie* zombie = readyZombies.at(i);
 			if (this->getRow() == zombie->getRow() && this->getImg()->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
 			{

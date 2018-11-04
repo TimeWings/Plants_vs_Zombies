@@ -21,7 +21,6 @@ iceCabbage::iceCabbage(Point position, int row, int col)
 	work();
 }
 
-
 void iceCabbage::Die()
 {
 	//√∑‹Ω¿≠…Ï

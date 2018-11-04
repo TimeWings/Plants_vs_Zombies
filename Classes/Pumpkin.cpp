@@ -45,7 +45,6 @@ void Pumpkin::work()
 
 void Pumpkin::CheckZombies()
 {
-	
 	for (int i = 0; i < readyZombies.size() && !this->isJumping; i++)
 	{
 		this->isChecking = true;
