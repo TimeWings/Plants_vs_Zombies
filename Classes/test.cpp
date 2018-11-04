@@ -1,5 +1,7 @@
 #include "test.h"
 #include "Global.h"
+#include "Background.h"
+#include "Plantable.h"
 #include "IceShooter.h"
 #include "PotatoMine.h"
 #include "Pumpkin.h"
@@ -24,8 +26,10 @@
 #include <iostream>
 #include <typeinfo>
 using namespace map;
+
 test::test()
 {
+	new Background();
 	//Plants* plant1 = new Weeds(Point(60, 120),4);      
 	new BasicZombie(Rank2Point(6, 6), 6, 6);
 	new BasicZombie(Rank2Point(5, 6), 5, 6);
@@ -46,8 +50,8 @@ test::test()
 	//Plants* plant1 = new PotatoMine(Point(100, 60), 4);
 	//Plants* plant2 = new Weeds(Point(60, 250),1);
 	//std::cout << Rank2Point(1, 1).x<<"	" <<Rank2Point(1, 1).y << std::endl;
-	new Melancholy(Rank2Point(4, 3), 4, 3);
-	new TripleShooter(Rank2Point(4, 1), 4, 1);
+	//new Melancholy(Rank2Point(4, 3), 4, 3);
+	//new TripleShooter(Rank2Point(4, 1), 4, 1);
 	/*new TripleShooter(Rank2Point(3, 3), 3, 3);
 	new Torch(Rank2Point(4, 6), 4, 6);
 	new Torch(Rank2Point(3, 6), 3, 6);
@@ -55,7 +59,17 @@ test::test()
 	//Plants* plant4 = new IceShooter(Point(60, 120),1,1);
 	//Plants* plant5 = new IceShooter(Point(60, 120),3);
 	//Plants* plant5 = new Mushroom(Point(200, 120), 3);
-	//Card<Mushroom>* card = new Card<Mushroom>(Point(100, 100), 3);
+	for (int i = 1; i <= 9; i++)
+		for (int j = 1; j <= 5; j++)
+		{
+			auto plant = new Plantable(Point(75 + 38.5f * i, -5 + 45.0f*j - 3));
+			plant->row = 6-j;
+			plant->col = 10-i;
+			plantableList.push_back(plant);
+		}
+	Card<Mushroom>* card = new Card<Mushroom>(Point(100, 290));
+	Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(150, 290));
+	Card<Melancholy>* card3 = new Card<Melancholy>(Point(200, 290));
 	//Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
 	//Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
 	//card->BindPlant<Mushroom>();

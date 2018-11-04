@@ -3,12 +3,13 @@ std::vector <Bullet*> readyBullet;
 std::vector <Plants*> readyPlants;
 std::vector <Zombie*> readyZombies;
 Map<Sprite*, Sprite*>readySun;
+std::vector<Plantable*> plantableList;
 namespace map
 {
 	std::pair<int, std::pair<double, double> >sunCnt(0, std::make_pair(0, 0));
-	std::pair<double, double >BlockSize(40, 40);
-	int MapRow = 6;
-	int MapCol = 8;
+	std::pair<float, float >BlockSize(35.0f, 45.0f);
+	int MapRow = 5;
+	int MapCol = 9;
 	int BlockStatus[50][50] = { 0 };
 
 	Point Rank2Point(int row, int col)
