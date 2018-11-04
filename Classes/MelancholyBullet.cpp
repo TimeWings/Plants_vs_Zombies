@@ -19,6 +19,7 @@ MelancholyBullet::MelancholyBullet(Point position, int Plant_row, double angle, 
 	sp->retain();
 	sp->setPosition(position);
 	this->addLayer(sp);
+
 	readyBullet.push_back(this);
 	//ÒÆ¶¯º¯Êý
 	this->move();
