@@ -38,6 +38,7 @@ bool EntityLayer::init()
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Lost_head_Zombie), 0.1);
+	this->schedule(schedule_selector(EntityLayer::Check_Lost_Equip_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Plant), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	return true;
@@ -192,6 +193,18 @@ void EntityLayer::Check_Lost_head_Zombie(float t) {
 		Zombie *zombie = readyZombies.at(i);
 		if (zombie->getHp() <= 2 && zombie->hasHead()) {
 			zombie->LostHead();
+		}
+	}
+}
+
+void EntityLayer::Check_Lost_Equip_Zombie(float t) {
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		Zombie *zombie = readyZombies.at(i);
+		if (zombie->hasEquip() && zombie->getEquip()->getHp() < 0) {
+			zombie->setEquip(nullptr);
+			zombie->setMeeting(false);
+			zombie->Move();
 		}
 	}
 }

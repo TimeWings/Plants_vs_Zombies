@@ -18,7 +18,9 @@ public:
 	
 	string plantsTypeName;
 	bool isFollowingMouse = false;
+	int cost;
 	Sprite* plantSprite;
+	Sprite* plantFollowSprite;
 
 	template <class T>
 	void BindPlant()
@@ -27,33 +29,45 @@ public:
 	}
 
 	template <class T>
-	void PutPlant(Point position, int row)
+	void PutPlant(Point position, int row, int col)
 	{
-		T* t = new T(position, row);
+		T* t = new T(position, row, col);
 	}
 
 	void addLayer(Node * entity)
 	{
-		BulletLayer* bl = BulletLayer::getInstance();
-		bl->addChild(entity);
+		EntityLayer* layer = EntityLayer::getInstance();
+		layer->addChild(entity);
 	}
 
 	void removeLayer(Node * entity)
 	{
-		BulletLayer* bl = BulletLayer::getInstance();
-		bl->removeChild(entity);
+		EntityLayer* layer = EntityLayer::getInstance();
+		layer->removeChild(entity);
 	}
 
-	Card(Point position, int row)
+	Card(Point position)
 	{
-		Sprite* sprite = Sprite::create("cardbakcground\\card_icon_green.png");
+		Sprite* sprite = Sprite::create("cardbackground\\card_green.png");
 		this->setImg(sprite);
 		
 		sprite->retain();
-		sprite->setScale(1.0);
+		sprite->setScale(0.6f);
 		//this->Scale = this->getImg()->getScale();
 		sprite->setPosition(position);
 		addLayer(sprite);
+
+		string className = typeid(T).name();
+		className = className.erase(0, 6);
+		string str = string("Card\\") + className + string(".png");
+		plantSprite = Sprite::create(str);
+		auto position1 = position;
+		position1.y += 4;
+		plantSprite->setPosition(position1);
+		plantSprite->setScale(0.15f);
+		plantSprite->retain();
+		addLayer(plantSprite);
+
 		plantsTypeName = typeid(T).name();
 
 		auto listener = EventListenerTouchOneByOne::create();
@@ -82,11 +96,11 @@ public:
 				string className = typeid(T).name();
 				className = className.erase(0, 6);
 				string str = string("Card\\") + className + string(".png");
-				plantSprite = Sprite::create(str.c_str());
-				plantSprite->setScale(0.3);
-				plantSprite->setPosition(clickLocation);
-				plantSprite->retain();
-				addLayer(plantSprite);
+				plantFollowSprite = Sprite::create(str.c_str());
+				plantFollowSprite->setScale(0.3);
+				plantFollowSprite->setPosition(clickLocation);
+				plantFollowSprite->retain();
+				addLayer(plantFollowSprite);
 				cout << "click " << plantsTypeName << " card" << endl;
 				isFollowingMouse = true;
 				return true;
@@ -99,7 +113,7 @@ public:
 			if (isFollowingMouse)
 			{
 				Point clickLocation = touch->getLocation();
-				plantSprite->setPosition(clickLocation);
+				plantFollowSprite->setPosition(clickLocation);
 			}
 			//return true;
 		};
@@ -108,8 +122,24 @@ public:
 			Point clickLocation = touch->getLocation();
 			if (isFollowingMouse == true)
 			{
-				removeLayer(plantSprite);
-				PutPlant<T>(clickLocation, 3);
+				for (int i = 0; i < plantableList.size(); i++)
+				{
+					Size s = plantableList[i]->sprite->getContentSize();
+					auto position = plantableList[i]->sprite->getPosition();
+					Rect rect = Rect(position.x - s.width / 2, position.y - s.height / 2, s.width, s.height);
+
+					// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
+					if (rect.containsPoint(clickLocation) && plantableList[i]->hasPlant == false)
+					{
+						removeLayer(plantFollowSprite);
+						plantableList[i]->hasPlant = true;
+						PutPlant<T>(position, plantableList[i]->row, plantableList[i]->col);
+						return;
+					}
+				}
+				removeLayer(plantFollowSprite);
+				//auto rank = Point2Rank(clickLocation);
+				//PutPlant<T>(Rank2Point(rank.first,rank.second), rank.first, rank.second);
 			}
 			//return true;
 		};
