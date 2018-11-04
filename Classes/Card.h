@@ -52,7 +52,8 @@ public:
 		this->setImg(sprite);
 		
 		sprite->retain();
-		sprite->setScale(0.6f);
+		//sprite->setScale(0.15f);
+		sprite->setContentSize(Size(20, 30));
 		//this->Scale = this->getImg()->getScale();
 		sprite->setPosition(position);
 		addLayer(sprite);
@@ -62,9 +63,10 @@ public:
 		string str = string("Card\\") + className + string(".png");
 		plantSprite = Sprite::create(str);
 		auto position1 = position;
-		position1.y += 4;
+		position1.y += 0;
 		plantSprite->setPosition(position1);
-		plantSprite->setScale(0.15f);
+		//plantSprite->setScale(0.08f);
+		plantSprite->setContentSize(Size(15, 20));
 		plantSprite->retain();
 		addLayer(plantSprite);
 
@@ -78,7 +80,6 @@ public:
 			//cout << e->getCursorX()<<","<<e->getCursorY() << endl;
 			//auto target = static_cast<Sprite*>(touch->getCurrentTarget());
 			//Point locationInNode = target->convertToNodeSpace(e->getLocation());
-
 			Point clickLocation = touch->getLocation();
 			Size s = sprite->getContentSize();
 			Rect rect = Rect(position.x - s.width / 2, position.y - s.height / 2, s.width, s.height);
@@ -91,17 +92,19 @@ public:
 			if (rect.containsPoint(clickLocation))
 			{
 				//log("sprite began... x = %f, y = %f", clickLocation.x, clickLocation.y);
+				cout << position.x << "," << position.y << endl <<s.width<<","<<s.height<<endl;
 				//target->setOpacity(180);
 				//T* plant = new T(position, row);
 				string className = typeid(T).name();
 				className = className.erase(0, 6);
 				string str = string("Card\\") + className + string(".png");
 				plantFollowSprite = Sprite::create(str.c_str());
-				plantFollowSprite->setScale(0.3);
+				//plantFollowSprite->setScale(0.3);
+				plantFollowSprite->setContentSize(Size(15, 20));
 				plantFollowSprite->setPosition(clickLocation);
 				plantFollowSprite->retain();
 				addLayer(plantFollowSprite);
-				cout << "click " << plantsTypeName << " card" << endl;
+				//cout << "click " << plantsTypeName << " card" << endl;
 				isFollowingMouse = true;
 				return true;
 
