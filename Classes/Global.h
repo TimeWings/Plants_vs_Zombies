@@ -10,15 +10,15 @@ extern std::vector <Bullet*> readyBullet;
 extern std::vector <Plants*>readyPlants;
 extern std::vector <Zombie*> readyZombies;
 extern Map<Sprite*,Sprite*>readySun;//Ö²Îï¾«Áé£¬Ì«Ñô¾«Áé
-extern std::vector<Plantable*> plantableList;
 
 namespace map 
 {
 	extern std::pair<int, std::pair<double, double>>sunCnt;
 	extern std::pair<float, float >BlockSize;
+	extern std::pair<float, float >Deviation;
 	extern int MapRow;
 	extern int MapCol;
-	extern int BlockStatus[50][50];
+	extern std::vector<PlantStatus*>PlantStatus;
 	
 	Point Rank2Point(int row, int col);
 	extern std::pair<int, int>Point2Rank(Point point);

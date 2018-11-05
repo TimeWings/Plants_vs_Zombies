@@ -6,4 +6,5 @@ class test :public Entity
 {
 public:
 	test();
+	void drawRect();
 }; 
