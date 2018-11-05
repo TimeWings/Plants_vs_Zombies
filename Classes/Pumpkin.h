@@ -16,9 +16,8 @@ public:
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	void CheckZombies();
-	void Trample(Zombie* zombie);
+	void JumpTo(Zombie * zombie);
 	void press(Node * pSender, Zombie * zombie);
-	void FallDown(Node * pSender, Point p);
 	virtual void Die();
 	//特有的自身动画
 	void Self_Animation();

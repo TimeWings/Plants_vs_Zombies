@@ -141,7 +141,9 @@ void BasicZombie::BasicDie(Node *pSender)
 
 void BasicZombie::Damage(Node * pSender, Plants * plant)
 {
-	std::cout << plant << std::endl;
+	if (plant == NULL) std::cout << "fuck" << std::endl;
+	std::cout << plant << " " << plant->getHp() << std::endl;
+
 	if (plant->getHp() <= 0) {
 		this->Move();
 		this->setMeeting(false);

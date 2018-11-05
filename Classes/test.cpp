@@ -85,6 +85,8 @@ test::test()
 	new Card<PotatoMine>(Point(320, 290));
 	new Card<Pumpkin>(Point(340, 290));
 	new Card<NutPlus>(Point(360, 290));
+	new Card<RoadblockZombie>(Point(380, 290));
+	new Card<BasicZombie>(Point(400, 290));
 	//Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
 	//Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
 	//card->BindPlant<Mushroom>();
