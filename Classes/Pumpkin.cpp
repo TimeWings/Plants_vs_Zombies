@@ -18,7 +18,7 @@ Pumpkin::Pumpkin(Point position, int row,int col)
 	sp->retain();
 	sp->setScale(0.3);
 	sp->setPosition(position);
-	this->setHp(20);
+	this->setHp(1);
 	this->setInterval(0.5);
 	//普通植物直接播放自身动画
 	this->Self_Animation();
@@ -37,7 +37,6 @@ void Pumpkin::work()
 {
 	if (!this->isChecking)
 	{
-		std::cout << "我在工作" << std::endl;
 		CheckZombies();
 	}
 	
@@ -48,12 +47,10 @@ void Pumpkin::CheckZombies()
 	for (int i = 0; i < readyZombies.size() && !this->isJumping; i++)
 	{
 		this->isChecking = true;
-		std::cout << "检查僵尸"<< i << std::endl;
 		if (readyZombies.at(i)->getImg()->getPositionY() == this->position.y && readyZombies.at(i)->getImg()->getPositionX() - this->position.x <= this->attackRange && !this->isJumping)
 		{
 			this->isJumping = true;
-			std::cout << "宝具践踏！" << std::endl;
-			Trample(readyZombies.at(i));
+			JumpTo(readyZombies.at(i));
 			readyZombies.erase(readyZombies.begin() + i);
 			break;
 		}
@@ -62,12 +59,12 @@ void Pumpkin::CheckZombies()
 	
 }
 //践踏
-void Pumpkin::Trample(Zombie* zombie)
+void Pumpkin::JumpTo(Zombie* zombie)
 {
 	//停用自身动画
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(this->getImg());
 	//移动到僵尸上方，自身放大
-	std::cout << "我跳！" << std::endl;
+	//std::cout << "我跳！" << std::endl;
 	float height = 0;
 	float preScale = this->getImg()->getScaleX();
 	Point p = Point(zombie->getImg()->getPositionX() - this->jumpDuration*zombie->getWalkSpeed(),this->position.y + 50);
@@ -81,7 +78,7 @@ void Pumpkin::Trample(Zombie* zombie)
 	Spawn * spawn1 = Spawn::create(sequence0, jumpto, NULL);
 
 	MoveTo *moveTo = MoveTo::create(0.5, ccp(p.x, p.y - 50));
-	//CCScaleBy * scale3 = CCScaleBy::create(0.5f, 2, 0.5);
+
 	//植物下坠与x轴拉伸合成
 	Spawn * spawn3 = Spawn::create(moveTo, scale4, NULL);
 
@@ -92,29 +89,40 @@ void Pumpkin::Trample(Zombie* zombie)
 	Sequence *sequence = Sequence::create(scale1, spawn1, spawn4, NULL);
 	
 	this->getImg()->runAction(sequence);
+	//清除倭瓜
+	this->setHp(-1);
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
 }
+
+////倭瓜下落
+//void Pumpkin::FallDown(Node * pSender, Point p)
+//{
+//	std::cout << "下落！" << std::endl;
+//	MoveTo *moveTo = MoveTo::create(0.5, ccp(p.x, p.y - 50));
+//	CCActionInterval * easeSineIn = CCEaseSineIn::create(moveTo);
+//	this->getImg()->runAction(easeSineIn);
+//}
 //压扁僵尸
-void Pumpkin::press(Node * pSender,Zombie* zombie)
+void Pumpkin::press(Node * pSender, Zombie* zombie)
 {
 	zombie->getImg()->getActionManager()->removeAllActionsFromTarget(zombie->getImg());
 	float preScale = zombie->getImg()->getScaleX();
 	//压扁
-	CCScaleBy * scaleupx_ZB = CCScaleBy::create(0.4f, 3 , 0.01);
+	CCScaleBy * scaleupx_ZB = CCScaleBy::create(0.4f, 3, 0.01);
 	//僵尸位置稍微下坠
-	MoveTo *moveTo = MoveTo::create(0.5, ccp(zombie->getImg()->getPositionX() , zombie->getImg()->getPositionY() - 20));
+	MoveTo *moveTo = MoveTo::create(0.5, ccp(zombie->getImg()->getPositionX(), zombie->getImg()->getPositionY() - 20));
 	//合成队列
 	CCFiniteTimeAction * spawn = CCSpawn::create(scaleupx_ZB, moveTo, NULL);
 	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Pumpkin::clearZombie, this, zombie));
 	Sequence *sequence = Sequence::create(spawn, actionDone1, NULL);
 	zombie->getImg()->runAction(sequence);
-}
-//倭瓜下落
-void Pumpkin::FallDown(Node * pSender, Point p)
-{
-	std::cout << "下落！" << std::endl;
-	MoveTo *moveTo = MoveTo::create(0.5, ccp(p.x, p.y - 50));
-	CCActionInterval * easeSineIn = CCEaseSineIn::create(moveTo);
-	this->getImg()->runAction(easeSineIn);
 }
 
 void Pumpkin::Die()
