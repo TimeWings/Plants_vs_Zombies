@@ -22,6 +22,7 @@
 #include "Torch.h"
 #include "Cushaw.h"
 #include "Chomper.h"
+#include "Lucker.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -78,10 +79,13 @@ test::test()
 	new Card<PotatoMine>(Point(320, 290));
 	new Card<Pumpkin>(Point(340, 290));
 	new Card<NutPlus>(Point(360, 290));
+	new Card<Lucker>(Point(380, 290));
 	//Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
 	//Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
 	//card->BindPlant<Mushroom>();
 	//card->PutPlant<Mushroom>(Point(100, 200), 3);
+	for(int i = 1; i <= 5; ++i)
+	new RoadblockZombie(Rank2Point(i, 8), i, 8);
 }
 void test::drawRect()
 {

@@ -76,7 +76,7 @@ void RoadblockZombie::RoadblockAttack(PlantStatus *plantstatus)
 	Animation* an1 = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	allframe.clear();
 
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plantstatus));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Zombie::DamagePlant, this, plantstatus));
 	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, NULL);
 	rf = CCRepeatForever::create(seq);
 	rf->setTag(Animation_Tag);
@@ -148,4 +148,9 @@ void RoadblockZombie::DamageEquip(int damage)
 		setHp(getHp() - damage);
 	}
 	Attacked();
+}
+
+void RoadblockZombie::DamageZombie(int damage)
+{
+	DamageEquip(damage);
 }

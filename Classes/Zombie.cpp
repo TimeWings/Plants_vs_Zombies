@@ -129,3 +129,15 @@ CCScheduler * Zombie::getScheduler()
 {
 	return sched;
 }
+
+void Zombie::DamagePlant(Node * pSender, PlantStatus *plantstatus)
+{
+
+	if (plantstatus->plantVector.size() == 0 || strcmp(typeid(*(plantstatus->plantVector.at(0))).name(), "class Lucker") == 0) {
+		this->Move();
+		this->setMeeting(false);
+		return;
+	}
+	plantstatus->plantVector.at(0)->getHurt(1);
+	plantstatus->plantVector.at(0)->Attacked();
+}

@@ -156,29 +156,10 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		PlantStatus *p;
 		bool flag = false;
 		double zombiex = sp->getPositionX();
-		//for (int j = 0; j < readyPlants.size(); j++)
-		//{
-		//	Plants *plant = readyPlants.at(j);
-		//	Sprite *sp_plant = plant->getImg();
-		//	int row = plant->getRow();
-		//	int zombieRow = zombie->getRow();
-		//	double plantx = Rank2Point(plant->getRow(), plant->getCol()).x;
-
-		//	if (row!= zombieRow)
-		//	{
-		//		continue;
-		//	}
-		//	//std::cout << sp->getPositionY() << " " << Rank2Point(plant->getRow(), plant->getCol()).y << std::endl;
-		//	if (sp->getPositionY() == Rank2Point(plant->getRow(), plant->getCol()).y && zombiex >= plantx && zombiex - plantx <= (sp->getContentSize().width)*(sp->getScaleX()) * 0.35 + (sp_plant->getContentSize().width)*(sp_plant->getScaleX()) * 0.35)
-		//	{
-		//		flag = true;
-		//		p = plant;
-		//	}
-		//}
 		std::pair<int, int> zombie_rank = Point2Rank(sp->getPosition());
 		if (zombiex >= zombie_rank.first) {
 			PlantStatus *ps = map::find(zombie_rank.first, zombie_rank.second);
-			if (ps->plantVector.size() > 0){
+			if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0){
 				flag = true;
 				p = ps;
 			}

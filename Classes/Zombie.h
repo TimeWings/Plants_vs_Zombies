@@ -54,4 +54,5 @@ public:
 	virtual void DamageZombie(int damage) = 0;
 	virtual void DamageEquip(int damage) = 0;
 	virtual void DamageBoth(int damage) = 0;
+	void DamagePlant(Node * pSender, PlantStatus *plantstatus);
 };

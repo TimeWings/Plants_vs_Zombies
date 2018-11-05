@@ -114,9 +114,6 @@
     <ClCompile Include="..\Classes\TripleBullet.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\BasicZombie.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\StarShooter.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -179,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Lucker.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BasicZombie.cpp">
+      <Filter>src\Zombie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,9 +252,6 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\riceShooter.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\BasicZombie.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Melancholy.h">
@@ -343,6 +340,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Lucker.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BasicZombie.h">
+      <Filter>src\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
