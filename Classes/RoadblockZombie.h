@@ -7,8 +7,8 @@ class RoadblockZombie : public BasicZombie
 public:
 	RoadblockZombie();
 	RoadblockZombie(Point position, int row, int col);
-	virtual void Attack(Plants * plant);
-	void RoadblockAttack(Plants * plant);
+	virtual void Attack(PlantStatus *plantstatus);
+	void RoadblockAttack(PlantStatus *plantstatus);
 	void RoadblockMove();
 	virtual void Move();
 	virtual void DamageBoth(int damage);

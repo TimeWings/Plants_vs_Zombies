@@ -27,22 +27,22 @@ RoadblockZombie::RoadblockZombie(Point position, int row, int col)
 	readyZombies.push_back(this);
 }
 
-void RoadblockZombie::Attack(Plants *plant)
+void RoadblockZombie::Attack(PlantStatus *plantstatus)
 {
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
 		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
 	if (hasEquip())
 	{
-		RoadblockAttack(plant);
+		RoadblockAttack(plantstatus);
 	}
 	else
 	{
-		BasicAttack(plant);
+		BasicAttack(plantstatus);
 	}
 }
 
-void RoadblockZombie::RoadblockAttack(Plants * plant)
+void RoadblockZombie::RoadblockAttack(PlantStatus *plantstatus)
 {
 	Vector<SpriteFrame*> allframe;
 	std::string prestr;
@@ -76,7 +76,7 @@ void RoadblockZombie::RoadblockAttack(Plants * plant)
 	Animation* an1 = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	allframe.clear();
 
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plant));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plantstatus));
 	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, NULL);
 	rf = CCRepeatForever::create(seq);
 	rf->setTag(Animation_Tag);

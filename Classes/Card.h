@@ -152,36 +152,6 @@ public:
 		//listener->setSwallowTouches(false);
 		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, sprite);
 	}
-
-	template <class T>
-	void Register(int row, int col)
-	{
-		//PutPlant<T>(Rank2Point(row, col), row, col);
-		PlantStatus* ps = find(row, col);
-		if (ps != NULL)
-		{
-			if ((strcmp(typeid(T).name(), "class Cushaw") == 0)&& ps->plantVector.size() != 0)
-			{
-				std::cout << typeid(T).name();
-				ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
-				//ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
-			}
-			else if (ps->plantVector.size() != 0)
-			{
-				return;
-			}
-			else 
-			{
-				//PutPlant<T>(Rank2Point(row, col), row, col);
-				//std::cout << typeid(T).name();
-				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
-			}
-		}
-		else 
-		{
-			return;
-		}
-	}
 	PlantStatus* find(int row, int col)
 	{
 		for (PlantStatus* x : plantstatus)
@@ -193,5 +163,52 @@ public:
 		}
 		return NULL;
 	}
+	bool find1(PlantStatus* plantstatus, char* name)
+	{
+		for (Plants* x : plantstatus->plantVector)
+		{
+			if (strcmp(typeid(*x).name(), name) == 0)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	template <class T>
+	void Register(int row, int col)
+	{
+		PlantStatus* ps = find(row, col);
+		if (ps != NULL)
+		{
+			if ((strcmp(typeid(T).name(), "class Cushaw") == 0)&& ps->plantVector.size() != 0&&!find1(ps,"class Cushaw"))
+			{
+				std::cout << "可以种植南瓜"<<std::endl;
+				ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
+				//ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+			}
+			else if (ps->plantVector.size() == 1 && find1(ps, "class Cushaw")&& (strcmp(typeid(T).name(), "class Cushaw") != 0))
+			{
+				std::cout << "种植成功" << std::endl;
+				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+			}
+			else if (ps->plantVector.size() != 0)
+			{
+				std::cout << "不可以种植" << std::endl;
+				return;
+			}
+			else 
+			{
+				std::cout << "种植成功" << std::endl;
+				//PutPlant<T>(Rank2Point(row, col), row, col);
+				//std::cout << typeid(T).name();
+				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+			}
+		}
+		else 
+		{
+			return;
+		}
+	}
+	
 };
 
