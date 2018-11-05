@@ -42,6 +42,7 @@
 #include <direct.h>
 USING_NS_CC;
 using namespace std;
+using namespace map;
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -57,10 +58,20 @@ bool HelloWorld::init()
     {
         return false;
     }
+	initPlantStatus();
 	preLoading();
     return true;
 }
-
+void HelloWorld::initPlantStatus()
+{
+	for (int i = 1; i <= MapRow; i++)
+	{
+		for (int j = 1; j <= MapCol; j++)
+		{
+			plantstatus.push_back(new PlantStatus(i, j));
+		}
+	}
+}
 void HelloWorld::preLoading()
 {
 	vector<string>files;

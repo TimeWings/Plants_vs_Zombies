@@ -3,7 +3,7 @@
 #include "Bullet.h"
 #include "Plants.h"
 #include "Zombie.h"
-#include "Plantable.h"
+#include "PlantStatus.h"
 #define Icing 0
 USING_NS_CC;
 extern std::vector <Bullet*> readyBullet;
@@ -18,9 +18,10 @@ namespace map
 	extern std::pair<float, float >Deviation;
 	extern int MapRow;
 	extern int MapCol;
-	extern std::vector<PlantStatus*>PlantStatus;
-	
-	Point Rank2Point(int row, int col);
+	extern std::vector<PlantStatus*>plantstatus;
+	extern PlantStatus* find(int row, int col);
+	extern void RemoveRegister(Plants* plant,int row, int col);
+	extern Point Rank2Point(int row, int col);
 	extern std::pair<int, int>Point2Rank(Point point);
 }
 

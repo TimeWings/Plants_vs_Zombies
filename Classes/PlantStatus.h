@@ -1,14 +1,14 @@
 #pragma once
 #include "cocos2d.h"
-
+#include "Plants.h"
 USING_NS_CC;
 class PlantStatus
 {
 public:
-	PlantStatus(Point position);
+	PlantStatus(int row,int col);
 	~PlantStatus();
-	int row;
-	int col;
-	
+	int _row;
+	int _col;
+	std::vector<Plants*> plantVector;
 };
 

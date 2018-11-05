@@ -10,7 +10,3 @@ public:
 	bool Register(int row, int col);
 
 };
-
-PlantList::PlantList(Point position)
-{
-}

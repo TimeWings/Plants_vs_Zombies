@@ -7,9 +7,10 @@ using namespace std;
 using namespace map;
 //vector<Plantable*> plantableList;
 
-PlantStatus::PlantStatus(Point position)
+PlantStatus::PlantStatus(int row,int col)
 {
-	
+	_row = row;
+	_col = col;
 }
 
 

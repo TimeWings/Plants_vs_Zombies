@@ -34,6 +34,8 @@ public:
 
     virtual bool init();
 
+	void initPlantStatus();
+
 	void preLoading();
 
 	void ResourceCallBack(cocos2d::Texture2D *texture);

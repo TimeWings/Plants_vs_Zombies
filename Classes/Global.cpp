@@ -1,18 +1,49 @@
 #include "Global.h"
+#include <iostream>
 std::vector <Bullet*> readyBullet;
 std::vector <Plants*> readyPlants;
 std::vector <Zombie*> readyZombies;
 Map<Sprite*, Sprite*>readySun;
-std::vector<Plantable*> plantableList;
 namespace map
 {
 	std::pair<int, std::pair<double, double> >sunCnt(0, std::make_pair(0, 0));
 	std::pair<float, float >BlockSize(38.0f, 46.0f);
-	std::pair<float, float >Deviation(95, 12);
+	std::pair<float, float >Deviation(95, 35);
+	std::vector<PlantStatus*>plantstatus;
 	int MapRow = 5;
 	int MapCol = 9;
 	int BlockStatus[50][50] = { 0 };
-
+	PlantStatus* find(int row, int col)
+	{
+		for (PlantStatus* x : plantstatus)
+		{
+			if (x->_row == row && x->_col == col)
+			{
+				return x;
+			}
+		}
+		return NULL;
+	}
+	void RemoveRegister(Plants* plant, int row, int col)
+	{
+		PlantStatus* ps = find(row, col);
+		if (ps != NULL)
+		{
+			for (int i = 0; i < ps->plantVector.size(); i++)
+			{
+				if (ps->plantVector.at(i) == plant)
+				{
+					ps->plantVector.erase(ps->plantVector.begin() + i);
+					std::cout << plant << "从植物列表移除成功" << std::endl;
+					break;
+				}
+			}
+		}
+		else
+		{
+			return;
+		}
+	}
 	Point Rank2Point(int row, int col)
 	{
 		Point a;

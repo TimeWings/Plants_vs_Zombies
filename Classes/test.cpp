@@ -1,7 +1,6 @@
 #include "test.h"
 #include "Global.h"
 #include "Background.h"
-#include "Plantable.h"
 #include "IceShooter.h"
 #include "PotatoMine.h"
 #include "Pumpkin.h"
@@ -62,7 +61,7 @@ test::test()
 	
 
 	new Card<IceShooter>(Point(20, 290));
-	/*new Card<Mushroom>(Point(40, 290));
+	new Card<Mushroom>(Point(40, 290));
 	new Card<PeaShooter>(Point(60, 290));
 	new Card<Melancholy>(Point(80, 290));
 	new Card<Sunflower>(Point(100, 290));
@@ -78,7 +77,7 @@ test::test()
 	new Card<Chomper>(Point(300, 290));
 	new Card<PotatoMine>(Point(320, 290));
 	new Card<Pumpkin>(Point(340, 290));
-	new Card<NutPlus>(Point(360, 290));*/
+	new Card<NutPlus>(Point(360, 290));
 	//Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
 	//Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
 	//card->BindPlant<Mushroom>();

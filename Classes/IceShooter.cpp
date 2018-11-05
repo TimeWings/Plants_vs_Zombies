@@ -3,6 +3,10 @@
 #include "IceBullet.h"
 #include <iostream>
 
+IceShooter::IceShooter()
+{
+}
+
 IceShooter::IceShooter(Point position,int row,int col)
 {
 	this->setRow(row);

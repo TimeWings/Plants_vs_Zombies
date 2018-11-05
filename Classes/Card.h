@@ -13,9 +13,6 @@ class Card :public Entity
 public:
 	Card();
 	~Card();
-
-	//template <class T>
-	
 	string plantsTypeName;
 	bool isFollowingMouse = false;
 	int cost;
@@ -29,9 +26,10 @@ public:
 	}
 
 	template <class T>
-	void PutPlant(Point position, int row, int col)
+	T* PutPlant(Point position, int row, int col)
 	{
-		T* t = new T(position, row, col);
+		T*t = new T(position, row, col);
+		return t;
 	}
 
 	void addLayer(Node * entity)
@@ -45,9 +43,9 @@ public:
 		EntityLayer* layer = EntityLayer::getInstance();
 		layer->removeChild(entity);
 	}
-
 	Card(Point position)
 	{
+		
 		Sprite* sprite = Sprite::create("cardbackground\\card_green.png");
 		this->setImg(sprite);
 		
@@ -145,14 +143,55 @@ public:
 				isFollowingMouse = false;
 				plantFollowSprite->removeFromParent();
 				auto rank = Point2Rank(clickLocation);
-				//std::cout << "第" << rank.first << "行" << "     第" << rank.second << "列" << std::endl;
-				PutPlant<T>(Rank2Point(rank.first,rank.second), rank.first, rank.second);
+				//PutPlant<T>(Rank2Point(rank.first, rank.second), rank.first, rank.second);
+				Register<T>(rank.first, rank.second);
 			}
 			//return true;
 		};
 		//this->setTouchEnabled(true);
 		//listener->setSwallowTouches(false);
 		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, sprite);
+	}
+
+	template <class T>
+	void Register(int row, int col)
+	{
+		//PutPlant<T>(Rank2Point(row, col), row, col);
+		PlantStatus* ps = find(row, col);
+		if (ps != NULL)
+		{
+			if ((strcmp(typeid(T).name(), "class Cushaw") == 0)&& ps->plantVector.size() != 0)
+			{
+				std::cout << typeid(T).name();
+				ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
+				//ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+			}
+			else if (ps->plantVector.size() != 0)
+			{
+				return;
+			}
+			else 
+			{
+				//PutPlant<T>(Rank2Point(row, col), row, col);
+				//std::cout << typeid(T).name();
+				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+			}
+		}
+		else 
+		{
+			return;
+		}
+	}
+	PlantStatus* find(int row, int col)
+	{
+		for (PlantStatus* x : plantstatus)
+		{
+			if (x->_row == row && x->_col == col)
+			{
+				return x;
+			}
+		}
+		return NULL;
 	}
 };
 
