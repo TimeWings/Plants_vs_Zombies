@@ -26,7 +26,6 @@
 #include <iostream>
 #include <typeinfo>
 using namespace map;
-
 test::test()
 {
 	new Background();
@@ -38,11 +37,11 @@ test::test()
 	new BasicZombie(Rank2Point(2, 6), 2, 6);
 	new BasicZombie(Rank2Point(1, 6), 1, 6);*/
 	//new RoadblockZombie(Rank2Point(6, 6), 6, 6);
-	new RoadblockZombie(Rank2Point(5, 6), 5, 6);
+	/*new RoadblockZombie(Rank2Point(5, 6), 5, 6);
 	new RoadblockZombie(Rank2Point(4, 6), 4, 6);
 	new RoadblockZombie(Rank2Point(3, 6), 3, 6);
 	new RoadblockZombie(Rank2Point(2, 6), 2, 6);
-	new RoadblockZombie(Rank2Point(1, 6), 1, 6);
+	new RoadblockZombie(Rank2Point(1, 6), 1, 6);*/
 	//new BasicZombie(Rank2Point(3, 4), 3, 4);
 	//new BasicZombie(Rank2Point(3, 10), 3, 10);
 	//new BasicZombie(Rank2Point(3, 6), 3, 6);
@@ -59,16 +58,11 @@ test::test()
 	//Plants* plant4 = new IceShooter(Point(60, 120),1,1);
 	//Plants* plant5 = new IceShooter(Point(60, 120),3);
 	//Plants* plant5 = new Mushroom(Point(200, 120), 3);
-	for (int i = 1; i <= 9; i++)
-		for (int j = 1; j <= 5; j++)
-		{
-			auto plant = new Plantable(Point(75 + 38.5f * i, -5 + 45.0f*j - 3));
-			plant->row = 6-j;
-			plant->col = 10-i;
-			plantableList.push_back(plant);
-		}
+	drawRect();
+	
+
 	new Card<IceShooter>(Point(20, 290));
-	new Card<Mushroom>(Point(40, 290));
+	/*new Card<Mushroom>(Point(40, 290));
 	new Card<PeaShooter>(Point(60, 290));
 	new Card<Melancholy>(Point(80, 290));
 	new Card<Sunflower>(Point(100, 290));
@@ -84,9 +78,34 @@ test::test()
 	new Card<Chomper>(Point(300, 290));
 	new Card<PotatoMine>(Point(320, 290));
 	new Card<Pumpkin>(Point(340, 290));
-	new Card<NutPlus>(Point(360, 290));
+	new Card<NutPlus>(Point(360, 290));*/
 	//Card<Mushroom>* card = new Card<Mushroom>(Point(200, 300), 3);
 	//Card<PeaShooter>* card2 = new Card<PeaShooter>(Point(300, 300), 3);
 	//card->BindPlant<Mushroom>();
 	//card->PutPlant<Mushroom>(Point(100, 200), 3);
+}
+void test::drawRect()
+{
+	DrawNode* drawNode = DrawNode::create();
+	EntityLayer* bl = EntityLayer::getInstance();
+	
+	for (int i = 1; i <=MapRow; i++)
+	{
+		for (int j = 1; j <= MapCol; j++)
+		{
+			Vec2 point[4];
+			Point Center = Rank2Point(i, j);
+			point[0] = Point(Center.x-BlockSize.first/2,Center.y-BlockSize.second/2);
+			point[1] = Point(Center.x - BlockSize.first / 2, Center.y + BlockSize.second / 2);
+			point[2] = Point(Center.x + BlockSize.first / 2, Center.y + BlockSize.second / 2);
+			point[3] = Point(Center.x + BlockSize.first / 2, Center.y - BlockSize.second / 2);
+
+			//绘制空心多边形
+			//填充颜色：Color4F(1, 0, 0, 0), 透明
+			//轮廓颜色：Color4F(0, 1, 0, 1), 绿色
+			drawNode->drawPolygon(point, 4, Color4F(1, 0, 0, 0), 1, Color4F(0, 1, 0, 1));
+			//std::cout << "hahahahah" << std::endl;
+		}
+	}
+	bl->addChild(drawNode,100);
 }
