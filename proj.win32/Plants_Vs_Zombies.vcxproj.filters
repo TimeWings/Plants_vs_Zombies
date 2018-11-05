@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Zombie">
+      <UniqueIdentifier>{a6f50c60-35ad-47c4-bf1e-4d1a37aad8d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -102,13 +105,7 @@
     <ClCompile Include="..\Classes\riceShooter.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\RoadblockZombie.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Sunflower.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Zombie.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TripleShooter.cpp">
@@ -118,12 +115,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BasicZombie.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Roadblock.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ZombieEquipment.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\StarShooter.cpp">
@@ -170,6 +161,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\PlantList.h">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Zombie.cpp">
+      <Filter>src\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ZombieEquipment.cpp">
+      <Filter>src\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RoadblockZombie.cpp">
+      <Filter>src\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Roadblock.cpp">
+      <Filter>src\Zombie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,18 +251,6 @@
     <ClInclude Include="..\Classes\BasicZombie.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Roadblock.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\RoadblockZombie.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Zombie.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ZombieEquipment.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Melancholy.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -331,6 +322,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PlantStatus.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Zombie.h">
+      <Filter>src\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ZombieEquipment.h">
+      <Filter>src\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RoadblockZombie.h">
+      <Filter>src\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Roadblock.h">
+      <Filter>src\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

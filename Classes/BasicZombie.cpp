@@ -31,15 +31,15 @@ BasicZombie::BasicZombie(Point position,int row,int col)
 	readyZombies.push_back(this);
 }
 
-void BasicZombie::Attack(Plants *plant)
+void BasicZombie::Attack(PlantStatus *plantstatus)
 {
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
 		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
-	BasicAttack(plant);
+	BasicAttack(plantstatus);
 }
 
-void BasicZombie::BasicAttack(Plants * plant)
+void BasicZombie::BasicAttack(PlantStatus *plantstatus)
 {
 	Vector<SpriteFrame*> allframe;
 	std::string prestr;
@@ -95,7 +95,7 @@ void BasicZombie::BasicAttack(Plants * plant)
 		allframe.pushBack(frame);
 	}
 	Animation* an3 = Animation::createWithSpriteFrames(allframe, this->getInterval());
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plant));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plantstatus));
 	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, Animate::create(an2), actionDone, Animate::create(an3), NULL);
 	rf = CCRepeatForever::create(seq);
 	rf->setTag(Animation_Tag);
@@ -139,18 +139,16 @@ void BasicZombie::BasicDie(Node *pSender)
 	sp->runAction(sequence);
 }
 
-void BasicZombie::Damage(Node * pSender, Plants * plant)
+void BasicZombie::Damage(Node * pSender, PlantStatus *plantstatus)
 {
-	if (plant == NULL) std::cout << "fuck" << std::endl;
-	std::cout << plant << " " << plant->getHp() << std::endl;
-
-	if (plant->getHp() <= 0) {
+	
+	if (plantstatus->plantVector.size() == 0) {
 		this->Move();
 		this->setMeeting(false);
 		return;
 	}
-	plant->getHurt(1);
-	plant->Attacked();
+	plantstatus->plantVector.at(0)->getHurt(1);
+	plantstatus->plantVector.at(0)->Attacked();
 }
 
 void BasicZombie::Attacked()

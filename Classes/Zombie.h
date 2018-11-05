@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "Plants.h"
 #include "ZombieEquipment.h"
+#include "PlantStatus.h"
 USING_NS_CC;
 
 #define Animation_Tag 1
@@ -45,7 +46,7 @@ public:
 	ZombieEquipment *getEquip();
 	bool hasEquip();
 	CCScheduler* getScheduler();
-	virtual void Attack(Plants *plant) = 0;
+	virtual void Attack(PlantStatus *plantstatus) = 0;
 	virtual void Die(Node * pSender) = 0;
 	virtual void Attacked() = 0;
 	virtual void LostHead() = 0;
