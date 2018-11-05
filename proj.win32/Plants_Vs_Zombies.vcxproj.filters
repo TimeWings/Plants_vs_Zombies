@@ -84,9 +84,6 @@
     <ClCompile Include="..\Classes\IceShooter.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\LancerGun.cpp">
-      <Filter>src\Entity\Plants</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Landslock.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
@@ -192,6 +189,9 @@
     <ClCompile Include="..\Classes\Entity.cpp">
       <Filter>src\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\LancerGun.cpp">
+      <Filter>src\Entity\Bullets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -243,9 +243,6 @@
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\IceShooter.h">
-      <Filter>src\Entity\Plants</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\LancerGun.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Landslock.h">
@@ -355,6 +352,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Entity.h">
       <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ZombieCard.h">
+      <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LancerGun.h">
+      <Filter>src\Entity\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

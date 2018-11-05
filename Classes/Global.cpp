@@ -54,8 +54,22 @@ namespace map
 	std::pair<int, int> Point2Rank(Point point)
 	{
 		std::pair<int, int>rank;
-		rank.first = MapRow - (int)((point.y- Deviation.second) / BlockSize.second) ;
-		rank.second = (int)((point.x- Deviation.first)/ BlockSize.first) + 1;
+		if (point.y - Deviation.second < 0)
+		{
+			rank.first = MapRow - (int)((point.y - Deviation.second) / BlockSize.second) + 1;
+		}
+		else 
+		{
+			rank.first = MapRow - (int)((point.y - Deviation.second) / BlockSize.second);
+		}
+		if (point.x - Deviation.first < 0)
+		{
+			rank.second = (int)((point.x - Deviation.first) / BlockSize.first) - 1;
+		}
+		else
+		{
+			rank.second = (int)((point.x - Deviation.first) / BlockSize.first) + 1;
+		}
 		return rank;
 	}
 

@@ -84,7 +84,6 @@ public:
 			Size s = sprite->getContentSize();
 			Rect rect = Rect(position.x - s.width*sprite->getScaleX() / 2, position.y - s.height*sprite->getScaleX() / 2, s.width*sprite->getScaleX(), s.height*sprite->getScaleX());
 			auto rank = Point2Rank(clickLocation);
-			std::cout << "第" << rank.first << "行" << "     第" << rank.second << "列" << std::endl;
 			//cout << target->getPositionX() << "," << target->getPositionY() << endl;
 			//cout << locationInNode.x << "," << locationInNode.y << endl;
 			//cout << position.x << "," << position.y << endl;
@@ -144,7 +143,6 @@ public:
 				isFollowingMouse = false;
 				plantFollowSprite->removeFromParent();
 				auto rank = Point2Rank(clickLocation);
-				//PutPlant<T>(Rank2Point(rank.first, rank.second), rank.first, rank.second);
 				Register<T>(rank.first, rank.second);
 			}
 			//return true;
@@ -178,6 +176,12 @@ public:
 	template <class T>
 	void Register(int row, int col)
 	{
+		std::cout << "col:" << col << std::endl;
+		if (row > MapRow || row < 1 || col<1 || col>MapCol)
+		{
+			std::cout << "不可以种植" << std::endl;
+			return;
+		}
 		PlantStatus* ps = find(row, col);
 		if (ps != NULL)
 		{
