@@ -183,7 +183,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\PeaBullet.cpp" />
     <ClCompile Include="..\Classes\PeaBulletPlus.cpp" />
     <ClCompile Include="..\Classes\PeaShooter.cpp" />
-    <ClCompile Include="..\Classes\PlantList.h" />
     <ClCompile Include="..\Classes\PlantStatus.cpp" />
     <ClCompile Include="..\Classes\Plants.cpp" />
     <ClCompile Include="..\Classes\PotatoBullet.cpp" />
