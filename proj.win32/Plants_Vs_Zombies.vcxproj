@@ -153,6 +153,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Background.cpp" />
     <ClCompile Include="..\Classes\BasicZombie.cpp" />
     <ClCompile Include="..\Classes\Bullet.cpp" />
+    <ClCompile Include="..\Classes\Card.cpp" />
     <ClCompile Include="..\Classes\Chomper.cpp" />
     <ClCompile Include="..\Classes\Cushaw.cpp" />
     <ClCompile Include="..\Classes\Doom_shroom.cpp" />
@@ -170,6 +171,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Lancer.cpp" />
     <ClCompile Include="..\Classes\LancerGun.cpp" />
     <ClCompile Include="..\Classes\Landslock.cpp" />
+    <ClCompile Include="..\Classes\Lucker.cpp" />
     <ClCompile Include="..\Classes\Melancholy.cpp" />
     <ClCompile Include="..\Classes\MelancholyBullet.cpp" />
     <ClCompile Include="..\Classes\Mushroom.cpp" />
@@ -226,6 +228,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Lancer.h" />
     <ClInclude Include="..\Classes\LancerGun.h" />
     <ClInclude Include="..\Classes\Landslock.h" />
+    <ClInclude Include="..\Classes\Lucker.h" />
     <ClInclude Include="..\Classes\Melancholy.h" />
     <ClInclude Include="..\Classes\MelancholyBullet.h" />
     <ClInclude Include="..\Classes\Mushroom.h" />
