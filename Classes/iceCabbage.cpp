@@ -23,6 +23,7 @@ iceCabbage::iceCabbage(Point position, int row, int col)
 
 void iceCabbage::Die()
 {
+	this->setHp(-1);
 	//Ã·Ü½À­Éì
 	Sprite *sp = this->getImg();
 	float preScale = sp->getScaleX();
@@ -67,7 +68,8 @@ void iceCabbage::creatSprite()
 		//¸²¸ÇÒ»²ãµ­À¶É«
 		CCActionInterval * tintto2 = CCTintTo::create(3, 0, 255, 255);
 		zombie->getImg()->runAction(tintto2);
-		zombie->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, zombie->getImg());
+		//½©Ê¬±ù¶³
+		zombie->getScheduler()->setTimeScale(0);
 
 		//²úÉú±ù¶³¾«Áé
 		char str[100] = { 0 };
@@ -111,5 +113,5 @@ void iceCabbage::clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zomb
 	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
 	zombie->getImg()->runAction(tintto2);
 	//½©Ê¬»Ö¸´ÐÐ¶¯
-	zombie->Move();
+	zombie->getScheduler()->setTimeScale(1);
 }
