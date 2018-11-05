@@ -95,7 +95,7 @@ void BasicZombie::BasicAttack(PlantStatus *plantstatus)
 		allframe.pushBack(frame);
 	}
 	Animation* an3 = Animation::createWithSpriteFrames(allframe, this->getInterval());
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Damage, this, plantstatus));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Zombie::DamagePlant, this, plantstatus));
 	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, Animate::create(an2), actionDone, Animate::create(an3), NULL);
 	rf = CCRepeatForever::create(seq);
 	rf->setTag(Animation_Tag);
@@ -137,18 +137,6 @@ void BasicZombie::BasicDie(Node *pSender)
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
 	Sequence *sequence = Sequence::create(CallFuncN::create(CC_CALLBACK_1(BasicZombie::clear_from_vector, this)), Animate::create(an), fadeout, CallFuncN::create(CC_CALLBACK_1(BasicZombie::clear, this)), NULL);
 	sp->runAction(sequence);
-}
-
-void BasicZombie::Damage(Node * pSender, PlantStatus *plantstatus)
-{
-	
-	if (plantstatus->plantVector.size() == 0) {
-		this->Move();
-		this->setMeeting(false);
-		return;
-	}
-	plantstatus->plantVector.at(0)->getHurt(1);
-	plantstatus->plantVector.at(0)->Attacked();
 }
 
 void BasicZombie::Attacked()

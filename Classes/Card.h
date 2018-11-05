@@ -3,6 +3,7 @@
 #include <typeinfo>
 #include "Entity.h"
 #include "EntityLayer.h"
+#include "PlantStatus.h"
 #include "Plants.h"
 using namespace std;
 using namespace cocos2d;
