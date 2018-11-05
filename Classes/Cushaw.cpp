@@ -1,6 +1,6 @@
 #include "Cushaw.h"
 #include "Global.h"
-
+#include "EntityLayer.h"
 Cushaw::Cushaw(Point position, int row, int col)
 {
 	this->setRow(row);
@@ -16,7 +16,8 @@ Cushaw::Cushaw(Point position, int row, int col)
 	//普通植物直接播放自身动画
 	this->Self_Animation();
 	//添加到植物层
-	addLayer(sp);
+	EntityLayer* bl = EntityLayer::getInstance();
+	bl->addChild(sp, this->getRow() * 3 - 2);
 	//添加到已创建植物容器，其他行为操作都在此处
 	readyPlants.push_back(this);
 }

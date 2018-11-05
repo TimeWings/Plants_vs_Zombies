@@ -68,8 +68,9 @@ void Plants::setNewBirthTime()
 
 void Plants::addLayer(Node * entity)
 {
+	//row*3-1留给僵尸	row*3-2留给南瓜     row*3-3留给植物
 	EntityLayer* bl = EntityLayer::getInstance();
-	bl->addChild(entity, _row*2-2);
+	bl->addChild(entity, _row*3-3);
 }
 
 
