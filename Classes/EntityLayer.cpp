@@ -2,7 +2,6 @@
 #include "Global.h"
 #include "Zombie.h"
 #include "Bullet.h"
-#include "PaulBullet.h"
 #include <stdio.h>
 #include <math.h>
 #include <sys/timeb.h>
@@ -26,7 +25,6 @@ EntityLayer* EntityLayer::create()
 }
 bool EntityLayer::init()
 {
-	this->PaulReady = false;
 	schedule(schedule_selector(EntityLayer::Check_Collision), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	//这里写时间定时器
