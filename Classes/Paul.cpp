@@ -117,6 +117,7 @@ void Paul::Self_Animation()
 
 bool Paul::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_event)
 {
+	std::cout << "nimasile" << std::endl;
 	this->touchPos = touch->getLocation();
 	//²úÉú×Óµ¯
 	if (canShoot && shootReady)
@@ -163,7 +164,8 @@ bool Paul::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_event)
 		Sprite* plant = x->getImg();
 		if (touchPos.x > plant->getPositionX() - plant->getContentSize().width/2 * plant->getScaleX() && touchPos.x < plant->getPositionX() + plant->getContentSize().width/2 * plant->getScaleX()
 			&& touchPos.y < plant->getPositionY() + plant->getContentSize().height/2 * plant->getScaleY() && touchPos.y>plant->getPositionY() - plant->getContentSize().height/2 * plant->getScaleY()
-			&& canShoot)
+			&& canShoot
+			&& strcmp(typeid(*x).name(),"class Paul") == 0)
 		{
 			if (p == NULL)
 			{
