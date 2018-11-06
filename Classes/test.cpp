@@ -28,6 +28,7 @@
 #include "Landslock.h"
 #include "riceShooter.h"
 #include "Paul.h"
+#include "Shovel.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -52,12 +53,12 @@ test::test()
 	new Card<Chomper>(Point(300, 290));
 	new Card<PotatoMine>(Point(320, 290));
 	new Card<Pumpkin>(Point(340, 290));
-	new Card<NutPlus>(Point(360, 290));
-	new Card<Lucker>(Point(380, 290));
-	new Card<DoublePeaShooter>(Point(400, 290));
-	new Card<Lancer>(Point(420, 290));
-	new ZombieCard<RoadblockZombie>(Point(440, 290));
-	new ZombieCard<BasicZombie>(Point(460, 290));
+	new Card<Lucker>(Point(360, 290));
+	new Card<DoublePeaShooter>(Point(380, 290));
+	new Card<Lancer>(Point(400, 290));
+	new ZombieCard<RoadblockZombie>(Point(420, 290));
+	new ZombieCard<BasicZombie>(Point(440, 290));
+	new Card<Shovel>(Point(460, 290));
 	new Card<Nut>(Point(20, 250));
 	new Card<Landslock>(Point(40, 250));
 	new Card<riceShooter>(Point(60, 250));

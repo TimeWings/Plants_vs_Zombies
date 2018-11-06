@@ -171,9 +171,6 @@
     <ClCompile Include="..\Classes\Global.cpp">
       <Filter>src\Entity\Map</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Card.cpp">
-      <Filter>src\Entity\Map</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Background.cpp">
       <Filter>src\Entity\Map</Filter>
     </ClCompile>
@@ -197,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\HeroLuckerBullet.cpp">
       <Filter>src\Entity\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Shovel.cpp">
+      <Filter>src\Entity\Plants</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HeroLuckerBullet.h">
       <Filter>src\Entity\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Shovel.h">
+      <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

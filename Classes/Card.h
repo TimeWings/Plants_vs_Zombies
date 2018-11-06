@@ -34,10 +34,10 @@ public:
 		return t;
 	}
 
-	void addLayer(Node * entity)
+	void addLayer(Node * entity,int order=0)
 	{
 		EntityLayer* layer = EntityLayer::getInstance();
-		layer->addChild(entity);
+		layer->addChild(entity,order);
 	}
 
 	void removeLayer(Node * entity)
@@ -88,11 +88,11 @@ public:
 					string className = typeid(T).name();
 					className = className.erase(0, 6);
 					string str = string("Card\\") + className + string(".png");
-					plantFollowSprite = Sprite::create(str.c_str());
+					plantFollowSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str.c_str()));
 					plantFollowSprite->setContentSize(Size(15, 20));
 					plantFollowSprite->setPosition(clickLocation);
 					plantFollowSprite->retain();
-					addLayer(plantFollowSprite);
+					addLayer(plantFollowSprite,200);
 					isFollowingMouse = true;
 					return true;
 
@@ -112,25 +112,6 @@ public:
 			
 			return false;
 		};
-		/*listener->onTouchMoved = [=](Touch* touch, Event *event)
-		{
-			if (isFollowingMouse)
-			{
-				Point clickLocation = touch->getLocation();
-				plantFollowSprite->setPosition(clickLocation);
-			}
-		};*/
-		/*listener->onTouchEnded = [=](Touch* touch, Event *event)
-		{
-			Point clickLocation = touch->getLocation();
-			if (isFollowingMouse == true)
-			{
-				isFollowingMouse = false;
-				plantFollowSprite->removeFromParent();
-				auto rank = Point2Rank(clickLocation);
-				Register<T>(rank.first, rank.second);
-			}
-		};*/
 		listener1->onMouseMove = [=]( Event *event)
 		{
 			if (isFollowingMouse)
@@ -181,6 +162,11 @@ public:
 				std::cout << "可以种植南瓜"<<std::endl;
 				ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
 				//ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+			}
+			else if (strcmp(typeid(T).name(), "class Shovel") == 0)
+			{
+				std::cout << "铲子种植成功" << std::endl;
+				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 			}
 			else if ((strcmp(typeid(T).name(), "class Paul") == 0))
 			{

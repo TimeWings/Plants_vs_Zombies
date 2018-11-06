@@ -105,7 +105,7 @@ public:
 					isFollowingMouse = false;
 					plantFollowSprite->removeFromParent();
 					auto rank = Point2Rank(clickLocation);
-					PutPlant<T>(clickLocation, rank.first, rank.second);
+					PutPlant<T>(Rank2Point(rank.first,rank.second), rank.first, rank.second);
 					
 				}
 			}
