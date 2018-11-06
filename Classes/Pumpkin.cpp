@@ -47,7 +47,10 @@ void Pumpkin::CheckZombies()
 	for (int i = 0; i < readyZombies.size() && !this->isJumping; i++)
 	{
 		this->isChecking = true;
-		if (readyZombies.at(i)->getImg()->getPositionY() == this->position.y && readyZombies.at(i)->getImg()->getPositionX() - this->position.x <= this->attackRange && !this->isJumping)
+		if (readyZombies.at(i)->getImg()->getPositionY() == this->position.y 
+			&& readyZombies.at(i)->getImg()->getPositionX() - this->position.x <= this->attackRange 
+			&& readyZombies.at(i)->getImg()->getPositionX() - this->position.x >= 0
+			&& !this->isJumping)
 		{
 			this->isJumping = true;
 			JumpTo(readyZombies.at(i));
@@ -89,8 +92,7 @@ void Pumpkin::JumpTo(Zombie* zombie)
 	Sequence *sequence = Sequence::create(scale1, spawn1, spawn4, NULL);
 	
 	this->getImg()->runAction(sequence);
-	//Çå³ýÙÁ¹Ï
-	this->setHp(-1);
+	
 	for (int i = 0; i < readyPlants.size(); i++)
 	{
 		if (readyPlants.at(i) == this)
@@ -109,6 +111,7 @@ void Pumpkin::JumpTo(Zombie* zombie)
 //	CCActionInterval * easeSineIn = CCEaseSineIn::create(moveTo);
 //	this->getImg()->runAction(easeSineIn);
 //}
+
 //Ñ¹±â½©Ê¬
 void Pumpkin::press(Node * pSender, Zombie* zombie)
 {
@@ -157,7 +160,8 @@ void Pumpkin::clearZombie(Node * pSender, Zombie* zombie)
 {
 	zombie->getImg()->removeFromParent();
 	//ÙÁ¹ÏÒ²ËÀµô
-	Die();
+	//Çå³ýÙÁ¹Ï
+	this->setHp(-1);
 }
 
 void Pumpkin::clear(Node * pSender)
