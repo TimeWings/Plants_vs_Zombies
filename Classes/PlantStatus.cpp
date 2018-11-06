@@ -7,10 +7,11 @@ using namespace std;
 using namespace map;
 //vector<Plantable*> plantableList;
 
-PlantStatus::PlantStatus(int row,int col)
+PlantStatus::PlantStatus(int row,int col,int BlockType)
 {
 	_row = row;
 	_col = col;
+	_BlockType = BlockType;
 }
 
 

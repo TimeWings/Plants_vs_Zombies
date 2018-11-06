@@ -5,7 +5,8 @@ USING_NS_CC;
 class PlantStatus
 {
 public:
-	PlantStatus(int row,int col);
+	int _BlockType = 0;//0为陆地,1为水面
+	PlantStatus(int row,int col,int BlockType);
 	~PlantStatus();
 	int _row;
 	int _col;
