@@ -32,7 +32,7 @@ bool riceShooter::isWorking()
 	Sprite *sp = this->getImg();
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
-		if (readyZombies.at(i)->getRow() == this->getRow())
+		if (readyZombies.at(i)->getRow() == this->getRow() && this->getImg()->getPositionX() <= readyZombies.at(i)->getImg()->getPositionX())
 		{
 			return true;
 		}
