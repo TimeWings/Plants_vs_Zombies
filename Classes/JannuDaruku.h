@@ -21,4 +21,7 @@ public:
 	virtual void CreateBullet();
 	//清理精灵
 	void clear(Node * pSender);
+
+	// 通过 Plants 继承
+	virtual void Attacked() override;
 };

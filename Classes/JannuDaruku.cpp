@@ -156,3 +156,7 @@ void JannuDaruku::clear(Node * pSender)
 {
 	pSender->removeFromParent();
 }
+
+void JannuDaruku::Attacked()
+{
+}
