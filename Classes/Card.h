@@ -225,7 +225,7 @@ public:
 			{
 				if ((strcmp(typeid(T).name(), "class Nut") != 0) && ps->plantVector.size() == 0)
 				{
-					std::cout << "不是睡莲,种植不成功" << std::endl;
+					std::cout << "不是睡莲,种植不成功了" << std::endl;
 				}
 				else if ((strcmp(typeid(T).name(), "class Nut") == 0) && ps->plantVector.size() == 0)
 				{
