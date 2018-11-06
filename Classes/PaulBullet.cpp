@@ -63,8 +63,7 @@ void PaulBullet::zombiesDie()
 				allframe.pushBack(frame);
 			}
 			Animation* an = Animation::createWithSpriteFrames(allframe, 0.15);
-
-			Sprite*sp = Sprite::create("Boom_Die\\Boom_Die1.png");
+			auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Boom_Die\\Boom_Die1.png"));
 			sp->setPosition(zombiePoint);
 			sp->retain();
 			sp->setScale(scale);
@@ -92,7 +91,7 @@ void PaulBullet::creatSprite()
 		auto frame = sprite->getSpriteFrame();
 		allframe.pushBack(frame);
 	}
-	Sprite* sp = Sprite::create("Cannon\\Boom\\BoomSmall1.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Cannon\\Boom\\BoomSmall1.png"));
 	sp->retain();
 	sp->setScale(3);
 	sp->setPosition(Point(this->position.x, this->position.y + 20));

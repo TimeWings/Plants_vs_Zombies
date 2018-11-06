@@ -4,7 +4,7 @@ Chomper::Chomper(Point position, int row, int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("Chomper\\Self_Animation\\1.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Chomper\\Self_Animation\\1.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();

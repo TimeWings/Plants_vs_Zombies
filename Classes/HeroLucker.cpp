@@ -8,7 +8,7 @@ HeroLucker::HeroLucker(Point position, int row, int col)
 	this->position = position;
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("HeroLucker\\HeroLucker.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("HeroLucker\\HeroLucker.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();

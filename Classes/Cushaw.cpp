@@ -30,12 +30,12 @@ void Cushaw::Attacked()
 	this->getImg()->runAction(sequence);
 	if (this->getHp() < 5)
 	{
-		auto sprite = Sprite::create("cushaw_2.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("cushaw_2.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 	else if (this->getHp() < 15)
 	{
-		auto sprite = Sprite::create("cushaw_1.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("cushaw_1.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 }

@@ -47,8 +47,7 @@ public:
 	}
 	Card(Point position)
 	{
-		
-		Sprite* sprite = Sprite::create("cardbackground\\card_green.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("cardbackground\\card_green.png"));
 		this->setImg(sprite);
 		
 		sprite->retain();
@@ -61,7 +60,7 @@ public:
 		string className = typeid(T).name();
 		className = className.erase(0, 6);
 		string str = string("Card\\") + className + string(".png");
-		plantSprite = Sprite::create(str);
+		plantSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
 		auto position1 = position;
 		position1.y += 0;
 		plantSprite->setPosition(position1);
@@ -73,84 +72,75 @@ public:
 		plantsTypeName = typeid(T).name();
 
 		auto listener = EventListenerTouchOneByOne::create();
+		auto listener1 = EventListenerMouse::create();
 		listener->onTouchBegan = [=](Touch* touch, Event *event)
 		{
-			
-			//EventMouse* e = (EventMouse*)event;
-			//string str = "Mouse Down detected, Key: ";
-			//cout << e->getCursorX()<<","<<e->getCursorY() << endl;
-			//auto target = static_cast<Sprite*>(touch->getCurrentTarget());
-			//Point locationInNode = target->convertToNodeSpace(e->getLocation());
-			Point clickLocation = touch->getLocation();
-			Size s = sprite->getContentSize();
-			Rect rect = Rect(position.x - s.width*sprite->getScaleX() / 2, position.y - s.height*sprite->getScaleX() / 2, s.width*sprite->getScaleX(), s.height*sprite->getScaleX());
-			auto rank = Point2Rank(clickLocation);
-			//cout << target->getPositionX() << "," << target->getPositionY() << endl;
-			//cout << locationInNode.x << "," << locationInNode.y << endl;
-			//cout << position.x << "," << position.y << endl;
-			//cout << clickLocation.x << ","<<clickLocation.y << endl;
-			// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
-			if (rect.containsPoint(clickLocation))
+			if (!isFollowingMouse)
 			{
-				//log("sprite began... x = %f, y = %f", clickLocation.x, clickLocation.y);
-				cout << position.x << "," << position.y << endl <<s.width<<","<<s.height<<endl;
-				//target->setOpacity(180);
-				//T* plant = new T(position, row);
-				string className = typeid(T).name();
-				className = className.erase(0, 6);
-				string str = string("Card\\") + className + string(".png");
-				plantFollowSprite = Sprite::create(str.c_str());
-				//plantFollowSprite->setScale(0.3);
-				plantFollowSprite->setContentSize(Size(15, 20));
-				plantFollowSprite->setPosition(clickLocation);
-				plantFollowSprite->retain();
-				addLayer(plantFollowSprite);
-				//cout << "click " << plantsTypeName << " card" << endl;
-				isFollowingMouse = true;
-				return true;
+				Point clickLocation = touch->getLocation();
+				Size s = sprite->getContentSize();
+				Rect rect = Rect(position.x - s.width*sprite->getScaleX() / 2, position.y - s.height*sprite->getScaleX() / 2, s.width*sprite->getScaleX(), s.height*sprite->getScaleX());
+				auto rank = Point2Rank(clickLocation);
 
+				// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
+				if (rect.containsPoint(clickLocation))
+				{
+					string className = typeid(T).name();
+					className = className.erase(0, 6);
+					string str = string("Card\\") + className + string(".png");
+					plantFollowSprite = Sprite::create(str.c_str());
+					plantFollowSprite->setContentSize(Size(15, 20));
+					plantFollowSprite->setPosition(clickLocation);
+					plantFollowSprite->retain();
+					addLayer(plantFollowSprite);
+					isFollowingMouse = true;
+					return true;
+
+				}
 			}
+			else
+			{
+				Point clickLocation = touch->getLocation();
+				if (isFollowingMouse == true)
+				{
+					isFollowingMouse = false;
+					plantFollowSprite->removeFromParent();
+					auto rank = Point2Rank(clickLocation);
+					Register<T>(rank.first, rank.second);
+				}
+			}
+			
 			return false;
 		};
-		listener->onTouchMoved = [=](Touch* touch, Event *event)
+		/*listener->onTouchMoved = [=](Touch* touch, Event *event)
 		{
 			if (isFollowingMouse)
 			{
 				Point clickLocation = touch->getLocation();
 				plantFollowSprite->setPosition(clickLocation);
 			}
-			//return true;
-		};
-		listener->onTouchEnded = [=](Touch* touch, Event *event)
+		};*/
+		/*listener->onTouchEnded = [=](Touch* touch, Event *event)
 		{
 			Point clickLocation = touch->getLocation();
 			if (isFollowingMouse == true)
 			{
-				//for (int i = 0; i < plantableList.size(); i++)
-				//{
-				//	Size s = plantableList[i]->sprite->getContentSize();
-				//	auto position = plantableList[i]->sprite->getPosition();
-				//	Rect rect = Rect(position.x - s.width / 2, position.y - s.height / 2, s.width, s.height);
-
-				//	// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
-				//	if (rect.containsPoint(clickLocation) && plantableList[i]->hasPlant == false)
-				//	{
-				//		removeLayer(plantFollowSprite);
-				//		plantableList[i]->hasPlant = true;
-				//		PutPlant<T>(position, plantableList[i]->row, plantableList[i]->col);
-				//		return;
-				//	}
-				//}
 				isFollowingMouse = false;
 				plantFollowSprite->removeFromParent();
 				auto rank = Point2Rank(clickLocation);
 				Register<T>(rank.first, rank.second);
 			}
-			//return true;
+		};*/
+		listener1->onMouseMove = [=]( Event *event)
+		{
+			if (isFollowingMouse)
+			{
+				EventMouse* e = (EventMouse*)event;
+				plantFollowSprite->setPosition(Point(e->getCursorX(), e->getCursorY()));
+			}
 		};
-		//this->setTouchEnabled(true);
-		//listener->setSwallowTouches(false);
 		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, sprite);
+		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener1, sprite);
 	}
 	PlantStatus* find(int row, int col)
 	{
@@ -240,8 +230,6 @@ public:
 			else 
 			{
 				std::cout << "ÖÖÖ²³É¹¦" << std::endl;
-				//PutPlant<T>(Rank2Point(row, col), row, col);
-				//std::cout << typeid(T).name();
 				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 			}
 		}

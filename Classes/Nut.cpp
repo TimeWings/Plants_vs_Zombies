@@ -4,7 +4,7 @@ Nut::Nut(Point position, int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("Nut1.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Nut1.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();

@@ -14,13 +14,13 @@ PeaBullet::PeaBullet(Point position, int Plant_row):Bullet(position,1, 6)
 	int cnt = rand() % 4+1;
 	Sprite *sp;
 	if(cnt==1)
-		sp = Sprite::create("sword1.png");
+		sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("sword1.png"));
 	else if(cnt==2)
-		sp = Sprite::create("sword2.png");
+		sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("sword2.png"));
 	else if(cnt==3)
-		sp = Sprite::create("sword3.png");
+		sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("sword3.png"));
 	else
-		sp = Sprite::create("sword4.png");
+		sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("sword4.png"));
 	sp->setTag(En_Burn);
 	sp->setScale(0.2);
 	//方便以后获取子弹精灵
@@ -60,7 +60,7 @@ void PeaBullet::Hit_Animation(Zombie* zombie)
 void PeaBullet::attack_Animation()
 {
 	Sprite*sp = this->getImg();
-	Sprite * hole = Sprite::create("circle.png");
+	auto hole = Sprite::createWithTexture(TextureCache::getInstance()->addImage("circle.png"));
 	hole->setPosition(Vec2(sp->getPositionX() - sp->getContentSize().width*(sp->getScaleX() ), sp->getPositionY()));
 	//std::cout << "光环：" << hole->getPositionX() << "  " << hole->getPositionY() << std::endl;
 	ActionInterval * fadeout = FadeOut::create(0.7);

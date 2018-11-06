@@ -7,7 +7,7 @@ StarShooter::StarShooter(Point position, int row, int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("StarShooter.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("StarShooter.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.2);

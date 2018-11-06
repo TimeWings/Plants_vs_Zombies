@@ -10,7 +10,7 @@ TrackBullet::TrackBullet(Point position, int Plant_row):Bullet(position, 2, 6)
 	{
 		this->getRange()->push_back(i);
 	}
-	Sprite *sp = Sprite::create("TrackBullet.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("TrackBullet.png"));
 	sp->setScale(0.5);
 	this->setImg(sp);
 	sp->retain();

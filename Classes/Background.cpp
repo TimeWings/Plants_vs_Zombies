@@ -5,7 +5,7 @@
 Background::Background()
 {
 	
-	auto sprite = Sprite::create("Scene\\Background5x9.jpg");
+	auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Scene\\Background5x9.jpg"));
 	sprite->retain();
 	sprite->setPosition(-20, 0);
 	sprite->setAnchorPoint(Vec2(0, 0));

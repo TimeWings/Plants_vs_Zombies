@@ -5,7 +5,7 @@ TripleShooter::TripleShooter(Point position, int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("TripleShooter.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("TripleShooter.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();

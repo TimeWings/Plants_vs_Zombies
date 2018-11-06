@@ -193,10 +193,10 @@
       <Filter>src\Entity\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HeroLucker.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Entity\Plants</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\HeroLuckerBullet.cpp">
-      <Filter>src</Filter>
+      <Filter>src\Entity\Bullets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -366,10 +366,10 @@
       <Filter>src\Entity\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HeroLucker.h">
-      <Filter>src</Filter>
+      <Filter>src\Entity\Plants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\HeroLuckerBullet.h">
-      <Filter>src</Filter>
+      <Filter>src\Entity\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

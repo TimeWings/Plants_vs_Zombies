@@ -5,7 +5,7 @@ NutPlus::NutPlus(Point position, int row,int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("Nut2.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Nut2.png"));
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
@@ -34,32 +34,32 @@ void NutPlus::Attacked()
 	sp->runAction(sequence);
 	if (this->getHp() == 20)
 	{
-		auto sprite = Sprite::create("NutPlus\\Attacked\\1.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("NutPlus\\Attacked\\1.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 	else if (this->getHp() == 15)
 	{
-		auto sprite = Sprite::create("NutPlus\\Attacked\\1.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("NutPlus\\Attacked\\1.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 	else if (this->getHp() == 12)
 	{
-		auto sprite = Sprite::create("NutPlus\\Attacked\\2.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("NutPlus\\Attacked\\2.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 	else if (this->getHp() == 10)
 	{
-		auto sprite = Sprite::create("NutPlus\\Attacked\\3.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("NutPlus\\Attacked\\3.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 	else if (this->getHp() == 5)
 	{
-		auto sprite = Sprite::create("NutPlus\\Attacked\\4.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("NutPlus\\Attacked\\4.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 	else if (this->getHp() == 3)
 	{
-		auto sprite = Sprite::create("NutPlus\\Attacked\\5.png");
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("NutPlus\\Attacked\\5.png"));
 		this->getImg()->setTexture(sprite->getTexture());
 	}
 }

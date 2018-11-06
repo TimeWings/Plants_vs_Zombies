@@ -8,7 +8,7 @@ Sunflower::Sunflower(Point position,int row,int col)
 	//std::cout << "Ì«Ñô»¨Éú³É" << std::endl;
 	this->setRow(row);
 	this->setCol(col);
-	Sprite*sp = Sprite::create("sunFlower.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("sunFlower.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.3);
@@ -75,7 +75,7 @@ void Sunflower::CreateSun()
 		return;
 	}
 	auto visibleSize = Director::getInstance()->getVisibleSize();
-	Sprite *spSun = Sprite::create("sun.png");
+	auto spSun = Sprite::createWithTexture(TextureCache::getInstance()->addImage("sun.png"));
 	Point a = Point(sp->getPositionX(), sp->getPositionY() + sp->getContentSize().height / 2 * sp->getScaleY());
 	spSun->setPosition(a);
 	spSun->setScale(0.5);

@@ -15,7 +15,7 @@ PeaBulletPlus::PeaBulletPlus(Point position, int Plant_row, double angle,double 
 	{
 		this->getRange()->push_back(i);
 	}
-	auto sp = Sprite::create("StarBullet.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("StarBullet.png"));
 	if (angle == -90 || angle == 90 || angle == 180)
 	{
 		sp->setTag(Pitcher_tag);

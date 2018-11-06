@@ -5,7 +5,7 @@ using namespace map;
 TripleBullet::TripleBullet(Point position, int Plant_row, int type) :Bullet(position, 1, 6)
 {
 	_type = type;
-	auto sp = Sprite::create("TripleBullet.png");
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("TripleBullet.png"));
 	if (type == 1)
 	{
 		this->getRange()->push_back(Plant_row-1);
