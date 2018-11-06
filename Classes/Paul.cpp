@@ -10,7 +10,6 @@ Paul::Paul(Point position, int row, int col)
 	this->canShoot = true;
 	this->shootReady = false;
 	this->canSelect = true;
-	this->jumpListener = false;
 	this->setRow(row);
 	this->setCol(col);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Cannon\\Connon.png"));
@@ -38,7 +37,7 @@ Paul::Paul(Point position, int row, int col)
 
 	listener->onTouchBegan = CC_CALLBACK_2(Paul::onTouchBegan, this);
 
-	listener->setSwallowTouches(false);
+	listener->setSwallowTouches(true);
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this->getImg());
 
 	this->AimSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Cannon\\aim\\aim3.png"));
@@ -73,6 +72,8 @@ void Paul::Die()
 	}
 	// fateout
 	this->getImg()->removeFromParent();
+	this->AimSprite->removeFromParent();
+	Paul::plantSelect = false;
 }
 
 void Paul::CreateBullet()
@@ -116,18 +117,13 @@ void Paul::Self_Animation()
 
 bool Paul::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_event)
 {
-	//跳过监听器
-	if (jumpListener)
-	{
-		jumpListener = false;
-		return false;
-	}
 	this->touchPos = touch->getLocation();
-	//
+	//产生子弹
 	if (canShoot && shootReady)
 	{
 		canShoot = false;
 		shootReady = false;
+		//产生子弹
 		CreateBullet();
 		//设置布尔值
 		Paul::plantSelect = false;
@@ -137,7 +133,6 @@ bool Paul::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_event)
 			{
 				Paul* p = (Paul*)x;
 				p->canSelect = true;
-				p->jumpListener = true;
 			}
 		}
 		//瞄准动画
@@ -154,10 +149,9 @@ bool Paul::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_event)
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(Paul::clear, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), Animate::create(an), actionDone, NULL);
 		this->AimSprite->runAction(sequence);
-
-		return false;
+		return true;
 	}
-	//
+	//不能选中加农炮
 	if (Paul::plantSelect)
 	{
 		return false;
@@ -212,6 +206,7 @@ bool Paul::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_event)
 	}
 	return false;
 }
+
 
 void Paul::onMouseMove(Event *event)
 {

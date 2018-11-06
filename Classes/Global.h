@@ -4,7 +4,9 @@
 #include "Plants.h"
 #include "Zombie.h"
 #include "PlantStatus.h"
-#define Icing 0
+#define Icing 0 //¼õËÙ
+#define Freezing 1 //±ù¶³
+#define DrivingOut 2 //Çý¸Ï
 USING_NS_CC;
 extern std::vector <Bullet*> readyBullet;
 extern std::vector <Plants*>readyPlants;

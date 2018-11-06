@@ -2,7 +2,6 @@
 #include "Global.h"
 #include "Zombie.h"
 #include "Bullet.h"
-#include "PaulBullet.h"
 #include <stdio.h>
 #include <math.h>
 #include <sys/timeb.h>
@@ -26,7 +25,6 @@ EntityLayer* EntityLayer::create()
 }
 bool EntityLayer::init()
 {
-	this->PaulReady = false;
 	schedule(schedule_selector(EntityLayer::Check_Collision), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	//这里写时间定时器
@@ -152,13 +150,22 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		Zombie *zombie = readyZombies.at(i);
-		if (!zombie->hasHead()) continue;
+		bool jump = false;
+		if (!zombie->hasHead()) jump = true;
+		for (auto i : *(zombie->getDebuff())) {
+			if (i == Freezing || i == DrivingOut) {
+				jump = true;
+				break;
+			}
+		}
+		if (jump) continue;
 		Sprite *sp = zombie->getImg();
 		PlantStatus *p;
 		bool flag = false;
 		double zombiex = sp->getPositionX();
 		std::pair<int, int> zombie_rank = Point2Rank(sp->getPosition());
-		if (zombiex >= zombie_rank.first) {
+		double plantx = Rank2Point(zombie_rank.first, zombie_rank.second).x;
+		if (zombiex >= plantx) {
 			PlantStatus *ps = map::find(zombie_rank.first, zombie_rank.second);
 			if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0){
 				flag = true;

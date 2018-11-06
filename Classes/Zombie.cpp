@@ -23,7 +23,7 @@ void Zombie::setRow(int row)
 {
 	_row = row;
 	if(this->getImg() != NULL)
-		this->getImg()->setZOrder(_row * 2 - 1);
+		this->getImg()->setZOrder(_row * 3 - 1);
 }
 void Zombie::setCol(int col)
 {
@@ -94,7 +94,7 @@ std::vector<int>* Zombie::getDebuff()
 void Zombie::addLayer(Node * entity)
 {
 	EntityLayer* zl = EntityLayer::getInstance();
-	zl->addChild(entity, _row*3-1);
+	zl->addChild(entity, _row * 3 - 1);
 }
 
 void Zombie::setSche(Node* sprite)

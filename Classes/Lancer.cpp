@@ -32,7 +32,7 @@ void Lancer::CreateBullet()
 	CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
 	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
 	this->getImg()->runAction(sequence);
-	//子弹以及僵尸的坐标
+	//产生子弹坐标
 	Point a = ccp(this->getImg()->getPositionX(), this->getImg()->getContentSize().height * this->getImg()->getScaleY() / 4 + this->getImg()->getPositionY());
 	//产生子弹
 	Bullet *pb = new LancerGun(a, this->getRow());

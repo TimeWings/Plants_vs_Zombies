@@ -20,7 +20,7 @@ Doom_shroom::Doom_shroom(Point position, int row, int col)
 	sp->setScale(0.3);
 	sp->setPosition(position);
 	this->setHp(6);
-	this->setInterval(90000);
+	this->setInterval(0);
 	//添加到植物层
 	addLayer(sp);
 	readyPlants.push_back(this);
@@ -42,6 +42,8 @@ void Doom_shroom::Effect(Node * pSender)
 {
 	//把旧精灵移除
 	this->getImg()->removeFromParent();
+	//把hp设为-1
+	this->setHp(-1);
 	//火焰效果
 	this->creatSprite();
 	//清除范围僵尸
@@ -115,7 +117,6 @@ void Doom_shroom::zombiesDie()
 		}
 	}
 }
-
 
 void Doom_shroom::clearSprite(Node* pSender, Sprite* sp)
 {

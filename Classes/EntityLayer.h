@@ -13,8 +13,6 @@ public:
 	}
 	static EntityLayer *pRet;
 private:
-	Plants* Paul;
-	bool PaulReady;
 	void Check_Collision(float t);
 	void Check_Death(float t);
 	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
