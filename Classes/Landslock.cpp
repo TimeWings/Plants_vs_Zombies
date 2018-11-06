@@ -37,15 +37,15 @@ void Landslock::driveOut(Zombie* zombie)
 {
 	Sprite *sp_zb = zombie->getImg();
 	//暂停僵尸的动作
-	zombie->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, zombie->getImg());
+	zombie->getImg()->stopAllActionsByTag(Animation_Tag);
+	//zombie->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, zombie->getImg());
 	//惊吓效果
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Landslock\\frigthen.png"));
-	Sprite*sp_frigthen = Sprite::create();
+	auto sp_frigthen = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Landslock\\frigthen.png"));
 	sp_frigthen->setPosition(Point(sp_zb->getPositionX() + sp_zb->getContentSize().width / 4, sp_zb->getPositionY() + sp_zb->getContentSize().height));
 	sp_frigthen->retain();
 	sp_frigthen->setScale(1);
 	EntityLayer* bl = EntityLayer::getInstance();
-	bl->addChild(sp_frigthen, 100);
+	bl->addChild(sp_frigthen, zombie->getRow() * 3 -1);
 	//随机位移
 	srand((unsigned)time(NULL));
 	//int cnt = rand() % 2;
@@ -86,9 +86,9 @@ void Landslock::driveOut(Zombie* zombie)
 		}
 	}
 	zombie->setMeeting(false);
+	zombie->getDebuff()->push_back(DrivingOut);
 	//立即改变僵尸所在行
 	zombie->setRow(zombie->getRow() + moveRow);
-
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Landslock::clearNode, this, sp_frigthen));
 	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Landslock::afterDriveOut, this, zombie));
 	Sequence *sequence = Sequence::create(CCDelayTime::create(0.5), actionDone, moveTo, actionDone1, NULL);
@@ -97,6 +97,15 @@ void Landslock::driveOut(Zombie* zombie)
 
 void Landslock::afterDriveOut(Node* pSender, Zombie* zombie)
 {
+	//移除debuff
+	for (int i = 0; i < zombie->getDebuff()->size(); i++)
+	{
+		if (zombie->getDebuff()->at(i) == DrivingOut)
+		{
+			zombie->getDebuff()->erase(zombie->getDebuff()->begin() + i);
+			break;
+		}
+	}
 	//恢复动画
 	zombie->Move();
 }
@@ -109,7 +118,7 @@ void Landslock::clearNode(Node * sPender, Sprite* sp)
 void Landslock::Die()
 {
 }
-//没有此方法
+
 void Landslock::Attacked()
 {
 	//受伤特效
@@ -121,7 +130,7 @@ void Landslock::Attacked()
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		Zombie* zombie = readyZombies.at(i);
-		if (this->getRow() == zombie->getRow() && this->getImg()->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()) && this->getImg()->getPositionY() == zombie->getImg()->getPositionY())
+		if (this->getRow() == zombie->getRow() && this->getImg()->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
 		{
 			std::cout << "兰斯洛克驱逐僵尸！" << std::endl;
 			driveOut(zombie);

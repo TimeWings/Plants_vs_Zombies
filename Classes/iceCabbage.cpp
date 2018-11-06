@@ -71,6 +71,7 @@ void iceCabbage::creatSprite()
 	{
 		Zombie* zombie = readyZombies.at(i);
 		std::cout << "¶³½á½©Ê¬" << std::endl;
+		zombie->getDebuff()->push_back(Freezing);
 		Point freezePoint = zombie->getImg()->getPosition();
 
 		//¸²¸ÇÒ»²ãµ­À¶É«
@@ -110,6 +111,15 @@ void iceCabbage::creatSprite()
 void iceCabbage::clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zombie)
 {
 	iceSprite->removeFromParent();
+	//ÒÆ³ýdebuff
+	for (int i = 0; i < zombie->getDebuff()->size(); i++)
+	{
+		if (zombie->getDebuff()->at(i) == Freezing)
+		{
+			zombie->getDebuff()->erase(zombie->getDebuff()->begin() + i);
+			break;
+		}
+	}
 	zombie->setMeeting(false);
 	//½©Ê¬»Ö¸´ÐÐ¶¯
 	zombie->Move();
