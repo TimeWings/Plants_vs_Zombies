@@ -12,8 +12,9 @@ private:
 	bool haveBullet;
 	float Scale;
 public:
+	Mushroom();
 	Mushroom(Point position, int row,int col);
-	void CreateBullet();
+	virtual void CreateBullet();
 	void Self_Animation();
 	void clearBullet(Node *pSender, MushroomBullet *bp);
 	void Die();

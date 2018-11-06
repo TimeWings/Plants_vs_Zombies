@@ -1,6 +1,10 @@
 #include "MelancholyBullet.h"
 #include "Global.h"
 
+MelancholyBullet::MelancholyBullet()
+{
+}
+
 MelancholyBullet::MelancholyBullet(Point position, int Plant_row, double angle, double distance)
 {
 	this->_distance = distance;

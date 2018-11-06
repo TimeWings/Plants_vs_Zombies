@@ -4,7 +4,8 @@
 #include <iostream>
 
 //相当于init
-PeaShooter::PeaShooter(Point position,int row,int col) {
+PeaShooter::PeaShooter(Point position,int row,int col) 
+{
 	this->setRow(row);
 	this->setCol(col);
 	Sprite*sp = Sprite::create("peaShooter.png");
@@ -21,7 +22,6 @@ PeaShooter::PeaShooter(Point position,int row,int col) {
 	addLayer(sp);
 	//添加到已创建植物容器，其他行为操作都在此处
 	readyPlants.push_back(this);
-
 }
 
 PeaShooter::PeaShooter() 

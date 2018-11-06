@@ -9,6 +9,7 @@ Doom_shroom::Doom_shroom()
 
 Doom_shroom::Doom_shroom(Point position, int row, int col)
 {
+	this->thisIsEnd = false;
 	this->position = position;
 	this->setRow(row);
 	this->setCol(col);
@@ -22,10 +23,10 @@ Doom_shroom::Doom_shroom(Point position, int row, int col)
 	this->setInterval(90000);
 	//添加到植物层
 	addLayer(sp);
-	work();
+	readyPlants.push_back(this);
 }
 
-void Doom_shroom::Die()
+void Doom_shroom::thisDie()
 {
 	//死亡动画(拉伸)
 	Sprite *sp = this->getImg();

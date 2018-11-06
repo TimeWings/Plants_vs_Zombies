@@ -3,6 +3,10 @@
 #include "Global.h"
 #include <iostream>
 
+Mushroom::Mushroom()
+{
+}
+
 Mushroom::Mushroom(Point position, int row,int col)
 {
 	this->haveBullet = false;
@@ -93,7 +97,6 @@ void Mushroom::Die()
 		}
 	}
 	clear(this->getImg());
-
 }
 
 

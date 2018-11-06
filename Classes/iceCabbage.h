@@ -7,7 +7,7 @@ class iceCabbage : public JannuDaruku
 {
 public:
 	iceCabbage(Point position, int row, int col);
-	virtual void Die();
+	virtual void thisDie();
 	void creatSprite();
 	void Effect(Node *pSender);
 	void clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zombie);

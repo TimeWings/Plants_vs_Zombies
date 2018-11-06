@@ -6,6 +6,7 @@ JannuDaruku::JannuDaruku()
 }
 JannuDaruku::JannuDaruku(Point position,int row,int col)
 {
+	this->thisIsEnd = false;
 	this->setRow(row);
 	this->setCol(col);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Jannu\\Jannu.png"));
@@ -16,11 +17,11 @@ JannuDaruku::JannuDaruku(Point position,int row,int col)
 	this->position = position;
 	sp->setPosition(position);
 	this->setHp(20);
-	this->setInterval(2000);
+	this->setInterval(0);
 	//添加到植物层（显示）
 	addLayer(sp);
-	//开始工作
-	work();
+	readyPlants.push_back(this);
+
 }
 
 bool JannuDaruku::isWorking()
@@ -30,14 +31,26 @@ bool JannuDaruku::isWorking()
 
 void JannuDaruku::work()
 {
-	if (this->isWorking())
+	if (!thisIsEnd)
 	{
-		//立即调用die
-		this->Die();
+		thisIsEnd = true;
+		thisDie();
 	}
 }
 
 void JannuDaruku::Die()
+{
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
+}
+
+void JannuDaruku::thisDie()
 {
 	//贞德拉伸
 	Sprite *sp = this->getImg();
@@ -54,6 +67,8 @@ void JannuDaruku::Effect(Node *pSender)
 {
 	//把旧精灵移除
 	this->getImg()->removeFromParent();
+	//把HP设为-1
+	this->setHp(-1);
 	//火焰效果
 	this->creatSprite();
 	//清除同排僵尸
@@ -131,10 +146,6 @@ void JannuDaruku::creatSprite()
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 		sp->runAction(sequence);
 	}
-}
-
-void JannuDaruku::Attacked()
-{
 }
 
 void JannuDaruku::CreateBullet()
