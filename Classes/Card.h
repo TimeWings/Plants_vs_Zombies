@@ -5,6 +5,7 @@
 #include "EntityLayer.h"
 #include "PlantStatus.h"
 #include "Plants.h"
+#include "Global.h"
 using namespace std;
 using namespace cocos2d;
 
@@ -176,7 +177,7 @@ public:
 	template <class T>
 	void Register(int row, int col)
 	{
-		std::cout << "col:" << col << std::endl;
+		//std::cout << "col:" << col << std::endl;
 		if (row > MapRow || row < 1 || col<1 || col>MapCol)
 		{
 			std::cout << "不可以种植" << std::endl;
@@ -190,6 +191,41 @@ public:
 				std::cout << "可以种植南瓜"<<std::endl;
 				ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
 				//ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+			}
+			else if ((strcmp(typeid(T).name(), "class Paul") == 0))
+			{
+				if (find1(ps,"class Lancer"))
+				{
+					PlantStatus* ps1 = find(row, col-1);
+					if (ps1 != NULL && find1(ps1, "class Lancer"))
+					{
+						std::cout << "找到左边有投手，可以放置加农炮" << std::endl;
+						RemoveRegister("class Lancer", row, col - 1);
+						RemoveRegister("class Lancer", row, col);
+						T* plant = PutPlant<T>(Rank2Point(row, col-1),row,col-1);
+						ps->plantVector.push_back(plant);
+						ps1->plantVector.push_back(plant);
+						return;
+					}
+					PlantStatus* ps2 = find(row, col+1);
+					if (ps2 != NULL && find1(ps2, "class Lancer"))
+					{
+						std::cout << "找到右边边有投手，可以放置加农炮" << std::endl;
+						RemoveRegister("class Lancer", row, col +1);
+						RemoveRegister("class Lancer", row, col);
+						T* plant = PutPlant<T>(Rank2Point(row, col),row,col);
+						ps->plantVector.push_back(plant);
+						ps2->plantVector.push_back(plant);
+						return;
+					}
+					std::cout << "只有一个投手,不可放置" << std::endl;
+					return;
+				}
+				else
+				{
+					std::cout << "没有投手,不可放置" << std::endl;
+					return;
+				}
 			}
 			else if (ps->plantVector.size() == 1 && find1(ps, "class Cushaw")&& (strcmp(typeid(T).name(), "class Cushaw") != 0))
 			{

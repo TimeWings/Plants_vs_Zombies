@@ -20,7 +20,8 @@ namespace map
 	extern int MapCol;
 	extern std::vector<PlantStatus*>plantstatus;
 	extern PlantStatus* find(int row, int col);
-	extern void RemoveRegister(Plants* plant,int row, int col);
+	extern void RemoveRegister(const char * plant_name,int row, int col);
+	extern void RemoveRegister(Plants * plant);
 	extern Point Rank2Point(int row, int col);
 	extern std::pair<int, int>Point2Rank(Point point);
 }

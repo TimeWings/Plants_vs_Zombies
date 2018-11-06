@@ -11,7 +11,6 @@ Paul::Paul(Point position, int row, int col)
 	this->shootReady = false;
 	this->canSelect = true;
 	this->jumpListener = false;
-
 	this->setRow(row);
 	this->setCol(col);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Cannon\\Connon.png"));
@@ -64,8 +63,6 @@ void Paul::work()
 
 void Paul::Die()
 {
-	this->getImg()->removeFromParent();
-	//fateout
 	for (int i = 0; i < readyPlants.size(); i++)
 	{
 		if (readyPlants.at(i) == this)
@@ -74,6 +71,8 @@ void Paul::Die()
 			break;
 		}
 	}
+	// fateout
+	this->getImg()->removeFromParent();
 }
 
 void Paul::CreateBullet()

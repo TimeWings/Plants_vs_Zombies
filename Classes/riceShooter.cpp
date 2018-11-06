@@ -50,7 +50,6 @@ void riceShooter::work()
 
 void riceShooter::Die()
 {
-	clear(this->getImg());
 	for (int i = 0; i < readyPlants.size(); i++)
 	{
 		if (readyPlants.at(i) == this)
@@ -59,6 +58,7 @@ void riceShooter::Die()
 			break;
 		}
 	}
+	clear(this->getImg());
 }
 
 void riceShooter::Self_Animation()

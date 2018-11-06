@@ -24,18 +24,19 @@ namespace map
 		}
 		return NULL;
 	}
-	void RemoveRegister(Plants* plant, int row, int col)
+	void RemoveRegister(const char * plant_name, int row, int col)
 	{
 		PlantStatus* ps = find(row, col);
 		if (ps != NULL)
 		{
 			for (int i = 0; i < ps->plantVector.size(); i++)
 			{
-				if (ps->plantVector.at(i) == plant)
+				if (strcmp(typeid(*(ps->plantVector.at(i))).name(),plant_name)==0)
 				{
+					
+					ps->plantVector.at(i)->Die();
 					ps->plantVector.erase(ps->plantVector.begin() + i);
-					std::cout << plant << "从植物列表移除成功" << std::endl;
-					break;
+					std::cout << plant_name << "从植物列表移除成功并且死亡" << std::endl;
 				}
 			}
 		}
@@ -43,6 +44,22 @@ namespace map
 		{
 			return;
 		}
+	}
+	void RemoveRegister(Plants* plant)
+	{
+		for (int i = 0; i < plantstatus.size(); i++)
+		{
+			for (int j = 0; j < plantstatus.at(i)->plantVector.size(); j++)
+			{
+				if (plantstatus.at(i)->plantVector.at(j) == plant)
+				{
+					plantstatus.at(i)->plantVector.erase(plantstatus.at(i)->plantVector.begin() + j);
+					std::cout << plant << "从植物列表移除成功" << std::endl;
+				}
+			}
+		}
+		plant->Die();
+		std::cout << plant << "植物死亡" << std::endl;
 	}
 	Point Rank2Point(int row, int col)
 	{

@@ -61,6 +61,7 @@ test::test()
 	new Card<Nut>(Point(20, 250));
 	new Card<Landslock>(Point(40, 250));
 	new Card<riceShooter>(Point(60, 250));
+	new Card<Paul>(Point(80, 250));
 }
 void test::drawRect()
 {
