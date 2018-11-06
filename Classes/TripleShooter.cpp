@@ -34,6 +34,20 @@ void TripleShooter::work()
 
 void TripleShooter::Die()
 {
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
+	Sprite * sp = this->getImg();
+	ActionInterval * fadeout = FadeOut::create(0.5);
+	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(TripleShooter::clear, this));
+	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+	sp->runAction(sequence);
 }
 
 void TripleShooter::CreateBullet()
@@ -50,4 +64,8 @@ void TripleShooter::CreateBullet()
 	Bullet *pb1 = new TripleBullet(a, this->getRow(), 2);
 	Bullet *pb2 = new TripleBullet(a, this->getRow(), 3);
 	setNewBirthTime();
+}
+void TripleShooter::clear(Node * pSender)
+{
+	pSender->removeFromParent();
 }
