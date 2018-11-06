@@ -2,6 +2,10 @@
 #include "Global.h"
 #include <iostream>
 
+MushroomBullet::MushroomBullet()
+{
+}
+
 MushroomBullet::MushroomBullet(Point position, int Plant_row) :Bullet(position, 0.1, 0)
 {
 	this->getRange()->push_back(Plant_row);

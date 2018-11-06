@@ -2,8 +2,10 @@
 #include "Global.h"
 #include "EntityLayer.h"
 #include <iostream>
+
 iceCabbage::iceCabbage(Point position, int row, int col)
 {
+	this->thisIsEnd = false;
 	this->setRow(row);
 	this->setCol(col);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("IceCabbage\\IceCabbage.png"));
@@ -14,16 +16,14 @@ iceCabbage::iceCabbage(Point position, int row, int col)
 	this->position = position;
 	sp->setPosition(position);
 	this->setHp(20);
-	this->setInterval(2000);
+	this->setInterval(0);
 	//添加到植物层（显示）
 	addLayer(sp);
-	//立即调用die
-	work();
+	readyPlants.push_back(this);
 }
 
-void iceCabbage::Die()
+void iceCabbage::thisDie()
 {
-	this->setHp(-1);
 	//梅芙拉伸
 	Sprite *sp = this->getImg();
 	float preScale = sp->getScaleX();
@@ -31,8 +31,16 @@ void iceCabbage::Die()
 	//梅芙拉伸和冰雪函数合成队列
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::Effect, this));
 	Sequence *sequence = Sequence::create(scaleup, actionDone, NULL);
-
 	sp->runAction(sequence);
+}
+
+void iceCabbage::Effect(Node * pSender)
+{
+	//把旧精灵移除
+	this->getImg()->removeFromParent();
+	this->setHp(-1);
+	//效果精灵
+	creatSprite();
 }
 
 void iceCabbage::creatSprite()
@@ -58,19 +66,20 @@ void iceCabbage::creatSprite()
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	sp->runAction(sequence);
 	///爆炸动画
-
 	//全图僵尸冰冻
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		Zombie* zombie = readyZombies.at(i);
 		std::cout << "冻结僵尸" << std::endl;
 		Point freezePoint = zombie->getImg()->getPosition();
-		//覆盖一层淡蓝色
-		CCActionInterval * tintto2 = CCTintTo::create(3, 0, 255, 255);
-		zombie->getImg()->runAction(tintto2);
-		//僵尸冰冻
-		zombie->getScheduler()->setTimeScale(0);
 
+		//覆盖一层淡蓝色
+		CCActionInterval * tintto2 = CCTintTo::create(0.5, 0, 255, 255);
+		zombie->getImg()->runAction(tintto2);
+		//僵尸停止动作
+		zombie->getImg()->stopAllActionsByTag(Animation_Tag);
+		
+		
 		//产生冰冻精灵
 		char str[100] = { 0 };
 		Vector<SpriteFrame*> allframe;
@@ -88,7 +97,7 @@ void iceCabbage::creatSprite()
 		sp->retain();
 		sp->setScale(1.4);
 		EntityLayer* bl = EntityLayer::getInstance();
-		bl->addChild(sp, zombie->getRow() * 2 - 1);
+		bl->addChild(sp, zombie->getRow() * 3 - 1);
 		//冰冻时间
 		CCDelayTime* delayTime = CCDelayTime::create(3);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clearIceSprite, this, sp, zombie));
@@ -97,21 +106,14 @@ void iceCabbage::creatSprite()
 	}
 }
 
-void iceCabbage::Effect(Node * pSender)
-{
-	//把旧精灵移除
-	this->getImg()->removeFromParent();
-	//效果精灵
-	creatSprite();
-}
-
 
 void iceCabbage::clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zombie)
 {
 	iceSprite->removeFromParent();
+	zombie->setMeeting(false);
+	//僵尸恢复行动
+	zombie->Move();
 	//清除僵尸的蓝色覆盖
 	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
 	zombie->getImg()->runAction(tintto2);
-	//僵尸恢复行动
-	zombie->getScheduler()->setTimeScale(1);
 }

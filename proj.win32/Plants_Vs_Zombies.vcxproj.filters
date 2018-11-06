@@ -180,6 +180,12 @@
     <ClCompile Include="..\Classes\BasicZombie.cpp">
       <Filter>src\Zombie</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\HeroLucker.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HeroLuckerBullet.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -343,6 +349,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\BasicZombie.h">
       <Filter>src\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HeroLucker.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HeroLuckerBullet.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

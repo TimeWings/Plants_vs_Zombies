@@ -6,19 +6,19 @@ class JannuDaruku : public Plants
 {
 protected:
 	Point position;
+	bool thisIsEnd;
 public:
 	JannuDaruku();
 	JannuDaruku(Point position,int row,int col);
 	virtual bool isWorking();//是否能工作
-	virtual void work();
-	virtual void Die();
+    void work();
+	void Die();
+	virtual void thisDie();
 	void Effect(Node * pSender);
 	void zombiesDie();
 	void creatSprite();
-	virtual void Attacked();
 	//产生子弹
 	virtual void CreateBullet();
 	//清理精灵
 	void clear(Node * pSender);
-	
 };

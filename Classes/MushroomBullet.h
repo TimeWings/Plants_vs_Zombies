@@ -5,6 +5,7 @@ USING_NS_CC;
 class MushroomBullet :public Bullet
 {
 public:
+	MushroomBullet();
 	MushroomBullet(Point position, int Plant_row);
 	virtual void move();
 	void clear(Node * pSender);
