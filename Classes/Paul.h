@@ -8,7 +8,6 @@ private:
 	bool canShoot;
 	bool shootReady;
 	bool canSelect;
-	bool jumpListener;
 	Point touchPos;
 	Sprite* AimSprite;
 private:
@@ -24,4 +23,5 @@ public:
 	void Self_Animation();
 	bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
 	void onMouseMove(Event * event);
+	//void clear(Node);
 };
