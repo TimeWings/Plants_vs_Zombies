@@ -58,6 +58,8 @@ bool HelloWorld::init()
     {
         return false;
     }
+	auto ss = Director::getInstance()->getTextureCache()->getCachedTextureInfo();
+	log("%s", ss.c_str());
 	initPlantStatus();
 	preLoading();
     return true;

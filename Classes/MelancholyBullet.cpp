@@ -65,6 +65,7 @@ void MelancholyBullet::Effect()
 void MelancholyBullet::clear(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
 		if (readyBullet.at(i) == this)

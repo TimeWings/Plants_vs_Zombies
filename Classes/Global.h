@@ -10,7 +10,6 @@ extern std::vector <Bullet*> readyBullet;
 extern std::vector <Plants*>readyPlants;
 extern std::vector <Zombie*> readyZombies;
 extern Map<Sprite*,Sprite*>readySun;//Ö²Îï¾«Áé£¬Ì«Ñô¾«Áé
-
 namespace map 
 {
 	extern std::pair<int, std::pair<double, double>>sunCnt;

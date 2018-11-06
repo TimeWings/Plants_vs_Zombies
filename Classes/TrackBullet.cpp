@@ -45,6 +45,7 @@ void TrackBullet::Rotate(Node* pSender)
 			}
 		}
 		sp->removeFromParent();
+		sp->removeAllChildrenWithCleanup(true);
 		return;
 	}
 	double minDistance = 100000000;
@@ -120,6 +121,7 @@ float TrackBullet::getAng(Point a, Point b)
 void TrackBullet::clearNode(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 }
 
 void TrackBullet::Hit_Animation(Zombie* zombie)

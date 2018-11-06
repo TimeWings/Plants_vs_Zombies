@@ -15,6 +15,7 @@ FireBullet::FireBullet(int Plant_row, Bullet * bullet,double plantWidth)
 	//子弹发射位置微调
 	sp->setPosition(bullet->getImg()->getPositionX()+ plantWidth ,bullet->getImg()->getPositionY());
 	this->addLayer(sp);
+	delete bullet;
 	//子弹的特效（产生时的特效，或者拖尾效果）
 	this->attack_Animation();
 	readyBullet.push_back(this);
@@ -29,8 +30,10 @@ void FireBullet::Self_Animation()
 	ParticleSystem* ps = CCParticleFire::create();
 	ps->setTexture(Director::getInstance()->getTextureCache()->addImage("Fire_Effect.png"));
 	ps->setStartSize(3);
+	ps->setAutoRemoveOnFinish(true);
 	ps->setEmissionRate(500);
 	ps->setTotalParticles(2000);
+	//ps->setLife(0.5);
 	ps->setEmitterMode(ParticleSystem::Mode::GRAVITY);
 	ps->setGravity(Point(-1000, 0));
 	ps->setPositionType(kCCPositionTypeRelative);
@@ -49,6 +52,7 @@ void FireBullet::Hit_Animation(Zombie * zombie)
 	std::cout << "火焰弹击中" << std::endl;
 	////删除子弹
 	Sprite*bulletSprite = this->getImg();
+	bulletSprite->removeAllChildrenWithCleanup(true);
 	bulletSprite->removeFromParent();
 	for (int i = 0; i < readyBullet.size(); i++)
 	{

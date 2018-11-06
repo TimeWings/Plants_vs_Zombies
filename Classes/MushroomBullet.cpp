@@ -26,6 +26,7 @@ void MushroomBullet::move()
 void MushroomBullet::clear(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 	Sprite* sp = this->getImg();
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
@@ -44,6 +45,7 @@ void MushroomBullet::clear(Node * pSender)
 
 void MushroomBullet::clearNode(Node * pSender)
 {
+	pSender->removeAllChildrenWithCleanup(true);
 	pSender->removeFromParent();
 }
 //²¥·Å¹¥»÷¶¯»­

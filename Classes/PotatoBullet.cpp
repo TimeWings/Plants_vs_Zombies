@@ -24,6 +24,7 @@ void PotatoBullet::move()
 void PotatoBullet::clear(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
 		if (readyBullet.at(i) == this)
@@ -37,6 +38,7 @@ void PotatoBullet::clear(Node * pSender)
 void PotatoBullet::clearNode(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 }
 
 void PotatoBullet::Hit_Animation(Zombie* zombie)

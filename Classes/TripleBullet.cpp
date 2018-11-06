@@ -81,6 +81,7 @@ void TripleBullet::afterMove(Node *pSender)
 void TripleBullet::clear(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
 		if (readyBullet.at(i) == this)
@@ -94,6 +95,7 @@ void TripleBullet::clear(Node * pSender)
 void TripleBullet::clearNode(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 }
 
 void TripleBullet::attack_Animation()

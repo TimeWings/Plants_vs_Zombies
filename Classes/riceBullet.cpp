@@ -26,6 +26,7 @@ riceBullet::riceBullet(Point a, int Plant_row)
 
 void riceBullet::clear(Node * pSender)
 {
+	pSender->removeAllChildrenWithCleanup(true);
 	pSender->removeFromParent();
 	for (int i = 0; i < readyBullet.size(); i++)
 	{

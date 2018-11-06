@@ -86,6 +86,7 @@ void PeaBullet::move()
 
 void PeaBullet::clear(Node * pSender)
 {
+	pSender->removeAllChildrenWithCleanup(true);
 	pSender->removeFromParent();
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
@@ -95,10 +96,12 @@ void PeaBullet::clear(Node * pSender)
 			break;
 		}
 	}
+
 }
 
 void PeaBullet::clearNode(Node * pSender)
 {
+	pSender->removeAllChildrenWithCleanup(true);
 	pSender->removeFromParent();
 }
 

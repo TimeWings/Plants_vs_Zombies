@@ -22,6 +22,7 @@ void IceBullet::Hit_Animation(Zombie* zombie)
 {
 	////É¾³ý×Óµ¯
 	Sprite*bulletSprite=this->getImg();
+	bulletSprite->removeAllChildrenWithCleanup(true);
 	bulletSprite->removeFromParent();
 	//streak->removeFromParent();
 	for (int i = 0; i < readyBullet.size(); i++)

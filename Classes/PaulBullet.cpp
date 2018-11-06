@@ -51,6 +51,7 @@ void PaulBullet::zombiesDie()
 			float scale = pSender->getScaleX();
 			//停止僵尸所有动作
 			pSender->removeFromParent();
+			pSender->removeAllChildrenWithCleanup(true);
 			//僵尸粉碎动画
 			char str[100] = { 0 };
 			Vector<SpriteFrame*> allframe;
