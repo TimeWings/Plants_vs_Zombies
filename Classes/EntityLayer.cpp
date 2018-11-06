@@ -82,6 +82,7 @@ void EntityLayer::Check_Collision(float t)
 				{
 					zombie->DamageEquip(bullet->getDamage());
 				}
+				break;
 
 			}
 		}
