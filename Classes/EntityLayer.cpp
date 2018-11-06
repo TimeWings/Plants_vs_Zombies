@@ -200,27 +200,30 @@ void EntityLayer::Check_Lost_Equip_Zombie(float t) {
 
 void EntityLayer::Check_Death(float t)
 {
-	for (int j = 0; j < readyPlants.size(); j++)
+	/*for (int j = 0; j < readyPlants.size(); j++)
 	{
 		Plants* plant = readyPlants.at(j);
 		Sprite* sp = plant->getImg();
 		if (plant->getHp() <= 0)
 		{
-			RemoveRegister(plant, plant->getRow(), plant->getCol());
-			plant->Die();
-			j--;
-		}
-	}
-	/*for (int j = 0; j < readyZombies.size(); j++)
-	{
-		Zombie* zombie = readyZombies.at(j);
-		Sprite* sp = zombie->getImg();
-		if (zombie->getHp() <= 0)
-		{
-			zombie->Die();
+			RemoveRegister(typeid(*plant).name(), plant->getRow(), plant->getCol());
 			j--;
 		}
 	}*/
+	for (int i = 0; i < plantstatus.size(); i++)
+	{
+		for (int j = 0; j < plantstatus.at(i)->plantVector.size(); j++)
+		{
+			
+			if (plantstatus.at(i)->plantVector.at(j)->getHp() <= 0)
+			{
+				//std::cout << plantstatus.at(i)->plantVector.at(j) << "   " << i << "  hp: " << plantstatus.at(i)->plantVector.at(j)->getHp() << std::endl;
+				//std::cout << plantstatus.at(i)->plantVector.at(j)->getRow() << "    " << plantstatus.at(i)->plantVector.at(j)->getCol() << std::endl;
+				RemoveRegister(plantstatus.at(i)->plantVector.at(j));
+				j--;
+			}
+		}
+	}
 }
 
 void EntityLayer::clearNode(Node * pSender)

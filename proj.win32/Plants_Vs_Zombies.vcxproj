@@ -185,7 +185,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\PeaBullet.cpp" />
     <ClCompile Include="..\Classes\PeaBulletPlus.cpp" />
     <ClCompile Include="..\Classes\PeaShooter.cpp" />
-    <ClCompile Include="..\Classes\PlantList.h" />
     <ClCompile Include="..\Classes\PlantStatus.cpp" />
     <ClCompile Include="..\Classes\Plants.cpp" />
     <ClCompile Include="..\Classes\PotatoBullet.cpp" />
@@ -262,6 +261,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TripleShooter.h" />
     <ClInclude Include="..\Classes\Weeds.h" />
     <ClInclude Include="..\Classes\Zombie.h" />
+    <ClInclude Include="..\Classes\ZombieCard.h" />
     <ClInclude Include="..\Classes\ZombieEquipment.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
