@@ -203,11 +203,13 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Loading.cpp">
       <Filter>src\Entity\UI</Filter>
-	  </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Classes\Lotus.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Lantern.cpp" />
+    <ClCompile Include="..\Classes\Lantern.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -386,7 +388,7 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Loading.h">
       <Filter>src\Entity\UI</Filter>
-	  </ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Classes\Lotus.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
