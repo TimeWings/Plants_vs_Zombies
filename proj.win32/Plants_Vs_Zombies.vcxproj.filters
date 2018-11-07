@@ -31,6 +31,9 @@
     <Filter Include="src\Entity\UI">
       <UniqueIdentifier>{367ba9d3-7d6e-48b0-81d3-19486b8b17d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Entity\Equip">
+      <UniqueIdentifier>{b906d01c-384a-4bda-8dbc-62795df7ef54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -42,13 +45,7 @@
     <ClCompile Include="..\Classes\Zombie.cpp">
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ZombieEquipment.cpp">
-      <Filter>src\Entity\Zombie</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\RoadblockZombie.cpp">
-      <Filter>src\Entity\Zombie</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Roadblock.cpp">
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BasicZombie.cpp">
@@ -203,9 +200,21 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Loading.cpp">
       <Filter>src\Entity\UI</Filter>
-	  </ClCompile>
+    </ClCompile>
     <ClCompile Include="..\Classes\Lotus.cpp">
       <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ZombieEquipment.cpp">
+      <Filter>src\Entity\Equip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Roadblock.cpp">
+      <Filter>src\Entity\Equip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Door.cpp">
+      <Filter>src\Entity\Equip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DoorZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,13 +227,7 @@
     <ClInclude Include="..\Classes\Zombie.h">
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ZombieEquipment.h">
-      <Filter>src\Entity\Zombie</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\RoadblockZombie.h">
-      <Filter>src\Entity\Zombie</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Roadblock.h">
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BasicZombie.h">
@@ -385,9 +388,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Loading.h">
       <Filter>src\Entity\UI</Filter>
-	  </ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Classes\Lotus.h">
       <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ZombieEquipment.h">
+      <Filter>src\Entity\Equip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Roadblock.h">
+      <Filter>src\Entity\Equip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Door.h">
+      <Filter>src\Entity\Equip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DoorZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

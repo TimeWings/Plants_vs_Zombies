@@ -21,7 +21,4 @@ void ZombieEquipment::setMetal(bool Metal)
 	_Metal = Metal;
 }
 
-//void ZombieEquipment::addLayer(Node * entity, Zombie *zombie)
-//{
-//	zombie->getImg()->addChild(entity);
-//}
+

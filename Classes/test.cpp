@@ -32,6 +32,7 @@
 #include "HeroLucker.h"
 #include "Paul.h"
 #include "Shovel.h"
+#include "DoorZombie.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -69,6 +70,7 @@ test::test()
 	new Card<Paul>(Point(80, 260));
 	new Card<HeroLucker>(Point(100, 260));
 	new Card<Lotus>(Point(20, 220));
+	new ZombieCard<DoorZombie>(Point(120,260));
 }
 void test::drawRect()
 {

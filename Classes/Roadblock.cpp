@@ -15,3 +15,11 @@ void Roadblock::Damage(int damage)
 {
 	setHp(getHp() - damage);
 }
+
+void Roadblock::Move()
+{
+}
+
+void Roadblock::Attack()
+{
+}

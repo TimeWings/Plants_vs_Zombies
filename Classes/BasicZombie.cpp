@@ -106,6 +106,7 @@ void BasicZombie::Die(Node * pSender)
 {
 	Sprite *sp = this->getImg();
 	sp->getActionManager()->removeAllActionsFromTarget(sp);
+	sp->removeAllChildrenWithCleanup(true);
 	BasicDie(pSender);
 }
 
