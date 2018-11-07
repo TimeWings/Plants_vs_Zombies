@@ -107,7 +107,6 @@ void BasicZombie::Die(Node * pSender)
 	Sprite *sp = this->getImg();
 	sp->getActionManager()->removeAllActionsFromTarget(sp);
 	BasicDie(pSender);
-	
 }
 
 void BasicZombie::BasicDie(Node *pSender)
@@ -275,24 +274,6 @@ void BasicZombie::BasicMove()
 	CCRepeatForever *rf = CCRepeatForever::create(Animate::create(an));
 	rf->setTag(Animation_Tag);
 	this->getImg()->runAction(rf);
-}
-
-
-void BasicZombie::clear(Node * pSender)
-{
-	pSender->removeFromParent();
-}
-
-void BasicZombie::clear_from_vector(Node * pSender)
-{
-	for (unsigned i = 0; i < readyZombies.size(); i++)
-	{
-		if (readyZombies.at(i) == this)
-		{
-			readyZombies.erase(readyZombies.begin() + i);
-			break;
-		}
-	}
 }
 
 void BasicZombie::DamageZombie(int damage)

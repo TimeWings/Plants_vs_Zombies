@@ -142,7 +142,10 @@ void RoadblockZombie::DamageEquip(int damage)
 {
 	if (hasEquip()) {
 		getEquip()->Damage(damage);
-		std::cout << getEquip()->getHp() << std::endl;
+		if (getEquip()->getHp() < 0) {
+			setHp(getHp() + getEquip()->getHp());
+			getEquip()->setHp(0);
+		}
 	}
 	else {
 		setHp(getHp() - damage);

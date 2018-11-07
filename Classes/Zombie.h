@@ -55,4 +55,6 @@ public:
 	virtual void DamageEquip(int damage) = 0;
 	virtual void DamageBoth(int damage) = 0;
 	void DamagePlant(Node * pSender, PlantStatus *plantstatus);
+	void clear(Node * pSender);
+	void clear_from_vector(Node * pSender);
 };
