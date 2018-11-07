@@ -14,6 +14,7 @@ public:
 	void findTarget();
 	virtual void move();
 	virtual void Hit_Animation(Zombie* zombie);
+	virtual void attack_Animation();
 	void clearOil(Node * pSender, Zombie* zombie);
 protected:
 	Zombie* targetZb;

@@ -110,7 +110,8 @@ void RoadblockZombie::RoadblockMove()
 	MoveTo *moveTo = MoveTo::create(time, a);
 
 	ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
-	CCSequence *sequence = CCSequence::create(moveTo, scaledown, NULL);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Die, this));
+	CCSequence *sequence = CCSequence::create(moveTo, scaledown, actionDone, NULL);
 	sequence->setTag(Animation_Tag);
 	sp->runAction(sequence);
 

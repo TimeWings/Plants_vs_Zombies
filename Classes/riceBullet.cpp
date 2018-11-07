@@ -152,6 +152,10 @@ void riceBullet::Hit_Animation(Zombie * zombie)
 	}
 }
 
+void riceBullet::attack_Animation()
+{
+}
+
 void riceBullet::clearOil(Node * pSender,Zombie* zombie)
 {
 	for (int i = 0; i < zombie->getDebuff()->size(); i++)
