@@ -13,7 +13,7 @@ Sunflower::Sunflower(Point position,int row,int col)
 	sp->retain();
 	sp->setScale(0.3);
 	sp->setPosition(position);
-	this->setHp(20);
+	this->setHp(2);
 	this->setInterval(5000);
 	addLayer(sp);
 	this->Self_Animation();
@@ -98,7 +98,7 @@ bool Sunflower::isWorking()
 
 void Sunflower::clearSun(Node *pSender, Sprite *sunFlower)
 {
-	Plants *plant;
+	Plants *plant=NULL;
 	for (auto x : readyPlants)
 	{
 		if (x->getImg() == sunFlower)
@@ -106,9 +106,11 @@ void Sunflower::clearSun(Node *pSender, Sprite *sunFlower)
 			plant = x;
 		}
 	}
+
 	struct timeb t1;
 	ftime(&t1);
 	long long seconds = t1.time * 1000 + t1.millitm;
+	if(plant!=NULL)
 	plant->setBirthTime(seconds);
 	pSender->removeFromParent();
 	readySun.erase(sunFlower);

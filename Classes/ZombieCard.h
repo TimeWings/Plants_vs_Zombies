@@ -29,7 +29,7 @@ public:
 	template <class T>
 	T* PutPlant(Point position, int row, int col)
 	{
-		T*t = new T(position, row, col);
+		T*t = new T(ccp(position.x,position.y+0.3*BlockSize.second), row, col);
 		return t;
 	}
 

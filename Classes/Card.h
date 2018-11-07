@@ -30,7 +30,8 @@ public:
 	template <class T>
 	T* PutPlant(Point position, int row, int col)
 	{
-		T*t = new T(position, row, col);
+		Point a = Point(position.x, position.y + 0.25*BlockSize.second);
+		T*t = new T(a, row, col);
 		return t;
 	}
 
@@ -215,7 +216,7 @@ public:
 					std::cout << "不可以种植" << std::endl;
 					return;
 				}
-				else
+				else if(strcmp(typeid(T).name(), "class Lotus") != 0)
 				{
 					std::cout << "种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
@@ -223,20 +224,19 @@ public:
 			}
 			else if (ps->_BlockType == 1)
 			{
-				if ((strcmp(typeid(T).name(), "class Nut") != 0) && ps->plantVector.size() == 0)
+				if ((strcmp(typeid(T).name(), "class Lotus") != 0) && ps->plantVector.size() == 0)
 				{
 					std::cout << "不是睡莲,种植不成功了" << std::endl;
 				}
-				else if ((strcmp(typeid(T).name(), "class Nut") == 0) && ps->plantVector.size() == 0)
+				else if ((strcmp(typeid(T).name(), "class Lotus") == 0) && ps->plantVector.size() == 0)
 				{
 					std::cout << "是睡莲,种植成功" << std::endl;
-					ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
+					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 				}
 				else if ((strcmp(typeid(T).name(), "class Cushaw") == 0) && ps->plantVector.size() != 0 && !find1(ps, "class Cushaw"))
 				{
 					std::cout << "可以种植南瓜" << std::endl;
 					ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
-					//ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 				}
 				else if (strcmp(typeid(T).name(), "class Shovel") == 0)
 				{
@@ -254,8 +254,8 @@ public:
 							RemoveRegister("class Lancer", row, col - 1);
 							RemoveRegister("class Lancer", row, col);
 							T* plant = PutPlant<T>(Rank2Point(row, col - 1), row, col - 1);
-							ps->plantVector.push_back(plant);
-							ps1->plantVector.push_back(plant);
+							ps->plantVector.insert(ps->plantVector.end()-1 , plant);
+							ps1->plantVector.insert(ps1->plantVector.end()-1, plant);
 							return;
 						}
 						PlantStatus* ps2 = find(row, col + 1);
@@ -265,8 +265,8 @@ public:
 							RemoveRegister("class Lancer", row, col + 1);
 							RemoveRegister("class Lancer", row, col);
 							T* plant = PutPlant<T>(Rank2Point(row, col), row, col);
-							ps->plantVector.push_back(plant);
-							ps2->plantVector.push_back(plant);
+							ps->plantVector.insert(ps->plantVector.end() - 1, plant);
+							ps2->plantVector.insert(ps2->plantVector.end() - 1, plant);
 							return;
 						}
 						std::cout << "只有一个投手,不可放置" << std::endl;
@@ -281,17 +281,17 @@ public:
 				else if (ps->plantVector.size() == 2 && find1(ps, "class Cushaw") && (strcmp(typeid(T).name(), "class Cushaw") != 0))
 				{
 					std::cout << "在南瓜上种植成功" << std::endl;
-					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					ps->plantVector.insert(ps->plantVector.end()-1, PutPlant<T>(Rank2Point(row, col), row, col));
 				}
 				else if (ps->plantVector.size() > 1)
 				{
 					std::cout << "不可以种植" << std::endl;
 					return;
 				}
-				else if(strcmp(typeid(T).name(), "class Nut") != 0)
+				else if(strcmp(typeid(T).name(), "class Lotus") != 0)
 				{
 					std::cout << "种植成功" << std::endl;
-					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					ps->plantVector.insert(ps->plantVector.end()-1, PutPlant<T>(Rank2Point(row, col), row, col));
 				}
 
 			}

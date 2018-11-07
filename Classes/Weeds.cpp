@@ -9,7 +9,7 @@ Weeds::Weeds(Point position,int row,int col)
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Weeds.png"));
 	this->setImg(sp);
 	sp->retain();
-	sp->setScale(0.25);
+	sp->setScale(0.21);
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
