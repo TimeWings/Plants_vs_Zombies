@@ -11,7 +11,19 @@ riceBullet::riceBullet(Point a, int Plant_row)
 {
 	this->setDamage(2);
 	this->getRange()->push_back(Plant_row);
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\rice.png"));
+
+	srand((unsigned)time(NULL));
+	this->cnt = rand() % 100;
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
+	if (cnt <= 20)
+	{
+		sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\OilBullet.png"));
+	}
+	else
+	{
+		sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\rice.png"));
+	}
+	
 	sp->setScale(0.5);
 	this->setImg(sp);
 	this->getImg()->setTag(Pitcher_tag);
@@ -71,6 +83,7 @@ void riceBullet::move()
 		//贝塞尔曲线
 		Sprite*sp = this->getImg();
 		Point TargetPoint = this->targetZb->getImg()->getPosition();
+		//2秒到达目的地
 		Point targetPoint = Point(TargetPoint.x - this->targetZb->getWalkSpeed() * 2, TargetPoint.y);
 
 		// 把角度转换为弧度
@@ -96,10 +109,6 @@ void riceBullet::move()
 	}
 }
 
-void riceBullet::attack_Animation()
-{
-}
-
 void riceBullet::Hit_Animation(Zombie * zombie)
 {
 	Sprite* sp = this->getImg();
@@ -111,10 +120,50 @@ void riceBullet::Hit_Animation(Zombie * zombie)
 			break;
 		}
 	}
-	ActionInterval * fadeout = FadeOut::create(0.3);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clearNode, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
+	if (this->cnt <= 20)
+	{
+		for (auto x : *(zombie->getDebuff()))
+		{
+			if (x == Oil)
+			{
+				return;
+			}
+		}
+		zombie->getDebuff()->push_back(Oil);
+		zombie->getScheduler()->setTimeScale(0.1);
+		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\OilHit.png"));
+		sp->setPosition(Point(zombie->getImg()->getContentSize().width / 4.55, zombie->getImg()->getContentSize().height / 1.1));
+		sp->retain();
+		sp->setScale(0.2);
+		zombie->getImg()->addChild(sp);
+		ActionInterval * fadeout = FadeOut::create(0.3);
+		Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clearOil, this, zombie));
+		Sequence *sequence = Sequence::create(CCDelayTime::create(2), fadeout, actionDone, NULL);
+		sp->runAction(sequence);
+	}
+	else
+	{
+		ActionInterval * fadeout = FadeOut::create(0.3);
+		Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clearNode, this));
+		Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+		sp->runAction(sequence);
+	}
+}
+
+void riceBullet::clearOil(Node * pSender,Zombie* zombie)
+{
+	for (int i = 0; i < zombie->getDebuff()->size(); i++)
+	{
+		if (zombie->getDebuff()->at(i) == Oil)
+		{
+			zombie->getDebuff()->erase(zombie->getDebuff()->begin() + i);
+			break;
+		}
+	}
+	zombie->getScheduler()->setTimeScale(1);
+	pSender->removeAllChildrenWithCleanup(true);
+	pSender->removeFromParent();
 }
 

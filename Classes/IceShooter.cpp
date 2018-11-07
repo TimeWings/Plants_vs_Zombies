@@ -1,9 +1,7 @@
 #include "IceShooter.h"
 #include "Global.h"
 #include "IceBullet.h"
-#include "BrokenSprite.h"
 #include <iostream>
-using namespace YXTools;
 IceShooter::IceShooter()
 {
 }

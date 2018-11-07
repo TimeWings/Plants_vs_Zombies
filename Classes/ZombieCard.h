@@ -33,10 +33,10 @@ public:
 		return t;
 	}
 
-	void addLayer(Node * entity)
+	void addLayer(Node * entity,int order=0)
 	{
 		EntityLayer* layer = EntityLayer::getInstance();
-		layer->addChild(entity);
+		layer->addChild(entity,order);
 	}
 
 	void removeLayer(Node * entity)
@@ -54,7 +54,7 @@ public:
 		sprite->setContentSize(Size(20, 30));
 		//this->Scale = this->getImg()->getScale();
 		sprite->setPosition(position);
-		addLayer(sprite);
+		addLayer(sprite,200);
 
 		string className = typeid(T).name();
 		className = className.erase(0, 6);
@@ -66,7 +66,7 @@ public:
 		//plantSprite->setScale(0.08f);
 		plantSprite->setContentSize(Size(15, 20));
 		plantSprite->retain();
-		addLayer(plantSprite);
+		addLayer(plantSprite,200);
 
 		plantsTypeName = typeid(T).name();
 
@@ -91,7 +91,7 @@ public:
 					plantFollowSprite->setContentSize(Size(15, 20));
 					plantFollowSprite->setPosition(clickLocation);
 					plantFollowSprite->retain();
-					addLayer(plantFollowSprite);
+					addLayer(plantFollowSprite,200);
 					isFollowingMouse = true;
 					return true;
 

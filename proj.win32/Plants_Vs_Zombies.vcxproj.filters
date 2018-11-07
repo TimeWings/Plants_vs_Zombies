@@ -204,6 +204,9 @@
     <ClCompile Include="..\Classes\Lotus.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Lantern.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\ZombieEquipment.cpp">
       <Filter>src\Entity\Equip</Filter>
     </ClCompile>
@@ -392,17 +395,8 @@
     <ClInclude Include="..\Classes\Lotus.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ZombieEquipment.h">
-      <Filter>src\Entity\Equip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Roadblock.h">
-      <Filter>src\Entity\Equip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Door.h">
-      <Filter>src\Entity\Equip</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\DoorZombie.h">
-      <Filter>src\Entity\Zombie</Filter>
+    <ClInclude Include="..\Classes\Lantern.h">
+      <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -21,7 +21,7 @@ PeaBulletPlus::PeaBulletPlus(Point position, int Plant_row, double angle,double 
 		sp->setTag(Pitcher_tag);
 	}
 	sp->setRotation(-angle);
-	sp->setScale(0.2);
+	sp->setScale(1);
 	this->setDamage(1);
 	this->setSpeed(70);
 	//方便以后获取子弹精灵

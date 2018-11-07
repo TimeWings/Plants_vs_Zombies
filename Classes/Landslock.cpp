@@ -48,8 +48,7 @@ void Landslock::driveOut(Zombie* zombie)
 	bl->addChild(sp_frigthen, zombie->getRow() * 3 -1);
 	//Ëæ»úÎ»ÒÆ
 	srand((unsigned)time(NULL));
-	//int cnt = rand() % 2;
-	int cnt = 0;
+	int cnt = rand() % 2;
 	MoveTo *moveTo;
 	int moveRow;
 	switch (cnt)
