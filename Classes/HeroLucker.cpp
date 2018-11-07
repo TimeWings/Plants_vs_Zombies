@@ -15,7 +15,7 @@ HeroLucker::HeroLucker(Point position, int row, int col)
 	sp->setScale(0.3);
 	sp->setPosition(position);
 	this->setHp(6);
-	this->setInterval(2000);
+	this->setInterval(8000);
 	//普通植物直接播放自身动画
 	this->Self_Animation();
 	//添加到植物层
@@ -49,17 +49,14 @@ void HeroLucker::CreateBullet()
 	{
 		Zombie* zombie = readyZombies.at(i);
 		Point a = zombie->getImg()->getPosition();
-		HeroLuckerBullet *pb = new HeroLuckerBullet(a, this->getRow());
-		//回调函数，清除子弹，子弹持续时间为5秒;
-		CCDelayTime* delayTime = CCDelayTime::create(1);
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(HeroLucker::clearBullet, this, pb));
-		Sequence *sequence1 = Sequence::create(delayTime, actionDone, NULL);
-		this->getImg()->runAction(sequence1);
+		HeroLuckerBullet *pb = new HeroLuckerBullet(a, zombie->getRow());
 	}
+	setNewBirthTime();
 }
 
 void HeroLucker::Self_Animation()
 {
+	//Q弹效果
 	Sprite *sp = this->getImg();
 	float preScale = sp->getScaleX();
 	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale + 0.05);
@@ -73,7 +70,7 @@ void HeroLucker::Self_Animation()
 	sp->runAction(CCRepeatForever::create(sequence2));
 }
 
-void HeroLucker::clearBullet(Node * pSender, MushroomBullet * bp)
+void HeroLucker::clearBullet(Node * pSender, HeroLuckerBullet * bp)
 {
 	//消除子弹
 	bp->getImg()->removeFromParent();
