@@ -15,7 +15,7 @@ riceShooter::riceShooter(Point position, int row,int col)
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(0.3);
+	sp->setScale(0.21);
 	sp->setPosition(position);
 	this->setHp(6);
 	this->setInterval(2000);

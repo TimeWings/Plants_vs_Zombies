@@ -9,7 +9,7 @@ Cushaw::Cushaw(Point position, int row, int col)
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(3);
+	sp->setScale(2.7);
 	sp->setPosition(position);
 	this->setHp(25);
 	this->setInterval(0);

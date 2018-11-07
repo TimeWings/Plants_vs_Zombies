@@ -9,13 +9,26 @@ Weeds::Weeds(Point position,int row,int col)
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Weeds.png"));
 	this->setImg(sp);
 	sp->retain();
-	sp->setScale(0.25);
+	sp->setScale(0.21);
 	sp->setPosition(position);
 	this->setHp(20);
 	this->setInterval(2000);
 	this->addLayer(sp);
 	this->Self_Animation();
 	readyPlants.push_back(this);
+}
+
+bool Weeds::isWorking()
+{
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	for (auto x : readyZombies)
+	{
+		if (x->getImg()->getPositionX() < visibleSize.width)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void Weeds::CreateBullet()

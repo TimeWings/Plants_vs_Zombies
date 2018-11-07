@@ -16,7 +16,7 @@ Mushroom::Mushroom(Point position, int row,int col)
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(0.25);
+	sp->setScale(0.22);
 	this->Scale = this->getImg()->getScale();
 	sp->setPosition(position);
 	this->setHp(10);

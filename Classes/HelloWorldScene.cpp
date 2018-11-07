@@ -60,20 +60,8 @@ bool HelloWorld::init()
     }
 	auto ss = Director::getInstance()->getTextureCache()->getCachedTextureInfo();
 	log("%s", ss.c_str());
-	initPlantStatus();
 	preLoading();
     return true;
-}
-void HelloWorld::initPlantStatus()
-{
-	for (int i = 1; i <= MapRow; i++)
-	{
-		for (int j = 1; j <= MapCol; j++)
-		{
-			plantstatus.push_back(new PlantStatus(i, j, 0));
-
-		}
-	}
 }
 void HelloWorld::preLoading()
 {

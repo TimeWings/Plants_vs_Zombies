@@ -9,7 +9,7 @@ Chomper::Chomper(Point position, int row, int col)
 	//一定要retain，否则会自动释放
 	sp->retain();
 	sp->setScale(2);
-	sp->setPosition(position);
+	sp->setPosition(position.x+10,position.y);
 	this->setHp(600);
 	this->setInterval(3000);
 	//普通植物直接播放自身动画
