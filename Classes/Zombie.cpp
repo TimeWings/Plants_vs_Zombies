@@ -1,5 +1,6 @@
 #include "Zombie.h"
 #include "EntityLayer.h"
+#include "Global.h"
 Zombie::Zombie()
 {
 }
@@ -140,4 +141,22 @@ void Zombie::DamagePlant(Node * pSender, PlantStatus *plantstatus)
 	}
 	plantstatus->plantVector.at(0)->getHurt(1);
 	plantstatus->plantVector.at(0)->Attacked();
+}
+
+void Zombie::clear(Node * pSender)
+{
+	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
+}
+
+void Zombie::clear_from_vector(Node * pSender)
+{
+	for (unsigned i = 0; i < readyZombies.size(); i++)
+	{
+		if (readyZombies.at(i) == this)
+		{
+			readyZombies.erase(readyZombies.begin() + i);
+			break;
+		}
+	}
 }
