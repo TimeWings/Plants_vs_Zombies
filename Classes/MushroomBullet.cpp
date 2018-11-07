@@ -68,6 +68,10 @@ void MushroomBullet::attack_Animation()
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 	this->getImg()->runAction(CCRepeatForever::create(Animate::create(an)));
+	//回调函数，清除子弹，子弹持续时间为1秒;
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(MushroomBullet::clear, this));
+	Sequence *sequence1 = Sequence::create(CCDelayTime::create(1), actionDone, NULL);
+	this->getImg()->runAction(sequence1);
 }
 
 void MushroomBullet::Hit_Animation(Zombie * zombie)

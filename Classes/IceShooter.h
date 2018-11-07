@@ -9,5 +9,7 @@ class IceShooter :public PeaShooter
 public:
 	IceShooter();
 	IceShooter(Point position,int row,int col);
+	virtual void Die();
 	void CreateBullet();
+	void clear(Node * pSender);
 };

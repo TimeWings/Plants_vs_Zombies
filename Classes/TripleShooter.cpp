@@ -9,7 +9,7 @@ TripleShooter::TripleShooter(Point position, int row,int col)
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(0.3);
+	sp->setScale(0.25);
 	sp->setPosition(position);
 	this->setHp(6);
 	this->setInterval(2000);
@@ -23,7 +23,16 @@ TripleShooter::TripleShooter(Point position, int row,int col)
 
 bool TripleShooter::isWorking()
 {
-	return true;
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	auto row = this->getRow();
+	for (auto x : readyZombies)
+	{
+		if (x->getImg()->getPositionX() < visibleSize.width&&(x->getRow()==row||x->getRow()==row-1|| x->getRow() == row +1))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void TripleShooter::work()

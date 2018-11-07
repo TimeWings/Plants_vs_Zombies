@@ -8,5 +8,6 @@ class Weeds :public PeaShooter
 {
 public:
 	Weeds(Point position,int row,int col);
+	virtual bool isWorking();
 	void CreateBullet();
 };

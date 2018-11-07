@@ -40,9 +40,13 @@
 #include <string>
 #include "test.h"
 #include <direct.h>
+#include "Loading.h"
 USING_NS_CC;
 using namespace std;
 using namespace map;
+
+Loading* loading;
+
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -60,20 +64,8 @@ bool HelloWorld::init()
     }
 	auto ss = Director::getInstance()->getTextureCache()->getCachedTextureInfo();
 	log("%s", ss.c_str());
-	initPlantStatus();
 	preLoading();
     return true;
-}
-void HelloWorld::initPlantStatus()
-{
-	for (int i = 1; i <= MapRow; i++)
-	{
-		for (int j = 1; j <= MapCol; j++)
-		{
-			plantstatus.push_back(new PlantStatus(i, j,1));
-
-		}
-	}
 }
 void HelloWorld::preLoading()
 {
@@ -81,6 +73,10 @@ void HelloWorld::preLoading()
 	vector<string>ownnames;
 	getFiles("..\\Resources","..\\Resources", files, ownnames);
 	tot_loadingSprite = files.size();
+	this->addChild(EntityLayer::create());
+
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	loading = new Loading(Point(size.width / 2, size.height / 2 ));
 	for (string x : files)
 	{
 		//cout << x << endl;
@@ -89,11 +85,13 @@ void HelloWorld::preLoading()
 }
 void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 {
+	
+	loading->setCurrentValue(100 * (float)loadingSprite / (float)tot_loadingSprite);
 	loadingSprite++;
-	cout << loadingSprite << endl;
+	cout << (float)loadingSprite / (float)tot_loadingSprite << endl;
 	if (loadingSprite == tot_loadingSprite)
 	{
-		this->addChild(EntityLayer::create());
+		//this->addChild(EntityLayer::create());
 		auto visibleSize = Director::getInstance()->getVisibleSize();
 		test a = test();
 	}

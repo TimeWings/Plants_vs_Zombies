@@ -28,6 +28,9 @@
     <Filter Include="src\Entity\Bullets">
       <UniqueIdentifier>{eb33475d-b5ab-418c-9e33-7f9aadd634af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Entity\UI">
+      <UniqueIdentifier>{367ba9d3-7d6e-48b0-81d3-19486b8b17d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -196,6 +199,11 @@
       <Filter>src\Entity\Bullets</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Shovel.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Loading.cpp">
+      <Filter>src\Entity\UI</Filter>
+    <ClCompile Include="..\Classes\Lotus.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
   </ItemGroup>
@@ -372,6 +380,11 @@
       <Filter>src\Entity\Bullets</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Shovel.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Loading.h">
+      <Filter>src\Entity\UI</Filter>
+    <ClInclude Include="..\Classes\Lotus.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
