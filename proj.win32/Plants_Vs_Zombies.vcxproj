@@ -172,6 +172,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Lancer.cpp" />
     <ClCompile Include="..\Classes\LancerGun.cpp" />
     <ClCompile Include="..\Classes\Landslock.cpp" />
+    <ClCompile Include="..\Classes\Lantern.cpp" />
     <ClCompile Include="..\Classes\Lotus.cpp" />
     <ClCompile Include="..\Classes\Lucker.cpp" />
     <ClCompile Include="..\Classes\Melancholy.cpp" />
@@ -232,6 +233,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Lancer.h" />
     <ClInclude Include="..\Classes\LancerGun.h" />
     <ClInclude Include="..\Classes\Landslock.h" />
+    <ClInclude Include="..\Classes\Lantern.h" />
     <ClInclude Include="..\Classes\Lotus.h" />
     <ClInclude Include="..\Classes\Lucker.h" />
     <ClInclude Include="..\Classes\Melancholy.h" />

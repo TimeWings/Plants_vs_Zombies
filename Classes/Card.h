@@ -56,7 +56,7 @@ public:
 		sprite->setContentSize(Size(20, 30));
 		//this->Scale = this->getImg()->getScale();
 		sprite->setPosition(position);
-		addLayer(sprite);
+		addLayer(sprite,200);
 
 		string className = typeid(T).name();
 		className = className.erase(0, 6);
@@ -68,7 +68,7 @@ public:
 		//plantSprite->setScale(0.08f);
 		plantSprite->setContentSize(Size(15, 20));
 		plantSprite->retain();
-		addLayer(plantSprite);
+		addLayer(plantSprite,200);
 
 		plantsTypeName = typeid(T).name();
 
@@ -158,7 +158,7 @@ public:
 		PlantStatus* ps = find(row, col);
 		if (ps != NULL)
 		{
-			if (ps->_BlockType == 0)
+			if (ps->_BlockType == 0|| ps->_BlockType == 2)
 			{
 				if ((strcmp(typeid(T).name(), "class Cushaw") == 0) && ps->plantVector.size() != 0 && !find1(ps, "class Cushaw"))
 				{

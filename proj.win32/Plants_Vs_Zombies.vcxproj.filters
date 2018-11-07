@@ -201,6 +201,7 @@
     <ClCompile Include="..\Classes\Lotus.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Lantern.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -378,6 +379,9 @@
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Lotus.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Lantern.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
