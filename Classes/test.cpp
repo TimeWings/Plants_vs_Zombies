@@ -1,6 +1,7 @@
 #include "test.h"
 #include "Global.h"
 #include "Background.h"
+#include "Loading.h"
 #include "IceShooter.h"
 #include "PotatoMine.h"
 #include "Pumpkin.h"
@@ -34,6 +35,7 @@
 using namespace map;
 test::test()
 {
+	//new Loading();
 	new Background();
 	drawRect();
 	new Card<IceShooter>(Point(20, 290));
