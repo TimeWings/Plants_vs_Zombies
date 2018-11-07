@@ -5,15 +5,16 @@
 #include <iostream>
 class riceBullet :public PeaBullet
 {
-
+private:
+	int cnt;
 public:
 	riceBullet();
 	riceBullet(Point a, int Plant_row);
 	void clear(Node * pSender);
 	void findTarget();
 	virtual void move();
-	virtual void attack_Animation();
 	virtual void Hit_Animation(Zombie* zombie);
+	void clearOil(Node * pSender, Zombie* zombie);
 protected:
 	Zombie* targetZb;
 };

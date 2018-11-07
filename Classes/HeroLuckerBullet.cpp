@@ -7,7 +7,7 @@ HeroLuckerBullet::HeroLuckerBullet(Point position, int Plant_row)
 {
 	this->row = Plant_row;
 	this->getRange()->push_back(Plant_row);
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("HeroLucker\\Bramble\\bramble14.png"));
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("HeroLucker\\Bramble\\bramble14.1.png"));
 	//sp->setAnchorPoint(Point::ZERO);
 	//方便以后获取子弹精灵
 	this->setImg(sp);
@@ -52,7 +52,7 @@ void HeroLuckerBullet::attack_Animation()
 	this->getImg()->runAction(Animate::create(an));
 	//子弹持续2秒消除
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(HeroLuckerBullet::clear, this));
-	Sequence *sequence1 = Sequence::create(CCDelayTime::create(10), actionDone, NULL);
+	Sequence *sequence1 = Sequence::create(CCDelayTime::create(20), actionDone, NULL);
 	this->getImg()->runAction(sequence1);
 }
 

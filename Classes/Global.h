@@ -8,6 +8,9 @@
 #define Freezing 1 //±ù¶³
 #define DrivingOut 2 //Çý¸Ï
 #define Stick 3 //Õë´Ì
+#define Oil 4 //Õë´Ì
+
+
 USING_NS_CC;
 extern std::vector <Bullet*> readyBullet;
 extern std::vector <Plants*>readyPlants;

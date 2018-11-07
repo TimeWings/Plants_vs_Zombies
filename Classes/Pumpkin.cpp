@@ -47,7 +47,7 @@ void Pumpkin::CheckZombies()
 	for (int i = 0; i < readyZombies.size() && !this->isJumping; i++)
 	{
 		this->isChecking = true;
-		if (readyZombies.at(i)->getImg()->getPositionY() == this->position.y 
+		if (readyZombies.at(i)->getRow() == this->getRow()
 			&& readyZombies.at(i)->getImg()->getPositionX() - this->position.x <= this->attackRange 
 			&& readyZombies.at(i)->getImg()->getPositionX() - this->position.x >= 0
 			&& !this->isJumping)

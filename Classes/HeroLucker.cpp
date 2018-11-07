@@ -15,7 +15,7 @@ HeroLucker::HeroLucker(Point position, int row, int col)
 	sp->setScale(0.3);
 	sp->setPosition(position);
 	this->setHp(6);
-	this->setInterval(8000);
+	this->setInterval(30000);
 	//普通植物直接播放自身动画
 	this->Self_Animation();
 	//添加到植物层
