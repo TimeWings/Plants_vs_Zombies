@@ -20,7 +20,7 @@ Mushroom::Mushroom(Point position, int row,int col)
 	this->Scale = this->getImg()->getScale();
 	sp->setPosition(position);
 	this->setHp(10);
-	this->setInterval(1200);
+	this->setInterval(2000);
 	//普通植物直接播放自身动画
 	this->Self_Animation();
 	//添加到植物层
@@ -47,10 +47,9 @@ void Mushroom::CreateBullet()
 		//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
 		Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
 		MushroomBullet *pb = new MushroomBullet(a, this->getRow());
-		//回调函数，清除子弹，子弹持续时间为5秒;
-		CCDelayTime* delayTime = CCDelayTime::create(1);
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(Mushroom::clearBullet, this, pb));
-		Sequence *sequence1 = Sequence::create(delayTime, actionDone, NULL);
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(Mushroom::clearBullet, this));
+		//与子弹清除延时一样，用来设置填充时间，回播动画
+		Sequence *sequence1 = Sequence::create(CCDelayTime::create(1), actionDone, NULL);
 		this->getImg()->runAction(sequence1);
 	}
 }
@@ -74,11 +73,8 @@ void Mushroom::Self_Animation()
 	sp->runAction(CCRepeatForever::create(sequence1));
 }
 
-void Mushroom::clearBullet(Node *pSender, MushroomBullet *bp)
+void Mushroom::clearBullet(Node *pSender)
 {
-	//消除子弹
-	bp->getImg()->removeFromParent();
-	bp->clear(bp->getImg());
 	//设置时间
 	this->setNewBirthTime();
 	this->haveBullet = false;

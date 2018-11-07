@@ -26,6 +26,7 @@ HeroLucker::HeroLucker(Point position, int row, int col)
 
 void HeroLucker::Die()
 {
+	this->getImg()->removeFromParent();
 	for (int i = 0; i < readyPlants.size(); i++)
 	{
 		if (readyPlants.at(i) == this)
@@ -34,6 +35,13 @@ void HeroLucker::Die()
 			break;
 		}
 	}
+}
+
+bool HeroLucker::isWorking()
+{
+	if(readyZombies.size() > 0)
+		return true;
+	return false;
 }
 
 void HeroLucker::CreateBullet()
