@@ -18,6 +18,19 @@ Weeds::Weeds(Point position,int row,int col)
 	readyPlants.push_back(this);
 }
 
+bool Weeds::isWorking()
+{
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	for (auto x : readyZombies)
+	{
+		if (x->getImg()->getPositionX() < visibleSize.width)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 void Weeds::CreateBullet()
 {
 	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);

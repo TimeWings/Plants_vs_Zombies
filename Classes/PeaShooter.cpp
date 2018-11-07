@@ -29,7 +29,15 @@ PeaShooter::PeaShooter()
 }
 bool PeaShooter::isWorking()
 {
-	return true;
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	for (auto x : readyZombies)
+	{
+		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 void PeaShooter::work()
 {

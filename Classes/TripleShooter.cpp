@@ -23,7 +23,16 @@ TripleShooter::TripleShooter(Point position, int row,int col)
 
 bool TripleShooter::isWorking()
 {
-	return true;
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	auto row = this->getRow();
+	for (auto x : readyZombies)
+	{
+		if (x->getImg()->getPositionX() < visibleSize.width&&(x->getRow()==row||x->getRow()==row-1|| x->getRow() == row +1))
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void TripleShooter::work()
