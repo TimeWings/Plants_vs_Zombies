@@ -12,7 +12,7 @@ PeaShooter::PeaShooter(Point position,int row,int col)
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(0.3);
+	sp->setScale(0.25);
 	sp->setPosition(position);
 	this->setHp(6);
 	this->setInterval(2000);
@@ -29,7 +29,15 @@ PeaShooter::PeaShooter()
 }
 bool PeaShooter::isWorking()
 {
-	return true;
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	for (auto x : readyZombies)
+	{
+		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 void PeaShooter::work()
 {

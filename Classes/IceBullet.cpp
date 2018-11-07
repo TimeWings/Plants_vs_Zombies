@@ -50,7 +50,7 @@ void IceBullet::Hit_Animation(Zombie* zombie)
 	zombie->getDebuff()->push_back(Icing);
 	zombie->getScheduler()->setTimeScale(0.25);
 	CallFuncN* actionDone= actionDone = CallFuncN::create(CC_CALLBACK_1(IceBullet::resume, this, zombie));
-	CCSequence*sequence = CCSequence::create(CCDelayTime::create(5), actionDone,NULL);
+	CCSequence*sequence = CCSequence::create(CCDelayTime::create(1), actionDone,NULL);
 	zombie->getImg()->runAction(sequence);
 }
 

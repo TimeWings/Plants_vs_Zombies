@@ -203,6 +203,8 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Loading.cpp">
       <Filter>src\Entity\UI</Filter>
+    <ClCompile Include="..\Classes\Lotus.cpp">
+      <Filter>src\Entity\Plants</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +384,8 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Loading.h">
       <Filter>src\Entity\UI</Filter>
+    <ClInclude Include="..\Classes\Lotus.h">
+      <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

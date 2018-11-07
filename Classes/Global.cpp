@@ -10,9 +10,8 @@ namespace map
 	std::pair<float, float >BlockSize(38.0f, 46.0f);
 	std::pair<float, float >Deviation(95, 35);
 	std::vector<PlantStatus*>plantstatus;
-	int MapRow = 5;
-	int MapCol = 9;
-	int BlockStatus[50][50] = { 0 };
+	int MapRow = 0;
+	int MapCol = 0;
 	PlantStatus* find(int row, int col)
 	{
 		for (PlantStatus* x : plantstatus)

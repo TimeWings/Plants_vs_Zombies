@@ -26,8 +26,10 @@
 #include "Chomper.h"
 #include "Lucker.h"
 #include "Lancer.h"
+#include "Lotus.h"
 #include "Landslock.h"
 #include "riceShooter.h"
+#include "HeroLucker.h"
 #include "Paul.h"
 #include "Shovel.h"
 #include <iostream>
@@ -38,33 +40,35 @@ test::test()
 	//new Loading();
 	new Background();
 	drawRect();
-	new Card<IceShooter>(Point(20, 290));
-	new Card<Mushroom>(Point(40, 290));
-	new Card<PeaShooter>(Point(60, 290));
-	new Card<Melancholy>(Point(80, 290));
-	new Card<Sunflower>(Point(100, 290));
-	new Card<Weeds>(Point(120, 290));
-	new Card<NutPlus>(Point(140, 290));
-	new Card<Doom_shroom>(Point(160, 290));
-	new Card<JannuDaruku>(Point(180, 290));
-	new Card<StarShooter>(Point(200, 290));
-	new Card<TripleShooter>(Point(220, 290));
-	new Card<iceCabbage>(Point(240, 290));
-	new Card<Torch>(Point(260, 290));
-	new Card<Cushaw>(Point(280, 290));
-	new Card<Chomper>(Point(300, 290));
-	new Card<PotatoMine>(Point(320, 290));
-	new Card<Pumpkin>(Point(340, 290));
-	new Card<Lucker>(Point(360, 290));
-	new Card<DoublePeaShooter>(Point(380, 290));
-	new Card<Lancer>(Point(400, 290));
-	new ZombieCard<RoadblockZombie>(Point(420, 290));
-	new ZombieCard<BasicZombie>(Point(440, 290));
-	new Card<Shovel>(Point(460, 290));
-	new Card<Nut>(Point(20, 250));
-	new Card<Landslock>(Point(40, 250));
-	new Card<riceShooter>(Point(60, 250));
-	new Card<Paul>(Point(80, 250));
+	new Card<IceShooter>(Point(20, 300));
+	new Card<Mushroom>(Point(40, 300));
+	new Card<PeaShooter>(Point(60, 300));
+	new Card<Melancholy>(Point(80, 300));
+	new Card<Sunflower>(Point(100, 300));
+	new Card<Weeds>(Point(120, 300));
+	new Card<NutPlus>(Point(140, 300));
+	new Card<Doom_shroom>(Point(160, 300));
+	new Card<JannuDaruku>(Point(180, 300));
+	new Card<StarShooter>(Point(200, 300));
+	new Card<TripleShooter>(Point(220, 300));
+	new Card<iceCabbage>(Point(240, 300));
+	new Card<Torch>(Point(260, 300));
+	new Card<Cushaw>(Point(280, 300));
+	new Card<Chomper>(Point(300, 300));
+	new Card<PotatoMine>(Point(320, 300));
+	new Card<Pumpkin>(Point(340, 300));
+	new Card<Lucker>(Point(360, 300));
+	new Card<DoublePeaShooter>(Point(380, 300));
+	new Card<Lancer>(Point(400, 300));
+	new ZombieCard<RoadblockZombie>(Point(420, 300));
+	new ZombieCard<BasicZombie>(Point(440, 300));
+	new Card<Shovel>(Point(460, 300));
+	new Card<Nut>(Point(20, 260));
+	new Card<Landslock>(Point(40, 260));
+	new Card<riceShooter>(Point(60, 260));
+	new Card<Paul>(Point(80, 260));
+	new Card<HeroLucker>(Point(100, 260));
+	new Card<Lotus>(Point(20, 220));
 }
 void test::drawRect()
 {

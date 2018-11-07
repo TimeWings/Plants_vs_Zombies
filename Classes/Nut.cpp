@@ -8,7 +8,7 @@ Nut::Nut(Point position, int row,int col)
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(0.35);
+	sp->setScale(0.31);
 	sp->setPosition(position);
 	this->setHp(12);
 	this->setInterval(0);

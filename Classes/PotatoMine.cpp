@@ -17,10 +17,10 @@ PotatoMine::PotatoMine(Point position, int row,int col)
 	//一定要retain，否则会自动释放
 	sp->retain();
 	sp->setScale(0.5);
-	sp->setPosition(Point(position.x, position.y - 12));
+	sp->setPosition(Point(position.x, position.y - this->getImg()->getContentSize().height * this->getImg()->getScaleY() / 5));
 	this->setHp(this->maxHp);
-	this->setInterval(2000);
-	this->position = Point(position.x, position.y - 12);
+	this->setInterval(1000);
+	this->position = Point(position.x, position.y - this->getImg()->getContentSize().height * this->getImg()->getScaleY() / 5);
 	//延迟出生
 	CCDelayTime* delayTime = CCDelayTime::create(this->birthDelay);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::Born_Animation, this));
@@ -59,38 +59,7 @@ void PotatoMine::work()
 
 void PotatoMine::Die()
 {
-	if (this->bornFinish)
-	{
-		std::cout << "哈桑爆炸" << std::endl;
-		//马上移除容器并消除精灵
-		clear(this->getImg());
-		//定义爆炸效果
-		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("PotatoMine\\Explode1.png"));
-		sp->retain();
-		sp->setScale(0.6);
-		sp->setPosition(Point(position.x + 10, position.y + 20));
-		addLayer(sp);
-		//爆炸动画
-		char str[100] = { 0 };
-		Vector<SpriteFrame*> allframe;
-		for (int i = 2; i <= 4; i++)
-		{
-			sprintf(str, "PotatoMine\\Explode%d.png", i);
-			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
-			auto frame = sprite->getSpriteFrame();
-			allframe.pushBack(frame);
-		}
-		Animation* an = Animation::createWithSpriteFrames(allframe, 0.2);
-		//播放完动画之后消除精灵
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::removeSprite, this));
-		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
-		sp->runAction(sequence);
-	}
-	else
-	{
-		clear(this->getImg());
-	}
-	
+	clear(this->getImg());
 }
 
 void PotatoMine::removeSprite(Node *pSender)
@@ -166,18 +135,39 @@ void PotatoMine::afterBornHandle(Node *pSender)
 	sp->setPosition(this->position);
 	//添加到植物层
 	addLayer(sp);
-	//判断有没有受伤
-	//if (this->getHp() < this->maxHp)
-	//{
-	//	work();
-	//}
-	//播放眨眼动画
 	Self_Animation();
 }
 
 //产生隐形的子弹
 void PotatoMine::CreateBullet()
 {
+	if (this->bornFinish)
+	{
+		std::cout << "哈桑爆炸" << std::endl;
+		//马上移除容器并消除精灵
+		clear(this->getImg());
+		//定义爆炸效果
+		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("PotatoMine\\Explode1.png"));
+		sp->retain();
+		sp->setScale(0.6);
+		sp->setPosition(Point(position.x + 10, position.y + 20));
+		addLayer(sp);
+		//爆炸动画
+		char str[100] = { 0 };
+		Vector<SpriteFrame*> allframe;
+		for (int i = 2; i <= 4; i++)
+		{
+			sprintf(str, "PotatoMine\\Explode%d.png", i);
+			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+			auto frame = sprite->getSpriteFrame();
+			allframe.pushBack(frame);
+		}
+		Animation* an = Animation::createWithSpriteFrames(allframe, 0.2);
+		//播放完动画之后消除精灵
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::removeSprite, this));
+		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
+		sp->runAction(sequence);
+	}
 	//产生爆炸弹
 	std::cout << "产生子弹" << std::endl;
 	Sprite *sp = this->getImg();
@@ -199,4 +189,5 @@ void PotatoMine::clear(Node *pSender)
 			break;
 		}
 	}
+	this->setHp(-1);
 }
