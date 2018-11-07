@@ -1,6 +1,7 @@
 #include "test.h"
 #include "Global.h"
 #include "Background.h"
+#include "Loading.h"
 #include "IceShooter.h"
 #include "PotatoMine.h"
 #include "Pumpkin.h"
@@ -31,11 +32,13 @@
 #include "HeroLucker.h"
 #include "Paul.h"
 #include "Shovel.h"
+#include "Lantern.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
 test::test()
 {
+	//new Loading();
 	new Background();
 	drawRect();
 	new Card<IceShooter>(Point(20, 300));
@@ -67,6 +70,7 @@ test::test()
 	new Card<Paul>(Point(80, 260));
 	new Card<HeroLucker>(Point(100, 260));
 	new Card<Lotus>(Point(20, 220));
+	new Card<Lantern>(Point(40, 220));
 }
 void test::drawRect()
 {

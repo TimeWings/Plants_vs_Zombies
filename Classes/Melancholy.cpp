@@ -6,7 +6,7 @@ Melancholy::Melancholy(Point position, int row, int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("StarShooter.png"));
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Melancholy.png"));
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(0.2);
@@ -15,9 +15,34 @@ Melancholy::Melancholy(Point position, int row, int col)
 	addLayer(sp);
 	this->setInterval(1000);
 	this->Self_Animation();
+	distance = map::BlockSize.first*1.5;
 	readyPlants.push_back(this);
 }
+bool Melancholy::isWorking()
+{
+	for (auto x : readyZombies)
+	{
+		Sprite *sp = x->getImg();
+		double x1 = this->getImg()->getPositionX();
+		double x2 = sp->getPositionX();
+		double y1 = this->getImg()->getPositionY();
+		double y2 = sp->getPositionY();
+		double curdis = sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
+		if (curdis <= distance)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
+void Melancholy::work()
+{
+	if (isWorking())
+	{
+		CreateBullet();
+	}
+}
 void Melancholy::CreateBullet()
 {
 	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
@@ -29,7 +54,6 @@ void Melancholy::CreateBullet()
 	//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
 	Point a = ccp(sp->getPositionX(), sp->getPositionY());
 	auto visibleSize = Director::getInstance()->getVisibleSize();
-	double distance = map::BlockSize.first;
 	new MelancholyBullet(a, this->getRow(), 45, distance);
 	new MelancholyBullet(a, this->getRow(), 90, distance);
 	new MelancholyBullet(a, this->getRow(), 135, distance);

@@ -2,6 +2,8 @@
 #include "EntityLayer.h"
 #include "Global.h"
 using namespace map;
+int Background::type = 2;
+Node* Background::holesStencil = NULL;
 Background::Background()
 {
 	if (type == 0)
@@ -37,6 +39,45 @@ Background::Background()
 		EntityLayer* layer = EntityLayer::getInstance();
 		layer->addChild(sprite);
 		setImg(sprite);
+		/*auto holesStencil = Node::create();
+		auto Sp = Sprite::create("CircleMask.png");
+		Sp->setScale(0.5);
+		Sp->setPosition(200, 200);
+		holesStencil->addChild(Sp);
+		auto clippingNode = ClippingNode::create(holesStencil);
+		clippingNode->setInverted(true);
+		clippingNode->setAlphaThreshold(0);
+		auto floor = LayerColor::create(Color4B(0, 0, 0, 255));
+		clippingNode->addChild(floor);
+		layer->addChild(clippingNode,500);*/
+	}
+	else if (type == 2)
+	{
+		MapRow = 5;
+		MapCol = 9;
+		BlockSize.first = 38;
+		BlockSize.second = 46;
+		Deviation.first = 95;
+		Deviation.second = 12;
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Scene\\background3.jpg"));
+		sprite->retain();
+		sprite->setPosition(-20, 0);
+		sprite->setAnchorPoint(Vec2(0, 0));
+		sprite->setScale(2.0f);
+		EntityLayer* layer = EntityLayer::getInstance();
+		layer->addChild(sprite);
+		setImg(sprite);
+
+		holesStencil = Node::create();
+		
+		auto clippingNode = ClippingNode::create();
+		clippingNode->setStencil(holesStencil);
+		clippingNode->setInverted(true);
+		clippingNode->setAlphaThreshold(0);
+		auto floor = LayerColor::create(Color4B(0, 0, 0, 200));
+		clippingNode->addChild(floor);
+		layer->addChild(clippingNode,190);
+		
 	}
 	initPlantStatus();
 
@@ -72,4 +113,16 @@ void Background::initPlantStatus()
 			}
 		}
 	}
+	else if (type == 2)
+	{
+		for (int i = 1; i <= MapRow; i++)
+		{
+			for (int j = 1; j <= MapCol; j++)
+			{
+				plantstatus.push_back(new PlantStatus(i, j, 2));
+			}
+		}
+	}
 }
+
+//Ä£°å½ÌÑ§ http://www.mamicode.com/info-detail-247772.html
