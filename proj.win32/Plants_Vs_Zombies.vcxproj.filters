@@ -219,7 +219,12 @@
     <ClCompile Include="..\Classes\DoorZombie.cpp">
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Clover.cpp" />
+    <ClCompile Include="..\Classes\Magnet.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Clover.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -412,6 +417,9 @@
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Clover.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Magnet.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
