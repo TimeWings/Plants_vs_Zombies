@@ -39,6 +39,7 @@
 #include "Lantern.h"
 #include "DoorZombie.h"
 #include "Clover.h"
+#include "Magnet.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -47,7 +48,7 @@ test::test()
 	//new Loading();
 	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
 	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
-	float startX = 20.0f;
+	/*float startX = 20.0f;
 	float startY = 160.0f;
 	float offsetX = 20.0f;
 	float offsetY = 40.0f;
@@ -109,8 +110,9 @@ test::test()
 	auto unSelectCard27 = new UnSelectCard<Lotus>(Point(120, startY), PlantsEnum::Lotus);
 	unSelectingCardsEntity.push_back(unSelectCard27);
 	auto unSelectCard28 = new UnSelectCard<Lantern>(Point(140, startY), PlantsEnum::Lantern);
-	unSelectingCardsEntity.push_back(unSelectCard28);
-
+	unSelectingCardsEntity.push_back(unSelectCard28);*/
+	/*auto unSelectCard29 = new UnSelectCard<Magnet>(Point(160, startY), PlantsEnum::Magnet);
+	unSelectingCardsEntity.push_back(unSelectCard29);*/
 	
 	drawRect();
 	auto s = Director::getInstance()->getWinSize();
@@ -144,7 +146,6 @@ test::test()
 	new Card<HeroLucker>(Point(100, 260));
 	new Card<Lotus>(Point(20, 220));
 	new Card<Lantern>(Point(40, 220));
-	new ZombieCard<DoorZombie>(Point(120,260));*/
 	new ZombieCard<DoorZombie>(Point(120,260));
 	new Card<Clover>(Point(60, 220));
 	new Card<Magnet>(Point(80, 220));
