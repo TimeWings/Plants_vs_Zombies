@@ -14,4 +14,5 @@ public:
 	virtual void DamageBoth(int damage);
 	virtual void DamageEquip(int damage);
 	virtual void DamageZombie(int damage);
+	virtual Sprite *MagnetEquip();
 };

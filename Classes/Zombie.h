@@ -6,7 +6,7 @@
 #include "PlantStatus.h"
 USING_NS_CC;
 
-#define Animation_Tag 156347
+#define Animation_Tag 12347
 
 class Zombie : public Entity 
 {
@@ -54,7 +54,9 @@ public:
 	virtual void DamageZombie(int damage) = 0;
 	virtual void DamageEquip(int damage) = 0;
 	virtual void DamageBoth(int damage) = 0;
+	virtual Sprite *MagnetEquip() = 0;
 	void DamagePlant(Node * pSender, PlantStatus *plantstatus);
 	void clear(Node * pSender);
 	void clear_from_vector(Node * pSender);
+	void Stop_Animation();
 };

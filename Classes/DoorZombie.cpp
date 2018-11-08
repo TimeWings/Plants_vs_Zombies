@@ -32,11 +32,8 @@ DoorZombie::DoorZombie(Point position, int row, int col)
 
 void DoorZombie::Attack(PlantStatus * plantstatus)
 {
-	Sprite *sp = this->getImg();
-	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
-	{
-		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
-	}
+	if (!hasHead()) return;
+	Stop_Animation();
 	if (hasEquip())
 	{
 		DoorAttack(plantstatus);
@@ -91,11 +88,8 @@ void DoorZombie::DoorAttack(PlantStatus * plantstatus)
 
 void DoorZombie::Move()
 {
-	Sprite *sp = this->getImg();
-	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
-	{
-		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
-	}
+	if (!hasHead()) return;
+	Stop_Animation();
 	if (hasEquip())
 	{
 		DoorMove();
@@ -165,4 +159,16 @@ void DoorZombie::DamageZombie(int damage)
 	std::cout << "fuck" << std::endl;
 	setHp(getHp() - damage);
 	Attacked();
+}
+
+Sprite * DoorZombie::MagnetEquip()
+{
+	if (!hasEquip())
+		return nullptr;
+	getEquip()->setHp(0);
+	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\DoorZombie\\Door\\Door.png"));
+	sp->setScale(this->getImg()->getScaleX());
+	sp->setPosition(this->getImg()->getPosition());
+	addLayer(sp);
+	return sp;
 }

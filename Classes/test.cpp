@@ -30,6 +30,7 @@
 #include "Lucker.h"
 #include "Lancer.h"
 #include "Lotus.h"
+#include "Magnet.h"
 #include "Landslock.h"
 #include "riceShooter.h"
 #include "HeroLucker.h"
@@ -37,6 +38,7 @@
 #include "Shovel.h"
 #include "Lantern.h"
 #include "DoorZombie.h"
+#include "Clover.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -144,6 +146,9 @@ test::test()
 	new Card<Lotus>(Point(20, 220));
 	new Card<Lantern>(Point(40, 220));
 	new ZombieCard<DoorZombie>(Point(120,260));*/
+	new ZombieCard<DoorZombie>(Point(120,260));
+	new Card<Clover>(Point(60, 220));
+	new Card<Magnet>(Point(80, 220));
 }
 void test::drawRect()
 {

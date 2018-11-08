@@ -2,7 +2,8 @@
 #include "EntityLayer.h"
 #include "Global.h"
 using namespace map;
-int Background::type = 2;
+int Background::type = 3;
+Sprite* Background::Cloud=NULL;
 Node* Background::holesStencil = NULL;
 Background::Background()
 {
@@ -39,17 +40,22 @@ Background::Background()
 		EntityLayer* layer = EntityLayer::getInstance();
 		layer->addChild(sprite);
 		setImg(sprite);
-		/*auto holesStencil = Node::create();
-		auto Sp = Sprite::create("CircleMask.png");
-		Sp->setScale(0.5);
-		Sp->setPosition(200, 200);
-		holesStencil->addChild(Sp);
-		auto clippingNode = ClippingNode::create(holesStencil);
-		clippingNode->setInverted(true);
-		clippingNode->setAlphaThreshold(0);
-		auto floor = LayerColor::create(Color4B(0, 0, 0, 255));
-		clippingNode->addChild(floor);
-		layer->addChild(clippingNode,500);*/
+
+		Sprite* sp= Sprite::createWithTexture(TextureCache::getInstance()->addImage("Scene\\Water\\1.png"));
+		sp->setPosition(268, 132);
+		sp->setScale(2.2);
+		char str[100] = { 0 };
+		Vector<SpriteFrame*> allframe;
+		for (int i = 1; i <= 6; i++)
+		{
+			sprintf(str, "Scene\\Water\\%d.png", i);
+			auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+			auto frame = sprite->getSpriteFrame();
+			allframe.pushBack(frame);
+		}
+		Animation* an = Animation::createWithSpriteFrames(allframe, 0.3);
+		sp->runAction(RepeatForever::create(Animate::create(an)));
+		layer->addChild(sp);
 	}
 	else if (type == 2)
 	{
@@ -78,6 +84,29 @@ Background::Background()
 		clippingNode->addChild(floor);
 		layer->addChild(clippingNode,190);
 		
+	}
+	else if (type == 3)
+	{
+		MapRow = 5;
+		MapCol = 9;
+		BlockSize.first = 38;
+		BlockSize.second = 46;
+		Deviation.first = 95;
+		Deviation.second = 12;
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Scene\\background4.png"));
+		sprite->retain();
+		sprite->setPosition(-155, -25);
+		sprite->setAnchorPoint(Vec2(0, 0));
+		sprite->setScale(2.0f);
+		EntityLayer* layer = EntityLayer::getInstance();
+		layer->addChild(sprite);
+		setImg(sprite);
+		Cloud = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Scene\\Cloud\\1.png"));
+		auto visibleSize = Director::getInstance()->getVisibleSize();
+		Cloud->setPosition(visibleSize.width/2,visibleSize.height/2);
+		Cloud->setScale(2.5);
+		layer->addChild(Cloud,190);
+
 	}
 	initPlantStatus();
 
@@ -119,7 +148,17 @@ void Background::initPlantStatus()
 		{
 			for (int j = 1; j <= MapCol; j++)
 			{
-				plantstatus.push_back(new PlantStatus(i, j, 2));
+				plantstatus.push_back(new PlantStatus(i, j, 0));
+			}
+		}
+	}
+	else if (type == 3)
+	{
+		for (int i = 1; i <= MapRow; i++)
+		{
+			for (int j = 1; j <= MapCol; j++)
+			{
+				plantstatus.push_back(new PlantStatus(i, j, 0));
 			}
 		}
 	}

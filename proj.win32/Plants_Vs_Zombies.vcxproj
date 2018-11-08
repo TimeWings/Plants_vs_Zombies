@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\BasicZombie.cpp" />
     <ClCompile Include="..\Classes\Bullet.cpp" />
     <ClCompile Include="..\Classes\Chomper.cpp" />
+    <ClCompile Include="..\Classes\Clover.cpp" />
     <ClCompile Include="..\Classes\Cushaw.cpp" />
     <ClCompile Include="..\Classes\Doom_shroom.cpp" />
     <ClCompile Include="..\Classes\Door.cpp" />
@@ -178,6 +179,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Loading.cpp" />
     <ClCompile Include="..\Classes\Lotus.cpp" />
     <ClCompile Include="..\Classes\Lucker.cpp" />
+    <ClCompile Include="..\Classes\Magnet.cpp" />
     <ClCompile Include="..\Classes\Melancholy.cpp" />
     <ClCompile Include="..\Classes\MelancholyBullet.cpp" />
     <ClCompile Include="..\Classes\Mushroom.cpp" />
@@ -219,6 +221,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Card.h" />
     <ClInclude Include="..\Classes\CardEntity.h" />
     <ClInclude Include="..\Classes\Chomper.h" />
+    <ClInclude Include="..\Classes\Clover.h" />
     <ClInclude Include="..\Classes\Cushaw.h" />
     <ClInclude Include="..\Classes\Doom_shroom.h" />
     <ClInclude Include="..\Classes\Door.h" />
@@ -243,6 +246,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Loading.h" />
     <ClInclude Include="..\Classes\Lotus.h" />
     <ClInclude Include="..\Classes\Lucker.h" />
+    <ClInclude Include="..\Classes\Magnet.h" />
     <ClInclude Include="..\Classes\Melancholy.h" />
     <ClInclude Include="..\Classes\MelancholyBullet.h" />
     <ClInclude Include="..\Classes\Mushroom.h" />

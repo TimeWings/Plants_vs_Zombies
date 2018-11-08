@@ -1,5 +1,6 @@
 #include "Door.h"
 #include <iostream>
+#include "Zombie.h"
 
 Door::Door()
 {
@@ -26,11 +27,6 @@ void Door::Damage(int damage)
 
 void Door::Move()
 {
-	Sprite *sp = this->getImg();
-	if (sp->getActionManager()->getActionByTag(Equip_Animation_Tag, sp) != NULL)
-	{
-		sp->getActionManager()->removeAllActionsByTag(Equip_Animation_Tag, sp);
-	}
 	DoorMove();
 }
 
@@ -51,17 +47,12 @@ void Door::DoorMove()
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
 	CCRepeatForever *rf = CCRepeatForever::create(Animate::create(an));
-	rf->setTag(Equip_Animation_Tag);
+	rf->setTag(Animation_Tag);
 	this->getImg()->runAction(rf);
 }
 
 void Door::Attack()
 {
-	Sprite *sp = this->getImg();
-	if (sp->getActionManager()->getActionByTag(Equip_Animation_Tag, sp) != NULL)
-	{
-		sp->getActionManager()->removeAllActionsByTag(Equip_Animation_Tag, sp);
-	}
 	DoorAttack();
 }
 
@@ -82,6 +73,6 @@ void Door::DoorAttack()
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
 	CCRepeatForever *rf = CCRepeatForever::create(Animate::create(an));
-	rf->setTag(Equip_Animation_Tag);
+	rf->setTag(Animation_Tag);
 	this->getImg()->runAction(rf);
 }

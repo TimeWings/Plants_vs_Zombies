@@ -10,7 +10,6 @@ private:
 public:
 	riceBullet();
 	riceBullet(Point a, int Plant_row);
-	void clear(Node * pSender);
 	void findTarget();
 	virtual void move();
 	virtual void Hit_Animation(Zombie* zombie);

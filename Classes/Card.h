@@ -162,7 +162,7 @@ public:
 		PlantStatus* ps = find(row, col);
 		if (ps != NULL)
 		{
-			if (ps->_BlockType == 0|| ps->_BlockType == 2)
+			if (ps->_BlockType == 0)
 			{
 				if ((strcmp(typeid(T).name(), "class Cushaw") == 0) && ps->plantVector.size() != 0 && !find1(ps, "class Cushaw"))
 				{

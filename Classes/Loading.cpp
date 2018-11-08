@@ -1,11 +1,10 @@
 #include "Loading.h"
 #include "EntityLayer.h"
+#include <iostream>
 
-
-Loading::Loading(Point position)
+Loading::Loading(Point position, Scene* scene)
 {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-
 	sprite = Sprite::create("UI\\LoadingBar0.png");
 	sprite->retain();
 	sprite->setPosition(position);
@@ -22,11 +21,16 @@ Loading::Loading(Point position)
 	timer->setPercentage(0);//设置当前初始值
 	timer->setMidpoint(CCPoint(0, 0));//设置进度开始的位置
 	timer->setBarChangeRate(CCPoint(1, 0));//设置进度所占比例
-	layer->addChild(timer);
-	layer->addChild(sprite);
+	//Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, NULL);
+	scene->addChild(timer,1000);
+	timer->runAction(ProgressTo::create(2, 100));
+	//scene->addChild(sprite,0);
 }
 
-
+void Loading::clear()
+{
+	timer->removeFromParent();
+}
 Loading::~Loading()
 {
 }
@@ -39,4 +43,8 @@ float Loading::getCurrentValue()
 void Loading::setCurrentValue(float value)
 {
 	timer->setPercentage(value);
+	if (value == 100)
+	{
+		std::cout << "100lee" << std::endl;
+	}
 }
