@@ -166,3 +166,15 @@ void DoorZombie::DamageZombie(int damage)
 	setHp(getHp() - damage);
 	Attacked();
 }
+
+Sprite * DoorZombie::MagnetEquip()
+{
+	if (!hasEquip())
+		return nullptr;
+	getEquip()->setHp(0);
+	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\DoorZombie\\Door\\Door.png"));
+	sp->setScale(this->getImg()->getScaleX());
+	sp->setPosition(this->getImg()->getPosition());
+	addLayer(sp);
+	return sp;
+}

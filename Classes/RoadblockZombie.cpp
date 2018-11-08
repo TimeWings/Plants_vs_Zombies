@@ -158,3 +158,5 @@ void RoadblockZombie::DamageZombie(int damage)
 {
 	DamageEquip(damage);
 }
+
+
