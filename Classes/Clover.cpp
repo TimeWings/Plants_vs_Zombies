@@ -70,8 +70,9 @@ void Clover::Blow(Node * pSender)
 	double distance = (visibleSize.width + cloud->getContentSize().width*cloud->getScaleX() - cloud->getPositionX()) / 15;
 	double time = distance / 12;
 	MoveTo *moveTo = MoveTo::create(time, ccp(visibleSize.width + cloud->getContentSize().width/2*cloud->getScaleX(), cloud->getPosition().y));
-	MoveTo *comeBack = MoveTo::create(time, cloud->getPosition());
+	MoveTo *comeBack = MoveTo::create(time, Vec2(visibleSize.width/2, visibleSize.height/2));
 	Sequence *sequence = Sequence::create(moveTo, DelayTime::create(5),comeBack, NULL);
+	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(cloud);
 	cloud->runAction(sequence);
 
 }
