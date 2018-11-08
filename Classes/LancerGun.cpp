@@ -1,6 +1,5 @@
 #include "LancerGun.h"
 #include "Global.h"
-#include "Paul.h"
 
 LancerGun::LancerGun(Point a, int Plant_row)
 {
