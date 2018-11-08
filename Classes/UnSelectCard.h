@@ -85,6 +85,7 @@ public:
 					selectingCards.push_back(plantsEnum);
 					//auto entity = new SelectCard<T>(position, plantsEnum);
 					auto moveTo = MoveTo::create(0.5f, Point(selectingCards.size() * 20, 300));
+					sprite->stopAllActions();
 					sprite->runAction(moveTo);
 					//entity->plantSprite->runAction(moveTo);
 					selectingCardsEntity.push_back(this);
@@ -95,6 +96,7 @@ public:
 				{
 					isSelecting = false;
 					auto moveTo = MoveTo::create(0.5f, srcPosition);
+					sprite->stopAllActions();
 					sprite->runAction(moveTo);
 					for (int i = 0; i < selectingCards.size(); i++)
 					{
@@ -108,6 +110,7 @@ public:
 					for (int i = 0; i < selectingCardsEntity.size(); i++)
 					{
 						auto moveTo = MoveTo::create(0.2f, Point((i + 1) * 20, 300));
+						selectingCardsEntity[i]->getImg()->stopAllActions();
 						selectingCardsEntity[i]->getImg()->runAction(moveTo);
 						//selectingCardsEntity[i]->getImg()->setPosition((i+1) * 20, 150);
 					}
