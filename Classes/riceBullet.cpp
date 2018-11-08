@@ -1,6 +1,7 @@
 #include "riceBullet.h"
 #include "Global.h"
 #include "Zombie.h"
+#include "sys/timeb.h"
 
 
 riceBullet::riceBullet()
@@ -12,7 +13,10 @@ riceBullet::riceBullet(Point a, int Plant_row)
 	this->setDamage(2);
 	this->getRange()->push_back(Plant_row);
 
-	srand((unsigned)time(NULL));
+	struct timeb timeSeed;
+	ftime(&timeSeed);
+	srand(timeSeed.time * 1000 + timeSeed.millitm);  // milli time
+
 	this->cnt = rand() % 100;
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
 	if (cnt <= 20)
@@ -38,8 +42,10 @@ riceBullet::riceBullet(Point a, int Plant_row)
 
 void riceBullet::clear(Node * pSender)
 {
-	pSender->removeAllChildrenWithCleanup(true);
-	pSender->removeFromParent();
+	std::cout << "清除子弹11111111111" << std::endl;
+	//pSender->removeAllChildrenWithCleanup(true);
+	//pSender->removeFromParent();
+	//立马清除子弹
 	for (int i = 0; i < readyBullet.size(); i++)
 	{
 		if (readyBullet.at(i) == this)
@@ -48,6 +54,7 @@ void riceBullet::clear(Node * pSender)
 			break;
 		}
 	}
+	this->getImg()->removeFromParent();
 }
 
 void riceBullet::findTarget()
@@ -112,43 +119,38 @@ void riceBullet::move()
 void riceBullet::Hit_Animation(Zombie * zombie)
 {
 	Sprite* sp = this->getImg();
-	for (int i = 0; i < readyBullet.size(); i++)
-	{
-		if (readyBullet.at(i) == this)
-		{
-			readyBullet.erase(readyBullet.begin() + i);
-			break;
-		}
-	}
+
 	if (this->cnt <= 20)
 	{
 		for (auto x : *(zombie->getDebuff()))
 		{
 			if (x == Oil)
 			{
+				clear(sp);
 				return;
 			}
 		}
 		zombie->getDebuff()->push_back(Oil);
-		zombie->getScheduler()->setTimeScale(0.1);
-		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\OilHit.png"));
-		sp->setPosition(Point(zombie->getImg()->getContentSize().width / 4.55, zombie->getImg()->getContentSize().height / 1.1));
-		sp->retain();
-		sp->setScale(0.2);
-		zombie->getImg()->addChild(sp);
+		zombie->getScheduler()->setTimeScale(0.25);
+		auto sp1 = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\OilHit.png"));
+		sp1->setPosition(Point(zombie->getImg()->getContentSize().width / 4.2, zombie->getImg()->getContentSize().height / 1.2));
+		sp1->retain();
+		sp1->setScale(0.5);
+		zombie->getImg()->addChild(sp1);
+
 		ActionInterval * fadeout = FadeOut::create(0.3);
-		Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+		Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp1);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clearOil, this, zombie));
 		Sequence *sequence = Sequence::create(CCDelayTime::create(2), fadeout, actionDone, NULL);
-		sp->runAction(sequence);
+		sp1->runAction(sequence);
 	}
 	else
 	{
-		ActionInterval * fadeout = FadeOut::create(0.3);
-		Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clearNode, this));
-		Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-		sp->runAction(sequence);
+		//ActionInterval * fadeout = FadeOut::create(0.3);
+		//Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+		//auto actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clear, this));
+		//Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+		//sp->runAction(fadeout);
 	}
 }
 
@@ -158,6 +160,7 @@ void riceBullet::attack_Animation()
 
 void riceBullet::clearOil(Node * pSender,Zombie* zombie)
 {
+	clear(this->getImg());
 	for (int i = 0; i < zombie->getDebuff()->size(); i++)
 	{
 		if (zombie->getDebuff()->at(i) == Oil)
@@ -166,8 +169,10 @@ void riceBullet::clearOil(Node * pSender,Zombie* zombie)
 			break;
 		}
 	}
+	//僵尸恢复行动
 	zombie->getScheduler()->setTimeScale(1);
-	pSender->removeAllChildrenWithCleanup(true);
-	pSender->removeFromParent();
+	//pSender->removeAllChildrenWithCleanup(true);
+	//pSender->removeFromParent();
+	
 }
 
