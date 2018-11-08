@@ -26,9 +26,12 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "Loading.h"
 using namespace std;
 class HelloWorld : public cocos2d::Scene
 {
+private:
+	Loading* loading;
 public:
     static cocos2d::Scene* createScene();
 
@@ -37,15 +40,15 @@ public:
 	void preLoading();
 
 	void ResourceCallBack(cocos2d::Texture2D *texture);
+	void GameIn(float t);
 	string & replace_all(string & str, const string & old_value, const string & new_value);
 	void getFiles(string prePath, string path, vector<string>& files, vector<string>& ownname);
 	int loadingSprite = 0;
 	int tot_loadingSprite = 0;
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
-	void update(float delta);
-	void moveCamera1(float delta);
-	void moveCamera2(float delta);
+	void moveCamera(float delta);
+	void LoadingCard(Node* pSender);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

@@ -39,14 +39,11 @@
 #include <io.h>
 #include <string>
 #include "test.h"
+#include "Background.h"
 #include <direct.h>
-#include "Loading.h"
 USING_NS_CC;
 using namespace std;
 using namespace map;
-
-Loading* loading;
-Camera* camera;
 
 Scene* HelloWorld::createScene()
 {
@@ -66,8 +63,6 @@ bool HelloWorld::init()
 	auto ss = Director::getInstance()->getTextureCache()->getCachedTextureInfo();
 	log("%s", ss.c_str());
 	preLoading();
-	camera = Camera::getDefaultCamera();
-	scheduleUpdate();
     return true;
 }
 void HelloWorld::preLoading()
@@ -76,32 +71,33 @@ void HelloWorld::preLoading()
 	vector<string>ownnames;
 	getFiles("..\\Resources","..\\Resources", files, ownnames);
 	tot_loadingSprite = files.size();
-	this->addChild(EntityLayer::create());
+	
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	loading = new Loading(Point(size.width / 2, size.height / 2 ));
+	loading = new Loading(Point(size.width / 2, size.height/2 ),this);
 	for (string x : files)
 	{
-		//cout << x << endl;
 		TextureCache::getInstance()->addImageAsync(x, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
 	}
 }
 void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 {
-	
-	loading->setCurrentValue(100 * (float)loadingSprite / (float)tot_loadingSprite);
+	double curP = 100 * loadingSprite / (float)tot_loadingSprite;
 	loadingSprite++;
-	cout << loading ->getCurrentValue()<< endl;
 	if (loadingSprite == tot_loadingSprite)
 	{
-		//this->addChild(EntityLayer::create());
-		auto visibleSize = Director::getInstance()->getVisibleSize();
-		this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
-		this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
-		test a = test();
+		this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 2.0f);
+		
 	}
 }
-
+void HelloWorld::GameIn(float t)
+{
+	loading->clear();
+	this->addChild(EntityLayer::create());
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	new Background();
+	this->scheduleOnce(schedule_selector(HelloWorld::moveCamera), 1.0f);
+}
 string&  HelloWorld::replace_all(string&   str, const   string&   old_value, const   string&   new_value)
 {
 	while (true) {
@@ -145,25 +141,16 @@ void HelloWorld::getFiles(string prePath,string path, vector<string>& files, vec
 	}
 }
 
-void HelloWorld::update(float delta)
-{
-	/*if (camera == nullptr)
-		camera = Camera::getDefaultCamera();
-	auto position = camera->getPosition();
-	position.x += 1;
-	camera->setPosition(position);*/
-}
-
-void HelloWorld::moveCamera1(float delta)
+void HelloWorld::moveCamera(float delta)
 {
 	auto camera = Camera::getDefaultCamera();
 	auto moveBy = MoveBy::create(2.5, Vec2(150, 0));
-	camera->runAction(moveBy);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(HelloWorld::LoadingCard, this));
+	Sequence *sequence = Sequence::create(moveBy, DelayTime::create(1.5),moveBy->reverse(), actionDone, NULL);
+	camera->runAction(sequence);
 }
 
-void HelloWorld::moveCamera2(float delta)
+void HelloWorld::LoadingCard(Node* pSender)
 {
-	auto camera = Camera::getDefaultCamera();
-	auto moveBy = MoveBy::create(2.5, Vec2(-150, 0));
-	camera->runAction(moveBy);
+	test a = test();
 }
