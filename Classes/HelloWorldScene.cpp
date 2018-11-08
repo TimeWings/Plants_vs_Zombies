@@ -82,7 +82,6 @@ void HelloWorld::preLoading()
 }
 void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 {
-	double curP = 100 * loadingSprite / (float)tot_loadingSprite;
 	loadingSprite++;
 	if (loadingSprite == tot_loadingSprite)
 	{
@@ -90,7 +89,6 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 		auto visibleSize = Director::getInstance()->getVisibleSize();
 		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
 		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
-		test a = test();
 		this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 2.0f);
 		
 	}
@@ -99,7 +97,6 @@ void HelloWorld::GameIn(float t)
 {
 	loading->clear();
 	this->addChild(EntityLayer::create());
-	auto visibleSize = Director::getInstance()->getVisibleSize();
 	new Background();
 	this->scheduleOnce(schedule_selector(HelloWorld::moveCamera), 1.0f);
 }

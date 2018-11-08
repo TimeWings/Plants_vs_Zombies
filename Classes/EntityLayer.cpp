@@ -201,8 +201,8 @@ void EntityLayer::Check_Lost_Equip_Zombie(float t) {
 	{
 		Zombie *zombie = readyZombies.at(i);
 		if (zombie->hasEquip() && zombie->getEquip()->getHp() <= 0) {
+			zombie->getEquip()->getImg()->removeFromParent();
 			zombie->setEquip(nullptr);
-			zombie->getImg()->removeAllChildrenWithCleanup(true);
 			if (zombie->hasHead()) {
 				zombie->setMeeting(false);
 				zombie->Move();

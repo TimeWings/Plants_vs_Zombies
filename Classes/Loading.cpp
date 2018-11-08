@@ -24,7 +24,7 @@ Loading::Loading(Point position, Scene* scene)
 	//Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, NULL);
 	scene->addChild(timer,1000);
 	timer->runAction(ProgressTo::create(2, 100));
-	//scene->addChild(sprite,0);
+	scene->addChild(sprite,0);
 }
 
 void Loading::clear()
