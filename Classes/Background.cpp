@@ -2,7 +2,8 @@
 #include "EntityLayer.h"
 #include "Global.h"
 using namespace map;
-int Background::type = 1;
+int Background::type = 3;
+Sprite* Background::Cloud=NULL;
 Node* Background::holesStencil = NULL;
 Background::Background()
 {
@@ -100,6 +101,11 @@ Background::Background()
 		EntityLayer* layer = EntityLayer::getInstance();
 		layer->addChild(sprite);
 		setImg(sprite);
+		Cloud = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Scene\\Cloud\\1.png"));
+		auto visibleSize = Director::getInstance()->getVisibleSize();
+		Cloud->setPosition(visibleSize.width/2,visibleSize.height/2);
+		Cloud->setScale(2.5);
+		layer->addChild(Cloud,190);
 
 	}
 	initPlantStatus();
@@ -142,7 +148,17 @@ void Background::initPlantStatus()
 		{
 			for (int j = 1; j <= MapCol; j++)
 			{
-				plantstatus.push_back(new PlantStatus(i, j, 2));
+				plantstatus.push_back(new PlantStatus(i, j, 0));
+			}
+		}
+	}
+	else if (type == 3)
+	{
+		for (int i = 1; i <= MapRow; i++)
+		{
+			for (int j = 1; j <= MapCol; j++)
+			{
+				plantstatus.push_back(new PlantStatus(i, j, 0));
 			}
 		}
 	}

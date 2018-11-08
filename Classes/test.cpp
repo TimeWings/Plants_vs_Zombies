@@ -34,6 +34,7 @@
 #include "Shovel.h"
 #include "Lantern.h"
 #include "DoorZombie.h"
+#include "Clover.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -74,6 +75,7 @@ test::test()
 	new Card<Lotus>(Point(20, 220));
 	new Card<Lantern>(Point(40, 220));
 	new ZombieCard<DoorZombie>(Point(120,260));
+	new Card<Clover>(Point(60, 220));
 }
 void test::drawRect()
 {

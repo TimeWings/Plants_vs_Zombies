@@ -219,6 +219,7 @@
     <ClCompile Include="..\Classes\DoorZombie.cpp">
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Clover.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -409,6 +410,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\DoorZombie.h">
       <Filter>src\Entity\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Clover.h">
+      <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
