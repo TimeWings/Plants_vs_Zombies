@@ -7,7 +7,7 @@ HeroLuckerBullet::HeroLuckerBullet(Point position, int Plant_row)
 {
 	this->row = Plant_row;
 	this->getRange()->push_back(Plant_row);
-	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("HeroLucker\\Bramble\\bramble14.1.png"));
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("HeroLucker\\Bramble\\bramble14.png"));
 	//sp->setAnchorPoint(Point::ZERO);
 	//方便以后获取子弹精灵
 	this->setImg(sp);
