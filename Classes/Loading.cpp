@@ -12,7 +12,6 @@ Loading::Loading(Point position)
 	//sprite->setAnchorPoint(Vec2(0, 0));
 	sprite->setScale(2.0f);
 	EntityLayer* layer = EntityLayer::getInstance();
-	layer->addChild(sprite);
 	setImg(sprite);
 	auto fillSprite = Sprite::create("UI\\LoadingBar100.png");
 	fillSprite->setScale(2.0f);
@@ -24,6 +23,7 @@ Loading::Loading(Point position)
 	timer->setMidpoint(CCPoint(0, 0));//设置进度开始的位置
 	timer->setBarChangeRate(CCPoint(1, 0));//设置进度所占比例
 	layer->addChild(timer);
+	layer->addChild(sprite);
 }
 
 
