@@ -22,8 +22,8 @@ Loading::Loading(Point position)
 	timer->setPercentage(0);//设置当前初始值
 	timer->setMidpoint(CCPoint(0, 0));//设置进度开始的位置
 	timer->setBarChangeRate(CCPoint(1, 0));//设置进度所占比例
-	layer->addChild(timer);
-	layer->addChild(sprite);
+	layer->addChild(timer,100);
+	layer->addChild(sprite,0);
 }
 
 

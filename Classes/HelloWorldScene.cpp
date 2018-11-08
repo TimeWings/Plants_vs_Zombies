@@ -88,7 +88,7 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	
 	loading->setCurrentValue(100 * (float)loadingSprite / (float)tot_loadingSprite);
 	loadingSprite++;
-	cout << (float)loadingSprite / (float)tot_loadingSprite << endl;
+	cout << loading ->getCurrentValue()<< endl;
 	if (loadingSprite == tot_loadingSprite)
 	{
 		//this->addChild(EntityLayer::create());
