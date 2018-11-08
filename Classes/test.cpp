@@ -98,21 +98,21 @@ test::test()
 	startY -= offsetY;
 	auto unSelectCard22 = new UnSelectCard<Nut>(Point(20, startY), PlantsEnum::Nut);
 	unSelectingCardsEntity.push_back(unSelectCard22);
-	auto unSelectCard23 = new UnSelectCard<Landslock>(Point(20, startY), PlantsEnum::Landslock);
+	auto unSelectCard23 = new UnSelectCard<Landslock>(Point(40, startY), PlantsEnum::Landslock);
 	unSelectingCardsEntity.push_back(unSelectCard23);
-	auto unSelectCard24 = new UnSelectCard<riceShooter>(Point(20, startY), PlantsEnum::riceShooter);
+	auto unSelectCard24 = new UnSelectCard<riceShooter>(Point(60, startY), PlantsEnum::riceShooter);
 	unSelectingCardsEntity.push_back(unSelectCard24);
-	auto unSelectCard25 = new UnSelectCard<Paul>(Point(20, startY), PlantsEnum::Paul);
+	auto unSelectCard25 = new UnSelectCard<Paul>(Point(80, startY), PlantsEnum::Paul);
 	unSelectingCardsEntity.push_back(unSelectCard25);
-	auto unSelectCard26 = new UnSelectCard<HeroLucker>(Point(20, startY), PlantsEnum::HeroLucker);
+	auto unSelectCard26 = new UnSelectCard<HeroLucker>(Point(100, startY), PlantsEnum::HeroLucker);
 	unSelectingCardsEntity.push_back(unSelectCard26);
-	auto unSelectCard27 = new UnSelectCard<Lotus>(Point(20, startY), PlantsEnum::Lotus);
+	auto unSelectCard27 = new UnSelectCard<Lotus>(Point(120, startY), PlantsEnum::Lotus);
 	unSelectingCardsEntity.push_back(unSelectCard27);
-	auto unSelectCard28 = new UnSelectCard<Lantern>(Point(20, startY), PlantsEnum::Lantern);
+	auto unSelectCard28 = new UnSelectCard<Lantern>(Point(140, startY), PlantsEnum::Lantern);
 	unSelectingCardsEntity.push_back(unSelectCard28);
 
 	
-	new Background();
+	//new Background();
 	drawRect();
 	auto s = Director::getInstance()->getWinSize();
 	/*new Card<IceShooter>(Point(20, 300));
@@ -145,10 +145,10 @@ test::test()
 	new Card<HeroLucker>(Point(100, 260));
 	new Card<Lotus>(Point(20, 220));
 	new Card<Lantern>(Point(40, 220));
-	new ZombieCard<DoorZombie>(Point(120,260));*/
+	new ZombieCard<DoorZombie>(Point(120,260));
 	new ZombieCard<DoorZombie>(Point(120,260));
 	new Card<Clover>(Point(60, 220));
-	new Card<Magnet>(Point(80, 220));
+	new Card<Magnet>(Point(80, 220));*/
 }
 void test::drawRect()
 {

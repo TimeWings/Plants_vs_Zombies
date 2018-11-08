@@ -90,7 +90,7 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 		auto visibleSize = Director::getInstance()->getVisibleSize();
 		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
 		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
-		test a = test();
+		//test a = test();
 		this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 2.0f);
 		
 	}
@@ -101,6 +101,7 @@ void HelloWorld::GameIn(float t)
 	this->addChild(EntityLayer::create());
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	new Background();
+	//test a = test();
 	this->scheduleOnce(schedule_selector(HelloWorld::moveCamera), 1.0f);
 }
 string&  HelloWorld::replace_all(string&   str, const   string&   old_value, const   string&   new_value)
