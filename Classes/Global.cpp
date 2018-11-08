@@ -4,6 +4,10 @@ std::vector <Bullet*> readyBullet;
 std::vector <Plants*> readyPlants;
 std::vector <Zombie*> readyZombies;
 Map<Sprite*, Sprite*>readySun;
+std::vector<PlantsEnum> selectingCards;
+std::vector<CardEntity*> selectingCardsEntity;
+std::vector<CardEntity*> unSelectingCardsEntity;
+std::vector<CardEntity*> readyCards;
 namespace map
 {
 	std::pair<int, std::pair<double, double> >sunCnt(0, std::make_pair(0, 0));

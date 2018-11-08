@@ -96,8 +96,8 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	{
 		//this->addChild(EntityLayer::create());
 		auto visibleSize = Director::getInstance()->getVisibleSize();
-		this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
-		this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
+		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
+		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
 		test a = test();
 	}
 }

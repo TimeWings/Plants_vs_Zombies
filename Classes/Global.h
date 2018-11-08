@@ -3,7 +3,10 @@
 #include "Bullet.h"
 #include "Plants.h"
 #include "Zombie.h"
+#include "PlantsEnum.h"
 #include "PlantStatus.h"
+#include "SelectCard.h"
+#include "CardEntity.h"
 #define Icing 0 //¼õËÙ
 #define Freezing 1 //±ù¶³
 #define DrivingOut 2 //Çý¸Ï
@@ -16,6 +19,11 @@ extern std::vector <Bullet*> readyBullet;
 extern std::vector <Plants*>readyPlants;
 extern std::vector <Zombie*> readyZombies;
 extern Map<Sprite*,Sprite*>readySun;//Ö²Îï¾«Áé£¬Ì«Ñô¾«Áé
+extern std::vector<PlantsEnum> selectingCards;
+extern std::vector<CardEntity*> selectingCardsEntity;
+extern std::vector<CardEntity*> unSelectingCardsEntity;
+extern std::vector<CardEntity*> readyCards;
+
 namespace map 
 {
 	extern std::pair<int, std::pair<double, double>>sunCnt;
@@ -29,5 +37,7 @@ namespace map
 	extern void RemoveRegister(Plants * plant);
 	extern Point Rank2Point(int row, int col);
 	extern std::pair<int, int>Point2Rank(Point point);
+
+	
 }
 
