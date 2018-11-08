@@ -58,4 +58,5 @@ public:
 	void DamagePlant(Node * pSender, PlantStatus *plantstatus);
 	void clear(Node * pSender);
 	void clear_from_vector(Node * pSender);
+	void Stop_Animation();
 };
