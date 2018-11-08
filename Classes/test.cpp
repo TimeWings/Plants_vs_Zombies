@@ -42,6 +42,7 @@ test::test()
 	//new Loading();
 	new Background();
 	drawRect();
+	auto s = Director::getInstance()->getWinSize();
 	new Card<IceShooter>(Point(20, 300));
 	new Card<Mushroom>(Point(40, 300));
 	new Card<PeaShooter>(Point(60, 300));
