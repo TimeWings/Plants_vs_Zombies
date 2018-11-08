@@ -163,3 +163,11 @@ void Zombie::clear_from_vector(Node * pSender)
 		}
 	}
 }
+
+void Zombie::Stop_Animation()
+{
+	getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, getImg());
+	if (hasEquip()) {
+		getEquip()->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, getEquip()->getImg());
+	}
+}

@@ -40,23 +40,6 @@ riceBullet::riceBullet(Point a, int Plant_row)
 	this->move();
 }
 
-void riceBullet::clear(Node * pSender)
-{
-	std::cout << "清除子弹11111111111" << std::endl;
-	//pSender->removeAllChildrenWithCleanup(true);
-	//pSender->removeFromParent();
-	//立马清除子弹
-	for (int i = 0; i < readyBullet.size(); i++)
-	{
-		if (readyBullet.at(i) == this)
-		{
-			readyBullet.erase(readyBullet.begin() + i);
-			break;
-		}
-	}
-	this->getImg()->removeFromParent();
-}
-
 void riceBullet::findTarget()
 {
 	double minDistance = 100000000;
@@ -110,7 +93,7 @@ void riceBullet::move()
 		CCEaseInOut* test = CCEaseInOut::create(CCBezierTo::create(2, cfg), 0.5);
 		CCRotateBy* rotate = CCRotateBy::create(2, 1200);
 		CCSpawn* spawn = CCSpawn::create(test, rotate, NULL);
-		CallFuncN* actionDone = actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clear, this));
+		CallFuncN* actionDone = actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear, this));
 		CCSequence* sequence = CCSequence::create(spawn, actionDone, NULL);
 		sp->runAction(sequence);
 	}
@@ -120,18 +103,27 @@ void riceBullet::Hit_Animation(Zombie * zombie)
 {
 	Sprite* sp = this->getImg();
 
+	for (int i = 0; i < readyBullet.size(); i++)
+	{
+		if (readyBullet.at(i) == this)
+		{
+			readyBullet.erase(readyBullet.begin() + i);
+			break;
+		}
+	}
+
 	if (this->cnt <= 20)
 	{
 		for (auto x : *(zombie->getDebuff()))
 		{
-			if (x == Oil)
+			if (x == Oil || x == Freezing || x == Icing)
 			{
 				clear(sp);
 				return;
 			}
 		}
 		zombie->getDebuff()->push_back(Oil);
-		zombie->getScheduler()->setTimeScale(0.25);
+		zombie->getScheduler()->setTimeScale(0.5);
 		auto sp1 = Sprite::createWithTexture(TextureCache::getInstance()->addImage("riceShooter\\OilHit.png"));
 		sp1->setPosition(Point(zombie->getImg()->getContentSize().width / 4.2, zombie->getImg()->getContentSize().height / 1.2));
 		sp1->retain();
@@ -146,11 +138,11 @@ void riceBullet::Hit_Animation(Zombie * zombie)
 	}
 	else
 	{
-		//ActionInterval * fadeout = FadeOut::create(0.3);
-		//Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-		//auto actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clear, this));
-		//Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-		//sp->runAction(fadeout);
+		ActionInterval * fadeout = FadeOut::create(0.3);
+		Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clearNode, this));
+		Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+		sp->runAction(sequence);
 	}
 }
 

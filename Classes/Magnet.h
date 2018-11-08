@@ -4,6 +4,8 @@
 USING_NS_CC;
 class Magnet :public PeaShooter
 {
+private:
+	bool attracted;
 public:
 	Magnet(Point position, int row, int col);
 	virtual bool isWorking();//是否能工作
