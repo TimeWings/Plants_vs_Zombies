@@ -98,6 +98,7 @@ void HelloWorld::GameIn(float t)
 	loading->clear();
 	this->addChild(EntityLayer::create());
 	new Background();
+	//test a = test();
 	this->scheduleOnce(schedule_selector(HelloWorld::moveCamera), 1.0f);
 }
 string&  HelloWorld::replace_all(string&   str, const   string&   old_value, const   string&   new_value)
