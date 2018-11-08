@@ -416,6 +416,18 @@
     <ClInclude Include="..\Classes\DoorZombie.h">
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SelectCard.h">
+      <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PlantsEnum.h">
+      <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UnSelectCard.h">
+      <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CardEntity.h">
+      <Filter>src\Entity\Map</Filter>
+	 </ClInclude>
     <ClInclude Include="..\Classes\Clover.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>

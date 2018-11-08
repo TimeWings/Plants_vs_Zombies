@@ -1,5 +1,6 @@
 #include "test.h"
 #include "Global.h"
+#include "PlantsEnum.h"
 #include "Background.h"
 #include "Loading.h"
 #include "IceShooter.h"
@@ -20,6 +21,8 @@
 #include "TripleShooter.h"
 #include "iceCabbage.h"
 #include "Card.h"
+#include "SelectCard.h"
+#include "UnSelectCard.h"
 #include "ZombieCard.h"
 #include "Torch.h"
 #include "Cushaw.h"
@@ -36,13 +39,81 @@
 #include "Lantern.h"
 #include "DoorZombie.h"
 #include "Clover.h"
+#include "Magnet.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
 test::test()
 {
 	//new Loading();
-	new Background();
+	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
+	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
+	/*float startX = 20.0f;
+	float startY = 160.0f;
+	float offsetX = 20.0f;
+	float offsetY = 40.0f;
+	auto unSelectCard1 = new UnSelectCard<PeaShooter>(Point(20, startY), PlantsEnum::PeaShooter);
+	unSelectingCardsEntity.push_back(unSelectCard1);
+	auto unSelectCard2 = new UnSelectCard<IceShooter>(Point(40, startY), PlantsEnum::IceShooter);
+	unSelectingCardsEntity.push_back(unSelectCard2);
+	auto unSelectCard3 = new UnSelectCard<Mushroom>(Point(60, startY), PlantsEnum::Mushroom);
+	unSelectingCardsEntity.push_back(unSelectCard3);
+	auto unSelectCard4 = new UnSelectCard<Melancholy>(Point(80, startY), PlantsEnum::Melancholy);
+	unSelectingCardsEntity.push_back(unSelectCard4);
+	auto unSelectCard5 = new UnSelectCard<Sunflower>(Point(100, startY), PlantsEnum::Sunflower);
+	unSelectingCardsEntity.push_back(unSelectCard5);
+	auto unSelectCard6 = new UnSelectCard<Weeds>(Point(120, startY), PlantsEnum::Weeds);
+	unSelectingCardsEntity.push_back(unSelectCard6);
+	auto unSelectCard7 = new UnSelectCard<NutPlus>(Point(140, startY), PlantsEnum::NutPlus);
+	unSelectingCardsEntity.push_back(unSelectCard7);
+	startY -= offsetY;
+	auto unSelectCard8 = new UnSelectCard<Doom_shroom>(Point(20, startY), PlantsEnum::Doom_shroom);
+	unSelectingCardsEntity.push_back(unSelectCard8);
+	auto unSelectCard9 = new UnSelectCard<JannuDaruku>(Point(40, startY), PlantsEnum::JannuDaruku);
+	unSelectingCardsEntity.push_back(unSelectCard9);
+	auto unSelectCard10 = new UnSelectCard<StarShooter>(Point(60, startY), PlantsEnum::StarShooter);
+	unSelectingCardsEntity.push_back(unSelectCard10);
+	auto unSelectCard11 = new UnSelectCard<TripleShooter>(Point(80, startY), PlantsEnum::TripleShooter);
+	unSelectingCardsEntity.push_back(unSelectCard11);
+	auto unSelectCard12 = new UnSelectCard<iceCabbage>(Point(100, startY), PlantsEnum::iceCabbage);
+	unSelectingCardsEntity.push_back(unSelectCard12);
+	auto unSelectCard13 = new UnSelectCard<Torch>(Point(120, startY), PlantsEnum::Torch);
+	unSelectingCardsEntity.push_back(unSelectCard13);
+	auto unSelectCard14 = new UnSelectCard<Cushaw>(Point(140, startY), PlantsEnum::Cushaw);
+	unSelectingCardsEntity.push_back(unSelectCard14);
+	startY -= offsetY;
+	auto unSelectCard15 = new UnSelectCard<Chomper>(Point(20, startY), PlantsEnum::Chomper);
+	unSelectingCardsEntity.push_back(unSelectCard15);
+	auto unSelectCard16 = new UnSelectCard<PotatoMine>(Point(40, startY), PlantsEnum::PotatoMine);
+	unSelectingCardsEntity.push_back(unSelectCard16);
+	auto unSelectCard17 = new UnSelectCard<Pumpkin>(Point(60, startY), PlantsEnum::Pumpkin);
+	unSelectingCardsEntity.push_back(unSelectCard17);
+	auto unSelectCard18 = new UnSelectCard<Lucker>(Point(80, startY), PlantsEnum::Lucker);
+	unSelectingCardsEntity.push_back(unSelectCard18);
+	auto unSelectCard19 = new UnSelectCard<DoublePeaShooter>(Point(100, startY), PlantsEnum::DoublePeaShooter);
+	unSelectingCardsEntity.push_back(unSelectCard19);
+	auto unSelectCard20 = new UnSelectCard<Lancer>(Point(120, startY), PlantsEnum::Lancer);
+	unSelectingCardsEntity.push_back(unSelectCard20);
+	auto unSelectCard21 = new UnSelectCard<Shovel>(Point(140, startY), PlantsEnum::Shovel);
+	unSelectingCardsEntity.push_back(unSelectCard21);
+	startY -= offsetY;
+	auto unSelectCard22 = new UnSelectCard<Nut>(Point(20, startY), PlantsEnum::Nut);
+	unSelectingCardsEntity.push_back(unSelectCard22);
+	auto unSelectCard23 = new UnSelectCard<Landslock>(Point(40, startY), PlantsEnum::Landslock);
+	unSelectingCardsEntity.push_back(unSelectCard23);
+	auto unSelectCard24 = new UnSelectCard<riceShooter>(Point(60, startY), PlantsEnum::riceShooter);
+	unSelectingCardsEntity.push_back(unSelectCard24);
+	auto unSelectCard25 = new UnSelectCard<Paul>(Point(80, startY), PlantsEnum::Paul);
+	unSelectingCardsEntity.push_back(unSelectCard25);
+	auto unSelectCard26 = new UnSelectCard<HeroLucker>(Point(100, startY), PlantsEnum::HeroLucker);
+	unSelectingCardsEntity.push_back(unSelectCard26);
+	auto unSelectCard27 = new UnSelectCard<Lotus>(Point(120, startY), PlantsEnum::Lotus);
+	unSelectingCardsEntity.push_back(unSelectCard27);
+	auto unSelectCard28 = new UnSelectCard<Lantern>(Point(140, startY), PlantsEnum::Lantern);
+	unSelectingCardsEntity.push_back(unSelectCard28);*/
+	/*auto unSelectCard29 = new UnSelectCard<Magnet>(Point(160, startY), PlantsEnum::Magnet);
+	unSelectingCardsEntity.push_back(unSelectCard29);*/
+	
 	drawRect();
 	auto s = Director::getInstance()->getWinSize();
 	new Card<IceShooter>(Point(20, 300));

@@ -3,6 +3,7 @@
 #include <typeinfo>
 #include "Entity.h"
 #include "EntityLayer.h"
+#include "CardEntity.h"
 #include "PlantStatus.h"
 #include "Plants.h"
 #include "Global.h"
@@ -10,15 +11,15 @@ using namespace std;
 using namespace cocos2d;
 
 template <class T>
-class Card :public Entity
+class Card :public CardEntity
 {
 public:
 	Card();
 	~Card();
 	string plantsTypeName;
 	bool isFollowingMouse = false;
-	int cost;
-	Sprite* plantSprite;
+	//int cost;
+	//Sprite* plantSprite;
 	Sprite* plantFollowSprite;
 
 	template <class T>
@@ -55,6 +56,7 @@ public:
 		//sprite->setScale(0.15f);
 		sprite->setContentSize(Size(20, 30));
 		//this->Scale = this->getImg()->getScale();
+		//sprite->setAnchorPoint(Point(0.5f, 0.5f));
 		sprite->setPosition(position);
 		addLayer(sprite,200);
 
@@ -62,13 +64,15 @@ public:
 		className = className.erase(0, 6);
 		string str = string("Card\\") + className + string(".png");
 		plantSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
-		auto position1 = position;
+		Size size = sprite->getContentSize();
+		auto position1 = Point(size.width/2, size.height/2);
 		position1.y += 0;
 		plantSprite->setPosition(position1);
 		//plantSprite->setScale(0.08f);
 		plantSprite->setContentSize(Size(15, 20));
 		plantSprite->retain();
-		addLayer(plantSprite,200);
+		//addLayer(plantSprite,200);
+		sprite->addChild(plantSprite);
 
 		plantsTypeName = typeid(T).name();
 

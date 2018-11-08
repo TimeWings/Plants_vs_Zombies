@@ -165,7 +165,12 @@ Sprite * DoorZombie::MagnetEquip()
 {
 	if (!hasEquip())
 		return nullptr;
-	getEquip()->setHp(0);
+	getEquip()->getImg()->removeFromParent();
+	setEquip(nullptr);
+	if (hasHead()) {
+		setMeeting(false);
+		Move();
+	}
 	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\DoorZombie\\Door\\Door.png"));
 	sp->setScale(this->getImg()->getScaleX());
 	sp->setPosition(this->getImg()->getPosition());

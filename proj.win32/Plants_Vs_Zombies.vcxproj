@@ -219,6 +219,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\BasicZombie.h" />
     <ClInclude Include="..\Classes\Bullet.h" />
     <ClInclude Include="..\Classes\Card.h" />
+    <ClInclude Include="..\Classes\CardEntity.h" />
     <ClInclude Include="..\Classes\Chomper.h" />
     <ClInclude Include="..\Classes\Clover.h" />
     <ClInclude Include="..\Classes\Cushaw.h" />
@@ -255,6 +256,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Paul.h" />
     <ClInclude Include="..\Classes\PaulBullet.h" />
     <ClInclude Include="..\Classes\PeaBulletPlus.h" />
+    <ClInclude Include="..\Classes\PlantsEnum.h" />
     <ClInclude Include="..\Classes\PlantStatus.h" />
     <ClInclude Include="..\Classes\Plants.h" />
     <ClInclude Include="..\Classes\PeaShooter.h" />
@@ -266,6 +268,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\riceShooter.h" />
     <ClInclude Include="..\Classes\Roadblock.h" />
     <ClInclude Include="..\Classes\RoadblockZombie.h" />
+    <ClInclude Include="..\Classes\SelectCard.h" />
     <ClInclude Include="..\Classes\Shovel.h" />
     <ClInclude Include="..\Classes\StarShooter.h" />
     <ClInclude Include="..\Classes\Sunflower.h" />
@@ -274,6 +277,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TrackBullet.h" />
     <ClInclude Include="..\Classes\TripleBullet.h" />
     <ClInclude Include="..\Classes\TripleShooter.h" />
+    <ClInclude Include="..\Classes\UnSelectCard.h" />
     <ClInclude Include="..\Classes\Weeds.h" />
     <ClInclude Include="..\Classes\Zombie.h" />
     <ClInclude Include="..\Classes\ZombieCard.h" />
