@@ -33,6 +33,7 @@ BasicZombie::BasicZombie(Point position,int row,int col)
 
 void BasicZombie::Attack(PlantStatus *plantstatus)
 {
+	if (!hasHead()) return;
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
 		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
@@ -151,6 +152,7 @@ void BasicZombie::Attacked()
 void BasicZombie::LostHead()
 {
 	this->setHead(false);
+	this->getEquip()->setHp(0);
 	std::cout << "µôÍ·" << std::endl;
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
@@ -236,6 +238,7 @@ void BasicZombie::LostHead()
 
 void BasicZombie::Move()
 {
+	if (!hasHead()) return;
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
 	{

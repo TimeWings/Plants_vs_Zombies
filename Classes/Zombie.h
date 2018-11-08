@@ -6,7 +6,7 @@
 #include "PlantStatus.h"
 USING_NS_CC;
 
-#define Animation_Tag 156347
+#define Animation_Tag 12347
 
 class Zombie : public Entity 
 {

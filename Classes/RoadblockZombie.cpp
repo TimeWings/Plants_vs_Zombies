@@ -29,6 +29,7 @@ RoadblockZombie::RoadblockZombie(Point position, int row, int col)
 
 void RoadblockZombie::Attack(PlantStatus *plantstatus)
 {
+	if (!hasHead()) return;
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
 		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
@@ -85,6 +86,7 @@ void RoadblockZombie::RoadblockAttack(PlantStatus *plantstatus)
 
 void RoadblockZombie::Move()
 {
+	if (!hasHead()) return;
 	Sprite *sp = this->getImg();
 	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
 	{
