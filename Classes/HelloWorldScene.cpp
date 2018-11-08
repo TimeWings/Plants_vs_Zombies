@@ -46,6 +46,7 @@ using namespace std;
 using namespace map;
 
 Loading* loading;
+Camera* camera;
 
 Scene* HelloWorld::createScene()
 {
@@ -65,6 +66,8 @@ bool HelloWorld::init()
 	auto ss = Director::getInstance()->getTextureCache()->getCachedTextureInfo();
 	log("%s", ss.c_str());
 	preLoading();
+	camera = Camera::getDefaultCamera();
+	scheduleUpdate();
     return true;
 }
 void HelloWorld::preLoading()
@@ -88,11 +91,13 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	
 	loading->setCurrentValue(100 * (float)loadingSprite / (float)tot_loadingSprite);
 	loadingSprite++;
-	cout << (float)loadingSprite / (float)tot_loadingSprite << endl;
+	cout << loading ->getCurrentValue()<< endl;
 	if (loadingSprite == tot_loadingSprite)
 	{
 		//this->addChild(EntityLayer::create());
 		auto visibleSize = Director::getInstance()->getVisibleSize();
+		this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
+		this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
 		test a = test();
 	}
 }
@@ -140,3 +145,25 @@ void HelloWorld::getFiles(string prePath,string path, vector<string>& files, vec
 	}
 }
 
+void HelloWorld::update(float delta)
+{
+	/*if (camera == nullptr)
+		camera = Camera::getDefaultCamera();
+	auto position = camera->getPosition();
+	position.x += 1;
+	camera->setPosition(position);*/
+}
+
+void HelloWorld::moveCamera1(float delta)
+{
+	auto camera = Camera::getDefaultCamera();
+	auto moveBy = MoveBy::create(2.5, Vec2(150, 0));
+	camera->runAction(moveBy);
+}
+
+void HelloWorld::moveCamera2(float delta)
+{
+	auto camera = Camera::getDefaultCamera();
+	auto moveBy = MoveBy::create(2.5, Vec2(-150, 0));
+	camera->runAction(moveBy);
+}

@@ -33,6 +33,8 @@
 #include "Paul.h"
 #include "Shovel.h"
 #include "Lantern.h"
+#include "DoorZombie.h"
+#include "Clover.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -41,6 +43,7 @@ test::test()
 	//new Loading();
 	new Background();
 	drawRect();
+	auto s = Director::getInstance()->getWinSize();
 	new Card<IceShooter>(Point(20, 300));
 	new Card<Mushroom>(Point(40, 300));
 	new Card<PeaShooter>(Point(60, 300));
@@ -71,6 +74,8 @@ test::test()
 	new Card<HeroLucker>(Point(100, 260));
 	new Card<Lotus>(Point(20, 220));
 	new Card<Lantern>(Point(40, 220));
+	new ZombieCard<DoorZombie>(Point(120,260));
+	new Card<Clover>(Point(60, 220));
 }
 void test::drawRect()
 {

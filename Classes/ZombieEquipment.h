@@ -3,6 +3,8 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+#define Equip_Animation_Tag 114514
+
 class ZombieEquipment : public Entity
 {
 private:
@@ -13,7 +15,8 @@ public:
 	void setHp(int Hp);
 	bool isMetal();
 	void setMetal(bool Metal);
-	//void addLayer(Node* entity, Zombie* zombie);
 	virtual void Damage(int damage) = 0;
 	virtual void Die() = 0;
+	virtual void Move() = 0;
+	virtual void Attack() = 0;
 };

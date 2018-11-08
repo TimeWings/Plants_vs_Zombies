@@ -154,8 +154,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\BasicZombie.cpp" />
     <ClCompile Include="..\Classes\Bullet.cpp" />
     <ClCompile Include="..\Classes\Chomper.cpp" />
+    <ClCompile Include="..\Classes\Clover.cpp" />
     <ClCompile Include="..\Classes\Cushaw.cpp" />
     <ClCompile Include="..\Classes\Doom_shroom.cpp" />
+    <ClCompile Include="..\Classes\Door.cpp" />
+    <ClCompile Include="..\Classes\DoorZombie.cpp" />
     <ClCompile Include="..\Classes\DoubleBullet.cpp" />
     <ClCompile Include="..\Classes\DoublePeaShooter.cpp" />
     <ClCompile Include="..\Classes\Entity.cpp" />
@@ -216,8 +219,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Bullet.h" />
     <ClInclude Include="..\Classes\Card.h" />
     <ClInclude Include="..\Classes\Chomper.h" />
+    <ClInclude Include="..\Classes\Clover.h" />
     <ClInclude Include="..\Classes\Cushaw.h" />
     <ClInclude Include="..\Classes\Doom_shroom.h" />
+    <ClInclude Include="..\Classes\Door.h" />
+    <ClInclude Include="..\Classes\DoorZombie.h" />
     <ClInclude Include="..\Classes\DoubleBullet.h" />
     <ClInclude Include="..\Classes\DoublePeaShooter.h" />
     <ClInclude Include="..\Classes\Entity.h" />

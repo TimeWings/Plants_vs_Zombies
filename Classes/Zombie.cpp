@@ -109,6 +109,9 @@ void Zombie::setSche(Node* sprite)
 	actionManager = new CCActionManager();
 	sched->scheduleUpdateForTarget(actionManager, 0, false);
 	sprite->setActionManager(actionManager);
+	if (hasEquip()) {
+		getEquip()->getImg()->setActionManager(actionManager);
+	}
 }
 
 void Zombie::setEquip(ZombieEquipment * equip)
