@@ -3,8 +3,6 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-#define Equip_Animation_Tag 114514
-
 class ZombieEquipment : public Entity
 {
 private:

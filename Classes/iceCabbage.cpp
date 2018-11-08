@@ -80,8 +80,7 @@ void iceCabbage::creatSprite()
 			CCActionInterval * tintto2 = CCTintTo::create(0.5, 0, 255, 255);
 			zombie->getImg()->runAction(tintto2);
 			//僵尸停止动作
-			zombie->getImg()->stopAllActionsByTag(Animation_Tag);
-
+			zombie->Stop_Animation();
 
 			//产生冰冻精灵
 			char str[100] = { 0 };

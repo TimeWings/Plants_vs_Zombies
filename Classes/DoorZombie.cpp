@@ -32,11 +32,8 @@ DoorZombie::DoorZombie(Point position, int row, int col)
 
 void DoorZombie::Attack(PlantStatus * plantstatus)
 {
-	Sprite *sp = this->getImg();
-	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
-	{
-		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
-	}
+	if (!hasHead()) return;
+	Stop_Animation();
 	if (hasEquip())
 	{
 		DoorAttack(plantstatus);
@@ -91,11 +88,8 @@ void DoorZombie::DoorAttack(PlantStatus * plantstatus)
 
 void DoorZombie::Move()
 {
-	Sprite *sp = this->getImg();
-	if (sp->getActionManager()->getActionByTag(Animation_Tag, sp) != NULL)
-	{
-		sp->getActionManager()->removeAllActionsByTag(Animation_Tag, sp);
-	}
+	if (!hasHead()) return;
+	Stop_Animation();
 	if (hasEquip())
 	{
 		DoorMove();
