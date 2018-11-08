@@ -43,6 +43,9 @@ public:
 	int tot_loadingSprite = 0;
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+	void update(float delta);
+	void moveCamera1(float delta);
+	void moveCamera2(float delta);
 };
 
 #endif // __HELLOWORLD_SCENE_H__
