@@ -294,5 +294,10 @@ void BasicZombie::DamageBoth(int damage)
 	DamageZombie(damage);
 }
 
+Sprite * BasicZombie::MagnetEquip()
+{
+	return nullptr;
+}
+
 
 
