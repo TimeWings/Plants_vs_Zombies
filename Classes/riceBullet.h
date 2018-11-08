@@ -13,6 +13,7 @@ public:
 	void clear(Node * pSender);
 	void findTarget();
 	virtual void move();
+
 	virtual void Hit_Animation(Zombie* zombie);
 	void clearOil(Node * pSender, Zombie* zombie);
 protected:
