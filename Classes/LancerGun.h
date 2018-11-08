@@ -8,4 +8,5 @@ class LancerGun :public riceBullet
 public:
 	LancerGun(Point a, int Plant_row);
 	void move();
+	virtual void Hit_Animation(Zombie* zombie);
 };

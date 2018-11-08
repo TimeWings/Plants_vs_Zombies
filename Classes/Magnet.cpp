@@ -4,6 +4,7 @@
 
 Magnet::Magnet(Point position, int row, int col)
 {
+	this->attracted = false;
 	this->setRow(row);
 	this->setCol(col);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Magnet\\Magnet.png"));
@@ -24,7 +25,9 @@ Magnet::Magnet(Point position, int row, int col)
 
 bool Magnet::isWorking()
 {
-	return true;
+	if(!this->attracted)
+		return true;
+	return false;
 }
 
 void Magnet::work()
@@ -52,5 +55,19 @@ void Magnet::CreateBullet()
 
 void Magnet::attractEquiment()
 {
+	for (auto x : readyZombies)
+	{
+		Sprite *sp = x->MagnetEquip();
+		if (sp != NULL)
+		{
+			this->attracted = true;
+			//有装备可以吸
+			MoveTo *moveTo = MoveTo::create(2, this->getImg()->getPosition());
+			CCRotateBy* rotate = CCRotateBy::create(2, 60);
+			CCSpawn* spawn = CCSpawn::create(moveTo, rotate,NULL);
+			sp->runAction(spawn);
+			break;
+		}
+	}
 
 }

@@ -1,6 +1,5 @@
 #include "LancerGun.h"
 #include "Global.h"
-#include "Paul.h"
 
 LancerGun::LancerGun(Point a, int Plant_row)
 {
@@ -45,8 +44,27 @@ void LancerGun::move()
 		CCEaseInOut* test = CCEaseInOut::create(CCBezierTo::create(2, cfg), 0.5);
 		CCRotateBy* rotate = CCRotateBy::create(2, 50);
 		CCSpawn* spawn = CCSpawn::create(test, rotate, NULL);
-		CallFuncN* actionDone = actionDone = CallFuncN::create(CC_CALLBACK_1(riceBullet::clear, this));
+		ActionInterval * fadeout = FadeOut::create(0.3);
+		CallFuncN* actionDone = actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear, this));
 		CCSequence* sequence = CCSequence::create(spawn, actionDone, NULL);
 		sp->runAction(sequence);
 	}
+}
+
+void LancerGun::Hit_Animation(Zombie * zombie)
+{
+	Sprite* sp = this->getImg();
+	for (int i = 0; i < readyBullet.size(); i++)
+	{
+		if (readyBullet.at(i) == this)
+		{
+			readyBullet.erase(readyBullet.begin() + i);
+			break;
+		}
+	}
+	ActionInterval * fadeout = FadeOut::create(0.3);
+	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clearNode, this));
+	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+	sp->runAction(sequence);
 }
