@@ -147,7 +147,7 @@ void HelloWorld::getFiles(string prePath,string path, vector<string>& files, vec
 void HelloWorld::moveCamera(float delta)
 {
 	auto camera = Camera::getDefaultCamera();
-	auto moveBy = MoveBy::create(2.5, Vec2(150, 0));
+	auto moveBy = MoveBy::create(2.5, Vec2(200, 0));
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(HelloWorld::LoadingCard, this));
 	Sequence *sequence = Sequence::create(moveBy, DelayTime::create(1.5),moveBy->reverse(), actionDone, NULL);
 	camera->runAction(sequence);
