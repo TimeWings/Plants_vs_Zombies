@@ -6,6 +6,7 @@ Door::Door()
 {
 	setHp(36);
 	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\DoorZombie\\Door\\Door.png"));
+	sp->retain();
 	this->setImg(sp);
 }
 
