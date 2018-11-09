@@ -2,6 +2,7 @@
 #include "EntityLayer.h"
 #include "Global.h"
 #include "Tomb.h"
+#include "PlantStatus.h"
 using namespace map;
 int Background::type = 4;
 Sprite* Background::Cloud=NULL;
@@ -125,16 +126,9 @@ Background::Background()
 		EntityLayer* layer = EntityLayer::getInstance();
 		layer->addChild(sprite);
 		setImg(sprite);
-		new Tomb(Vec2(Rank2Point(3, 6).x, Rank2Point(3, 6).y+20), 3, 6);
-		new Tomb(Vec2(Rank2Point(4, 8).x, Rank2Point(4, 8).y + 20), 4, 8);
-		new Tomb(Vec2(Rank2Point(5, 7).x, Rank2Point(5, 7).y + 20), 5, 7);
-		new Tomb(Vec2(Rank2Point(1, 9).x, Rank2Point(1, 9).y + 20), 1, 9);
-		new Tomb(Vec2(Rank2Point(1, 5).x, Rank2Point(1, 5).y + 20), 1, 5);
-		new Tomb(Vec2(Rank2Point(2, 9).x, Rank2Point(2, 9).y + 20), 2, 9);
 
 	}
 	initPlantStatus();
-
 	
 }
 void Background::initPlantStatus()
@@ -196,6 +190,12 @@ void Background::initPlantStatus()
 				plantstatus.push_back(new PlantStatus(i, j, 0, true));
 			}
 		}
+		find(3, 6)->plantVector.push_back(new Tomb(Vec2(Rank2Point(3, 6).x, Rank2Point(3, 6).y + 20), 3, 6));
+		find(4, 8)->plantVector.push_back(new Tomb(Vec2(Rank2Point(4, 8).x, Rank2Point(4, 8).y + 20), 4, 8));
+		find(5, 7)->plantVector.push_back(new Tomb(Vec2(Rank2Point(5, 7).x, Rank2Point(5, 7).y + 20), 5, 7));
+		find(1, 9)->plantVector.push_back(new Tomb(Vec2(Rank2Point(1, 9).x, Rank2Point(1, 9).y + 20), 1, 9));
+		find(1, 5)->plantVector.push_back(new Tomb(Vec2(Rank2Point(1, 5).x, Rank2Point(1, 5).y + 20), 1, 5));
+		find(2, 9)->plantVector.push_back(new Tomb(Vec2(Rank2Point(2, 9).x, Rank2Point(2, 9).y + 20), 2, 9));
 	}
 }
 

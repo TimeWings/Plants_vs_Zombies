@@ -228,6 +228,9 @@
     <ClCompile Include="..\Classes\Tomb.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GraveBuster.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -438,6 +441,9 @@
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Tomb.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GraveBuster.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>

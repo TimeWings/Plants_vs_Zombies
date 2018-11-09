@@ -165,6 +165,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\EntityLayer.cpp" />
     <ClCompile Include="..\Classes\FireBullet.cpp" />
     <ClCompile Include="..\Classes\Global.cpp" />
+    <ClCompile Include="..\Classes\GraveBuster.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\HeroLucker.cpp" />
     <ClCompile Include="..\Classes\HeroLuckerBullet.cpp" />
@@ -233,6 +234,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\EntityLayer.h" />
     <ClInclude Include="..\Classes\FireBullet.h" />
     <ClInclude Include="..\Classes\Global.h" />
+    <ClInclude Include="..\Classes\GraveBuster.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HeroLucker.h" />
     <ClInclude Include="..\Classes\HeroLuckerBullet.h" />

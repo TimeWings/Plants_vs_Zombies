@@ -162,6 +162,17 @@ public:
 		if (ps != NULL)
 		{
 			std::cout << row << "----" <<col<< std::endl;
+			if ((strcmp(typeid(T).name(), "class GraveBuster") == 0) && !ps->Enabled)
+			{
+				ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
+				std::cout << "墓碑吞噬者种植成功" << std::endl;
+				return;
+			}
+			if ((strcmp(typeid(T).name(), "class GraveBuster") == 0) && ps->Enabled)
+			{
+				std::cout << "不能种植墓碑吞噬者" << std::endl;
+				return;
+			}
 			if (!ps->Enabled)
 			{
 				std::cout << "此格子不可以种植" << std::endl;
