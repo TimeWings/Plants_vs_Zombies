@@ -225,6 +225,9 @@
     <ClCompile Include="..\Classes\Clover.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Tomb.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -427,11 +430,14 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CardEntity.h">
       <Filter>src\Entity\Map</Filter>
-	 </ClInclude>
+    </ClInclude>
     <ClInclude Include="..\Classes\Clover.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Magnet.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tomb.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
