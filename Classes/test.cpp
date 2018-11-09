@@ -41,6 +41,7 @@
 #include "Clover.h"
 #include "Magnet.h"
 #include "Tomb.h"
+#include "GraveBuster.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -152,6 +153,7 @@ test::test()
 	new Card<Clover>(Point(60, 220));
 	new Card<Magnet>(Point(80, 220));
 	new Card<Tomb>(Point(20, 180));
+	new Card<GraveBuster>(Point(40, 180));
 }
 void test::drawRect()
 {

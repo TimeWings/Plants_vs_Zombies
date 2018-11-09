@@ -2,11 +2,14 @@
 #include "Global.h"
 #include "BasicZombie.h"
 #include "RoadblockZombie.h"
+#include "sys/timeb.h"
 Tomb::Tomb(Point position, int row, int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-	srand((unsigned)time(NULL));
+	struct timeb timeSeed;
+	ftime(&timeSeed);
+	srand(timeSeed.time * 1000 + timeSeed.millitm);
 	int cnt = rand() % 5 + 1;
 	Sprite *sp;
 	if (cnt == 1)
@@ -22,7 +25,7 @@ Tomb::Tomb(Point position, int row, int col)
 	this->setImg(sp);
 	//一定要retain，否则会自动释放
 	sp->retain();
-	sp->setScale(2.5);
+	sp->setScale(2.2);
 	sp->setPosition(position);
 	this->setHp(3);
 	this->setInterval(7000);
@@ -115,8 +118,9 @@ void Tomb::CreateZombie()
 	timer->setBarChangeRate(CCPoint(0, 1));//设置进度所占比例
 
 	auto noneSp = Sprite::create();
-	noneSp->setScale(2.3);
-	noneSp->setPosition(tombSp->getPositionX(), tombSp->getPositionY()- tombSp->getContentSize().height/2* tombSp->getScaleY()+6);
+	noneSp->setScaleX(2.3);
+	noneSp->setScaleY(2.7);
+	noneSp->setPosition(tombSp->getPositionX(), tombSp->getPositionY()- tombSp->getContentSize().height/2* tombSp->getScaleY()+3);
 	char str[100] = { 0 };
 	Vector<SpriteFrame*> allframe;
 	for (int i = 1; i <= 4; i++)
