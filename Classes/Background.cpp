@@ -1,8 +1,9 @@
 #include "Background.h"
 #include "EntityLayer.h"
 #include "Global.h"
+#include "Tomb.h"
 using namespace map;
-int Background::type = 3;
+int Background::type = 4;
 Sprite* Background::Cloud=NULL;
 Node* Background::holesStencil = NULL;
 Background::Background()
@@ -108,6 +109,30 @@ Background::Background()
 		layer->addChild(Cloud,190);
 
 	}
+	else if (type == 4)
+	{
+		MapRow = 5;
+		MapCol = 9;
+		BlockSize.first = 38;
+		BlockSize.second = 46;
+		Deviation.first = 97;
+		Deviation.second = 12;
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Scene\\background5.png"));
+		sprite->retain();
+		sprite->setPosition(-155, -25);
+		sprite->setAnchorPoint(Vec2(0, 0));
+		sprite->setScale(2.0f);
+		EntityLayer* layer = EntityLayer::getInstance();
+		layer->addChild(sprite);
+		setImg(sprite);
+		new Tomb(Vec2(Rank2Point(3, 6).x, Rank2Point(3, 6).y+20), 3, 6);
+		new Tomb(Vec2(Rank2Point(4, 8).x, Rank2Point(4, 8).y + 20), 4, 8);
+		new Tomb(Vec2(Rank2Point(5, 7).x, Rank2Point(5, 7).y + 20), 5, 7);
+		new Tomb(Vec2(Rank2Point(1, 9).x, Rank2Point(1, 9).y + 20), 1, 9);
+		new Tomb(Vec2(Rank2Point(1, 5).x, Rank2Point(1, 5).y + 20), 1, 5);
+		new Tomb(Vec2(Rank2Point(2, 9).x, Rank2Point(2, 9).y + 20), 2, 9);
+
+	}
 	initPlantStatus();
 
 	
@@ -120,7 +145,7 @@ void Background::initPlantStatus()
 		{
 			for (int j = 1; j <= MapCol; j++)
 			{
-				plantstatus.push_back(new PlantStatus(i, j, 0));
+				plantstatus.push_back(new PlantStatus(i, j, 0,true));
 			}
 		}
 	}
@@ -132,11 +157,11 @@ void Background::initPlantStatus()
 			{
 				if (i == 3 || i == 4)
 				{
-					plantstatus.push_back(new PlantStatus(i, j, 1));
+					plantstatus.push_back(new PlantStatus(i, j, 1,true));
 				}
 				else
 				{
-					plantstatus.push_back(new PlantStatus(i, j, 0));
+					plantstatus.push_back(new PlantStatus(i, j, 0,true));
 				}
 				
 			}
@@ -148,7 +173,7 @@ void Background::initPlantStatus()
 		{
 			for (int j = 1; j <= MapCol; j++)
 			{
-				plantstatus.push_back(new PlantStatus(i, j, 0));
+				plantstatus.push_back(new PlantStatus(i, j, 0,true));
 			}
 		}
 	}
@@ -158,7 +183,17 @@ void Background::initPlantStatus()
 		{
 			for (int j = 1; j <= MapCol; j++)
 			{
-				plantstatus.push_back(new PlantStatus(i, j, 0));
+				plantstatus.push_back(new PlantStatus(i, j, 0,true));
+			}
+		}
+	}
+	else if (type == 4)
+	{
+		for (int i = 1; i <= MapRow; i++)
+		{
+			for (int j = 1; j <= MapCol; j++)
+			{
+				plantstatus.push_back(new PlantStatus(i, j, 0, true));
 			}
 		}
 	}

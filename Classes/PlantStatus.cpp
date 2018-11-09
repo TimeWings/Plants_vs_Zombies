@@ -5,13 +5,13 @@
 USING_NS_CC;
 using namespace std;
 using namespace map;
-//vector<Plantable*> plantableList;
 
-PlantStatus::PlantStatus(int row,int col,int BlockType)
+PlantStatus::PlantStatus(int row,int col,int BlockType,bool enable)
 {
 	_row = row;
 	_col = col;
 	_BlockType = BlockType;
+	Enabled = enable;
 }
 
 

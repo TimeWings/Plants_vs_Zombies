@@ -40,6 +40,7 @@
 #include "DoorZombie.h"
 #include "Clover.h"
 #include "Magnet.h"
+#include "Tomb.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -114,6 +115,7 @@ test::test()
 	/*auto unSelectCard29 = new UnSelectCard<Magnet>(Point(160, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);*/
 	
+	GameStart = true;
 	drawRect();
 	auto s = Director::getInstance()->getWinSize();
 	new Card<IceShooter>(Point(20, 300));
@@ -149,6 +151,7 @@ test::test()
 	new ZombieCard<DoorZombie>(Point(120,260));
 	new Card<Clover>(Point(60, 220));
 	new Card<Magnet>(Point(80, 220));
+	new Card<Tomb>(Point(20, 180));
 }
 void test::drawRect()
 {

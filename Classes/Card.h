@@ -153,7 +153,6 @@ public:
 	template <class T>
 	void Register(int row, int col)
 	{
-		//std::cout << "col:" << col << std::endl;
 		if (row > MapRow || row < 1 || col<1 || col>MapCol)
 		{
 			std::cout << "不可以种植" << std::endl;
@@ -162,6 +161,12 @@ public:
 		PlantStatus* ps = find(row, col);
 		if (ps != NULL)
 		{
+			std::cout << row << "----" <<col<< std::endl;
+			if (!ps->Enabled)
+			{
+				std::cout << "此格子不可以种植" << std::endl;
+				return;
+			}
 			if (ps->_BlockType == 0)
 			{
 				if ((strcmp(typeid(T).name(), "class Cushaw") == 0) && ps->plantVector.size() != 0 && !find1(ps, "class Cushaw"))
