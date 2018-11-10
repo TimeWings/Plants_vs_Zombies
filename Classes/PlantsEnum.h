@@ -88,6 +88,7 @@ enum class PlantsEnum
 	HeroLucker,
 	Lotus,
 	Lantern,
-	DoorZombie
+	DoorZombie,
+	Magnet
 };
 

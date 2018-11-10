@@ -39,11 +39,11 @@ public:
 	UnSelectCard(Point position, PlantsEnum plantsEnum)
 	{
 		srcPosition = position;
-		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("cardbackground\\card_green.png"));
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("cardbackground\\Card.png"));
 		
 		sprite->retain();
 		//sprite->setScale(0.15f);
-		sprite->setContentSize(Size(20, 30));
+		sprite->setContentSize(Size(30, 42));
 		sprite->setPosition(position);
 		addLayer(sprite, 200);
 
@@ -53,10 +53,10 @@ public:
 		plantSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
 		Size size = sprite->getContentSize();
 		auto position1 = Point(size.width / 2, size.height / 2);
-		position1.y += 0;
+		position1.y += 4;
 		plantSprite->setPosition(position1);
 		//plantSprite->setScale(0.08f);
-		plantSprite->setContentSize(Size(15, 20));
+		plantSprite->setContentSize(Size(18, 24));
 		plantSprite->retain();
 		//addLayer(plantSprite, 200);
 		sprite->addChild(plantSprite);
@@ -64,15 +64,21 @@ public:
 
 		plantsTypeName = typeid(T).name();
 		this->plantsEnum = plantsEnum;
+		addListener();
+		
+	}
 
-		auto listener = EventListenerTouchOneByOne::create();
+	void addListener()
+	{
+		listener = EventListenerTouchOneByOne::create();
 		listener->onTouchBegan = [=](Touch* touch, Event *event)
 		{
-			
+			if (GameStart == true)
+				return false;
 			Point clickLocation = touch->getLocation();
-			Size s = sprite->getContentSize();
-			auto position = sprite->getPosition();
-			Rect rect = Rect(position.x - s.width*sprite->getScaleX() / 2, position.y - s.height*sprite->getScaleX() / 2, s.width*sprite->getScaleX(), s.height*sprite->getScaleX());
+			Size s = getImg()->getContentSize();
+			auto position = getImg()->getPosition();
+			Rect rect = Rect(position.x - s.width*getImg()->getScaleX() / 2, position.y - s.height*getImg()->getScaleX() / 2, s.width*getImg()->getScaleX(), s.height*getImg()->getScaleX());
 			auto rank = Point2Rank(clickLocation);
 
 			// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
@@ -80,36 +86,41 @@ public:
 			{
 				//cout << (int)this->plantsEnum << endl;
 				cout << isSelecting << endl;
-				if (isSelecting == false )
+				if (isSelecting == false && selectingCardsEntity.size() < 7)
 				{
 					selectingCards.push_back(plantsEnum);
 					//auto entity = new SelectCard<T>(position, plantsEnum);
-					auto moveTo = MoveTo::create(0.5f, Point(selectingCards.size() * 20, 300));
-					sprite->stopAllActions();
-					sprite->runAction(moveTo);
+					auto moveTo = MoveTo::create(0.3f, Point(-10 + selectingCards.size() * 32, 290));
+					getImg()->stopAllActions();
+					getImg()->runAction(moveTo);
 					//entity->plantSprite->runAction(moveTo);
 					selectingCardsEntity.push_back(this);
 					isSelecting = true;
-					
+					auto card = new Card<T>(Point(-10 + selectingCards.size() * 32, 290));
+					readyCards.push_back(card);
 				}
 				else
 				{
 					isSelecting = false;
-					auto moveTo = MoveTo::create(0.5f, srcPosition);
-					sprite->stopAllActions();
-					sprite->runAction(moveTo);
+					auto moveTo = MoveTo::create(0.3f, srcPosition);
+					getImg()->stopAllActions();
+					getImg()->runAction(moveTo);
 					for (int i = 0; i < selectingCards.size(); i++)
 					{
 						if (selectingCards[i] == this->plantsEnum)
 						{
 							selectingCards.erase(selectingCards.begin() + i);
 							selectingCardsEntity.erase(selectingCardsEntity.begin() + i);
+							//readyCards[i]->removeListener();
+							removeLayer(readyCards[i]->getImg());
+							readyCards.erase(readyCards.begin() + i);
 							break;
 						}
 					}
 					for (int i = 0; i < selectingCardsEntity.size(); i++)
 					{
-						auto moveTo = MoveTo::create(0.2f, Point((i + 1) * 20, 300));
+						auto moveTo = MoveTo::create(0.2f, Point(-10 + (i + 1) * 32, 290));
+						readyCards[i]->getImg()->setPosition(Point(-10 + (i + 1) * 32, 290));
 						selectingCardsEntity[i]->getImg()->stopAllActions();
 						selectingCardsEntity[i]->getImg()->runAction(moveTo);
 						//selectingCardsEntity[i]->getImg()->setPosition((i+1) * 20, 150);
@@ -121,11 +132,9 @@ public:
 				//}
 				return true;
 			}
-			
+
 		};
-		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, sprite);
+		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, getImg());
 	}
-
-
 };
 
