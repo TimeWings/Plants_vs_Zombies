@@ -57,7 +57,7 @@ public:
 		
 		sprite->retain();
 		//sprite->setScale(0.15f);
-		sprite->setContentSize(Size(30, 42));
+		sprite->setContentSize(Size(20, 30));
 		//this->Scale = this->getImg()->getScale();
 		//sprite->setAnchorPoint(Point(0.5f, 0.5f));
 		sprite->setPosition(position);
@@ -76,10 +76,10 @@ public:
 		plantSprite->retain();
 		//addLayer(plantSprite,200);
 		sprite->addChild(plantSprite);
-		sprite->setVisible(false);
+		//sprite->setVisible(false);
 
 		plantsTypeName = typeid(T).name();
-
+		addListener();
 		
 	}
 	void addListener()

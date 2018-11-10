@@ -53,7 +53,7 @@ test::test()
 	//new Loading();
 	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
 	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
-	float startX = 00.0f;
+	/*float startX = 00.0f;
 	float startY = 240.0f;
 	float offsetX = 32.0f;
 	float offsetY = 44.0f;
@@ -124,11 +124,11 @@ test::test()
 	auto unSelectCard29 = new UnSelectCard<Magnet>(Point(startX += offsetX, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);
 
-	new GameStartButton(Point(120, 20));
-	//GameStart = true;
+	new GameStartButton(Point(120, 20));*/
+	GameStart = true;
 	drawRect();
 	auto s = Director::getInstance()->getWinSize();
-	/*new Card<IceShooter>(Point(20, 300));
+	new Card<IceShooter>(Point(20, 300));
 	new Card<Mushroom>(Point(40, 300));
 	new Card<PeaShooter>(Point(60, 300));
 	new Card<Melancholy>(Point(80, 300));
@@ -164,7 +164,7 @@ test::test()
 	new Card<Tomb>(Point(20, 180));
 	new Card<GraveBuster>(Point(40, 180));
 	new ZombieCard<Zomboni>(Point(60, 180));
-	new Card<GraveBuster>(Point(40, 180));*/
+	new Card<GraveBuster>(Point(80, 180));
 }
 void test::drawRect()
 {
