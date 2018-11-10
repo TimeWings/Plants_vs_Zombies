@@ -192,7 +192,7 @@ void Zomboni::DamagePlant(PlantStatus * plantstatus)
 }
 void Zomboni::Press(Plants* plant)
 {
-	std::cout << "Ñ¹ËÀ£¡£¡£¡" << std::endl;
+	std::cout << "Ñ¹ËÀ£¡£¡£¡" << std::endl; 
 	plant->getImg()->getActionManager()->removeAllActionsFromTarget(plant->getImg());
 	float preScale = plant->getImg()->getScaleX();
 	//Ñ¹±â
