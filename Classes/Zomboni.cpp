@@ -137,6 +137,7 @@ void Zomboni::ProductIce(Point position)
 	if (plantstatus != NULL)
 	{
 		plantstatus->Enabled = false;
+		plantstatus->isIcing = true;
 	}
 }
 bool Zomboni::Check_Ice(Sprite* sp)
@@ -185,6 +186,10 @@ void Zomboni::DamagePlant(PlantStatus * plantstatus)
 	}
 	for (int i = 0; i < plantstatus->plantVector.size(); i++)
 	{
+		if (strcmp(typeid(*(plantstatus->plantVector.at(0))).name(), "class Lucker") == 0)
+		{
+			continue;
+		}
 		Press(plantstatus->plantVector.at(i));
 		plantstatus->plantVector.erase(plantstatus->plantVector.begin() + i);
 		i--;
