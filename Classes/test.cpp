@@ -23,6 +23,7 @@
 #include "Card.h"
 #include "SelectCard.h"
 #include "UnSelectCard.h"
+#include "Thunder.h"
 #include "ZombieCard.h"
 #include "Torch.h"
 #include "Cushaw.h"
@@ -165,6 +166,7 @@ test::test()
 	new Card<GraveBuster>(Point(40, 180));
 	new ZombieCard<Zomboni>(Point(60, 180));
 	new Card<GraveBuster>(Point(80, 180));
+	new Card<Thunder>(Point(100, 180));
 }
 void test::drawRect()
 {
