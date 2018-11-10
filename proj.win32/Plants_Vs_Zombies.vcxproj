@@ -164,6 +164,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Entity.cpp" />
     <ClCompile Include="..\Classes\EntityLayer.cpp" />
     <ClCompile Include="..\Classes\FireBullet.cpp" />
+    <ClCompile Include="..\Classes\GameStartButton.cpp" />
     <ClCompile Include="..\Classes\Global.cpp" />
     <ClCompile Include="..\Classes\GraveBuster.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
@@ -214,6 +215,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Weeds.cpp" />
     <ClCompile Include="..\Classes\Zombie.cpp" />
     <ClCompile Include="..\Classes\ZombieEquipment.cpp" />
+    <ClCompile Include="..\Classes\Zomboni.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +236,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Entity.h" />
     <ClInclude Include="..\Classes\EntityLayer.h" />
     <ClInclude Include="..\Classes\FireBullet.h" />
+    <ClInclude Include="..\Classes\GameStartButton.h" />
     <ClInclude Include="..\Classes\Global.h" />
     <ClInclude Include="..\Classes\GraveBuster.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
@@ -288,6 +291,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Zombie.h" />
     <ClInclude Include="..\Classes\ZombieCard.h" />
     <ClInclude Include="..\Classes\ZombieEquipment.h" />
+    <ClInclude Include="..\Classes\Zomboni.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

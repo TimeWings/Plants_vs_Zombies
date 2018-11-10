@@ -1,8 +1,10 @@
 #include "Zombie.h"
 #include "EntityLayer.h"
 #include "Global.h"
+#include <sys/timeb.h>
 Zombie::Zombie()
 {
+	this->BirthTime = 0;
 }
 
 int Zombie::getHp()
@@ -86,6 +88,22 @@ void Zombie::setMeeting(bool meeting)
 	_meeting = meeting;
 }
 
+long long Zombie::getBirthTime()
+{
+	return BirthTime;
+}
+
+void Zombie::setBirthTime(long long seconds)
+{
+	BirthTime = seconds;
+}
+void Zombie::setNewBirthTime()
+{
+	struct timeb t1;
+	ftime(&t1);
+	long long seconds = t1.time * 1000 + t1.millitm;
+	this->setBirthTime(seconds);
+}
 
 std::vector<int>* Zombie::getDebuff() 
 {
@@ -134,10 +152,14 @@ CCScheduler * Zombie::getScheduler()
 	return sched;
 }
 
+void Zombie::work()
+{
+}
+
 void Zombie::DamagePlant(Node * pSender, PlantStatus *plantstatus)
 {
 
-	if (plantstatus->plantVector.size() == 0 || strcmp(typeid(*(plantstatus->plantVector.at(0))).name(), "class Lucker") == 0) {
+	if (plantstatus->plantVector.size() == 0 || strcmp(typeid(*(plantstatus->plantVector.at(0))).name(), "class Lucker") == 0|| strcmp(typeid(*(plantstatus->plantVector.at(0))).name(), "class Tomb") == 0) {
 		this->Move();
 		this->setMeeting(false);
 		return;

@@ -8,6 +8,7 @@
 #include "Plants.h"
 #include "Global.h"
 using namespace std;
+using namespace map;
 using namespace cocos2d;
 
 template <class T>
@@ -21,6 +22,8 @@ public:
 	//int cost;
 	//Sprite* plantSprite;
 	Sprite* plantFollowSprite;
+	//EventListenerTouchOneByOne* listener;
+	//EventListenerMouse* listener1;
 
 	template <class T>
 	void BindPlant()
@@ -49,7 +52,7 @@ public:
 	}
 	Card(Point position)
 	{
-		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("cardbackground\\card_green.png"));
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage("cardbackground\\Card.png"));
 		this->setImg(sprite);
 		
 		sprite->retain();
@@ -66,25 +69,33 @@ public:
 		plantSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
 		Size size = sprite->getContentSize();
 		auto position1 = Point(size.width/2, size.height/2);
-		position1.y += 0;
+		position1.y += 4;
 		plantSprite->setPosition(position1);
-		//plantSprite->setScale(0.08f);
-		plantSprite->setContentSize(Size(15, 20));
+		//plantSprite->setScale(0.2f);
+		plantSprite->setContentSize(Size(18, 24));
 		plantSprite->retain();
 		//addLayer(plantSprite,200);
 		sprite->addChild(plantSprite);
+		//sprite->setVisible(false);
 
 		plantsTypeName = typeid(T).name();
-
-		auto listener = EventListenerTouchOneByOne::create();
-		auto listener1 = EventListenerMouse::create();
+		addListener();
+		
+	}
+	void addListener()
+	{
+		listener = EventListenerTouchOneByOne::create();
+		listener1 = EventListenerMouse::create();
 		listener->onTouchBegan = [=](Touch* touch, Event *event)
 		{
+			if (GameStart == false)
+				return false;
 			if (!isFollowingMouse)
 			{
 				Point clickLocation = touch->getLocation();
-				Size s = sprite->getContentSize();
-				Rect rect = Rect(position.x - s.width*sprite->getScaleX() / 2, position.y - s.height*sprite->getScaleX() / 2, s.width*sprite->getScaleX(), s.height*sprite->getScaleX());
+				Size s = getImg()->getContentSize();
+				auto position = getImg()->getPosition();
+				Rect rect = Rect(position.x - s.width*getImg()->getScaleX() / 2, position.y - s.height*getImg()->getScaleX() / 2, s.width*getImg()->getScaleX(), s.height*getImg()->getScaleX());
 				auto rank = Point2Rank(clickLocation);
 
 				// µã»÷·¶Î§ÅÐ¶Ï¼ì²â
@@ -94,10 +105,10 @@ public:
 					className = className.erase(0, 6);
 					string str = string("Card\\") + className + string(".png");
 					plantFollowSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str.c_str()));
-					plantFollowSprite->setContentSize(Size(15, 20));
+					plantFollowSprite->setContentSize(Size(18, 24));
 					plantFollowSprite->setPosition(clickLocation);
 					plantFollowSprite->retain();
-					addLayer(plantFollowSprite,200);
+					addLayer(plantFollowSprite, 200);
 					isFollowingMouse = true;
 					return true;
 
@@ -114,19 +125,27 @@ public:
 					Register<T>(rank.first, rank.second);
 				}
 			}
-			
+
 			return false;
 		};
-		listener1->onMouseMove = [=]( Event *event)
+		listener1->onMouseMove = [=](Event *event)
 		{
+			if (GameStart == false)
+				return;
 			if (isFollowingMouse)
 			{
 				EventMouse* e = (EventMouse*)event;
 				plantFollowSprite->setPosition(Point(e->getCursorX(), e->getCursorY()));
 			}
 		};
-		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, sprite);
-		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener1, sprite);
+		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, getImg());
+		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener1, getImg());
+	}
+	void removeListener()
+	{
+		Director::getInstance()->getEventDispatcher()->removeEventListener(listener);
+		Director::getInstance()->getEventDispatcher()->removeEventListener(listener1);
+
 	}
 	PlantStatus* find(int row, int col)
 	{
