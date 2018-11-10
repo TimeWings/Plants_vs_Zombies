@@ -10,6 +10,9 @@ public:
 	bool isSelecting = false;
 	PlantsEnum plantsEnum = PlantsEnum::IceShooter;
 	Sprite* plantSprite;
+	EventListenerTouchOneByOne* listener;
+	EventListenerMouse* listener1;
+
 	void addLayer(Node * entity, int order = 0)
 	{
 		EntityLayer* layer = EntityLayer::getInstance();
@@ -20,5 +23,13 @@ public:
 	{
 		EntityLayer* layer = EntityLayer::getInstance();
 		layer->removeChild(entity);
+	}
+
+	virtual void addListener() = 0;
+	virtual void removeListener()
+	{
+		Director::getInstance()->getEventDispatcher()->removeEventListener(listener);
+		Director::getInstance()->getEventDispatcher()->removeEventListener(listener1);
+
 	}
 };

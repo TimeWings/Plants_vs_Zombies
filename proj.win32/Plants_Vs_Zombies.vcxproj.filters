@@ -231,6 +231,9 @@
     <ClCompile Include="..\Classes\GraveBuster.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameStartButton.cpp">
+      <Filter>src\Entity\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -445,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GraveBuster.h">
       <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameStartButton.h">
+      <Filter>src\Entity\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
