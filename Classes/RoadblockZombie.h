@@ -8,8 +8,8 @@ public:
 	RoadblockZombie();
 	RoadblockZombie(Point position, int row, int col);
 	virtual void Attack(PlantStatus *plantstatus);
-	void RoadblockAttack(PlantStatus *plantstatus);
-	void RoadblockMove();
+	void Attack_with_Equip(PlantStatus *plantstatus);
+	void Move_with_Equip();
 	virtual void Move();
 	virtual void DamageBoth(int damage);
 	virtual void DamageEquip(int damage);
