@@ -11,6 +11,7 @@ USING_NS_CC;
 class Zombie : public Entity 
 {
 private:
+	long long BirthTime; //诞生时间
 	int _Hp; //血量
 	double _BiteInterval; //攻击间隔
 	double  _WalkSpeed; //移动速度
@@ -39,6 +40,9 @@ public:
 	void setHead(bool Head);
 	bool isMeeting();
 	void setMeeting(bool meeting);
+	long long getBirthTime();
+	void setBirthTime(long long seconds);
+	void setNewBirthTime();
 	std::vector<int>*getDebuff();
 	void addLayer(Node* entity);
 	void setSche(Node * sprite);
@@ -46,6 +50,7 @@ public:
 	ZombieEquipment *getEquip();
 	bool hasEquip();
 	CCScheduler* getScheduler();
+	virtual void work(); //工作
 	virtual void Attack(PlantStatus *plantstatus) = 0;
 	virtual void Die(Node * pSender) = 0;
 	virtual void Attacked() = 0;
@@ -55,7 +60,7 @@ public:
 	virtual void DamageEquip(int damage) = 0;
 	virtual void DamageBoth(int damage) = 0;
 	virtual Sprite *MagnetEquip() = 0;
-	void DamagePlant(Node * pSender, PlantStatus *plantstatus);
+	virtual void DamagePlant(Node * pSender, PlantStatus *plantstatus);
 	void clear(Node * pSender);
 	void clear_from_vector(Node * pSender);
 	void Stop_Animation();

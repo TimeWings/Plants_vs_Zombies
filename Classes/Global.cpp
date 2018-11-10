@@ -41,6 +41,7 @@ namespace map
 					ps->plantVector.at(i)->Die();
 					ps->plantVector.erase(ps->plantVector.begin() + i);
 					std::cout << plant_name << "从植物列表移除成功并且死亡" << std::endl;
+					return;
 				}
 			}
 		}
@@ -59,6 +60,7 @@ namespace map
 				{
 					plantstatus.at(i)->plantVector.erase(plantstatus.at(i)->plantVector.begin() + j);
 					std::cout << plant << "从植物列表移除成功" << std::endl;
+					break;
 				}
 			}
 		}

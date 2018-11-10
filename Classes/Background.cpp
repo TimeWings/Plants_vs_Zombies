@@ -4,7 +4,7 @@
 #include "Tomb.h"
 #include "PlantStatus.h"
 using namespace map;
-int Background::type = 4;
+int Background::type = 0;
 Sprite* Background::Cloud=NULL;
 Node* Background::holesStencil = NULL;
 Background::Background()

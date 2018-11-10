@@ -38,6 +38,7 @@ bool EntityLayer::init()
 	this->schedule(schedule_selector(EntityLayer::Check_Lost_head_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Lost_Equip_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Plant), 0.1);
+	this->schedule(schedule_selector(EntityLayer::Check_isWorking_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	return true;
 }
@@ -146,7 +147,23 @@ void EntityLayer::Check_isAttack_Plant(float t)
 		}
 	}
 }
-
+void EntityLayer::Check_isWorking_Zombie(float t)
+{
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		Zombie* x = readyZombies.at(i);
+		struct timeb t1;
+		ftime(&t1);
+		long long seconds = t1.time * 1000 + t1.millitm;
+		long long interval = seconds - x->getBirthTime();
+		//long long a = (interval / 100L) * 100;
+		if (interval > x->getInterval()) {
+			//调用工作函数
+			x->setNewBirthTime();
+			x->work();
+		}
+	}
+}
 void EntityLayer::Check_isAttack_Zombie(float t)
 {
 	for (int i = 0; i < readyZombies.size(); i++)
@@ -169,7 +186,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		double plantx = Rank2Point(zombie_rank.first, zombie_rank.second).x;
 		if (zombiex >= plantx) {
 			PlantStatus *ps = map::find(zombie_rank.first, zombie_rank.second);
-			if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0){
+			if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Tomb") != 0){
 				flag = true;
 				p = ps;
 			}
