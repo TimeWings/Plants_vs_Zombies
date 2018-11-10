@@ -18,7 +18,7 @@ Pumpkin::Pumpkin(Point position, int row,int col)
 	sp->retain();
 	sp->setScale(0.27);
 	sp->setPosition(position);
-	this->setHp(1);
+	this->setHp(100);
 	this->setInterval(0.5);
 	//普通植物直接播放自身动画
 	this->Self_Animation();

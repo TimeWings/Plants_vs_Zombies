@@ -81,7 +81,7 @@ void EntityLayer::Check_Collision(float t)
 				{
 					zombie->DamageEquip(bullet->getDamage());
 				}
-				if (strcmp(typeid(*bullet).name(), "class HeroLuckerBullet") != 0)
+				if (strcmp(typeid(*bullet).name(), "class HeroLuckerBullet") != 0 && strcmp(typeid(*bullet).name(), "class MushroomBullet") != 0)
 				{
 					break;
 				}

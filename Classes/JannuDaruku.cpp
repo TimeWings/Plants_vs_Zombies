@@ -1,5 +1,6 @@
 #include "JannuDaruku.h"
 #include "Global.h"
+#include "Zomboni.h"
 #include <iostream>
 JannuDaruku::JannuDaruku()
 {
@@ -77,6 +78,28 @@ void JannuDaruku::Effect(Node *pSender)
 
 void JannuDaruku::zombiesDie()
 {
+	for (int i = 0; i < map::MapCol; i++)
+	{
+		PlantStatus* plantstatus = map::find(this->getRow(), i);
+		if (plantstatus != NULL)
+		{
+			if (!plantstatus->Enabled && plantstatus->isIcing)
+			{
+				std::cout << "gaibian" << std::endl;
+				plantstatus->Enabled = true;
+				plantstatus->isIcing = false;
+			}
+		}
+	}
+	for (int i = 0; i < Zomboni::IceSprite.size(); i++)
+	{
+		if (map::Point2Rank(Zomboni::IceSprite.at(i)->getPosition()).first == this->getRow())
+		{
+			Zomboni::IceSprite.at(i)->removeFromParent();
+			Zomboni::IceSprite.erase(Zomboni::IceSprite.begin() + i);
+			i--;
+		}
+	}
 	//±éÀú½©Ê¬
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
@@ -91,16 +114,36 @@ void JannuDaruku::zombiesDie()
 			//½©Ê¬·ÛËé¶¯»­
 			char str[100] = { 0 };
 			Vector<SpriteFrame*> allframe;
-			for (int i = 2; i <= 20; i++)
+			auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
+			Animation* an;
+			if (strcmp(typeid(*readyZombies.at(i)).name(), "class Zomboni") == 0)
 			{
-				sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
-				auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
-				auto frame = sprite->getSpriteFrame();
-				allframe.pushBack(frame);
-			}
-			Animation* an = Animation::createWithSpriteFrames(allframe, 0.15);
+				for (int i = 1; i <= 16; i++)
+				{
+					std::cout << i << std::endl;
+					sprintf(str, "Zombies\\Zomboni\\Burn\\%d.png", i);
+					auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+					auto frame = sprite->getSpriteFrame();
+					allframe.pushBack(frame);
+				}
+				an = Animation::createWithSpriteFrames(allframe, 0.15);
 
-			auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Boom_Die\\Boom_Die1.png"));
+				//sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\Zomboni\\Burn\\01.png"));
+			}
+			else
+			{
+				for (int i = 1; i <= 20; i++)
+				{
+					sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
+					auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+					auto frame = sprite->getSpriteFrame();
+					allframe.pushBack(frame);
+				}
+				an = Animation::createWithSpriteFrames(allframe, 0.15);
+
+				//sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Boom_Die\\Boom_Die1.png"));
+			}
+
 			sp->setPosition(zombiePoint);
 			sp->retain();
 			sp->setScale(scale);
