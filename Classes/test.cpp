@@ -28,6 +28,7 @@
 #include "Cushaw.h"
 #include "Chomper.h"
 #include "Lucker.h"
+#include "Thunder.h"
 #include "Lancer.h"
 #include "Lotus.h"
 #include "Magnet.h"
@@ -154,6 +155,8 @@ test::test()
 	new Card<Magnet>(Point(80, 220));
 	new Card<Tomb>(Point(20, 180));
 	new Card<GraveBuster>(Point(40, 180));
+	new Card<Thunder>(Point(60, 180));
+	
 }
 void test::drawRect()
 {

@@ -150,7 +150,7 @@ void HelloWorld::moveCamera(float delta)
 	auto moveBy = MoveBy::create(2.5, Vec2(200, 0));
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(HelloWorld::LoadingCard, this));
 	Sequence *sequence = Sequence::create(moveBy, DelayTime::create(1.5),moveBy->reverse(), actionDone, NULL);
-	camera->runAction(sequence);
+	camera->runAction(actionDone);
 }
 
 void HelloWorld::LoadingCard(Node* pSender)
