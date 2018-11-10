@@ -8,5 +8,5 @@ public:
 	virtual void Die();
 	virtual void Damage(int damage);
 	virtual void Move();
-	virtual void Attack();
+	virtual void Attack(double interval);
 };

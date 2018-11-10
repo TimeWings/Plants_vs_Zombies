@@ -12,7 +12,7 @@ Door::Door()
 
 void Door::Die()
 {
-
+	this->getImg()->removeFromParent();
 }
 
 void Door::Damage(int damage)
@@ -52,12 +52,12 @@ void Door::DoorMove()
 	this->getImg()->runAction(rf);
 }
 
-void Door::Attack()
+void Door::Attack(double interval)
 {
-	DoorAttack();
+	DoorAttack(interval);
 }
 
-void Door::DoorAttack() 
+void Door::DoorAttack(double interval)
 {
 	Vector<SpriteFrame*> allframe;
 	std::string prestr = "Zombies\\DoorZombie\\Door\\Attackgif\\";
@@ -72,7 +72,7 @@ void Door::DoorAttack()
 		auto frame = sprite->getSpriteFrame();
 		allframe.pushBack(frame);
 	}
-	Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
+	Animation* an = Animation::createWithSpriteFrames(allframe, interval);
 	CCRepeatForever *rf = CCRepeatForever::create(Animate::create(an));
 	rf->setTag(Animation_Tag);
 	this->getImg()->runAction(rf);

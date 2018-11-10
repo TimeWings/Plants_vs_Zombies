@@ -33,7 +33,7 @@ void RoadblockZombie::Attack(PlantStatus *plantstatus)
 	Stop_Animation();
 	if (hasEquip())
 	{
-		RoadblockAttack(plantstatus);
+		Attack_with_Equip(plantstatus);
 	}
 	else
 	{
@@ -41,7 +41,7 @@ void RoadblockZombie::Attack(PlantStatus *plantstatus)
 	}
 }
 
-void RoadblockZombie::RoadblockAttack(PlantStatus *plantstatus)
+void RoadblockZombie::Attack_with_Equip(PlantStatus *plantstatus)
 {
 	Vector<SpriteFrame*> allframe;
 	std::string prestr;
@@ -88,7 +88,7 @@ void RoadblockZombie::Move()
 	Stop_Animation();
 	if (hasEquip()) 
 	{
-		RoadblockMove();
+		Move_with_Equip();
 	}
 	else 
 	{
@@ -96,7 +96,7 @@ void RoadblockZombie::Move()
 	}
 }
 
-void RoadblockZombie::RoadblockMove()
+void RoadblockZombie::Move_with_Equip()
 {
 	Sprite *sp = this->getImg();
 	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();

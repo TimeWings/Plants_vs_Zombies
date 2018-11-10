@@ -64,4 +64,5 @@ public:
 	void clear(Node * pSender);
 	void clear_from_vector(Node * pSender);
 	void Stop_Animation();
+	virtual void Lost_Equip();
 };

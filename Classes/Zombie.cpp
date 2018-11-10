@@ -193,3 +193,15 @@ void Zombie::Stop_Animation()
 		getEquip()->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, getEquip()->getImg());
 	}
 }
+
+void Zombie::Lost_Equip()
+{
+	if (hasEquip()) {
+		getEquip()->getImg()->removeFromParent();
+		setEquip(nullptr);
+		if (hasHead()) {
+			setMeeting(false);
+			Move();
+		}
+	}
+}

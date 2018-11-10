@@ -186,6 +186,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MelancholyBullet.cpp" />
     <ClCompile Include="..\Classes\Mushroom.cpp" />
     <ClCompile Include="..\Classes\MushroomBullet.cpp" />
+    <ClCompile Include="..\Classes\Newspaper.cpp" />
+    <ClCompile Include="..\Classes\NewspaperZombie.cpp" />
     <ClCompile Include="..\Classes\Nut.cpp" />
     <ClCompile Include="..\Classes\NutPlus.cpp" />
     <ClCompile Include="..\Classes\Paul.cpp" />
@@ -258,6 +260,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MelancholyBullet.h" />
     <ClInclude Include="..\Classes\Mushroom.h" />
     <ClInclude Include="..\Classes\MushroomBullet.h" />
+    <ClInclude Include="..\Classes\Newspaper.h" />
+    <ClInclude Include="..\Classes\NewspaperZombie.h" />
     <ClInclude Include="..\Classes\Nut.h" />
     <ClInclude Include="..\Classes\NutPlus.h" />
     <ClInclude Include="..\Classes\Paul.h" />
