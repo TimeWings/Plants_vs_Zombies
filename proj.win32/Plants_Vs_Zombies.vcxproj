@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\HeroLucker.cpp" />
     <ClCompile Include="..\Classes\HeroLuckerBullet.cpp" />
+    <ClCompile Include="..\Classes\HeroThunder.cpp" />
     <ClCompile Include="..\Classes\IceBullet.cpp" />
     <ClCompile Include="..\Classes\iceCabbage.cpp" />
     <ClCompile Include="..\Classes\IceShooter.cpp" />
@@ -244,6 +245,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HeroLucker.h" />
     <ClInclude Include="..\Classes\HeroLuckerBullet.h" />
+    <ClInclude Include="..\Classes\HeroThunder.h" />
     <ClInclude Include="..\Classes\IceBullet.h" />
     <ClInclude Include="..\Classes\iceCabbage.h" />
     <ClInclude Include="..\Classes\IceShooter.h" />

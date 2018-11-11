@@ -4,10 +4,14 @@
 #include <iostream>
 #include <algorithm>
 #include "sys/timeb.h"
+Thunder::Thunder()
+{
+}
 Thunder::Thunder(Point position, int row, int col)
 {
 	this->hasThunder = false;
 	this->curtentDamage = 3;
+	this->thunderHeight = 1.5;
 	this->setRow(row);
 	this->setCol(col);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Thunder\\thunder.png"));
@@ -24,13 +28,25 @@ Thunder::Thunder(Point position, int row, int col)
 	this->lastPoint = this->getImg()->getPosition();
 }
 
+bool Thunder::isWorking()
+{
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	for (auto x : readyZombies)
+	{
+		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 void Thunder::work()
 {
 	if (isWorking())
 	{
 		creatSprite();
 	}
-
 }
 
 void Thunder::creatSprite()
@@ -116,16 +132,18 @@ void Thunder::createThunder(Point startPoint, Point endPoint, Zombie* zombie)
 		));
 	std::cout << (endPoint.x - startPoint.x) / 2 + (startPoint.x < endPoint.x ? startPoint.x : endPoint.x) << " " << fabs(startPoint.y - endPoint.y) / 2 + (startPoint.y < endPoint.y ? startPoint.y : endPoint.y) << std::endl;
 	sp->retain();
-	sp->setScaleX(abs(endPoint.x - startPoint.x) / sp->getContentSize().width );
-	sp->setScaleY(2);
+
+	sp->setScaleX(sqrt(pow(startPoint.x - endPoint.x, 2) + pow(startPoint.y - endPoint.y, 2)) / sp->getContentSize().width );
+	sp->setScaleY(thunderHeight);
+
 	//Ðý×ª
 	if(startPoint.y != endPoint.y)
 	{
 		sp->setRotation(atan2(startPoint.y - endPoint.y, endPoint.x - startPoint.x) * 180 / 3.1415926);
 	}
 	EntityLayer* bl = EntityLayer::getInstance();
-	bl->addChild(sp, this->getRow());
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Thunder::clear, this));
+	bl->addChild(sp, zombie->getRow() * 3 - 2);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	sp->runAction(sequence);
 	
@@ -136,9 +154,4 @@ void Thunder::createThunder(Point startPoint, Point endPoint, Zombie* zombie)
 	Sequence *sequence2 = Sequence::create(sequence1, sequence1, sequence1, NULL);
 	zombie->getImg()->runAction(sequence2);
 
-}
-
-void Thunder::clear(Node * pSender)
-{
-	pSender->removeFromParent();
 }

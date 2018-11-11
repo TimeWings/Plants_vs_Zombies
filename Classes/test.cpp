@@ -18,6 +18,7 @@
 #include "Doom_shroom.h"
 #include "JannuDaruku.h"
 #include "StarShooter.h"
+#include "HeroThunder.h"
 #include "TripleShooter.h"
 #include "iceCabbage.h"
 #include "Card.h"
@@ -169,6 +170,7 @@ test::test()
 	new Card<GraveBuster>(Point(80, 180));
 	new ZombieCard<NewspaperZombie>(Point(20, 140));
 	new Card<Thunder>(Point(40, 140));
+	new Card<HeroThunder>(Point(60, 140));
 }
 void test::drawRect()
 {
