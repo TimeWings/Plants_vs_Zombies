@@ -36,8 +36,8 @@ void DoorZombie::Attack(PlantStatus * plantstatus)
 	Stop_Animation();
 	if (hasEquip())
 	{
-		DoorAttack(plantstatus);
-		getEquip()->Attack();
+		Attack_with_Equip(plantstatus);
+		getEquip()->Attack(getInterval());
 	}
 	else
 	{
@@ -45,7 +45,7 @@ void DoorZombie::Attack(PlantStatus * plantstatus)
 	}
 }
 
-void DoorZombie::DoorAttack(PlantStatus * plantstatus)
+void DoorZombie::Attack_with_Equip(PlantStatus * plantstatus)
 {
 	Vector<SpriteFrame*> allframe;
 	std::string prestr;
@@ -92,7 +92,7 @@ void DoorZombie::Move()
 	Stop_Animation();
 	if (hasEquip())
 	{
-		DoorMove();
+		Move_with_Equip();
 		getEquip()->Move();
 	}
 	else
@@ -101,7 +101,7 @@ void DoorZombie::Move()
 	}
 }
 
-void DoorZombie::DoorMove()
+void DoorZombie::Move_with_Equip()
 {
 	Sprite *sp = this->getImg();
 	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
@@ -152,6 +152,7 @@ void DoorZombie::DamageEquip(int damage)
 	else {
 		DamageZombie(damage);
 	}
+	std::cout << "½©Ê¬ÑªÁ¿£º" << getHp() << std::endl;
 }
 
 void DoorZombie::DamageZombie(int damage)

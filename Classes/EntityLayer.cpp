@@ -81,7 +81,7 @@ void EntityLayer::Check_Collision(float t)
 				{
 					zombie->DamageEquip(bullet->getDamage());
 				}
-				if (strcmp(typeid(*bullet).name(), "class HeroLuckerBullet") != 0)
+				if (strcmp(typeid(*bullet).name(), "class HeroLuckerBullet") != 0 && strcmp(typeid(*bullet).name(), "class MushroomBullet") != 0)
 				{
 					break;
 				}
@@ -218,12 +218,13 @@ void EntityLayer::Check_Lost_Equip_Zombie(float t) {
 	{
 		Zombie *zombie = readyZombies.at(i);
 		if (zombie->hasEquip() && zombie->getEquip()->getHp() <= 0) {
-			zombie->getEquip()->getImg()->removeFromParent();
+			/*zombie->getEquip()->getImg()->removeFromParent();
 			zombie->setEquip(nullptr);
 			if (zombie->hasHead()) {
 				zombie->setMeeting(false);
 				zombie->Move();
-			}
+			}*/
+			zombie->Lost_Equip();
 		}
 	}
 }

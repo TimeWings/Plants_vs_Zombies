@@ -104,6 +104,7 @@ void BasicZombie::BasicAttack(PlantStatus *plantstatus)
 void BasicZombie::Die(Node * pSender)
 {
 	Sprite *sp = this->getImg();
+	std::cout << "½©Ê¬ËÀÁË" << sp->getPositionX()  << " " << sp->getPositionY() << std::endl;
 	sp->getActionManager()->removeAllActionsFromTarget(sp);
 	BasicDie(pSender);
 }

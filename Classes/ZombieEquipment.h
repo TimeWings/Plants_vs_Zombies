@@ -16,5 +16,5 @@ public:
 	virtual void Damage(int damage) = 0;
 	virtual void Die() = 0;
 	virtual void Move() = 0;
-	virtual void Attack() = 0;
+	virtual void Attack(double interval) = 0;
 };

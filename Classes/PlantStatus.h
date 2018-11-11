@@ -6,6 +6,7 @@ class PlantStatus
 {
 public:
 	bool Enabled;
+	bool isIcing = false;
 	int _BlockType = 0;//0为陆地,1为水面
 	PlantStatus(int row,int col,int BlockType,bool enable);
 	~PlantStatus();

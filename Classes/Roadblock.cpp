@@ -21,6 +21,6 @@ void Roadblock::Move()
 {
 }
 
-void Roadblock::Attack()
+void Roadblock::Attack(double interval)
 {
 }

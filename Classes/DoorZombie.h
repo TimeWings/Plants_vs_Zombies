@@ -8,9 +8,9 @@ public:
 	DoorZombie();
 	DoorZombie(Point position, int row, int col);
 	virtual void Attack(PlantStatus *plantstatus);
-	void DoorAttack(PlantStatus *plantstatus);
+	void Attack_with_Equip(PlantStatus *plantstatus);
 	virtual void Move();
-	void DoorMove();
+	void Move_with_Equip();
 	virtual void DamageBoth(int damage);
 	virtual void DamageEquip(int damage);
 	virtual void DamageZombie(int damage);

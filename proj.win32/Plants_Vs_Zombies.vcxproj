@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\HeroLucker.cpp" />
     <ClCompile Include="..\Classes\HeroLuckerBullet.cpp" />
+    <ClCompile Include="..\Classes\HeroThunder.cpp" />
     <ClCompile Include="..\Classes\IceBullet.cpp" />
     <ClCompile Include="..\Classes\iceCabbage.cpp" />
     <ClCompile Include="..\Classes\IceShooter.cpp" />
@@ -186,6 +187,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MelancholyBullet.cpp" />
     <ClCompile Include="..\Classes\Mushroom.cpp" />
     <ClCompile Include="..\Classes\MushroomBullet.cpp" />
+    <ClCompile Include="..\Classes\Newspaper.cpp" />
+    <ClCompile Include="..\Classes\NewspaperZombie.cpp" />
     <ClCompile Include="..\Classes\Nut.cpp" />
     <ClCompile Include="..\Classes\NutPlus.cpp" />
     <ClCompile Include="..\Classes\Paul.cpp" />
@@ -207,6 +210,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\StarShooter.cpp" />
     <ClCompile Include="..\Classes\Sunflower.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
+    <ClCompile Include="..\Classes\Thunder.cpp" />
     <ClCompile Include="..\Classes\Tomb.cpp" />
     <ClCompile Include="..\Classes\Torch.cpp" />
     <ClCompile Include="..\Classes\TrackBullet.cpp" />
@@ -242,6 +246,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HeroLucker.h" />
     <ClInclude Include="..\Classes\HeroLuckerBullet.h" />
+    <ClInclude Include="..\Classes\HeroThunder.h" />
     <ClInclude Include="..\Classes\IceBullet.h" />
     <ClInclude Include="..\Classes\iceCabbage.h" />
     <ClInclude Include="..\Classes\IceShooter.h" />
@@ -258,6 +263,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MelancholyBullet.h" />
     <ClInclude Include="..\Classes\Mushroom.h" />
     <ClInclude Include="..\Classes\MushroomBullet.h" />
+    <ClInclude Include="..\Classes\Newspaper.h" />
+    <ClInclude Include="..\Classes\NewspaperZombie.h" />
     <ClInclude Include="..\Classes\Nut.h" />
     <ClInclude Include="..\Classes\NutPlus.h" />
     <ClInclude Include="..\Classes\Paul.h" />
@@ -281,6 +288,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\StarShooter.h" />
     <ClInclude Include="..\Classes\Sunflower.h" />
     <ClInclude Include="..\Classes\test.h" />
+    <ClInclude Include="..\Classes\Thunder.h" />
     <ClInclude Include="..\Classes\Tomb.h" />
     <ClInclude Include="..\Classes\Torch.h" />
     <ClInclude Include="..\Classes\TrackBullet.h" />

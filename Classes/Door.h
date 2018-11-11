@@ -8,6 +8,6 @@ public:
 	virtual void Damage(int damage);
 	virtual void Move();
 	void DoorMove();
-	virtual void Attack();
-	void DoorAttack();
+	virtual void Attack(double interval);
+	void DoorAttack(double interval);
 };
