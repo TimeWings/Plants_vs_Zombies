@@ -1,5 +1,6 @@
 #include "Chomper.h"
 #include "Global.h"
+#include "PoleVaultingZombie.h"
 Chomper::Chomper(Point position, int row, int col)
 {
 	this->setRow(row);
@@ -34,8 +35,23 @@ void Chomper::work()
 			Zombie*zombie = readyZombies.at(i);
 			auto sp_zombie = zombie->getImg();
 			auto sp_plant = this->getImg();
-			if (zombie->getRow() == this->getRow() && sp_zombie->boundingBox().intersectsRect(sp_plant->getBoundingBox())&& sp_zombie->getPositionX()< sp_plant->getPositionX())
+			if (zombie->getRow() == this->getRow() && sp_zombie->boundingBox().intersectsRect(sp_plant->getBoundingBox())&& sp_zombie->getPositionX()> sp_plant->getPositionX())
 			{
+				if (strcmp(typeid(*zombie).name(), "class PoleVaultingZombie") == 0)
+				{
+					PoleVaultingZombie*poleZombie = ((PoleVaultingZombie*)zombie);
+					for (auto x : *(poleZombie->getDebuff()))
+					{
+						if (x == Jumping_Tag)
+						{
+							return;
+						}
+					}
+					if (poleZombie->hasPole)
+					{
+						return;
+					}
+				}
 				Eat(zombie);
 				return;
 			}

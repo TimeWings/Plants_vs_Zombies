@@ -55,15 +55,33 @@ void PaulBullet::zombiesDie()
 			//Ω© ¨∑€ÀÈ∂Øª≠
 			char str[100] = { 0 };
 			Vector<SpriteFrame*> allframe;
-			for (int i = 2; i <= 20; i++)
+			Animation* an;
+			auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
+			if (strcmp(typeid(*readyZombies.at(i)).name(), "class Zomboni") == 0)
 			{
-				sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
-				auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
-				auto frame = sprite->getSpriteFrame();
-				allframe.pushBack(frame);
+				for (int i = 1; i <= 16; i++)
+				{
+					std::cout << i << std::endl;
+					sprintf(str, "Zombies\\Zomboni\\Burn\\%d.png", i);
+					auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+					auto frame = sprite->getSpriteFrame();
+					allframe.pushBack(frame);
+				}
+				an = Animation::createWithSpriteFrames(allframe, 0.15);
+				//sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\Zomboni\\Burn\\01.png"));
 			}
-			Animation* an = Animation::createWithSpriteFrames(allframe, 0.15);
-			auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Boom_Die\\Boom_Die1.png"));
+			else
+			{
+				for (int i = 1; i <= 20; i++)
+				{
+					sprintf(str, "Boom_Die\\Boom_Die%d.png", i);
+					auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+					auto frame = sprite->getSpriteFrame();
+					allframe.pushBack(frame);
+				}
+				an = Animation::createWithSpriteFrames(allframe, 0.15);
+			}
+			
 			sp->setPosition(zombiePoint);
 			sp->retain();
 			sp->setScale(scale);

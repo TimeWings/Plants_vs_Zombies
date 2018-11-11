@@ -7,6 +7,7 @@
 USING_NS_CC;
 
 #define Animation_Tag 12347
+#define Jumping_Tag 123481
 
 class Zombie : public Entity 
 {

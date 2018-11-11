@@ -67,6 +67,16 @@ void EntityLayer::Check_Collision(float t)
 			if (!flag)continue;
 			if (sp->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
 			{
+				if (strcmp(typeid(*zombie).name(), "class PoleVaultingZombie") == 0)
+				{
+					Vec2 pointA=sp->getPosition();
+					Vec2 pointB=zombie->getImg()->getPosition();
+					float distance = sqrt(pow(pointA.x - pointB.x, 2) + pow(pointA.y - pointB.y, 2));
+					if (distance > BlockSize.first*0.5)
+					{
+						continue;
+					}
+				}
 				std::cout << "×Óµ¯Åö×²ÁË" << std::endl;
 				bullet->Hit_Animation(zombie);
 				if (sp->getTag() == Penetrable_tag)
@@ -172,7 +182,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		bool jump = false;
 		if (!zombie->hasHead()) jump = true;
 		for (auto i : *(zombie->getDebuff())) {
-			if (i == Freezing || i == DrivingOut) {
+			if (i == Freezing || i == DrivingOut||i== Jumping_Tag) {
 				jump = true;
 				break;
 			}

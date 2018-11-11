@@ -6,7 +6,7 @@ class GraveBuster :public Plants
 {
 private:
 	bool isEating=false;
-	Plants* plant;
+	Plants* plant=NULL;
 public:
 	GraveBuster(Point position, int row, int col);
 	virtual bool isWorking();//是否能工作

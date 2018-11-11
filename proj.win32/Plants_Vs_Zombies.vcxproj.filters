@@ -237,6 +237,9 @@
     <ClCompile Include="..\Classes\GameStartButton.cpp">
       <Filter>src\Entity\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PoleVaultingZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\Newspaper.cpp">
       <Filter>src\Entity\Equip</Filter>
     </ClCompile>
@@ -249,6 +252,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Title.cpp">
       <Filter>src\Entity\Map</Filter>
+	  </ClCompile>
+    <ClCompile Include="..\Classes\Thunder.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HeroThunder.cpp">
+      <Filter>src\Entity\Plants</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -468,6 +477,12 @@
     <ClInclude Include="..\Classes\Zomboni.h">
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GameStartButton.h">
+      <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PoleVaultingZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\Newspaper.h">
       <Filter>src\Entity\Equip</Filter>
     </ClInclude>
@@ -483,6 +498,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Title.h">
       <Filter>src\Entity\Map</Filter>
+	</ClInclude>
+    <ClInclude Include="..\Classes\HeroThunder.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Thunder.h">
+      <Filter>src\Entity\Plants</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
