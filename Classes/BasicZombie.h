@@ -11,7 +11,6 @@ public:
 	BasicZombie(Point position,int row,int col);
 	virtual void Attack(PlantStatus *plantstatus);
 	virtual void Die(Node * pSender);
-	virtual void BasicDie(Node * pSender);
 	virtual void Attacked();
 	virtual void LostHead();
 	virtual void Move();

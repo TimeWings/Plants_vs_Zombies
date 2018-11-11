@@ -15,4 +15,5 @@ public:
 	void AfterLostEquip(Node * pSender);
 	virtual Sprite *MagnetEquip();
 	virtual void Lost_Equip();
+	virtual void LostHead();
 };
