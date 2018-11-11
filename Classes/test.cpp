@@ -42,10 +42,12 @@
 #include "Magnet.h"
 #include "Tomb.h"
 #include "GraveBuster.h"
+#include "NewspaperZombie.h"
 #include "ui/CocosGUI.h"
 #include "GameStartButton.h"
 #include "PoleVaultingZombie.h"
 #include "Zomboni.h"
+#include "Thunder.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -156,16 +158,17 @@ test::test()
 	new Card<Landslock>(Point(40, 260));
 	new Card<riceShooter>(Point(60, 260));
 	new Card<Paul>(Point(80, 260));
-	new Card<HeroLucker>(Point(100, 260));
 	new Card<Lotus>(Point(20, 220));
 	new Card<Lantern>(Point(40, 220));
-	new ZombieCard<DoorZombie>(Point(120,260));
 	new Card<Clover>(Point(60, 220));
 	new Card<Magnet>(Point(80, 220));
 	new Card<Tomb>(Point(20, 180));
 	new Card<GraveBuster>(Point(40, 180));
 	new ZombieCard<Zomboni>(Point(60, 180));
 	new ZombieCard<PoleVaultingZombie>(Point(80, 180));
+	new ZombieCard<NewspaperZombie>(Point(20, 140));
+	new Card<HeroLucker>(Point(40, 260));
+	new ZombieCard<DoorZombie>(Point(60, 260));
 }
 void test::drawRect()
 {

@@ -6,9 +6,8 @@
 
 class PoleVaultingZombie : public BasicZombie
 {
-private:
-	bool hasPole=true;
 public:
+	bool hasPole = true;
 	PoleVaultingZombie(Point position, int row, int col);
 	void work();
 	void Check_Jump();
