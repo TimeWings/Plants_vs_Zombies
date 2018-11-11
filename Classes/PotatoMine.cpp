@@ -48,6 +48,16 @@ void PotatoMine::work()
 			Zombie* zombie = readyZombies.at(i);
 			if (this->getRow() == zombie->getRow() && this->getImg()->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
 			{
+				if (strcmp(typeid(*zombie).name(), "class PoleVaultingZombie") == 0)
+				{
+					Vec2 pointA = this->getImg()->getPosition();
+					Vec2 pointB = zombie->getImg()->getPosition();
+					float distance = sqrt(pow(pointA.x - pointB.x, 2) + pow(pointA.y - pointB.y, 2));
+					if (distance > map::BlockSize.first*0.8)
+					{
+						continue;
+					}
+				}
 				std::cout << "ÓÐµÐÈË£¡±¬Õ¨£¡" << std::endl;
 				CreateBullet();
 				Die();

@@ -21,33 +21,29 @@ PoleVaultingZombie::PoleVaultingZombie(Point position, int row, int col)
 	addLayer(sp);
 	readyZombies.push_back(this);
 }
-void PoleVaultingZombie::work()
-{
-}
-void PoleVaultingZombie::Check_Jump()
-{
-	PlantStatus* plantstatus = find(this->getRow(), Point2Rank(this->getImg()->getPosition()).second-1);
-	if (plantstatus != NULL&& plantstatus->plantVector.size()!=0)
-	{
-		double dis = this->getImg()->getPositionX() - Rank2Point(this->getRow(), this->getCol() - 1).x;
-		std::cout << dis << "  " << BlockSize.first << std::endl;
-		if (dis < 10)
-		{
-			Jump();
-		}
-	}
-}
 //跳完还要减速
-void PoleVaultingZombie::Jump()
+void PoleVaultingZombie::Jump(bool canMove)
 {
 	Stop_Animation();
 	this->getDebuff()->push_back(Jumping_Tag);
 	hasPole = false;
 	Sprite *sp = this->getImg();
-	float distance = BlockSize.first*0.8;
-	double time = distance / getPreWalkSpeed()/1.8;
-	Point a = ccp(this->getImg()->getPositionX()- distance, sp->getPositionY());
-	MoveTo *moveTo = MoveTo::create(time/16*12, a);
+	MoveTo *moveTo;
+	double time;
+	if (canMove)
+	{
+		float distance = BlockSize.first*0.8;
+		time = distance / getPreWalkSpeed() / 1.8;
+		Point a = ccp(this->getImg()->getPositionX() - distance, sp->getPositionY());
+		moveTo = MoveTo::create(time / 16 * 12, a);
+	}
+	else
+	{
+		float distance = -10;
+		time = BlockSize.first*0.8 / getPreWalkSpeed() / 1.8;
+		Point a = ccp(this->getImg()->getPositionX() - distance, sp->getPositionY());
+		moveTo = MoveTo::create(time / 16 * 12, a);
+	}
 	ActionInterval * easeSineIn = EaseSineIn::create(moveTo);
 	Vector<SpriteFrame*> allframe;
 	char str[100] = { 0 };
@@ -195,7 +191,16 @@ void PoleVaultingZombie::BasicAttack(PlantStatus * plantstatus)
 {
 	if (hasPole)
 	{
-		Jump();
+		bool flag = true;
+		for (auto x : plantstatus->plantVector)
+		{
+			if (strcmp(typeid(*x).name(), "class NutPlus") == 0)
+			{
+				flag = false;
+				break;
+			}
+		}
+		Jump(flag);
 		return;
 	}
 	Vector<SpriteFrame*> allframe;
