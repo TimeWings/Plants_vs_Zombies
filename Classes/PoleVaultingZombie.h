@@ -9,9 +9,7 @@ class PoleVaultingZombie : public BasicZombie
 public:
 	bool hasPole = true;
 	PoleVaultingZombie(Point position, int row, int col);
-	void work();
-	void Check_Jump();
-	void Jump();
+	void Jump(bool canMove);
 	void afterJump(Node * pSender);
 	void BasicDie(Node * pSender);
 	virtual void LostHead();
