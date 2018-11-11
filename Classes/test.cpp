@@ -46,18 +46,25 @@
 #include "ui/CocosGUI.h"
 #include "GameStartButton.h"
 #include "Zomboni.h"
+#include "Title.h"
+#include "SelectCardBG.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
 test::test()
 {
+	//auto titleScene = new TitleScene();
+	//Director::getInstance()->replaceScene(titleScene);
+	//Director::getInstance()->runWithScene(new TitleScene());
 	//new Loading();
 	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
 	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
-	/*float startX = 00.0f;
-	float startY = 240.0f;
-	float offsetX = 32.0f;
-	float offsetY = 44.0f;
+	/*
+	new SelectCardBG();
+	float startX = -1.0f;
+	float startY = 200.0f;
+	float offsetX = 28.0f;
+	float offsetY = 40.0f;
 	auto unSelectCard1 = new UnSelectCard<PeaShooter>(Point(startX += offsetX, startY), PlantsEnum::PeaShooter);
 	unSelectingCardsEntity.push_back(unSelectCard1);
 	auto unSelectCard2 = new UnSelectCard<IceShooter>(Point(startX += offsetX, startY), PlantsEnum::IceShooter);
@@ -125,7 +132,8 @@ test::test()
 	auto unSelectCard29 = new UnSelectCard<Magnet>(Point(startX += offsetX, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);
 
-	new GameStartButton(Point(120, 20));*/
+	new GameStartButton(Point(120, 15));
+	*/
 	GameStart = true;
 	drawRect();
 	auto s = Director::getInstance()->getWinSize();
@@ -167,6 +175,7 @@ test::test()
 	new ZombieCard<Zomboni>(Point(60, 180));
 	new Card<GraveBuster>(Point(80, 180));
 	new ZombieCard<NewspaperZombie>(Point(100, 180));
+	
 }
 void test::drawRect()
 {

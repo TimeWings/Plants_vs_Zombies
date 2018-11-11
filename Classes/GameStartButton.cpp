@@ -1,6 +1,7 @@
 #include "GameStartButton.h"
 #include "Global.h"
 #include "EntityLayer.h"
+#include "SelectCardBG.h"
 using namespace map;
 
 
@@ -33,6 +34,8 @@ GameStartButton::GameStartButton(Point position)
 				readyCards[i]->getImg()->setVisible(true);
 				readyCards[i]->addListener();
 			}
+			EntityLayer::getInstance()->removeChild(gameStartButton);
+			EntityLayer::getInstance()->removeChild(SelectCardBG::bg);
 			break;
 		default:
 			break;
