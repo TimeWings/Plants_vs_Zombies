@@ -11,7 +11,7 @@ NewspaperZombie::NewspaperZombie(Point position, int row, int col)
 	this->setRow(row);
 	this->setCol(col);
 
-	setWalkSpeed(7);
+	setWalkSpeed(10);
 	setHp(12);
 	setHead(true);
 	setMeeting(false);
@@ -199,6 +199,12 @@ void NewspaperZombie::BasicMove()
 	this->getImg()->runAction(rf);
 }
 
+void NewspaperZombie::AfterLostEquip(Node * pSender)
+{
+	setMeeting(false);
+	Move();
+}
+
 Sprite * NewspaperZombie::MagnetEquip()
 {
 	return nullptr;
@@ -212,9 +218,24 @@ void NewspaperZombie::Lost_Equip()
 		setWalkSpeed(getPreWalkSpeed() * 2);
 		setInterval(getInterval() / 2);
 		if (hasHead()) {
-			std::cout << "¼ÌÐø×ß" << std::endl;
-			setMeeting(false);
-			Move();
+			Stop_Animation();
+			Vector<SpriteFrame*> allframe;
+			std::string prestr = "Zombies\\NewspaperZombie\\LostEquip\\";
+			char str[100] = { 0 };
+			char str1[100] = { 0 };
+			for (int i = 1; i <= 11; i++)
+			{
+				strcpy(str, prestr.c_str());
+				sprintf(str1, "%02d.png", i);
+				strcat(str, str1);
+				auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+				auto frame = sprite->getSpriteFrame();
+				allframe.pushBack(frame);
+			}
+			Animation* an = Animation::createWithSpriteFrames(allframe, 0.12);
+			auto actionDone = CallFuncN::create(CC_CALLBACK_1(NewspaperZombie::AfterLostEquip, this));
+			CCSequence *sequence = CCSequence::create(Animate::create(an), actionDone, NULL);
+			this->getImg()->runAction(sequence);
 		}
 	}
 }

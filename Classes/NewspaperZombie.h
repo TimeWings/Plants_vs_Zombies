@@ -12,6 +12,7 @@ public:
 	virtual void Move();
 	void Move_with_Equip();
 	void BasicMove();
+	void AfterLostEquip(Node * pSender);
 	virtual Sprite *MagnetEquip();
 	virtual void Lost_Equip();
 };
