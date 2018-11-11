@@ -44,6 +44,7 @@
 #include "GraveBuster.h"
 #include "ui/CocosGUI.h"
 #include "GameStartButton.h"
+#include "PoleVaultingZombie.h"
 #include "Zomboni.h"
 #include <iostream>
 #include <typeinfo>
@@ -164,7 +165,7 @@ test::test()
 	new Card<Tomb>(Point(20, 180));
 	new Card<GraveBuster>(Point(40, 180));
 	new ZombieCard<Zomboni>(Point(60, 180));
-	new Card<GraveBuster>(Point(80, 180));
+	new ZombieCard<PoleVaultingZombie>(Point(80, 180));
 }
 void test::drawRect()
 {

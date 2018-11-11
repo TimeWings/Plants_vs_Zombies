@@ -77,6 +77,7 @@ void GraveBuster::work()
 void GraveBuster::readyDie(Node* pSender)
 {
 	this->setHp(-1);
+	if(plant!=NULL)
 	plant->setHp(-1);
 }
 void GraveBuster::Die()

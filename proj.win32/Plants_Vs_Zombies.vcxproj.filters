@@ -237,6 +237,9 @@
     <ClCompile Include="..\Classes\GameStartButton.cpp">
       <Filter>src\Entity\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PoleVaultingZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -457,6 +460,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameStartButton.h">
       <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PoleVaultingZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

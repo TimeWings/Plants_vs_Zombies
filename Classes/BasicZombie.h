@@ -11,12 +11,12 @@ public:
 	BasicZombie(Point position,int row,int col);
 	virtual void Attack(PlantStatus *plantstatus);
 	virtual void Die(Node * pSender);
-	void BasicDie(Node * pSender);
+	virtual void BasicDie(Node * pSender);
 	virtual void Attacked();
 	virtual void LostHead();
 	virtual void Move();
-	void BasicMove();
-	void BasicAttack(PlantStatus *plantstatus);
+	virtual void BasicMove();
+	virtual void BasicAttack(PlantStatus *plantstatus);
 	virtual void DamageZombie(int damage);
 	virtual void DamageEquip(int damage);
 	virtual void DamageBoth(int damage);

@@ -34,7 +34,7 @@ void Chomper::work()
 			Zombie*zombie = readyZombies.at(i);
 			auto sp_zombie = zombie->getImg();
 			auto sp_plant = this->getImg();
-			if (zombie->getRow() == this->getRow() && sp_zombie->boundingBox().intersectsRect(sp_plant->getBoundingBox())&& sp_zombie->getPositionX()< sp_plant->getPositionX())
+			if (zombie->getRow() == this->getRow() && sp_zombie->boundingBox().intersectsRect(sp_plant->getBoundingBox())&& sp_zombie->getPositionX()> sp_plant->getPositionX())
 			{
 				Eat(zombie);
 				return;

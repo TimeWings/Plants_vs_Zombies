@@ -172,7 +172,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		bool jump = false;
 		if (!zombie->hasHead()) jump = true;
 		for (auto i : *(zombie->getDebuff())) {
-			if (i == Freezing || i == DrivingOut) {
+			if (i == Freezing || i == DrivingOut||i== Jumping_Tag) {
 				jump = true;
 				break;
 			}
