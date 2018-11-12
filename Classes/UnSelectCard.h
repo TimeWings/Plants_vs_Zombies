@@ -8,6 +8,8 @@
 #include "Plants.h"
 #include "PlantsEnum.h"
 #include "Global.h"
+#include "ui/CocosGUI.h"
+using namespace ui;
 //using namespace std;
 using namespace cocos2d;
 
@@ -18,7 +20,7 @@ public:
 	UnSelectCard();
 	~UnSelectCard();
 	//PlantsEnum plantsEnum = PlantsEnum::IceShooter;
-	std::string plantsTypeName;
+	//std::string plantsTypeName;
 	Point srcPosition;
 	//bool isSelecting = false;
 	//int cost;
@@ -62,10 +64,14 @@ public:
 		sprite->addChild(plantSprite);
 		this->setImg(sprite);
 
-		plantsTypeName = typeid(T).name();
+		plantsTypeName = className;
 		this->plantsEnum = plantsEnum;
 		addListener();
-		
+		setCost();
+		auto sunLabel = Label::createWithTTF(to_string(cost), "Font\\TianShiYanTi.ttf", 5);
+		sunLabel->setPosition(14, 5);
+		sunLabel->setTextColor(Color4B::BLACK);
+		sprite->addChild(sunLabel,2);
 	}
 
 	void addListener()
@@ -136,5 +142,7 @@ public:
 		};
 		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, getImg());
 	}
+
+	
 };
 
