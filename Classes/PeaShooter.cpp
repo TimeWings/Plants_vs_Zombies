@@ -32,7 +32,7 @@ bool PeaShooter::isWorking()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	for (auto x : readyZombies)
 	{
-		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width)
+		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width&&x->getImg()->getPositionX()>this->getImg()->getPositionX())
 		{
 			return true;
 		}

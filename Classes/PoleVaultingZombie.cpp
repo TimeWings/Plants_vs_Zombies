@@ -73,14 +73,6 @@ void PoleVaultingZombie::afterJump(Node * pSender)
 	}
 	this->Move();
 }
-void PoleVaultingZombie::BasicDie(Node * pSender)
-{
-	Sprite *sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	Sequence *sequence = Sequence::create(CallFuncN::create(CC_CALLBACK_1(PoleVaultingZombie::clear_from_vector, this)),fadeout, CallFuncN::create(CC_CALLBACK_1(PoleVaultingZombie::clear, this)), NULL);
-	sp->runAction(sequence);
-}
 
 void PoleVaultingZombie::LostHead()
 {
@@ -144,7 +136,6 @@ void PoleVaultingZombie::BasicMove()
 	Point a = ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY());
 	MoveTo *moveTo = MoveTo::create(time, a);
 
-	//ScaleBy * scaledown = ScaleBy::create(0.5f, 0.8f, 0.8f);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PoleVaultingZombie::Die, this));
 	CCSequence *sequence = CCSequence::create(moveTo, actionDone, NULL);
 	sequence->setTag(Animation_Tag);

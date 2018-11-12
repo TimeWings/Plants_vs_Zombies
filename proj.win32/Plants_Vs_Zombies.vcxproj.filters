@@ -259,8 +259,20 @@
     <ClCompile Include="..\Classes\HeroThunder.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SafetyHelmet.cpp">
+      <Filter>src\Entity\Equip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FootBallZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\SmallMushRoom.cpp">
       <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Bucket.cpp">
+      <Filter>src\Entity\Equip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BucketZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -508,8 +520,20 @@
     <ClInclude Include="..\Classes\Thunder.h">
       <Filter>src\Entity\Plants</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\FootBallZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SafetyHelmet.h">
+      <Filter>src\Entity\Equip</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\SmallMushRoom.h">
       <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bucket.h">
+      <Filter>src\Entity\Equip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BucketZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
