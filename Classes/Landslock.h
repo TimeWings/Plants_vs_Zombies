@@ -15,6 +15,6 @@ public:
 	virtual void CreateBullet();
 	void Self_Animation();
 	void driveOut(Zombie* zombie);
-	void afterDriveOut(Node* sPender, Zombie* zombie);
+	void afterDriveOut(Node* sPender, Zombie* zombie, int moveRow);
 	void clearNode(Node* sPender, Sprite* sp);
 };
