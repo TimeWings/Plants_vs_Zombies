@@ -149,17 +149,17 @@ void iceCabbage::clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zomb
 	//清除僵尸的蓝色覆盖
 	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
 	zombie->getImg()->runAction(tintto2);
-	//先把移动行执行
+	//如果之前有被驱赶
 	if (judgeIsDriving(zombie))
 	{
+		//执行换行动画先
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::zombieRun, this, zombie));
 		Sequence *sequence = Sequence::create((Sequence*)drivingOut, actionDone, NULL);
 		zombie->getImg()->runAction(sequence);
 	}
 	else
 	{
-		zombie->setMeeting(false);
-		//僵尸恢复行动
-		zombie->Move();
+		//否则直接走
+		zombieRun(this->getImg(), zombie);
 	}
 }

@@ -47,6 +47,7 @@
 #include "GameStartButton.h"
 #include "PoleVaultingZombie.h"
 #include "Zomboni.h"
+#include "SmallMushRoom.h"
 #include "Title.h"
 #include "SelectCardBG.h"
 #include "Thunder.h"
@@ -179,6 +180,7 @@ test::test()
 	new ZombieCard<DoorZombie>(Point(60, 140));
 	new Card<HeroLucker>(Point(80, 140));
 	new ZombieCard<PoleVaultingZombie>(Point(20, 100));
+	new Card<SmallMushRoom>(Point(100, 140));
 }
 void test::drawRect()
 {

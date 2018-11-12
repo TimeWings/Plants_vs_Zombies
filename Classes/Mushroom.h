@@ -6,14 +6,16 @@ USING_NS_CC;
 
 class Mushroom : public PeaShooter
 {
-private:
+protected:
 	bool haveBullet;
 	float Scale;
+	int attackCol;
 public:
 	Mushroom();
 	Mushroom(Point position, int row,int col);
+	virtual bool isWorking();
 	virtual void CreateBullet();
-	void Self_Animation();
+	virtual void Self_Animation();
 	void clearBullet(Node *pSender);
 	void Die();
 };

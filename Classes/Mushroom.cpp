@@ -10,6 +10,7 @@ Mushroom::Mushroom()
 Mushroom::Mushroom(Point position, int row,int col)
 {
 	this->haveBullet = false;
+	this->attackCol = 3;
 	this->setRow(row);
 	this->setCol(col);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Mushroom\\Mushroom.png"));
@@ -27,6 +28,18 @@ Mushroom::Mushroom(Point position, int row,int col)
 	addLayer(sp);
 	//添加到已创建植物容器，其他行为操作都在此处
 	readyPlants.push_back(this);
+}
+bool Mushroom::isWorking()
+{
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	for (auto x : readyZombies)
+	{
+		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width && map::Point2Rank(x->getImg()->getPosition()).second <= this->getCol() + attackCol)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 //产生子弹的动画
 void Mushroom::CreateBullet()
