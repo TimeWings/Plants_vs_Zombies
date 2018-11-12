@@ -48,13 +48,14 @@ void Mushroom::CreateBullet()
 	{
 		this->haveBullet = true;
 		//禁用当前移动的动画
-		Director::getInstance()->getActionManager()->removeAllActionsFromTarget(this->getImg());
+		//Director::getInstance()->getActionManager()->removeAllActionsFromTarget(this->getImg());
+		
 		//播放产生子弹的动画
-		CCScaleBy * scaleup = CCScaleBy::create(0.1f, 0.8f, 0.8f);
-		CCScaleBy * scaledown = CCScaleBy::create(0.1f, 1.5625f, 1.5625f);
-		CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 0.8f);
+		CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
+		CCScaleBy * scaledown = CCScaleBy::create(0.2f, 1.5625f, 0.64f);
+		CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
 		Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
-		this->getImg()->runAction(CCRepeatForever::create(sequence));
+		this->getImg()->runAction(sequence);
 		//产生子弹
 		Sprite *sp = this->getImg();
 		//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
@@ -70,20 +71,16 @@ void Mushroom::CreateBullet()
 void Mushroom::Self_Animation()
 {
 	Sprite *sp = this->getImg();
-	//禁用当前移动的动画
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	//再生成新的移动动画
-	sp->setScale(this->Scale);
 	float preScale = sp->getScaleX();
 	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale + 0.05);
 	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale, preScale);
 	Sequence *sequence1 = Sequence::create(scaleup, scaledown, NULL);
-	//CCActionInterval * moveBy = CCMoveBy::create(1, ccp(7, 0));
-	//CCActionInterval * actionmoveback = moveBy->reverse();
-	//CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
-	//CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
-	//Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
-	sp->runAction(CCRepeatForever::create(sequence1));
+	CCActionInterval * moveBy = CCMoveBy::create(1, ccp(7, 0));
+	CCActionInterval * actionmoveback = moveBy->reverse();
+	CCFiniteTimeAction * spawn1 = CCSpawn::create(sequence1, moveBy, NULL);
+	CCFiniteTimeAction * spawn2 = CCSpawn::create(sequence1, actionmoveback, NULL);
+	Sequence *sequence2 = Sequence::create(spawn1, spawn2, NULL);
+	sp->runAction(CCRepeatForever::create(sequence2));
 }
 
 void Mushroom::clearBullet(Node *pSender)
@@ -92,7 +89,7 @@ void Mushroom::clearBullet(Node *pSender)
 	this->setNewBirthTime();
 	this->haveBullet = false;
 	//重新播放动画
-	Self_Animation();
+	//Self_Animation();
 }
 
 void Mushroom::Die()
