@@ -49,6 +49,7 @@ void JannuDaruku::Die()
 			break;
 		}
 	}
+	this->getImg()->removeFromParent();
 }
 
 void JannuDaruku::thisDie()
@@ -66,8 +67,6 @@ void JannuDaruku::thisDie()
 
 void JannuDaruku::Effect(Node *pSender)
 {
-	//把旧精灵移除
-	this->getImg()->removeFromParent();
 	//把HP设为-1
 	this->setHp(-1);
 	//火焰效果

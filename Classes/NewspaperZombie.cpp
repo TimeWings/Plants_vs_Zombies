@@ -239,3 +239,34 @@ void NewspaperZombie::Lost_Equip()
 		}
 	}
 }
+
+void NewspaperZombie::LostHead()
+{
+	this->setHead(false);
+	if (hasEquip())
+		this->getEquip()->setHp(0);
+	std::cout << "µôÍ·" << std::endl;
+	Sprite *sp = this->getImg();
+	Vector<SpriteFrame*> allframe;
+
+	std::string prestr;
+
+	Stop_Animation();
+	prestr = "Zombies\\NewspaperZombie\\LostHead\\";
+	char str[100] = { 0 };
+	char str1[100] = { 0 };
+	for (int i = 1; i <= 11; i++)
+	{
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
+	}
+	Animation* an = Animation::createWithSpriteFrames(allframe, 0.2);
+	allframe.clear();
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(BasicZombie::Die, this));
+	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
+	this->getImg()->runAction(sequence);
+}
