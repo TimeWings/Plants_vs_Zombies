@@ -197,7 +197,7 @@ void Zombie::Stop_Animation()
 void Zombie::Lost_Equip()
 {
 	if (hasEquip()) {
-		getEquip()->getImg()->removeFromParent();
+		getEquip()->Die();
 		setEquip(nullptr);
 		if (hasHead()) {
 			setMeeting(false);

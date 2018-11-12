@@ -262,6 +262,12 @@
     <ClCompile Include="..\Classes\SmallMushRoom.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Bucket.cpp">
+      <Filter>src\Entity\Equip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BucketZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -510,6 +516,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SmallMushRoom.h">
       <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bucket.h">
+      <Filter>src\Entity\Equip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BucketZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

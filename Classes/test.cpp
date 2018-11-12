@@ -51,6 +51,7 @@
 #include "Title.h"
 #include "SelectCardBG.h"
 #include "Thunder.h"
+#include "BucketZombie.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -181,6 +182,7 @@ test::test()
 	new Card<HeroLucker>(Point(80, 140));
 	new ZombieCard<PoleVaultingZombie>(Point(20, 100));
 	new Card<SmallMushRoom>(Point(100, 140));
+	new ZombieCard<BucketZombie>(Point(40, 100));
 }
 void test::drawRect()
 {

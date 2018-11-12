@@ -1,43 +1,38 @@
-#include "DoorZombie.h"
+#include "BucketZombie.h"
 #include "Global.h"
-#include <iostream>
 
-DoorZombie::DoorZombie()
+BucketZombie::BucketZombie()
 {
 }
 
-DoorZombie::DoorZombie(Point position, int row, int col)
+BucketZombie::BucketZombie(Point position, int row, int col)
 {
 	this->setRow(row);
 	this->setCol(col);
-
+	setEquip(new Bucket());
 	setWalkSpeed(7);
 	setHp(12);
 	setHead(true);
 	setMeeting(false);
 	setInterval(0.1);
-	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\DoorZombie\\DoorZombie.png"));
+	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\BucketZombie\\BucketZombie.png"));
+	this->setSche(sp);
 	this->setImg(sp);
 	sp->retain();
 	sp->setScale(2);
 	sp->setPosition(position);
-	setEquip(new Door());
-	getEquip()->getImg()->setPosition(sp->getContentSize().width/2, sp->getContentSize().height/2);
-	sp->addChild(getEquip()->getImg());
-	this->setSche(sp);
 	this->Move();
 	addLayer(sp);
 	readyZombies.push_back(this);
 }
 
-void DoorZombie::Attack(PlantStatus * plantstatus)
+void BucketZombie::Attack(PlantStatus * plantstatus)
 {
 	if (!hasHead()) return;
 	Stop_Animation();
 	if (hasEquip())
 	{
 		Attack_with_Equip(plantstatus);
-		getEquip()->Attack(getInterval());
 	}
 	else
 	{
@@ -45,17 +40,17 @@ void DoorZombie::Attack(PlantStatus * plantstatus)
 	}
 }
 
-void DoorZombie::Attack_with_Equip(PlantStatus * plantstatus)
+void BucketZombie::Attack_with_Equip(PlantStatus * plantstatus)
 {
 	Vector<SpriteFrame*> allframe;
 	std::string prestr;
 	CCRepeatForever *rf;
 
-	prestr = "Zombies\\DoorZombie\\Attackgif\\";
+	prestr = "Zombies\\BucketZombie\\Attackgif\\";
 
 	char str[100] = { 0 };
 	char str1[100] = { 0 };
-	for (int i = 1; i <= 6; i++)
+	for (int i = 1; i <= 4; i++)
 	{
 		strcpy(str, prestr.c_str());
 		sprintf(str1, "%02d.png", i);
@@ -67,7 +62,7 @@ void DoorZombie::Attack_with_Equip(PlantStatus * plantstatus)
 	Animation* an = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	allframe.clear();
 
-	for (int i = 7; i <= 11; i++)
+	for (int i = 5; i <= 9; i++)
 	{
 		strcpy(str, prestr.c_str());
 		sprintf(str1, "%02d.png", i);
@@ -79,34 +74,31 @@ void DoorZombie::Attack_with_Equip(PlantStatus * plantstatus)
 	Animation* an1 = Animation::createWithSpriteFrames(allframe, this->getInterval());
 	allframe.clear();
 
+	for (int i = 10; i <= 11; i++)
+	{
+		strcpy(str, prestr.c_str());
+		sprintf(str1, "%02d.png", i);
+		strcat(str, str1);
+		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		auto frame = sprite->getSpriteFrame();
+		allframe.pushBack(frame);
+	}
+	Animation* an2 = Animation::createWithSpriteFrames(allframe, this->getInterval());
+	allframe.clear();
+
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Zombie::DamagePlant, this, plantstatus));
-	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, NULL);
+	Sequence* seq = CCSequence::create(Animate::create(an), actionDone, Animate::create(an1), actionDone, Animate::create(an2), NULL);
 	rf = CCRepeatForever::create(seq);
 	rf->setTag(Animation_Tag);
 	this->getImg()->runAction(rf);
 }
 
-void DoorZombie::Move()
-{
-	if (!hasHead()) return;
-	Stop_Animation();
-	if (hasEquip())
-	{
-		Move_with_Equip();
-		getEquip()->Move();
-	}
-	else
-	{
-		BasicMove();
-	}
-}
-
-void DoorZombie::Move_with_Equip()
+void BucketZombie::Move_with_Equip()
 {
 	Sprite *sp = this->getImg();
 	float distance = sp->getPositionX() + sp->getContentSize().width / 2 * sp->getScaleX();
 	double time = distance / getPreWalkSpeed();
-	std::cout << distance << " " << getPreWalkSpeed() << std::endl;
+	//std::cout << distance << " " << getPreWalkSpeed() << std::endl;
 	Point a = ccp(-sp->getContentSize().width / 2 * sp->getScaleX(), sp->getPositionY());
 	MoveTo *moveTo = MoveTo::create(time, a);
 
@@ -117,10 +109,10 @@ void DoorZombie::Move_with_Equip()
 	sp->runAction(sequence);
 
 	Vector<SpriteFrame*> allframe;
-	std::string prestr = "Zombies\\DoorZombie\\Walkgif\\";
+	std::string prestr = "Zombies\\BucketZombie\\Walkgif\\";
 	char str[100] = { 0 };
 	char str1[100] = { 0 };
-	for (int i = 1; i <= 23; i++)
+	for (int i = 1; i <= 15; i++)
 	{
 		strcpy(str, prestr.c_str());
 		sprintf(str1, "%02d.png", i);
@@ -135,34 +127,21 @@ void DoorZombie::Move_with_Equip()
 	this->getImg()->runAction(rf);
 }
 
-void DoorZombie::DamageBoth(int damage)
+void BucketZombie::Move()
 {
-	if (hasEquip()) {
-		getEquip()->Damage(damage);
+	if (!hasHead()) return;
+	Stop_Animation();
+	if (hasEquip())
+	{
+		Move_with_Equip();
 	}
-	DamageZombie(damage);
+	else
+	{
+		BasicMove();
+	}
 }
 
-void DoorZombie::DamageEquip(int damage)
-{
-	if (hasEquip()) {
-		std::cout << "门受到攻击" << std::endl;
-		getEquip()->Damage(damage);
-	}
-	else {
-		DamageZombie(damage);
-	}
-	std::cout << "僵尸血量：" << getHp() << std::endl;
-}
-
-void DoorZombie::DamageZombie(int damage)
-{
-	std::cout << "fuck" << std::endl;
-	setHp(getHp() - damage);
-	Attacked();
-}
-
-Sprite * DoorZombie::MagnetEquip()
+Sprite * BucketZombie::MagnetEquip()
 {
 	if (!hasEquip())
 		return nullptr;
@@ -172,9 +151,9 @@ Sprite * DoorZombie::MagnetEquip()
 		setMeeting(false);
 		Move();
 	}
-	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\DoorZombie\\Door\\Door.png"));
+	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\BucketZombie\\Bucket\\Bucket.png"));
 	sp->setScale(this->getImg()->getScaleX());
-	sp->setPosition(this->getImg()->getPosition());
+	sp->setPosition(Point(this->getImg()->getPositionX(), this->getImg()->getPositionY() + this->getImg()->getContentSize().height / 2));
 	addLayer(sp);
 	return sp;
 }

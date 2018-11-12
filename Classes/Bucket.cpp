@@ -1,14 +1,9 @@
-#include "Roadblock.h"
+#include "Bucket.h"
 
-Roadblock::Roadblock()
+Bucket::Bucket()
 {
-	setHp(12);
+	setHp(36);
 	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
 	sp->retain();
 	this->setImg(sp);
-}
-
-void Roadblock::Damage(int damage)
-{
-	setHp(getHp() - damage);
 }
