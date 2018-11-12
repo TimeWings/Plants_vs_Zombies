@@ -47,10 +47,12 @@
 #include "GameStartButton.h"
 #include "PoleVaultingZombie.h"
 #include "Zomboni.h"
+#include "SmallMushRoom.h"
 #include "Title.h"
 #include "FootBallZombie.h"
 #include "SelectCardBG.h"
 #include "Thunder.h"
+#include "BucketZombie.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -180,6 +182,8 @@ test::test()
 	new ZombieCard<DoorZombie>(Point(60, 140));
 	new Card<HeroLucker>(Point(80, 140));
 	new ZombieCard<PoleVaultingZombie>(Point(20, 100));
+	new Card<SmallMushRoom>(Point(100, 140));
+	new ZombieCard<BucketZombie>(Point(40, 100));
 	new ZombieCard<FootBallZombie>(Point(40, 100));
 }
 void test::drawRect()

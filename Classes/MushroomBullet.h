@@ -7,6 +7,7 @@ class MushroomBullet :public Bullet
 public:
 	MushroomBullet();
 	MushroomBullet(Point position, int Plant_row);
+	MushroomBullet(Point position, int Plant_row, float Scale);
 	virtual void move();
 	void clear(Node * pSender);
 	void clearNode(Node * pSender);

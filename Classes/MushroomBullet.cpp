@@ -23,6 +23,23 @@ MushroomBullet::MushroomBullet(Point position, int Plant_row) :Bullet(position, 
 	this->attack_Animation();
 }
 
+MushroomBullet::MushroomBullet(Point position, int Plant_row, float Scale)
+{
+	this->getRange()->push_back(Plant_row);
+	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Mushroom\\Attack\\1.png"));
+	sp->setAnchorPoint(Point::ZERO);
+	//方便以后获取子弹精灵
+	this->setImg(sp);
+	this->setDamage(1);
+	this->getImg()->setTag(Penetrable_tag);
+	sp->retain();
+	sp->setScale(Scale);
+	sp->setPosition(position.x + sp->getContentSize().width * sp->getScaleX() / 0.8, position.y);
+	this->addLayer(sp);
+	readyBullet.push_back(this);
+	this->attack_Animation();
+}
+
 void MushroomBullet::move()
 {
 }

@@ -21,4 +21,17 @@ void ZombieEquipment::setMetal(bool Metal)
 	_Metal = Metal;
 }
 
+void ZombieEquipment::Die()
+{
+	getImg()->removeFromParent();
+}
+
+void ZombieEquipment::Move()
+{
+}
+
+void ZombieEquipment::Attack(double interval)
+{
+}
+
 
