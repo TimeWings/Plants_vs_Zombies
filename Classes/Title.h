@@ -9,6 +9,8 @@ class Title
 public:
 	Sprite* bg;
 	ui::Button* StartButton;
+	Sprite* logo_fgo;
+	Sprite* logo_pvz;
 
 	Title(Scene*);
 	~Title();

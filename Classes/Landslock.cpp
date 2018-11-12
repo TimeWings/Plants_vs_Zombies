@@ -37,15 +37,15 @@ void Landslock::driveOut(Zombie* zombie)
 {
 	Sprite *sp_zb = zombie->getImg();
 	//暂停僵尸的动作
-	zombie->getImg()->stopAllActionsByTag(Animation_Tag);
+	//zombie->getImg()->stopAllActionsByTag(Animation_Tag);
+	zombie->Stop_Animation();
 	//zombie->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, zombie->getImg());
 	//惊吓效果
 	auto sp_frigthen = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Landslock\\frigthen.png"));
-	sp_frigthen->setPosition(Point(sp_zb->getPositionX() + sp_zb->getContentSize().width / 4, sp_zb->getPositionY() + sp_zb->getContentSize().height));
+	sp_frigthen->setPosition(Point(sp_zb->getContentSize().width / 1.3, sp_zb->getContentSize().height));
 	sp_frigthen->retain();
-	sp_frigthen->setScale(1);
-	EntityLayer* bl = EntityLayer::getInstance();
-	bl->addChild(sp_frigthen, zombie->getRow() * 3 -1);
+	sp_frigthen->setScale(0.5);
+	zombie->getImg()->addChild(sp_frigthen);
 	//随机位移
 	srand((unsigned)time(NULL));
 	int cnt = rand() % 2;
@@ -87,15 +87,15 @@ void Landslock::driveOut(Zombie* zombie)
 	zombie->setMeeting(false);
 	zombie->getDebuff()->push_back(DrivingOut);
 	//立即改变僵尸所在行
-	zombie->setRow(zombie->getRow() + moveRow);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Landslock::clearNode, this, sp_frigthen));
-	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Landslock::afterDriveOut, this, zombie));
+	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Landslock::afterDriveOut, this, zombie, moveRow));
 	Sequence *sequence = Sequence::create(CCDelayTime::create(0.5), actionDone, moveTo, actionDone1, NULL);
 	sp_zb->runAction(sequence);
 }
 
-void Landslock::afterDriveOut(Node* pSender, Zombie* zombie)
+void Landslock::afterDriveOut(Node* pSender, Zombie* zombie, int moveRow)
 {
+	zombie->setRow(zombie->getRow() + moveRow);
 	//移除debuff
 	for (int i = 0; i < zombie->getDebuff()->size(); i++)
 	{
@@ -138,7 +138,7 @@ void Landslock::Attacked()
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
 		Zombie* zombie = readyZombies.at(i);
-		if (this->getRow() == zombie->getRow() && this->getImg()->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()))
+		if (this->getRow() == zombie->getRow() && this->getImg()->boundingBox().intersectsRect(zombie->getImg()->getBoundingBox()) && zombie->isMeeting())
 		{
 			std::cout << "兰斯洛克驱逐僵尸！" << std::endl;
 			driveOut(zombie);

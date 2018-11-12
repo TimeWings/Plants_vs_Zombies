@@ -36,9 +36,23 @@ Title::Title(Scene* scene)
 	StartButton->setEnabled(false);
 	StartButton->setVisible(false);
 
+	TextureCache::getInstance()->addImage("UI\\logo_fgo.png");
+	logo_fgo = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\logo_fgo.png"));
+	logo_fgo->setAnchorPoint(Point(0.0f, 0.0f));
+	logo_fgo->setPosition(115, 220);
+
+	TextureCache::getInstance()->addImage("UI\\logo_pvz.png");
+	logo_pvz = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\logo_pvz.png"));
+	logo_pvz->setAnchorPoint(Point(0.0f, 0.0f));
+	logo_pvz->setScale(1.2f);
+	logo_pvz->setPosition(145, 230);
+
 	scene->addChild(bg,5);
 	//addChild(bg2,2);
 	scene->addChild(StartButton,6);
+	scene->addChild(logo_fgo,7);
+	scene->addChild(logo_pvz, 7);
+
 }
 
 Title::~Title()
@@ -50,7 +64,7 @@ void Title::clear(Scene* scene)
 {
 	scene->removeChild(bg);
 	scene->removeChild(StartButton);
-
+	scene->removeChild(logo_fgo);
 }
 
 void Title::enableStartButton()
