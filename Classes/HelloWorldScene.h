@@ -27,11 +27,13 @@
 
 #include "cocos2d.h"
 #include "Loading.h"
+#include "Title.h"
 using namespace std;
 class HelloWorld : public cocos2d::Scene
 {
 private:
 	Loading* loading;
+	Title* title;
 public:
     static cocos2d::Scene* createScene();
 

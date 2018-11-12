@@ -23,6 +23,7 @@
  ****************************************************************************/
 #include <time.h>
 #include "HelloWorldScene.h"
+#include "Title.h"
 #include "SimpleAudioEngine.h"
 #include "EntityLayer.h"
 #include "Bullet.h"
@@ -74,7 +75,9 @@ void HelloWorld::preLoading()
 	
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	loading = new Loading(Point(size.width / 2, size.height/2 ),this);
+	title = new Title(this);
+	loading = new Loading(Point(size.width / 2, 20 ),this);
+	
 	for (string x : files)
 	{
 		TextureCache::getInstance()->addImageAsync(x, CC_CALLBACK_1(HelloWorld::ResourceCallBack, this));
@@ -86,16 +89,23 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	if (loadingSprite == tot_loadingSprite)
 	{
 		//this->addChild(EntityLayer::create());
+		loading->clear();
+		title->enableStartButton();
+
 		auto visibleSize = Director::getInstance()->getVisibleSize();
 		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
 		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
-		this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 2.0f);
-		
+		//this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 2.0f);
+		title->StartButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
+		{
+			this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 0.0f);
+		});
 	}
 }
 void HelloWorld::GameIn(float t)
 {
-	loading->clear();
+	//loading->clear();
+	title->clear(this);
 	this->addChild(EntityLayer::create());
 	new Background();
 	//test a = test();

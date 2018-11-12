@@ -43,7 +43,7 @@ public:
 		
 		sprite->retain();
 		//sprite->setScale(0.15f);
-		sprite->setContentSize(Size(30, 42));
+		sprite->setContentSize(Size(27, 38));
 		sprite->setPosition(position);
 		addLayer(sprite, 200);
 
@@ -53,10 +53,10 @@ public:
 		plantSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
 		Size size = sprite->getContentSize();
 		auto position1 = Point(size.width / 2, size.height / 2);
-		position1.y += 4;
+		position1.y += 4.0f;
 		plantSprite->setPosition(position1);
 		//plantSprite->setScale(0.08f);
-		plantSprite->setContentSize(Size(18, 24));
+		plantSprite->setContentSize(Size(16, 20));
 		plantSprite->retain();
 		//addLayer(plantSprite, 200);
 		sprite->addChild(plantSprite);
@@ -86,17 +86,17 @@ public:
 			{
 				//cout << (int)this->plantsEnum << endl;
 				cout << isSelecting << endl;
-				if (isSelecting == false && selectingCardsEntity.size() < 7)
+				if (isSelecting == false && selectingCardsEntity.size() < 6)
 				{
 					selectingCards.push_back(plantsEnum);
 					//auto entity = new SelectCard<T>(position, plantsEnum);
-					auto moveTo = MoveTo::create(0.3f, Point(-10 + selectingCards.size() * 32, 290));
+					auto moveTo = MoveTo::create(0.3f, Point(38 + selectingCards.size() * 29, 258));
 					getImg()->stopAllActions();
 					getImg()->runAction(moveTo);
 					//entity->plantSprite->runAction(moveTo);
 					selectingCardsEntity.push_back(this);
 					isSelecting = true;
-					auto card = new Card<T>(Point(-10 + selectingCards.size() * 32, 290));
+					auto card = new Card<T>(Point(38 + selectingCards.size() * 29, 258));
 					readyCards.push_back(card);
 				}
 				else
@@ -119,8 +119,8 @@ public:
 					}
 					for (int i = 0; i < selectingCardsEntity.size(); i++)
 					{
-						auto moveTo = MoveTo::create(0.2f, Point(-10 + (i + 1) * 32, 290));
-						readyCards[i]->getImg()->setPosition(Point(-10 + (i + 1) * 32, 290));
+						auto moveTo = MoveTo::create(0.2f, Point(38 + (i + 1) * 29, 258));
+						readyCards[i]->getImg()->setPosition(Point(38 + (i + 1) * 29, 258));
 						selectingCardsEntity[i]->getImg()->stopAllActions();
 						selectingCardsEntity[i]->getImg()->runAction(moveTo);
 						//selectingCardsEntity[i]->getImg()->setPosition((i+1) * 20, 150);

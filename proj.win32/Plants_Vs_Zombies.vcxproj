@@ -198,6 +198,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\PeaShooter.cpp" />
     <ClCompile Include="..\Classes\PlantStatus.cpp" />
     <ClCompile Include="..\Classes\Plants.cpp" />
+    <ClCompile Include="..\Classes\PoleVaultingZombie.cpp" />
     <ClCompile Include="..\Classes\PotatoBullet.cpp" />
     <ClCompile Include="..\Classes\PotatoMine.cpp" />
     <ClCompile Include="..\Classes\Pumpkin.cpp" />
@@ -205,11 +206,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\riceShooter.cpp" />
     <ClCompile Include="..\Classes\Roadblock.cpp" />
     <ClCompile Include="..\Classes\RoadblockZombie.cpp" />
+    <ClCompile Include="..\Classes\SelectCardBG.cpp" />
     <ClCompile Include="..\Classes\Shovel.cpp" />
     <ClCompile Include="..\Classes\StarShooter.cpp" />
     <ClCompile Include="..\Classes\Sunflower.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
     <ClCompile Include="..\Classes\Thunder.cpp" />
+    <ClCompile Include="..\Classes\Title.cpp" />
     <ClCompile Include="..\Classes\Tomb.cpp" />
     <ClCompile Include="..\Classes\Torch.cpp" />
     <ClCompile Include="..\Classes\TrackBullet.cpp" />
@@ -274,6 +277,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Plants.h" />
     <ClInclude Include="..\Classes\PeaShooter.h" />
     <ClInclude Include="..\Classes\PeaBullet.h" />
+    <ClInclude Include="..\Classes\PoleVaultingZombie.h" />
     <ClInclude Include="..\Classes\PotatoBullet.h" />
     <ClInclude Include="..\Classes\PotatoMine.h" />
     <ClInclude Include="..\Classes\Pumpkin.h" />
@@ -282,11 +286,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Roadblock.h" />
     <ClInclude Include="..\Classes\RoadblockZombie.h" />
     <ClInclude Include="..\Classes\SelectCard.h" />
+    <ClInclude Include="..\Classes\SelectCardBG.h" />
     <ClInclude Include="..\Classes\Shovel.h" />
     <ClInclude Include="..\Classes\StarShooter.h" />
     <ClInclude Include="..\Classes\Sunflower.h" />
     <ClInclude Include="..\Classes\test.h" />
     <ClInclude Include="..\Classes\Thunder.h" />
+    <ClInclude Include="..\Classes\Title.h" />
     <ClInclude Include="..\Classes\Tomb.h" />
     <ClInclude Include="..\Classes\Torch.h" />
     <ClInclude Include="..\Classes\TrackBullet.h" />

@@ -18,13 +18,11 @@
 #include "Doom_shroom.h"
 #include "JannuDaruku.h"
 #include "StarShooter.h"
-#include "HeroThunder.h"
 #include "TripleShooter.h"
 #include "iceCabbage.h"
 #include "Card.h"
 #include "SelectCard.h"
 #include "UnSelectCard.h"
-#include "Thunder.h"
 #include "ZombieCard.h"
 #include "Torch.h"
 #include "Cushaw.h"
@@ -43,23 +41,32 @@
 #include "Clover.h"
 #include "Magnet.h"
 #include "Tomb.h"
-#include "NewspaperZombie.h"
 #include "GraveBuster.h"
+#include "NewspaperZombie.h"
 #include "ui/CocosGUI.h"
 #include "GameStartButton.h"
+#include "PoleVaultingZombie.h"
 #include "Zomboni.h"
+#include "Title.h"
+#include "SelectCardBG.h"
+#include "Thunder.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
 test::test()
 {
+	//auto titleScene = new TitleScene();
+	//Director::getInstance()->replaceScene(titleScene);
+	//Director::getInstance()->runWithScene(new TitleScene());
 	//new Loading();
 	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
 	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
-	/*float startX = 00.0f;
-	float startY = 240.0f;
-	float offsetX = 32.0f;
-	float offsetY = 44.0f;
+	/*
+	new SelectCardBG();
+	float startX = -1.0f;
+	float startY = 200.0f;
+	float offsetX = 28.0f;
+	float offsetY = 40.0f;
 	auto unSelectCard1 = new UnSelectCard<PeaShooter>(Point(startX += offsetX, startY), PlantsEnum::PeaShooter);
 	unSelectingCardsEntity.push_back(unSelectCard1);
 	auto unSelectCard2 = new UnSelectCard<IceShooter>(Point(startX += offsetX, startY), PlantsEnum::IceShooter);
@@ -127,7 +134,8 @@ test::test()
 	auto unSelectCard29 = new UnSelectCard<Magnet>(Point(startX += offsetX, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);
 
-	new GameStartButton(Point(120, 20));*/
+	new GameStartButton(Point(120, 15));
+	*/
 	GameStart = true;
 	drawRect();
 	auto s = Director::getInstance()->getWinSize();
@@ -158,19 +166,20 @@ test::test()
 	new Card<Landslock>(Point(40, 260));
 	new Card<riceShooter>(Point(60, 260));
 	new Card<Paul>(Point(80, 260));
-	new Card<HeroLucker>(Point(100, 260));
 	new Card<Lotus>(Point(20, 220));
 	new Card<Lantern>(Point(40, 220));
-	new ZombieCard<DoorZombie>(Point(120,260));
 	new Card<Clover>(Point(60, 220));
 	new Card<Magnet>(Point(80, 220));
 	new Card<Tomb>(Point(20, 180));
 	new Card<GraveBuster>(Point(40, 180));
 	new ZombieCard<Zomboni>(Point(60, 180));
 	new Card<GraveBuster>(Point(80, 180));
+	new ZombieCard<NewspaperZombie>(Point(100, 180));
+	
+	new ZombieCard<PoleVaultingZombie>(Point(80, 180));
 	new ZombieCard<NewspaperZombie>(Point(20, 140));
-	new Card<Thunder>(Point(40, 140));
-	new Card<HeroThunder>(Point(60, 140));
+	new Card<HeroLucker>(Point(40, 260));
+	new ZombieCard<DoorZombie>(Point(60, 260));
 }
 void test::drawRect()
 {
