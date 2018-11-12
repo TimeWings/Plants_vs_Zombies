@@ -174,12 +174,11 @@ test::test()
 	new Card<GraveBuster>(Point(40, 180));
 	new ZombieCard<Zomboni>(Point(60, 180));
 	new Card<GraveBuster>(Point(80, 180));
-	new ZombieCard<NewspaperZombie>(Point(100, 180));
-	
-	new ZombieCard<PoleVaultingZombie>(Point(80, 180));
 	new ZombieCard<NewspaperZombie>(Point(20, 140));
-	new Card<HeroLucker>(Point(40, 260));
-	new ZombieCard<DoorZombie>(Point(60, 260));
+	new Card<HeroLucker>(Point(40, 140));
+	new ZombieCard<DoorZombie>(Point(60, 140));
+	new Card<HeroLucker>(Point(80, 140));
+	new ZombieCard<PoleVaultingZombie>(Point(20, 100));
 }
 void test::drawRect()
 {
