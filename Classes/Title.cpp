@@ -65,6 +65,7 @@ void Title::clear(Scene* scene)
 	scene->removeChild(bg);
 	scene->removeChild(StartButton);
 	scene->removeChild(logo_fgo);
+	scene->removeChild(logo_pvz);
 }
 
 void Title::enableStartButton()
