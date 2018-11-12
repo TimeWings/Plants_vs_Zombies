@@ -72,7 +72,13 @@ void iceCabbage::creatSprite()
 		Zombie* zombie = readyZombies.at(i);
 		if (zombie->hasHead())
 		{
-			std::cout << "冻结僵尸" << std::endl;
+			if (judgeIsDriving(zombie))
+			{
+				//存动画
+				drivingOut = zombie->getImg()->getActionManager()->getActionByTag(DrivingOut,zombie->getImg());
+				drivingOut->retain();
+				zombie->getImg()->getActionManager()->removeActionByTag(DrivingOut, zombie->getImg());
+			}
 			zombie->getDebuff()->push_back(Freezing);
 			Point freezePoint = zombie->getImg()->getPosition();
 
@@ -105,10 +111,28 @@ void iceCabbage::creatSprite()
 			auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clearIceSprite, this, sp, zombie));
 			Sequence *sequence = Sequence::create(Animate::create(an), delayTime, actionDone, NULL);
 			sp->runAction(sequence);
+
 		}
 	}
 }
 
+bool iceCabbage::judgeIsDriving(Zombie* zombie)
+{
+	for (int i = 0; i < zombie->getDebuff()->size(); i++)
+	{
+		if (zombie->getDebuff()->at(i) == DrivingOut)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+void iceCabbage::zombieRun(Node * pSender,Zombie* zombie)
+{
+	zombie->Move();
+	zombie->setMeeting(false);
+}
 
 void iceCabbage::clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zombie)
 {
@@ -122,10 +146,20 @@ void iceCabbage::clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zomb
 			break;
 		}
 	}
-	zombie->setMeeting(false);
-	//僵尸恢复行动
-	zombie->Move();
 	//清除僵尸的蓝色覆盖
 	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
 	zombie->getImg()->runAction(tintto2);
+	//先把移动行执行
+	if (judgeIsDriving(zombie))
+	{
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::zombieRun, this, zombie));
+		Sequence *sequence = Sequence::create((Sequence*)drivingOut, actionDone, NULL);
+		zombie->getImg()->runAction(sequence);
+	}
+	else
+	{
+		zombie->setMeeting(false);
+		//僵尸恢复行动
+		zombie->Move();
+	}
 }

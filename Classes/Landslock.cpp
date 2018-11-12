@@ -37,9 +37,7 @@ void Landslock::driveOut(Zombie* zombie)
 {
 	Sprite *sp_zb = zombie->getImg();
 	//暂停僵尸的动作
-	//zombie->getImg()->stopAllActionsByTag(Animation_Tag);
 	zombie->Stop_Animation();
-	//zombie->getImg()->getActionManager()->removeAllActionsByTag(Animation_Tag, zombie->getImg());
 	//惊吓效果
 	auto sp_frigthen = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Landslock\\frigthen.png"));
 	sp_frigthen->setPosition(Point(sp_zb->getContentSize().width / 1.3, sp_zb->getContentSize().height));
@@ -90,6 +88,7 @@ void Landslock::driveOut(Zombie* zombie)
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Landslock::clearNode, this, sp_frigthen));
 	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Landslock::afterDriveOut, this, zombie, moveRow));
 	Sequence *sequence = Sequence::create(CCDelayTime::create(0.5), actionDone, moveTo, actionDone1, NULL);
+	sequence->setTag(DrivingOut);
 	sp_zb->runAction(sequence);
 }
 
