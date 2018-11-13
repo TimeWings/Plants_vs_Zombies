@@ -41,10 +41,10 @@ void SmallMushRoom::CreateBullet()
 		Sprite *sp = this->getImg();
 		//植物中心点X坐标，植物中心点+1/4植物高度的Y坐标
 		Point a = ccp(sp->getPositionX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
-		MushroomBullet *pb = new MushroomBullet(a, this->getRow(), 0.8);
+		MushroomBullet *pb = new MushroomBullet(a, this->getRow(), 0.8, 0.5);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(SmallMushRoom::clearBullet, this));
 		//与子弹清除延时一样，用来设置填充时间，回播动画
-		Sequence *sequence1 = Sequence::create(CCDelayTime::create(1), actionDone, NULL);
+		Sequence *sequence1 = Sequence::create(CCDelayTime::create(0.5), actionDone, NULL);
 		this->getImg()->runAction(sequence1);
 	}
 }
