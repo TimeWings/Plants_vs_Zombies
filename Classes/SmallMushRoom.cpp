@@ -51,6 +51,7 @@ void SmallMushRoom::CreateBullet()
 
 void SmallMushRoom::Self_Animation()
 {
+
 	Sprite *sp = this->getImg();
 	float preScale = sp->getScaleX();
 	CCScaleTo * scaleup = CCScaleTo::create(0.7f, preScale, preScale + 0.05);

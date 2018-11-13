@@ -35,6 +35,7 @@
 #include "riceShooter.h"
 #include "HeroLucker.h"
 #include "Paul.h"
+#include "WhiteJannu.h"
 #include "Shovel.h"
 #include "Lantern.h"
 #include "DoorZombie.h"
@@ -185,6 +186,8 @@ test::test()
 	new Card<SmallMushRoom>(Point(100, 140));
 	new ZombieCard<BucketZombie>(Point(40, 100));
 	new ZombieCard<FootBallZombie>(Point(40, 100));
+	new Card<WhiteJannu>(Point(80, 100));
+	new Card<Thunder>(Point(100, 100));
 }
 void test::drawRect()
 {
