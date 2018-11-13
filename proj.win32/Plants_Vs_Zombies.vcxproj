@@ -152,6 +152,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Background.cpp" />
     <ClCompile Include="..\Classes\BasicZombie.cpp" />
+    <ClCompile Include="..\Classes\BombZombie.cpp" />
     <ClCompile Include="..\Classes\Bucket.cpp" />
     <ClCompile Include="..\Classes\BucketZombie.cpp" />
     <ClCompile Include="..\Classes\Bullet.cpp" />
@@ -233,6 +234,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Background.h" />
     <ClInclude Include="..\Classes\BasicZombie.h" />
+    <ClInclude Include="..\Classes\BombZombie.h" />
     <ClInclude Include="..\Classes\Bucket.h" />
     <ClInclude Include="..\Classes\BucketZombie.h" />
     <ClInclude Include="..\Classes\Bullet.h" />

@@ -11,7 +11,7 @@ Chomper::Chomper(Point position, int row, int col)
 	sp->retain();
 	sp->setScale(2);
 	sp->setPosition(position.x+10,position.y);
-	this->setHp(600);
+	this->setHp(12);
 	this->setInterval(3000);
 	//普通植物直接播放自身动画
 	this->Self_Animation();

@@ -7,7 +7,7 @@ PoleVaultingZombie::PoleVaultingZombie(Point position, int row, int col)
 	this->setCol(col);
 	this->setEquip(nullptr);
 	setWalkSpeed(14);
-	setHp(14);
+	setHp(40);
 	setHead(true);
 	setMeeting(false);
 	setInterval(0);
