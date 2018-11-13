@@ -11,7 +11,7 @@ private:
 public:
 	Loading(Point,Scene* scene, Title* title);
 	void afterload(Node * pSender, Title * title);
-	void clear();
+	void clear(Node*pSender);
 	~Loading();
 	Sprite* sprite;
 	//int value = 0;

@@ -23,8 +23,9 @@ Loading::Loading(Point position, Scene* scene, Title*title)
 	timer->setBarChangeRate(CCPoint(1, 0));//设置进度所占比例
 	//Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, NULL);
 	scene->addChild(timer,1000);
+	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Loading::clear, this));
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Loading::afterload, this,title));
-	Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, NULL);
+	Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, actionDone1, NULL);
 	timer->runAction(sequence);
 	
 	
@@ -34,7 +35,7 @@ void Loading::afterload(Node*pSender,Title*title)
 {
 	title->enableStartButton();
 }
-void Loading::clear()
+void Loading::clear(Node*pSender)
 {
 	timer->removeFromParent();
 	this->getImg()->removeFromParent();

@@ -2,7 +2,7 @@
 
 SafetyHelmet::SafetyHelmet()
 {
-	setHp(30);
+	setHp(50);
 	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
 	sp->retain();
 	this->setImg(sp);
