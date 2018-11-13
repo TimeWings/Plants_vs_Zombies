@@ -34,7 +34,9 @@ bool Mushroom::isWorking()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	for (auto x : readyZombies)
 	{
-		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width && map::Point2Rank(x->getImg()->getPosition()).second <= this->getCol() + attackCol)
+		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width 
+			&& map::Point2Rank(x->getImg()->getPosition()).second - this->getCol() <= attackCol
+			&& map::Point2Rank(x->getImg()->getPosition()).second - this->getCol() >= 0)
 		{
 			return true;
 		}

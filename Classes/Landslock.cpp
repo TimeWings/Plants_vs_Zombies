@@ -30,7 +30,7 @@ bool Landslock::isWorking()
 
 void Landslock::work()
 {
-
+	//do nothing
 }
 
 void Landslock::driveOut(Zombie* zombie)

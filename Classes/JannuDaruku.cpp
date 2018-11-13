@@ -163,7 +163,7 @@ void JannuDaruku::creatSprite()
 	sp->retain();
 	sp->setScale(1.5);
 
-	SpriteFrame *sp1;
+	//SpriteFrame *sp1;
 	Vector<SpriteFrame*> allframe;
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	char str[100] = { 0 };
@@ -188,10 +188,6 @@ void JannuDaruku::creatSprite()
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 		sp->runAction(sequence);
 	}
-}
-
-void JannuDaruku::CreateBullet()
-{
 }
 
 void JannuDaruku::clear(Node * pSender)

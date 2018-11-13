@@ -119,6 +119,7 @@ public:
 				Point clickLocation = touch->getLocation();
 				if (isFollowingMouse == true)
 				{
+					std::cout << "isFollowingMouse" << std::endl;
 					isFollowingMouse = false;
 					plantFollowSprite->removeFromParent();
 					auto rank = Point2Rank(clickLocation);
@@ -260,6 +261,7 @@ public:
 					std::cout << "ÖÖÖ²³É¹¦" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 				}
+				std::cout << "nmsl" << std::endl;
 			}
 			else if (ps->_BlockType == 1)
 			{
