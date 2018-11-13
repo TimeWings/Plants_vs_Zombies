@@ -13,7 +13,7 @@ Landslock::Landslock(Point position, int row,int col)
 	sp->retain();
 	sp->setScale(0.25);
 	sp->setPosition(position);
-	this->setHp(1000);
+	this->setHp(12);
 	this->setInterval(2000);
 	//普通植物直接播放自身动画
 	this->Self_Animation();

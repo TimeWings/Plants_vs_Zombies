@@ -6,7 +6,7 @@ FootBallZombie::FootBallZombie(Point position, int row, int col)
 	this->setCol(col);
 	setEquip(new SafetyHelmet());
 	setWalkSpeed(15);
-	setHp(40);
+	setHp(42);
 	setHead(true);
 	setMeeting(false);
 	setInterval(0.1);
@@ -82,6 +82,7 @@ void FootBallZombie::Lost_Equip_Animation()
 {
 	auto none = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
 	none->setPosition(this->getImg()->getPositionX(), this->getImg()->getPositionY() + this->getImg()->boundingBox().size.height / 2);
+	none->setScale(1.8);
 	Vector<SpriteFrame*> allframe;
 	std::string prestr = "Zombies\\FootballZombie\\Lost_helmet\\";
 	char str[100] = { 0 };
@@ -198,4 +199,20 @@ void FootBallZombie::LostHead()
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	this->getImg()->runAction(sequence);
 	
+}
+Sprite * FootBallZombie::MagnetEquip()
+{
+	if (!hasEquip())
+		return nullptr;
+	getEquip()->Die();
+	setEquip(nullptr);
+	if (hasHead()) {
+		setMeeting(false);
+		Move();
+	}
+	Sprite* sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Zombies\\FootballZombie\\Lost_helmet\\1.png"));
+	sp->setScale(1.5);
+	sp->setPosition(this->getImg()->getPosition().x, this->getImg()->getPosition().y+this->getImg()->getBoundingBox().size.height/2);
+	addLayer(sp);
+	return sp;
 }

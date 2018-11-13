@@ -2,7 +2,7 @@
 #include "EntityLayer.h"
 #include <iostream>
 
-Loading::Loading(Point position, Scene* scene)
+Loading::Loading(Point position, Scene* scene, Title*title)
 {
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	sprite = Sprite::create("UI\\LoadingBar0.png");
@@ -23,13 +23,22 @@ Loading::Loading(Point position, Scene* scene)
 	timer->setBarChangeRate(CCPoint(1, 0));//设置进度所占比例
 	//Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, NULL);
 	scene->addChild(timer,1000);
-	timer->runAction(ProgressTo::create(2, 100));
+	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Loading::clear, this));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Loading::afterload, this,title));
+	Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, actionDone1, NULL);
+	timer->runAction(sequence);
+	
+	
 	scene->addChild(sprite,0);
 }
-
-void Loading::clear()
+void Loading::afterload(Node*pSender,Title*title)
+{
+	title->enableStartButton();
+}
+void Loading::clear(Node*pSender)
 {
 	timer->removeFromParent();
+	this->getImg()->removeFromParent();
 }
 Loading::~Loading()
 {

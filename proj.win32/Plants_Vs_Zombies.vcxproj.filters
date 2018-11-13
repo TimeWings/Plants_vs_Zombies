@@ -277,6 +277,7 @@
     <ClCompile Include="..\Classes\WhiteJannu.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BombZombie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -536,6 +537,9 @@
       <Filter>src\Entity\Equip</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BucketZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BombZombie.h">
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\WhiteJannu.h">

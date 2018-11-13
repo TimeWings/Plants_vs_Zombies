@@ -10,8 +10,8 @@ using namespace ui;
 Title::Title(Scene* scene)
 {
 	//auto layer = EntityLayer::getInstance();
-	TextureCache::getInstance()->addImage("UI\\FateGrandOrder2.jpg");
-	bg = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\FateGrandOrder2.jpg"));
+	//TextureCache::getInstance()->addImage("UI\\FateGrandOrder2.jpg");
+	bg = Sprite::create("UI\\FateGrandOrder2.jpg");
 	auto s = Director::getInstance()->getWinSize();
 	bg->setAnchorPoint(Point(0, 0));
 	bg->setPosition(0, 0);
@@ -36,22 +36,22 @@ Title::Title(Scene* scene)
 	StartButton->setEnabled(false);
 	StartButton->setVisible(false);
 
-	TextureCache::getInstance()->addImage("UI\\logo_fgo.png");
-	logo_fgo = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\logo_fgo.png"));
+	//TextureCache::getInstance()->addImage("UI\\logo_fgo.png");
+	logo_fgo = Sprite::create("UI\\logo_fgo.png");
 	logo_fgo->setAnchorPoint(Point(0.0f, 0.0f));
 	logo_fgo->setPosition(115, 220);
 
-	TextureCache::getInstance()->addImage("UI\\logo_pvz.png");
-	logo_pvz = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\logo_pvz.png"));
+	//TextureCache::getInstance()->addImage("UI\\logo_pvz.png");
+	logo_pvz = Sprite::create("UI\\logo_pvz.png");
 	logo_pvz->setAnchorPoint(Point(0.0f, 0.0f));
 	logo_pvz->setScale(1.2f);
 	logo_pvz->setPosition(145, 230);
 
-	scene->addChild(bg,5);
+	scene->addChild(bg,0);
 	//addChild(bg2,2);
-	scene->addChild(StartButton,6);
-	scene->addChild(logo_fgo,7);
-	scene->addChild(logo_pvz, 7);
+	scene->addChild(StartButton,1);
+	scene->addChild(logo_fgo,1);
+	scene->addChild(logo_pvz, 1);
 
 }
 

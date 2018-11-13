@@ -14,4 +14,5 @@ public:
 	void Move_with_Equip();
 	void BasicMove();
 	void LostHead();
+	Sprite * MagnetEquip();
 };
