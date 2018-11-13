@@ -82,6 +82,7 @@ void FootBallZombie::Lost_Equip_Animation()
 {
 	auto none = Sprite::createWithTexture(TextureCache::getInstance()->addImage("none.png"));
 	none->setPosition(this->getImg()->getPositionX(), this->getImg()->getPositionY() + this->getImg()->boundingBox().size.height / 2);
+	none->setScale(1.8);
 	Vector<SpriteFrame*> allframe;
 	std::string prestr = "Zombies\\FootballZombie\\Lost_helmet\\";
 	char str[100] = { 0 };
