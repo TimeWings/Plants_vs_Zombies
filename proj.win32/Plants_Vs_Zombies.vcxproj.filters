@@ -275,6 +275,9 @@
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BombZombie.cpp" />
+    <ClCompile Include="..\Classes\Gargantuar.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -537,6 +540,9 @@
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BombZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Gargantuar.h">
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
