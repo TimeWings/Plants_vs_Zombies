@@ -40,6 +40,7 @@
 #include "Shovel.h"
 #include "Lantern.h"
 #include "DoorZombie.h"
+#include "WaterShooter.h"
 #include "Clover.h"
 #include "Magnet.h"
 #include "Tomb.h"
@@ -191,6 +192,7 @@ test::test()
 	new ZombieCard<BombZombie>(Point(20, 60));
 	new Card<WhiteJannu>(Point(40, 60));
 	new Card<Thunder>(Point(60, 60));
+	new Card<WaterShooter>(Point(80, 60));
 }
 void test::drawRect()
 {
