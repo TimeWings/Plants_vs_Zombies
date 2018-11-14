@@ -15,13 +15,10 @@ public:
 	void Die();
 	virtual void thisDie();
 	void Effect(Node * pSender);
-	void zombiesDie();
-	void creatSprite();
-	//产生子弹
-	virtual void CreateBullet();
+	virtual void zombiesDie();
+	virtual void creatSprite();
 	//清理精灵
 	void clear(Node * pSender);
-
 	// 通过 Plants 继承
 	virtual void Attacked() override;
 };

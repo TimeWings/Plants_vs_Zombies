@@ -18,7 +18,7 @@ Pumpkin::Pumpkin(Point position, int row,int col)
 	sp->retain();
 	sp->setScale(0.27);
 	sp->setPosition(position);
-	this->setHp(100);
+	this->setHp(12);
 	this->setInterval(0.5);
 	//普通植物直接播放自身动画
 	this->Self_Animation();
@@ -64,6 +64,14 @@ void Pumpkin::CheckZombies()
 //践踏
 void Pumpkin::JumpTo(Zombie* zombie)
 {
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
 	//停用自身动画
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(this->getImg());
 	//移动到僵尸上方，自身放大
@@ -92,25 +100,8 @@ void Pumpkin::JumpTo(Zombie* zombie)
 	Sequence *sequence = Sequence::create(scale1, spawn1, spawn4, NULL);
 	
 	this->getImg()->runAction(sequence);
-	
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-}
 
-////倭瓜下落
-//void Pumpkin::FallDown(Node * pSender, Point p)
-//{
-//	std::cout << "下落！" << std::endl;
-//	MoveTo *moveTo = MoveTo::create(0.5, ccp(p.x, p.y - 50));
-//	CCActionInterval * easeSineIn = CCEaseSineIn::create(moveTo);
-//	this->getImg()->runAction(easeSineIn);
-//}
+}
 
 //压扁僵尸
 void Pumpkin::press(Node * pSender, Zombie* zombie)

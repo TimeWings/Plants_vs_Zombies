@@ -166,7 +166,7 @@ Sprite * DoorZombie::MagnetEquip()
 {
 	if (!hasEquip())
 		return nullptr;
-	getEquip()->getImg()->removeFromParent();
+	getEquip()->Die();
 	setEquip(nullptr);
 	if (hasHead()) {
 		setMeeting(false);

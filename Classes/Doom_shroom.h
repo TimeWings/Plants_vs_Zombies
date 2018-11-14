@@ -11,6 +11,5 @@ public:
     void Effect(Node * pSender);
 	virtual void creatSprite();
 	void clearSprite(Node * pSender, Sprite * sp);
-
 	virtual void zombiesDie();
 };

@@ -164,6 +164,17 @@ void Zombie::DamagePlant(Node * pSender, PlantStatus *plantstatus)
 		this->setMeeting(false);
 		return;
 	}
+	//for (int i=0;i<this->getDebuff()->size();i++)
+	//{
+	//	if (this->getDebuff()->at(i) == AttackToZero)
+	//		return;
+	//}
+
+	for (int i=0;i<plantstatus->plantVector.at(0)->getbuff()->size();i++)
+	{
+		if (plantstatus->plantVector.at(0)->getbuff()->at(i) == Invincible)
+			return;
+	}
 	plantstatus->plantVector.at(0)->getHurt(1);
 	plantstatus->plantVector.at(0)->Attacked();
 }
@@ -197,7 +208,7 @@ void Zombie::Stop_Animation()
 void Zombie::Lost_Equip()
 {
 	if (hasEquip()) {
-		getEquip()->getImg()->removeFromParent();
+		getEquip()->Die();
 		setEquip(nullptr);
 		if (hasHead()) {
 			setMeeting(false);

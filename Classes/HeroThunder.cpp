@@ -46,6 +46,11 @@ void HeroThunder::work()
 
 void HeroThunder::creatSprite()
 {
+	CCScaleBy * scaleup = CCScaleBy::create(0.07f, 0.8f, 1.25f);
+	CCScaleBy * scaledown = CCScaleBy::create(0.2f, 1.5625f, 0.64f);
+	CCScaleBy * scaleup1 = CCScaleBy::create(0.1f, 0.8f, 1.25f);
+	Sequence *sequence = Sequence::create(scaleup, scaledown, scaleup1, NULL);
+	this->getImg()->runAction(sequence);
 	//复制readyZombie数组
 	std::vector<Zombie*> zombieSet = readyZombies;
 	//把原本的数组按X轴排序
@@ -72,23 +77,20 @@ void HeroThunder::creatSprite()
 	for (int i = 0; i < zombieSetSorted.size(); i++)
 	{
 		Zombie* zombie = zombieSetSorted.at(i);
-		if (zombie->getImg()->getPositionX() > this->getImg()->getPositionX())
+		if (!this->hasThunder)
 		{
-			if (!this->hasThunder)
-			{
-				this->hasThunder = true;
-				createThunder(
-					Point(this->getImg()->getPosition().x + this->getImg()->getContentSize().width * this->getImg()->getScaleX() / 2.5, this->getImg()->getPositionY() + this->getImg()->getContentSize().height * this->getImg()->getScaleY() / 2),
-					Point(zombie->getImg()->getPosition().x, zombie->getImg()->getPosition().y),
-					zombie);
-			}
-			else
-			{
-				createThunder(this->lastPoint, zombie->getImg()->getPosition(), zombie);
-			}
-			this->lastPoint = zombie->getImg()->getPosition();
-			zombie->DamageBoth(curtentDamage);
+			this->hasThunder = true;
+			createThunder(
+				Point(this->getImg()->getPosition().x + this->getImg()->getContentSize().width * this->getImg()->getScaleX() / 2.5, this->getImg()->getPositionY() + this->getImg()->getContentSize().height * this->getImg()->getScaleY() / 2),
+				Point(zombie->getImg()->getPosition().x, zombie->getImg()->getPosition().y),
+				zombie);
 		}
+		else
+		{
+			createThunder(this->lastPoint, zombie->getImg()->getPosition(), zombie);
+		}
+		this->lastPoint = zombie->getImg()->getPosition();
+		zombie->DamageBoth(curtentDamage);
 		
 	}
 	this->lastPoint = this->getImg()->getPosition();

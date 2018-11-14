@@ -76,7 +76,11 @@ void HelloWorld::preLoading()
 
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	title = new Title(this);
-	loading = new Loading(Point(size.width / 2, 20 ),this);
+	title->StartButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
+	{
+		this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 0.0f);
+	});
+	loading = new Loading(Point(size.width / 2, 20 ),this,title);
 	
 	for (string x : files)
 	{
@@ -88,18 +92,6 @@ void HelloWorld::ResourceCallBack(cocos2d::Texture2D *texture)
 	loadingSprite++;
 	if (loadingSprite == tot_loadingSprite)
 	{
-		//this->addChild(EntityLayer::create());
-		loading->clear();
-		title->enableStartButton();
-
-		auto visibleSize = Director::getInstance()->getVisibleSize();
-		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera1), 1.0f);
-		//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera2), 5.0f);
-		//this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 2.0f);
-		title->StartButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
-		{
-			this->scheduleOnce(schedule_selector(HelloWorld::GameIn), 0.0f);
-		});
 	}
 }
 void HelloWorld::GameIn(float t)

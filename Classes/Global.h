@@ -12,6 +12,7 @@
 #define DrivingOut 2 //Çı¸Ï
 #define Stick 3 //Õë´Ì
 #define Oil 4 //Õë´Ì
+#define Invincible 5 //Ö²ÎïÎŞµĞ
 
 
 USING_NS_CC;

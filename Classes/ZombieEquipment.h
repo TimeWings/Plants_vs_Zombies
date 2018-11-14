@@ -14,7 +14,7 @@ public:
 	bool isMetal();
 	void setMetal(bool Metal);
 	virtual void Damage(int damage) = 0;
-	virtual void Die() = 0;
-	virtual void Move() = 0;
-	virtual void Attack(double interval) = 0;
+	virtual void Die();
+	virtual void Move();
+	virtual void Attack(double interval);
 };

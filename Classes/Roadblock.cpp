@@ -8,19 +8,7 @@ Roadblock::Roadblock()
 	this->setImg(sp);
 }
 
-void Roadblock::Die()
-{
-}
-
 void Roadblock::Damage(int damage)
 {
 	setHp(getHp() - damage);
-}
-
-void Roadblock::Move()
-{
-}
-
-void Roadblock::Attack(double interval)
-{
 }

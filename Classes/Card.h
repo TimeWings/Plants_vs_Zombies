@@ -129,6 +129,7 @@ public:
 				Point clickLocation = touch->getLocation();
 				if (isFollowingMouse == true)
 				{
+					std::cout << "isFollowingMouse" << std::endl;
 					isFollowingMouse = false;
 					plantFollowSprite->removeFromParent();
 					auto rank = Point2Rank(clickLocation);
@@ -276,9 +277,32 @@ public:
 					std::cout << "种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 				}
+				std::cout << "nmsl" << std::endl;
 			}
 			else if (ps->_BlockType == 1)
 			{
+				if (strcmp(typeid(T).name(), "class Shovel") == 0)
+				{
+					std::cout << "铲子种植成功" << std::endl;
+					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					return;
+				}
+				if (find1(ps, "class WaterShooter"))
+				{
+					std::cout << "已经有水生射手，不能种植" << std::endl;
+					return;
+				}
+				if (find1(ps, "class Lotus") && (strcmp(typeid(T).name(), "class WaterShooter") == 0))
+				{
+					std::cout << "有睡莲，不能种植水生射手" << std::endl;
+					return;
+				}
+				if ((strcmp(typeid(T).name(), "class WaterShooter") == 0) && ps->plantVector.size() == 0 )
+				{
+					std::cout << "水生射手,种植成功" << std::endl;
+					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					return;
+				}
 				if ((strcmp(typeid(T).name(), "class Lotus") != 0) && ps->plantVector.size() == 0)
 				{
 					std::cout << "不是睡莲,种植不成功了" << std::endl;
@@ -292,11 +316,6 @@ public:
 				{
 					std::cout << "可以种植南瓜" << std::endl;
 					ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
-				}
-				else if (strcmp(typeid(T).name(), "class Shovel") == 0)
-				{
-					std::cout << "铲子种植成功" << std::endl;
-					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 				}
 				else if ((strcmp(typeid(T).name(), "class Paul") == 0))
 				{

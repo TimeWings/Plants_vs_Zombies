@@ -11,7 +11,6 @@ public:
 	PoleVaultingZombie(Point position, int row, int col);
 	void Jump(bool canMove);
 	void afterJump(Node * pSender);
-	void BasicDie(Node * pSender);
 	virtual void LostHead();
 	void BasicMove();
 	void BasicAttack(PlantStatus *plantstatus);

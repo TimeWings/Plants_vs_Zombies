@@ -152,6 +152,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Background.cpp" />
     <ClCompile Include="..\Classes\BasicZombie.cpp" />
+    <ClCompile Include="..\Classes\BombZombie.cpp" />
+    <ClCompile Include="..\Classes\Bucket.cpp" />
+    <ClCompile Include="..\Classes\BucketZombie.cpp" />
     <ClCompile Include="..\Classes\Bullet.cpp" />
     <ClCompile Include="..\Classes\Chomper.cpp" />
     <ClCompile Include="..\Classes\Clover.cpp" />
@@ -164,6 +167,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Entity.cpp" />
     <ClCompile Include="..\Classes\EntityLayer.cpp" />
     <ClCompile Include="..\Classes\FireBullet.cpp" />
+    <ClCompile Include="..\Classes\FootBallZombie.cpp" />
     <ClCompile Include="..\Classes\GameStartButton.cpp" />
     <ClCompile Include="..\Classes\Global.cpp" />
     <ClCompile Include="..\Classes\GraveBuster.cpp" />
@@ -206,8 +210,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\riceShooter.cpp" />
     <ClCompile Include="..\Classes\Roadblock.cpp" />
     <ClCompile Include="..\Classes\RoadblockZombie.cpp" />
+    <ClCompile Include="..\Classes\SafetyHelmet.cpp" />
     <ClCompile Include="..\Classes\SelectCardBG.cpp" />
     <ClCompile Include="..\Classes\Shovel.cpp" />
+    <ClCompile Include="..\Classes\SmallMushRoom.cpp" />
     <ClCompile Include="..\Classes\StarShooter.cpp" />
     <ClCompile Include="..\Classes\Sunflower.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
@@ -218,7 +224,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TrackBullet.cpp" />
     <ClCompile Include="..\Classes\TripleBullet.cpp" />
     <ClCompile Include="..\Classes\TripleShooter.cpp" />
+    <ClCompile Include="..\Classes\WaterBullet.cpp" />
+    <ClCompile Include="..\Classes\WaterShooter.cpp" />
     <ClCompile Include="..\Classes\Weeds.cpp" />
+    <ClCompile Include="..\Classes\WhiteJannu.cpp" />
     <ClCompile Include="..\Classes\Zombie.cpp" />
     <ClCompile Include="..\Classes\ZombieEquipment.cpp" />
     <ClCompile Include="..\Classes\Zomboni.cpp" />
@@ -228,6 +237,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Background.h" />
     <ClInclude Include="..\Classes\BasicZombie.h" />
+    <ClInclude Include="..\Classes\BombZombie.h" />
+    <ClInclude Include="..\Classes\Bucket.h" />
+    <ClInclude Include="..\Classes\BucketZombie.h" />
     <ClInclude Include="..\Classes\Bullet.h" />
     <ClInclude Include="..\Classes\Card.h" />
     <ClInclude Include="..\Classes\CardEntity.h" />
@@ -242,6 +254,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Entity.h" />
     <ClInclude Include="..\Classes\EntityLayer.h" />
     <ClInclude Include="..\Classes\FireBullet.h" />
+    <ClInclude Include="..\Classes\FootBallZombie.h" />
     <ClInclude Include="..\Classes\GameStartButton.h" />
     <ClInclude Include="..\Classes\Global.h" />
     <ClInclude Include="..\Classes\GraveBuster.h" />
@@ -285,9 +298,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\riceShooter.h" />
     <ClInclude Include="..\Classes\Roadblock.h" />
     <ClInclude Include="..\Classes\RoadblockZombie.h" />
+    <ClInclude Include="..\Classes\SafetyHelmet.h" />
     <ClInclude Include="..\Classes\SelectCard.h" />
     <ClInclude Include="..\Classes\SelectCardBG.h" />
     <ClInclude Include="..\Classes\Shovel.h" />
+    <ClInclude Include="..\Classes\SmallMushRoom.h" />
     <ClInclude Include="..\Classes\StarShooter.h" />
     <ClInclude Include="..\Classes\Sunflower.h" />
     <ClInclude Include="..\Classes\test.h" />
@@ -299,7 +314,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TripleBullet.h" />
     <ClInclude Include="..\Classes\TripleShooter.h" />
     <ClInclude Include="..\Classes\UnSelectCard.h" />
+    <ClInclude Include="..\Classes\WaterBullet.h" />
+    <ClInclude Include="..\Classes\WaterShooter.h" />
     <ClInclude Include="..\Classes\Weeds.h" />
+    <ClInclude Include="..\Classes\WhiteJannu.h" />
     <ClInclude Include="..\Classes\Zombie.h" />
     <ClInclude Include="..\Classes\ZombieCard.h" />
     <ClInclude Include="..\Classes\ZombieEquipment.h" />

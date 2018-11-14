@@ -73,5 +73,10 @@ void Plants::addLayer(Node * entity)
 	bl->addChild(entity, _row*3-3);
 }
 
+std::vector<int>* Plants::getbuff()
+{
+	return &buff;
+}
+
 
 

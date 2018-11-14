@@ -10,7 +10,7 @@ private:
 public:
 	iceCabbage(Point position, int row, int col);
 	virtual void thisDie();
-	void creatSprite();
+	virtual void creatSprite();
 	bool judgeIsDriving(Zombie * zombie);
 	void Effect(Node *pSender);
 	void clearIceSprite(Node * pSender, Sprite * iceSprite, Zombie* zombie);
