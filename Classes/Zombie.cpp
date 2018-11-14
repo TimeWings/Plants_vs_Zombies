@@ -164,9 +164,15 @@ void Zombie::DamagePlant(Node * pSender, PlantStatus *plantstatus)
 		this->setMeeting(false);
 		return;
 	}
-	for (int i=0;i<this->getDebuff()->size();i++)
+	//for (int i=0;i<this->getDebuff()->size();i++)
+	//{
+	//	if (this->getDebuff()->at(i) == AttackToZero)
+	//		return;
+	//}
+
+	for (int i=0;i<plantstatus->plantVector.at(0)->getbuff()->size();i++)
 	{
-		if (this->getDebuff()->at(i) == AttackToZero)
+		if (plantstatus->plantVector.at(0)->getbuff()->at(i) == Invincible)
 			return;
 	}
 	plantstatus->plantVector.at(0)->getHurt(1);
