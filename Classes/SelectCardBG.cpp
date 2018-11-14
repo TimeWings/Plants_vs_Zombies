@@ -23,12 +23,6 @@ SelectCardBG::SelectCardBG()
 	layer->addChild(bg);
 	layer->addChild(bg2);
 
-	sunLabel = Label::createWithTTF(std::to_string(sunCnt.first), "Font\\TianShiYanTi.ttf", 9);
-	sunLabel->setAnchorPoint(Point(0.5f, 0.5f));
-	sunLabel->setPosition(27.5f, 244);
-	sunLabel->setTextColor(Color4B::BLACK);
-	sunLabel->setAlignment(TextHAlignment::CENTER);
-	layer->addChild(sunLabel, 3);
 }
 
 

@@ -58,6 +58,7 @@ public:
 		
 		sprite->retain();
 		//sprite->setScale(0.15f);
+		//sprite->setContentSize(Size(27, 38));
 		sprite->setContentSize(Size(20, 30));
 		//this->Scale = this->getImg()->getScale();
 		//sprite->setAnchorPoint(Point(0.5f, 0.5f));
@@ -80,10 +81,10 @@ public:
 		//sprite->setVisible(false);
 
 		plantsTypeName = className;
-		//addListener();
+		addListener();
 		setCost();
 		auto sunLabel = Label::createWithTTF(to_string(cost), "Font\\TianShiYanTi.ttf", 5);
-		sunLabel->setPosition(14, 5);
+		sunLabel->setPosition(14, 5.5f);
 		sunLabel->setTextColor(Color4B::BLACK);
 		sprite->addChild(sunLabel, 2);
 	}
