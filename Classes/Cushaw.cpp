@@ -1,6 +1,7 @@
 #include "Cushaw.h"
 #include "Global.h"
 #include "EntityLayer.h"
+using namespace map;
 Cushaw::Cushaw(Point position, int row, int col)
 {
 	this->setRow(row);
@@ -21,7 +22,29 @@ Cushaw::Cushaw(Point position, int row, int col)
 	//添加到已创建植物容器，其他行为操作都在此处
 	readyPlants.push_back(this);
 }
-
+void Cushaw::work()
+{
+	if (isProtecting)
+	{
+		return;
+	}
+	isProtecting = true;
+	std::cout << "南瓜已经开始保护植物" << std::endl;
+	PlantStatus* plantstatus = find(this->getRow(), this->getCol());
+	if (plantstatus != NULL)
+	{
+		for (int i=0;i< plantstatus->plantVector.size();i++)
+		{
+			Plants* x = plantstatus->plantVector.at(i);
+			if (strcmp(typeid(*x).name(),"class Cushaw") == 0)
+			{
+				plantstatus->plantVector.erase(plantstatus->plantVector.begin() + i);
+				plantstatus->plantVector.insert(plantstatus->plantVector.begin(),this);
+				break;
+			}
+		}
+	}
+}
 void Cushaw::Attacked()
 {
 	CCActionInterval * tintto1 = CCTintTo::create(0.2, 255, 0, 0);

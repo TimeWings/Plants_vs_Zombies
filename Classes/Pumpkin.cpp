@@ -54,7 +54,6 @@ void Pumpkin::CheckZombies()
 		{
 			this->isJumping = true;
 			JumpTo(readyZombies.at(i));
-			readyZombies.erase(readyZombies.begin() + i);
 			break;
 		}
 		this->isChecking = false;
@@ -64,14 +63,6 @@ void Pumpkin::CheckZombies()
 //践踏
 void Pumpkin::JumpTo(Zombie* zombie)
 {
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
 	//停用自身动画
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(this->getImg());
 	//移动到僵尸上方，自身放大
@@ -121,6 +112,15 @@ void Pumpkin::press(Node * pSender, Zombie* zombie)
 
 void Pumpkin::Die()
 {
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
+	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(this->getImg());
 	//延时之后清除倭瓜
 	CCDelayTime* delayTime = CCDelayTime::create(0.5);
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Pumpkin::clear, this));
@@ -149,6 +149,14 @@ void Pumpkin::Attacked()
 
 void Pumpkin::clearZombie(Node * pSender, Zombie* zombie)
 {
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		if (readyZombies.at(i) == zombie)
+		{
+			readyZombies.erase(readyZombies.begin() + i);
+			break;
+		}
+	}
 	zombie->getImg()->removeFromParent();
 	//倭瓜也死掉
 	//清除倭瓜

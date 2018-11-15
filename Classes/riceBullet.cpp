@@ -164,7 +164,7 @@ void riceBullet::clearOil(Node * pSender,Zombie* zombie)
 	//½©Ê¬»Ö¸´ÐÐ¶¯
 	zombie->getScheduler()->setTimeScale(1);
 	//pSender->removeAllChildrenWithCleanup(true);
-	//pSender->removeFromParent();
+	pSender->removeFromParent();
 	
 }
 
