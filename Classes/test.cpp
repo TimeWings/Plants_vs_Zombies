@@ -69,7 +69,9 @@ test::test()
 	//new Loading();
 	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
 	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
+	
 	CardBank::getInstance()->show();
+	/*
 	SelectCardBG::getInstance()->show();
 	GameStartButton::addListener();
 	GameStartButton::enable();
@@ -143,15 +145,15 @@ test::test()
 	startY -= offsetY;
 	auto unSelectCard29 = new UnSelectCard<Magnet>(Point(startX += offsetX, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);
-	
+	*/
 
-	//GameStart = true;
+	GameStart = true;
 	drawRect();
 	
-	sunCnt.first = 1000;
+	sunCnt.first = 9999;
 	CardBank::updateSunLabel();
 	auto s = Director::getInstance()->getWinSize();
-	/*
+	
 	new Card<IceShooter>(Point(20, 300));
 	new Card<Mushroom>(Point(40, 300));
 	new Card<PeaShooter>(Point(60, 300));
@@ -199,7 +201,7 @@ test::test()
 	new Card<WhiteJannu>(Point(40, 60));
 	new Card<Thunder>(Point(60, 60));
 	new Card<WaterShooter>(Point(80, 60));
-	*/
+	
 }
 void test::drawRect()
 {

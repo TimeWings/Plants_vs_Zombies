@@ -81,7 +81,7 @@ public:
 		//sprite->setVisible(false);
 
 		plantsTypeName = className;
-		//addListener();
+		addListener();
 		setCost();
 		auto sunLabel = Label::createWithTTF(to_string(cost), "Font\\TianShiYanTi.ttf", 5);
 		sunLabel->setPosition(14, 5.5f);
