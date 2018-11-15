@@ -284,6 +284,12 @@
     <ClCompile Include="..\Classes\WaterBullet.cpp">
       <Filter>src\Entity\Bullets</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CardEntity.cpp">
+      <Filter>src\Entity\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CardBank.cpp">
+      <Filter>src\Entity\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -556,6 +562,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\WaterBullet.h">
       <Filter>src\Entity\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CardBank.h">
+      <Filter>src\Entity\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
