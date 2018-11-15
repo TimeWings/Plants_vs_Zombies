@@ -37,7 +37,7 @@ void Chomper::work()
 			auto sp_plant = this->getImg();
 			if (zombie->getRow() == this->getRow() && sp_zombie->boundingBox().intersectsRect(sp_plant->getBoundingBox())&& sp_zombie->getPositionX()> sp_plant->getPositionX())
 			{
-				if (strcmp(typeid(*zombie).name(), "class Zomboni") == 0)
+				if (strcmp(typeid(*zombie).name(), "class Zomboni") == 0|| strcmp(typeid(*zombie).name(), "class Gargantuar") == 0)
 				{
 					continue;
 				}
