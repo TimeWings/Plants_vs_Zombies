@@ -17,36 +17,8 @@ Button* GameStartButton::create(Point position)
 	button->setScale(2.0f);
 	button->setTitleText("GameStart");
 	button->setTitleFontSize(4.0f);
-	button->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
-	{
-		switch (type)
-		{
-		case ui::Widget::TouchEventType::BEGAN:
-			break;
-		case ui::Widget::TouchEventType::ENDED:
-			std::cout << "GameStart Button Clicked" << std::endl;
-			GameStart = true;
-			for (int i = 0; i < unSelectingCardsEntity.size(); i++)
-			{
-				unSelectingCardsEntity[i]->getImg()->setVisible(false);
-			}
-			for (int i = 0; i < selectingCardsEntity.size(); i++)
-			{
-				selectingCardsEntity[i]->getImg()->setVisible(false);
-			}
-			for (int i = 0; i < readyCards.size(); i++)
-			{
-				readyCards[i]->getImg()->setVisible(true);
-				readyCards[i]->addListener();
-			}
-			EntityLayer::getInstance()->removeChild(button);
-			SelectCardBG::getInstance()->hide();
-			break;
-		default:
-			break;
-		}
-	});
-	EntityLayer::getInstance()->addChild(button);
+	
+	EntityLayer::getInstance()->addChild(button, 10);
 	return button;
 }
 
@@ -70,4 +42,37 @@ void GameStartButton::disable()
 void GameStartButton::clear()
 {
 	getInstance()->removeFromParent();
+}
+
+void GameStartButton::addListener()
+{
+	getInstance()->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
+	{
+		switch (type)
+		{
+		case ui::Widget::TouchEventType::BEGAN:
+			break;
+		case ui::Widget::TouchEventType::ENDED:
+			std::cout << "GameStart Button Clicked" << std::endl;
+			GameStart = true;
+			for (int i = 0; i < unSelectingCardsEntity.size(); i++)
+			{
+				unSelectingCardsEntity[i]->getImg()->setVisible(false);
+			}
+			for (int i = 0; i < selectingCardsEntity.size(); i++)
+			{
+				selectingCardsEntity[i]->getImg()->setVisible(false);
+			}
+			for (int i = 0; i < readyCards.size(); i++)
+			{
+				readyCards[i]->getImg()->setVisible(true);
+				readyCards[i]->addListener();
+			}
+			disable();
+			SelectCardBG::getInstance()->hide();
+			break;
+		default:
+			break;
+		}
+	});
 }

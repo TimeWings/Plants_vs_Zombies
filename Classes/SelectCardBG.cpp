@@ -13,7 +13,7 @@ SelectCardBG::SelectCardBG()
 	bg->setAnchorPoint(Point(0,0));
 	bg->setPosition(8, 25);
 	bg->setScale(2.0f);
-	layer->addChild(bg);
+	layer->addChild(bg, 5);
 	setImg(bg);
 }
 

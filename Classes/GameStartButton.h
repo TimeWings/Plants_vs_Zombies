@@ -11,6 +11,7 @@ class GameStartButton
 public:
 	GameStartButton();
 	~GameStartButton();
+	static void addListener();
 	static void enable();
 	static void disable();
 	static void clear();

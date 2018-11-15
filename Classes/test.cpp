@@ -71,6 +71,7 @@ test::test()
 	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
 	CardBank::getInstance()->show();
 	SelectCardBG::getInstance()->show();
+	GameStartButton::addListener();
 	GameStartButton::enable();
 	float startX = 5.0f;
 	float startY = 230.0f;
