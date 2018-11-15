@@ -73,9 +73,12 @@ void WhiteJannu::creatSprite()
 			allframe.pushBack(frame);
 		}
 		Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
-		sp->setPosition(Point(x->getImg()->getBoundingBox().size.width * 2, x->getImg()->getBoundingBox().size.height * 2));
-		//sp->setPosition(x->getImg()->getPosition());
-		sp->setScale(6);
+
+		sp->setPosition(Point(x->getImg()->getContentSize().width / 2, x->getImg()->getContentSize().height / 2));
+
+		sp->setScaleX(x->getImg()->getContentSize().width / sp->getContentSize().width);
+		sp->setScaleY(x->getImg()->getContentSize().height / sp->getContentSize().height);
+
 		x->getImg()->addChild(sp);
 		//bl->addChild(sp, x->getRow() * 3 - 3);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
@@ -98,9 +101,9 @@ void WhiteJannu::creatSprite()
 			allframe1.pushBack(frame1);
 		}
 		Animation* an1 = Animation::createWithSpriteFrames(allframe1, 0.1);
-		sp1->setPosition(Point(x->getImg()->getBoundingBox().size.width * 2, x->getImg()->getBoundingBox().size.height * 2));
-		//sp1->setPosition(x->getImg()->getPosition());
-		sp1->setScale(6);
+		sp1->setPosition(Point(x->getImg()->getContentSize().width / 2, x->getImg()->getContentSize().height / 2));
+		sp1->setScaleX(x->getImg()->getContentSize().width / sp1->getContentSize().width);
+		sp1->setScaleY(x->getImg()->getContentSize().height / sp1->getContentSize().height);
 		x->getImg()->addChild(sp1);
 		//bl->addChild(sp1, x->getRow() * 3 - 3);
 		auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
