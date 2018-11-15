@@ -11,6 +11,8 @@ private:
 	long long _WorkInterval; //工作间隔
 	int _row;
 	int _col;
+	//植物的buff数组
+	std::vector<int> buff;
 public:
 	Plants(); //构造函数
 	int getHp(); 
@@ -27,6 +29,7 @@ public:
 	void setNewBirthTime();
 	//把精灵直接放到图层上
 	void addLayer(Node* entity);
+	std::vector<int>*getbuff();
 	virtual void work() = 0; //工作
 	virtual bool isWorking() = 0;//是否能工作(僵尸出来之后或者土豆雷出生之后)
 	//播放死亡动画&清理内存

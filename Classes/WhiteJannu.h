@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "PeaShooter.h"
-#include "Zombie.h"
+#include "Plants.h"
 USING_NS_CC;
 class WhiteJannu : public PeaShooter
 {
@@ -11,5 +11,5 @@ public:
 	virtual void work();
 	void Effect(Node * pSender);
 	void creatSprite();
-	void cleanBuff(Node * pSender, Zombie* zombie);
+	void cleanBuff(Node * pSender, Plants* plant);
 };

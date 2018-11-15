@@ -12,7 +12,7 @@
 #define DrivingOut 2 //驱赶
 #define Stick 3 //针刺
 #define Oil 4 //针刺
-#define AttackToZero 5 //植物无敌
+#define Invincible 5 //植物无敌
 
 
 USING_NS_CC;

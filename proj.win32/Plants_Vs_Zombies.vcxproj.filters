@@ -278,6 +278,12 @@
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\BombZombie.cpp" />
+    <ClCompile Include="..\Classes\WaterShooter.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\WaterBullet.cpp">
+      <Filter>src\Entity\Bullets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -544,6 +550,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\WhiteJannu.h">
       <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WaterShooter.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WaterBullet.h">
+      <Filter>src\Entity\Bullets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

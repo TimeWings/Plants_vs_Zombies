@@ -56,12 +56,13 @@ void iceCabbage::creatSprite()
 		auto frame = sprite->getSpriteFrame();
 		allframe.pushBack(frame);
 	}
+	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("IceCabbage\\Boom1.png"));
 	sp->retain();
 	sp->setScale(1.5);
 	sp->setPosition(Point(this->position.x, this->position.y));
 	addLayer(sp);
-	Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
+	
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clear, this));
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	sp->runAction(sequence);
