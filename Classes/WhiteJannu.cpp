@@ -57,6 +57,7 @@ void WhiteJannu::Effect(Node * pSender)
 
 void WhiteJannu::creatSprite()
 {
+	EntityLayer* bl = EntityLayer::getInstance();
 	//遍历植物加上血和无敌buff
 	for (auto x : readyPlants)
 	{
@@ -72,14 +73,20 @@ void WhiteJannu::creatSprite()
 			allframe.pushBack(frame);
 		}
 		Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
-		sp->setPosition(x->getImg()->getPosition());
-		sp->setScale(1.5);
-		addLayer(sp);
+		sp->setPosition(Point(x->getImg()->getBoundingBox().size.width * 2, x->getImg()->getBoundingBox().size.height * 2));
+		//sp->setPosition(x->getImg()->getPosition());
+		sp->setScale(6);
+		x->getImg()->addChild(sp);
+		//bl->addChild(sp, x->getRow() * 3 - 3);
 		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 		sp->runAction(sequence);
 		//加血5点
-		x->setHp(x->getHp() + 5);
+		if (x->getHp() < 20)
+		{
+			x->setHp(x->getHp() + 5);
+		}
+		
 		//护盾
 		auto sp1 = Sprite::createWithTexture(TextureCache::getInstance()->addImage("JannuDarkruku\\defense\\1.png"));
 		Vector<SpriteFrame*> allframe1;
@@ -91,35 +98,28 @@ void WhiteJannu::creatSprite()
 			allframe1.pushBack(frame1);
 		}
 		Animation* an1 = Animation::createWithSpriteFrames(allframe1, 0.1);
-		sp1->setPosition(x->getImg()->getPosition());
-		sp1->setScale(1.5);
-		addLayer(sp1);
+		sp1->setPosition(Point(x->getImg()->getBoundingBox().size.width * 2, x->getImg()->getBoundingBox().size.height * 2));
+		//sp1->setPosition(x->getImg()->getPosition());
+		sp1->setScale(6);
+		x->getImg()->addChild(sp1);
+		//bl->addChild(sp1, x->getRow() * 3 - 3);
 		auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
-		Sequence *sequence1 = Sequence::create(Animate::create(an1), CCDelayTime::create(1.3), actionDone1, NULL);
+		auto actionDone2 = CallFuncN::create(CC_CALLBACK_1(WhiteJannu::cleanBuff, this, x));
+		Sequence *sequence1 = Sequence::create(Animate::create(an1), CCDelayTime::create(1.3), actionDone1, actionDone2, NULL);
 		sp1->runAction(sequence1);
-		//对僵尸加buff
-		for (auto y : readyZombies)
-		{
-			y->getDebuff()->push_back(AttackToZero);
-			auto actionDone2 = CallFuncN::create(CC_CALLBACK_1(WhiteJannu::cleanBuff, this, y));
-			Sequence *sequence2 = Sequence::create(CCDelayTime::create(3), actionDone2, NULL);
-			y->getImg()->runAction(sequence2);
-		}
+		//加buff
+		x->getbuff()->push_back(Invincible);
 	}
-	//完成加血加buff
-
-	//延时清除buff，血是永久加的
 }
 
-void WhiteJannu::cleanBuff(Node * pSender,Zombie* zombie)
+void WhiteJannu::cleanBuff(Node * pSender,Plants* plant)
 {
-	std::cout << "11111" << std::endl;
 	//移除debuff
-	for (int i = 0; i < zombie->getDebuff()->size(); i++)
+	for (int i = 0; i < plant->getbuff()->size(); i++)
 	{
-		if (zombie->getDebuff()->at(i) == AttackToZero)
+		if (plant->getbuff()->at(i) == Invincible)
 		{
-			zombie->getDebuff()->erase(zombie->getDebuff()->begin() + i);
+			plant->getbuff()->erase(plant->getbuff()->begin() + i);
 			break;
 		}
 	}

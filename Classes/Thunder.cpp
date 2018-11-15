@@ -127,10 +127,9 @@ void Thunder::createThunder(Point startPoint, Point endPoint, Zombie* zombie)
 	auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("Thunder\\thunder1.png"));
 	sp->setPosition(
 		Point(
-		(endPoint.x - startPoint.x) / 2 + (startPoint.x < endPoint.x ? startPoint.x : endPoint.x),
+		fabs(endPoint.x - startPoint.x) / 2 + (startPoint.x < endPoint.x ? startPoint.x : endPoint.x),
 		fabs(startPoint.y - endPoint.y) / 2 + (startPoint.y < endPoint.y ? startPoint.y : endPoint.y)
 		));
-	std::cout << (endPoint.x - startPoint.x) / 2 + (startPoint.x < endPoint.x ? startPoint.x : endPoint.x) << " " << fabs(startPoint.y - endPoint.y) / 2 + (startPoint.y < endPoint.y ? startPoint.y : endPoint.y) << std::endl;
 	sp->retain();
 
 	sp->setScaleX(sqrt(pow(startPoint.x - endPoint.x, 2) + pow(startPoint.y - endPoint.y, 2)) / sp->getContentSize().width );
