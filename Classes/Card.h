@@ -17,8 +17,9 @@ class Card :public CardEntity
 public:
 	Card();
 	~Card();
-	string plantsTypeName;
+	//string plantsTypeName;
 	bool isFollowingMouse = false;
+	bool canClick = true;
 	//int cost;
 	//Sprite* plantSprite;
 	Sprite* plantFollowSprite;
@@ -78,9 +79,13 @@ public:
 		sprite->addChild(plantSprite);
 		//sprite->setVisible(false);
 
-		plantsTypeName = typeid(T).name();
+		plantsTypeName = className;
 		addListener();
-		
+		setCost();
+		auto sunLabel = Label::createWithTTF(to_string(cost), "Font\\TianShiYanTi.ttf", 5);
+		sunLabel->setPosition(14, 5.5f);
+		sunLabel->setTextColor(Color4B::BLACK);
+		sprite->addChild(sunLabel, 2);
 	}
 	void addListener()
 	{
@@ -88,7 +93,11 @@ public:
 		listener1 = EventListenerMouse::create();
 		listener->onTouchBegan = [=](Touch* touch, Event *event)
 		{
-			if (GameStart == false)
+			if (sunCnt.first >= cost)
+				canClick = true;
+			else
+				canClick = false;
+			if (GameStart == false || canClick == false)
 				return false;
 			if (!isFollowingMouse)
 			{
@@ -273,6 +282,8 @@ public:
 						T* plant = PutPlant<T>(Rank2Point(row, col - 1), row, col - 1);
 						ps->plantVector.push_back(plant);
 						ps1->plantVector.push_back(plant);
+						sunCnt.first -= cost;
+						CardBank::updateSunLabel();
 						return;
 					}
 					PlantStatus* ps2 = find(row, col + 1);
@@ -284,6 +295,8 @@ public:
 						T* plant = PutPlant<T>(Rank2Point(row, col), row, col);
 						ps->plantVector.push_back(plant);
 						ps2->plantVector.push_back(plant);
+						sunCnt.first -= cost;
+						CardBank::updateSunLabel();
 						return;
 					}
 					std::cout << "只有一个投手,不可放置" << std::endl;
@@ -299,6 +312,8 @@ public:
 			{
 				std::cout << "种植成功" << std::endl;
 				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+				sunCnt.first -= cost;
+				CardBank::updateSunLabel();
 			}
 			//std::cout << row << "----" <<col<< std::endl;
 			//if ((strcmp(typeid(T).name(), "class GraveBuster") == 0) && !ps->Enabled)
