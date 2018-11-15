@@ -179,6 +179,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\IceBullet.cpp" />
     <ClCompile Include="..\Classes\iceCabbage.cpp" />
     <ClCompile Include="..\Classes\IceShooter.cpp" />
+    <ClCompile Include="..\Classes\ImpZombie.cpp" />
     <ClCompile Include="..\Classes\JannuDaruku.cpp" />
     <ClCompile Include="..\Classes\Lancer.cpp" />
     <ClCompile Include="..\Classes\LancerGun.cpp" />
@@ -267,6 +268,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\IceBullet.h" />
     <ClInclude Include="..\Classes\iceCabbage.h" />
     <ClInclude Include="..\Classes\IceShooter.h" />
+    <ClInclude Include="..\Classes\ImpZombie.h" />
     <ClInclude Include="..\Classes\JannuDaruku.h" />
     <ClInclude Include="..\Classes\Lancer.h" />
     <ClInclude Include="..\Classes\LancerGun.h" />

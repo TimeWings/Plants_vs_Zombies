@@ -287,6 +287,9 @@
     <ClCompile Include="..\Classes\Gargantuar.cpp">
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ImpZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -562,6 +565,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\WaterBullet.h">
       <Filter>src\Entity\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ImpZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

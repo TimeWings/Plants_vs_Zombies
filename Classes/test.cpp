@@ -58,6 +58,7 @@
 #include "BucketZombie.h"
 #include "BombZombie.h"
 #include "Gargantuar.h"
+#include "ImpZombie.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -195,6 +196,7 @@ test::test()
 	new Card<Thunder>(Point(60, 60));
 	new Card<WaterShooter>(Point(80, 60));
 	new ZombieCard<Gargantuar>(Point(100, 60));
+	new ZombieCard<ImpZombie>(Point(20, 20));
 }
 void test::drawRect()
 {
