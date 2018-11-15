@@ -4,28 +4,35 @@
 #include "Global.h"
 using namespace cocos2d;
 using namespace map;
-
-Sprite* SelectCardBG::bg;
+SelectCardBG* SelectCardBG::instance = nullptr;
 
 SelectCardBG::SelectCardBG()
 {
 	auto layer = EntityLayer::getInstance();
-	bg = Sprite::create("UI\\SelectCard_BG.png");
+	auto bg = Sprite::create("UI\\SelectCard_BG.png");
 	bg->setAnchorPoint(Point(0,0));
-	bg->setPosition(8, 5);
-	bg->setScale(1.9f);
-
-	auto bg2 = Sprite::create("UI\\CardBank.png");
-	bg2->setAnchorPoint(Point(0, 0));
-	bg2->setPosition(8, 235);
-	bg2->setScale(2.2f);
-
+	bg->setPosition(8, 25);
+	bg->setScale(2.0f);
 	layer->addChild(bg);
-	layer->addChild(bg2);
-
+	setImg(bg);
 }
 
 
 SelectCardBG::~SelectCardBG()
 {
+}
+
+void SelectCardBG::show()
+{
+	getImg()->setVisible(true);
+}
+
+void SelectCardBG::hide()
+{
+	getImg()->setVisible(false);
+}
+
+void SelectCardBG::clear()
+{
+	getImg()->removeFromParent();
 }

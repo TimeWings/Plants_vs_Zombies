@@ -69,7 +69,7 @@ public:
 		addListener();
 		setCost();
 		auto sunLabel = Label::createWithTTF(to_string(cost), "Font\\TianShiYanTi.ttf", 5);
-		sunLabel->setPosition(14, 5);
+		sunLabel->setPosition(14, 5.5f);
 		sunLabel->setTextColor(Color4B::BLACK);
 		sprite->addChild(sunLabel,2);
 	}
@@ -92,17 +92,17 @@ public:
 			{
 				//cout << (int)this->plantsEnum << endl;
 				cout << isSelecting << endl;
-				if (isSelecting == false && selectingCardsEntity.size() < 6)
+				if (isSelecting == false && selectingCardsEntity.size() < 7)
 				{
 					selectingCards.push_back(plantsEnum);
 					//auto entity = new SelectCard<T>(position, plantsEnum);
-					auto moveTo = MoveTo::create(0.3f, Point(38 + selectingCards.size() * 29, 258));
+					auto moveTo = MoveTo::create(0.3f, Point(37 + selectingCards.size() * 29, 290));
 					getImg()->stopAllActions();
 					getImg()->runAction(moveTo);
 					//entity->plantSprite->runAction(moveTo);
 					selectingCardsEntity.push_back(this);
 					isSelecting = true;
-					auto card = new Card<T>(Point(38 + selectingCards.size() * 29, 258));
+					auto card = new Card<T>(Point(37 + selectingCards.size() * 29, 290));
 					readyCards.push_back(card);
 				}
 				else
@@ -125,8 +125,8 @@ public:
 					}
 					for (int i = 0; i < selectingCardsEntity.size(); i++)
 					{
-						auto moveTo = MoveTo::create(0.2f, Point(38 + (i + 1) * 29, 258));
-						readyCards[i]->getImg()->setPosition(Point(38 + (i + 1) * 29, 258));
+						auto moveTo = MoveTo::create(0.2f, Point(37 + (i + 1) * 29, 290));
+						readyCards[i]->getImg()->setPosition(Point(37 + (i + 1) * 29, 290));
 						selectingCardsEntity[i]->getImg()->stopAllActions();
 						selectingCardsEntity[i]->getImg()->runAction(moveTo);
 						//selectingCardsEntity[i]->getImg()->setPosition((i+1) * 20, 150);

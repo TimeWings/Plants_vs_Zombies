@@ -10,7 +10,7 @@ std::vector<CardEntity*> unSelectingCardsEntity;
 std::vector<CardEntity*> readyCards;
 namespace map
 {
-	std::pair<int, std::pair<double, double> >sunCnt(0, std::make_pair(27, 265));
+	std::pair<int, std::pair<double, double> >sunCnt(0, std::make_pair(27, 295));
 	Label* sunLabel;
 	std::pair<float, float >BlockSize(38.0f, 46.0f);
 	std::pair<float, float >Deviation(95, 35);
@@ -97,10 +97,5 @@ namespace map
 		return rank;
 	}
 
-	void updateSunLabel()
-	{
-		sunLabel->setString(std::to_string(sunCnt.first));
-		std::cout <<"sun:"<< sunCnt.first << std::endl;
-	}
 }
 

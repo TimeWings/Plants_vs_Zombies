@@ -39,7 +39,5 @@ namespace map
 	extern Point Rank2Point(int row, int col);
 	extern std::pair<int, int>Point2Rank(Point point);
 	extern bool GameStart;
-	extern Label* sunLabel;
-	extern void updateSunLabel();
 }
 

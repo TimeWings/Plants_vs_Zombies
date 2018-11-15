@@ -25,7 +25,8 @@ void CardEntity::setCost()
 	{
 		cost = 125;
 	}
-	else if (plantsTypeName == "Doom_shroom" || plantsTypeName == "Chomper" || plantsTypeName == "Weeds" || plantsTypeName == "HeroLucker")
+	else if (plantsTypeName == "Doom_shroom" || plantsTypeName == "Chomper" || plantsTypeName == "Weeds" || plantsTypeName == "HeroLucker"
+		|| plantsTypeName == "iceCabbage")
 	{
 		cost = 150;
 	}
