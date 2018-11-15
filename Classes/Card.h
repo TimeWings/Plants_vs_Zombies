@@ -221,11 +221,13 @@ public:
 					std::cout << "可以种植南瓜" << std::endl;
 					ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
 					//ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 				else if (strcmp(typeid(T).name(), "class Shovel") == 0)
 				{
 					std::cout << "铲子种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 				else if ((strcmp(typeid(T).name(), "class Paul") == 0))
 				{
@@ -266,6 +268,7 @@ public:
 				{
 					std::cout << "种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 				else if (ps->plantVector.size() != 0)
 				{
@@ -276,6 +279,7 @@ public:
 				{
 					std::cout << "种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 				std::cout << "nmsl" << std::endl;
 			}
@@ -285,37 +289,40 @@ public:
 				{
 					std::cout << "铲子种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
-					return;
+					return false;
 				}
 				if (find1(ps, "class WaterShooter"))
 				{
 					std::cout << "已经有水生射手，不能种植" << std::endl;
-					return;
+					return false;
 				}
 				if (find1(ps, "class Lotus") && (strcmp(typeid(T).name(), "class WaterShooter") == 0))
 				{
 					std::cout << "有睡莲，不能种植水生射手" << std::endl;
-					return;
+					return false;
 				}
 				if ((strcmp(typeid(T).name(), "class WaterShooter") == 0) && ps->plantVector.size() == 0 )
 				{
 					std::cout << "水生射手,种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
-					return;
+					return false;
 				}
 				if ((strcmp(typeid(T).name(), "class Lotus") != 0) && ps->plantVector.size() == 0)
 				{
 					std::cout << "不是睡莲,种植不成功了" << std::endl;
+					return false;
 				}
 				else if ((strcmp(typeid(T).name(), "class Lotus") == 0) && ps->plantVector.size() == 0)
 				{
 					std::cout << "是睡莲,种植成功" << std::endl;
 					ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 				else if ((strcmp(typeid(T).name(), "class Cushaw") == 0) && ps->plantVector.size() != 0 && !find1(ps, "class Cushaw"))
 				{
 					std::cout << "可以种植南瓜" << std::endl;
 					ps->plantVector.insert(ps->plantVector.begin(), PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 				else if ((strcmp(typeid(T).name(), "class Paul") == 0))
 				{
@@ -356,6 +363,7 @@ public:
 				{
 					std::cout << "在南瓜上种植成功" << std::endl;
 					ps->plantVector.insert(ps->plantVector.end()-1, PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 				else if (ps->plantVector.size() > 1)
 				{
@@ -366,6 +374,7 @@ public:
 				{
 					std::cout << "种植成功" << std::endl;
 					ps->plantVector.insert(ps->plantVector.end()-1, PutPlant<T>(Rank2Point(row, col), row, col));
+					return true;
 				}
 
 			}
