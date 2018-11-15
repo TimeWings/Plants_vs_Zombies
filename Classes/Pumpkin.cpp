@@ -54,7 +54,6 @@ void Pumpkin::CheckZombies()
 		{
 			this->isJumping = true;
 			JumpTo(readyZombies.at(i));
-			readyZombies.erase(readyZombies.begin() + i);
 			break;
 		}
 		this->isChecking = false;
@@ -150,6 +149,14 @@ void Pumpkin::Attacked()
 
 void Pumpkin::clearZombie(Node * pSender, Zombie* zombie)
 {
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		if (readyZombies.at(i) == zombie)
+		{
+			readyZombies.erase(readyZombies.begin() + i);
+			break;
+		}
+	}
 	zombie->getImg()->removeFromParent();
 	//Ÿ¡πœ“≤À¿µÙ
 	//«Â≥˝Ÿ¡πœ
