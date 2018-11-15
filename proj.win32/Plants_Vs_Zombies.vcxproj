@@ -156,6 +156,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Bucket.cpp" />
     <ClCompile Include="..\Classes\BucketZombie.cpp" />
     <ClCompile Include="..\Classes\Bullet.cpp" />
+    <ClCompile Include="..\Classes\CardBank.cpp" />
+    <ClCompile Include="..\Classes\CardEntity.cpp" />
     <ClCompile Include="..\Classes\Chomper.cpp" />
     <ClCompile Include="..\Classes\Clover.cpp" />
     <ClCompile Include="..\Classes\Cushaw.cpp" />
@@ -244,6 +246,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\BucketZombie.h" />
     <ClInclude Include="..\Classes\Bullet.h" />
     <ClInclude Include="..\Classes\Card.h" />
+    <ClInclude Include="..\Classes\CardBank.h" />
     <ClInclude Include="..\Classes\CardEntity.h" />
     <ClInclude Include="..\Classes\Chomper.h" />
     <ClInclude Include="..\Classes\Clover.h" />

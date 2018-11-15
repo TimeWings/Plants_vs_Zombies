@@ -9,8 +9,22 @@ using namespace ui;
 class GameStartButton
 {
 public:
-	GameStartButton(Point);
+	GameStartButton();
 	~GameStartButton();
-	Button* gameStartButton;
+	static void addListener();
+	static void enable();
+	static void disable();
+	static void clear();
+
+	static Button* create(Point);
+	static Button* getInstance()
+	{
+		if (instance == nullptr)
+			instance = create(Point(120, 35));
+		return instance;
+	}
+
+private:
+	static Button* instance;
 };
 
