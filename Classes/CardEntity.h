@@ -6,9 +6,10 @@
 class CardEntity: public Entity
 {
 public:
-	int cost;
+	int cost = 0;
 	bool isSelecting = false;
 	PlantsEnum plantsEnum = PlantsEnum::IceShooter;
+	std::string plantsTypeName;
 	Sprite* plantSprite;
 	EventListenerTouchOneByOne* listener;
 	EventListenerMouse* listener1;
@@ -32,4 +33,5 @@ public:
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener1);
 
 	}
+	virtual void setCost();
 };

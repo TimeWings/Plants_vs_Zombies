@@ -3,16 +3,50 @@
 #include "EntityLayer.h"
 #include "SelectCardBG.h"
 using namespace map;
+Button* GameStartButton::instance = nullptr;
 
-
-GameStartButton::GameStartButton(Point position)
+GameStartButton::GameStartButton()
 {
-	gameStartButton = Button::create("UI\\SelectCardButton.png", "UI\\SelectCardButton_Light.png", "UI\\SelectCardButton.png");
-	gameStartButton->setPosition(position);
-	gameStartButton->setScale(2.0f);
-	gameStartButton->setTitleText("GameStart");
-	gameStartButton->setTitleFontSize(4.0f);
-	gameStartButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
+
+}
+
+Button* GameStartButton::create(Point position)
+{
+	auto button = Button::create("UI\\SelectCardButton.png", "UI\\SelectCardButton_Light.png", "UI\\SelectCardButton.png");
+	button->setPosition(position);
+	button->setScale(2.0f);
+	button->setTitleText("GameStart");
+	button->setTitleFontSize(4.0f);
+	
+	EntityLayer::getInstance()->addChild(button, 10);
+	return button;
+}
+
+
+GameStartButton::~GameStartButton()
+{
+}
+
+void GameStartButton::enable()
+{
+	getInstance()->setEnabled(true);
+	getInstance()->setVisible(true);
+}
+
+void GameStartButton::disable()
+{
+	getInstance()->setEnabled(false);
+	getInstance()->setVisible(false);
+}
+
+void GameStartButton::clear()
+{
+	getInstance()->removeFromParent();
+}
+
+void GameStartButton::addListener()
+{
+	getInstance()->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
 	{
 		switch (type)
 		{
@@ -34,17 +68,11 @@ GameStartButton::GameStartButton(Point position)
 				readyCards[i]->getImg()->setVisible(true);
 				readyCards[i]->addListener();
 			}
-			EntityLayer::getInstance()->removeChild(gameStartButton);
-			EntityLayer::getInstance()->removeChild(SelectCardBG::bg);
+			disable();
+			SelectCardBG::getInstance()->hide();
 			break;
 		default:
 			break;
 		}
 	});
-	EntityLayer::getInstance()->addChild(gameStartButton);
-}
-
-
-GameStartButton::~GameStartButton()
-{
 }

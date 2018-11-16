@@ -155,6 +155,8 @@ void Gargantuar::clearPlant(Node* pSender, Plants* plant)
 
 void Gargantuar::LostHead()
 {
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Gargantuar::Die, this));
+	this->getImg()->runAction(actionDone);
 }
 
 void Gargantuar::Attacked()

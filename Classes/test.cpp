@@ -55,10 +55,12 @@
 #include "Title.h"
 #include "FootBallZombie.h"
 #include "SelectCardBG.h"
+#include "CardBank.h"
 #include "Thunder.h"
 #include "BucketZombie.h"
 #include "BombZombie.h"
 #include "Gargantuar.h"
+#include "ImpZombie.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -70,10 +72,14 @@ test::test()
 	//new Loading();
 	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
 	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
+	
+	CardBank::getInstance()->show();
 	/*
-	new SelectCardBG();
-	float startX = -1.0f;
-	float startY = 200.0f;
+	SelectCardBG::getInstance()->show();
+	GameStartButton::addListener();
+	GameStartButton::enable();
+	float startX = 5.0f;
+	float startY = 230.0f;
 	float offsetX = 28.0f;
 	float offsetY = 40.0f;
 	auto unSelectCard1 = new UnSelectCard<PeaShooter>(Point(startX += offsetX, startY), PlantsEnum::PeaShooter);
@@ -90,7 +96,7 @@ test::test()
 	unSelectingCardsEntity.push_back(unSelectCard6);
 	auto unSelectCard7 = new UnSelectCard<NutPlus>(Point(startX += offsetX, startY), PlantsEnum::NutPlus);
 	unSelectingCardsEntity.push_back(unSelectCard7);
-	startX = 0;
+	startX = 5;
 	startY -= offsetY;
 	auto unSelectCard8 = new UnSelectCard<Doom_shroom>(Point(startX += offsetX, startY), PlantsEnum::Doom_shroom);
 	unSelectingCardsEntity.push_back(unSelectCard8);
@@ -106,7 +112,7 @@ test::test()
 	unSelectingCardsEntity.push_back(unSelectCard13);
 	auto unSelectCard14 = new UnSelectCard<Cushaw>(Point(startX += offsetX, startY), PlantsEnum::Cushaw);
 	unSelectingCardsEntity.push_back(unSelectCard14);
-	startX = 0;
+	startX = 5;
 	startY -= offsetY;
 	auto unSelectCard15 = new UnSelectCard<Chomper>(Point(startX += offsetX, startY), PlantsEnum::Chomper);
 	unSelectingCardsEntity.push_back(unSelectCard15);
@@ -122,7 +128,7 @@ test::test()
 	unSelectingCardsEntity.push_back(unSelectCard20);
 	auto unSelectCard21 = new UnSelectCard<Shovel>(Point(startX += offsetX, startY), PlantsEnum::Shovel);
 	unSelectingCardsEntity.push_back(unSelectCard21);
-	startX = 0;
+	startX = 5;
 	startY -= offsetY;
 	auto unSelectCard22 = new UnSelectCard<Nut>(Point(startX += offsetX, startY), PlantsEnum::Nut);
 	unSelectingCardsEntity.push_back(unSelectCard22);
@@ -138,16 +144,19 @@ test::test()
 	unSelectingCardsEntity.push_back(unSelectCard27);
 	auto unSelectCard28 = new UnSelectCard<Lantern>(Point(startX += offsetX, startY), PlantsEnum::Lantern);
 	unSelectingCardsEntity.push_back(unSelectCard28);
-	startX = 0;
+	startX = 5;
 	startY -= offsetY;
 	auto unSelectCard29 = new UnSelectCard<Magnet>(Point(startX += offsetX, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);
-
-	new GameStartButton(Point(120, 15));
 	*/
+
 	GameStart = true;
 	drawRect();
+	
+	sunCnt.first = 9999;
+	CardBank::updateSunLabel();
 	auto s = Director::getInstance()->getWinSize();
+	
 	new Card<IceShooter>(Point(20, 300));
 	new Card<Mushroom>(Point(40, 300));
 	new Card<PeaShooter>(Point(60, 300));
@@ -196,6 +205,7 @@ test::test()
 	new Card<Thunder>(Point(60, 60));
 	new Card<WaterShooter>(Point(80, 60));
 	new ZombieCard<Gargantuar>(Point(100, 60));
+	new ZombieCard<ImpZombie>(Point(20, 20));
 	new ZombieCard<MinerZombie>(Point(120, 60));
 	
 }

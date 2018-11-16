@@ -22,14 +22,14 @@ Loading::Loading(Point position, Scene* scene, Title*title)
 	timer->setMidpoint(CCPoint(0, 0));//设置进度开始的位置
 	timer->setBarChangeRate(CCPoint(1, 0));//设置进度所占比例
 	//Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, NULL);
+	scene->addChild(sprite, 999);
 	scene->addChild(timer,1000);
+
 	auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(Loading::clear, this));
 	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Loading::afterload, this,title));
 	Sequence *sequence = Sequence::create(ProgressTo::create(2, 100), actionDone, actionDone1, NULL);
 	timer->runAction(sequence);
-	
-	
-	scene->addChild(sprite,0);
+
 }
 void Loading::afterload(Node*pSender,Title*title)
 {
