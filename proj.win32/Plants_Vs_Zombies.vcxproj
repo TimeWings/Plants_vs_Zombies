@@ -190,6 +190,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Magnet.cpp" />
     <ClCompile Include="..\Classes\Melancholy.cpp" />
     <ClCompile Include="..\Classes\MelancholyBullet.cpp" />
+    <ClCompile Include="..\Classes\MinerCap.cpp" />
+    <ClCompile Include="..\Classes\MinerZombie.cpp" />
     <ClCompile Include="..\Classes\Mushroom.cpp" />
     <ClCompile Include="..\Classes\MushroomBullet.cpp" />
     <ClCompile Include="..\Classes\Newspaper.cpp" />
@@ -278,6 +280,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Magnet.h" />
     <ClInclude Include="..\Classes\Melancholy.h" />
     <ClInclude Include="..\Classes\MelancholyBullet.h" />
+    <ClInclude Include="..\Classes\MinerCap.h" />
+    <ClInclude Include="..\Classes\MinerZombie.h" />
     <ClInclude Include="..\Classes\Mushroom.h" />
     <ClInclude Include="..\Classes\MushroomBullet.h" />
     <ClInclude Include="..\Classes\Newspaper.h" />

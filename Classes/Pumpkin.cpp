@@ -145,6 +145,11 @@ void Pumpkin::Self_Animation()
 
 void Pumpkin::Attacked()
 {
+	Sprite* sp = this->getImg();
+	CCActionInterval * tintto1 = CCTintTo::create(0.2, 255, 0, 0);
+	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
+	Sequence *sequence = Sequence::create(tintto1, tintto2, NULL);
+	sp->runAction(sequence);
 }
 
 void Pumpkin::clearZombie(Node * pSender, Zombie* zombie)

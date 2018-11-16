@@ -1,6 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "Plants.h"
+#include "Zombie.h"
 USING_NS_CC;
 class PotatoMine :public Plants
 {
@@ -21,8 +22,7 @@ public:
 	void Born_Animation(Node *pSender);
 	//被打之后的事件
 	virtual void Attacked();
-	//产生子弹
-	virtual void CreateBullet();
+	void CreateBullet(Zombie* zombie);
 	void afterBornHandle(Node *pSender);
 	void clear(Node *pSender);
 };

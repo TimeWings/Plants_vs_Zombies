@@ -277,7 +277,6 @@
     <ClCompile Include="..\Classes\WhiteJannu.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\BombZombie.cpp" />
     <ClCompile Include="..\Classes\WaterShooter.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
@@ -286,6 +285,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Gargantuar.cpp">
       <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MinerZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BombZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MinerCap.cpp">
+      <Filter>src\Entity\Equip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -562,6 +570,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\WaterBullet.h">
       <Filter>src\Entity\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MinerZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MinerCap.h">
+      <Filter>src\Entity\Equip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

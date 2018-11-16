@@ -33,6 +33,7 @@
 #include "Magnet.h"
 #include "HeroThunder.h"
 #include "Landslock.h"
+#include "MinerZombie.h"
 #include "riceShooter.h"
 #include "HeroLucker.h"
 #include "Paul.h"
@@ -195,6 +196,8 @@ test::test()
 	new Card<Thunder>(Point(60, 60));
 	new Card<WaterShooter>(Point(80, 60));
 	new ZombieCard<Gargantuar>(Point(100, 60));
+	new ZombieCard<MinerZombie>(Point(120, 60));
+	
 }
 void test::drawRect()
 {

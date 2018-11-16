@@ -110,7 +110,7 @@ bool EntityLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_e
 			&& touchPos.y< sun->getPositionY() + sun->getContentSize().height / 2 * sun->getScaleY() && touchPos.y>sun->getPositionY() - sun->getContentSize().height / 2 * sun->getScaleY())
 		{
 			sunCnt.first++;
-			Plants *plant;
+			Plants *plant = NULL;
 			for (int i = 0; i < readyPlants.size(); i++)
 			{
 				if (readyPlants.at(i)->getImg() == x)
@@ -121,7 +121,10 @@ bool EntityLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_e
 			struct timeb t1;
 			ftime(&t1);
 			long long seconds = t1.time * 1000 + t1.millitm;
-			plant->setBirthTime(seconds);
+			if (plant != NULL)
+			{
+				plant->setBirthTime(seconds);
+			}
 			//std::cout << "获得太阳，当前太阳数：" << sunCnt.first << std::endl;
 			Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sun);
 			MoveTo *moveTo = MoveTo::create(2, ccp(sunCnt.second.first, sunCnt.second.second));
@@ -202,6 +205,15 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 			if (ps != nullptr && ps->plantVector.size() > 0) {
 				flag = true;
 				p = ps;
+			}
+		}
+		else if (strcmp(typeid(*zombie).name(), "class MinerZombie") == 0) {
+			if (zombiex <= plantx) {
+				PlantStatus *ps = map::find(zombie_rank.first, zombie_rank.second);
+				if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Tomb") != 0) {
+					flag = true;
+					p = ps;
+				}
 			}
 		}
 		else if (zombiex >= plantx) {

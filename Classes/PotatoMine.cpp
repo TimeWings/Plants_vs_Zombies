@@ -59,7 +59,7 @@ void PotatoMine::work()
 					}
 				}
 				std::cout << "有敌人！爆炸！" << std::endl;
-				CreateBullet();
+				CreateBullet(zombie);
 				Die();
 				break;
 			}
@@ -149,7 +149,7 @@ void PotatoMine::afterBornHandle(Node *pSender)
 }
 
 //产生隐形的子弹
-void PotatoMine::CreateBullet()
+void PotatoMine::CreateBullet(Zombie* zombie)
 {
 	if (this->bornFinish)
 	{
@@ -160,7 +160,17 @@ void PotatoMine::CreateBullet()
 		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("PotatoMine\\Explode1.png"));
 		sp->retain();
 		sp->setScale(0.6);
-		sp->setPosition(Point(position.x + 10, position.y + 20));
+
+		//if (zombie->getImg()->getPositionX() >= this->getImg()->getPositionX())
+		//{
+		//	sp->setPosition(Point(position.x + 10, position.y + 20));
+		//}
+		//else
+		//{
+		//	sp->setPosition(Point(position.x - 10, position.y + 20));
+		//}
+		sp->setPosition(zombie->getImg()->getPosition());
+
 		addLayer(sp);
 		//爆炸动画
 		char str[100] = { 0 };
@@ -182,7 +192,7 @@ void PotatoMine::CreateBullet()
 	std::cout << "产生子弹" << std::endl;
 	Sprite *sp = this->getImg();
 	//产生坐标
-	Point a = ccp(sp->getPositionX()+sp->getContentSize().width/2*sp->getScaleX(), sp->getContentSize().height*sp->getScaleY() / 4 + sp->getPositionY());
+	Point a = zombie->getImg()->getPosition();
 	//只需要new一颗自己的子弹就行
 	Bullet *pb = new PotatoBullet(a,this->getRow());
 }

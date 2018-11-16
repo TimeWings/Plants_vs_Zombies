@@ -56,12 +56,27 @@ void Landslock::driveOut(Zombie* zombie)
 		{
 			if ((zombie->getRow() + 1) <= MapRow)
 			{
-				moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() - BlockSize.second));
+				if (strcmp(typeid(*zombie).name(), "class MinerZombie") == 0)
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() + sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() - BlockSize.second));
+				}
+				else
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() - BlockSize.second));
+				}
 				moveRow = 1;
 			}
 			else
 			{
-				moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() + BlockSize.second));
+				if (strcmp(typeid(*zombie).name(), "class MinerZombie") == 0)
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() + sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() + BlockSize.second));
+				}
+				else
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() + BlockSize.second));
+				}
+				
 				moveRow = -1;
 			}
 			break;
@@ -71,12 +86,26 @@ void Landslock::driveOut(Zombie* zombie)
 		{
 			if ((zombie->getRow() - 1) >= 1)
 			{
-				moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() + BlockSize.second));
+				if (strcmp(typeid(*zombie).name(), "class MinerZombie") == 0)
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() + sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() + BlockSize.second));
+				}
+				else
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() + BlockSize.second));
+				}
 				moveRow = -1;
 			}
 			else
 			{
-				moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() - BlockSize.second));
+				if (strcmp(typeid(*zombie).name(), "class MinerZombie") == 0)
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() + sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() - BlockSize.second));
+				}
+				else
+				{
+					moveTo = MoveTo::create(1, ccp(sp_zb->getPositionX() - sp_zb->getContentSize().width * sp_zb->getScaleX() / 4, sp_zb->getPositionY() - BlockSize.second));
+				}
 				moveRow = 1;
 			}
 			break;
