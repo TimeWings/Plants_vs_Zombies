@@ -1,5 +1,6 @@
 #include "MenuButton.h"
 #include "LevelManager.h"
+#include "FontConfig.h"
 
 Button* MenuButton::instance;
 
@@ -18,9 +19,10 @@ Button* MenuButton::create(Point position)
 	auto button = Button::create("UI\\SelectCardButton.png", "UI\\SelectCardButton_Light.png", "UI\\SelectCardButton.png");
 	button->setPosition(position);
 	button->setScale(2.0f);
-	auto label = Label::createWithTTF("Menu", "Font\\TianShiYanTi.ttf", 4);
+	auto label = Label::createWithTTF(*(FontConfig::getInstance()),"Menu");
 	label->setTextColor(Color4B::BLACK);
 	button->setTitleLabel(label);
+	button->setTitleAlignment(TextHAlignment::CENTER);
 
 	EntityLayer::getInstance()->addChild(button, 1000);
 	return button;

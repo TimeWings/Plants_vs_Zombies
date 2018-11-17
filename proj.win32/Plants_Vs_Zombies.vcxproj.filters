@@ -304,6 +304,15 @@
     <ClCompile Include="..\Classes\ImpZombie.cpp">
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\LevelManager.cpp">
+      <Filter>src\Entity\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MenuButton.cpp">
+      <Filter>src\Entity\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FontConfig.cpp">
+      <Filter>src\Entity\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -590,6 +599,15 @@
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CardBank.h">
+      <Filter>src\Entity\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LevelManager.h">
+      <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MenuButton.h">
+      <Filter>src\Entity\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FontConfig.h">
       <Filter>src\Entity\UI</Filter>
     </ClInclude>
   </ItemGroup>

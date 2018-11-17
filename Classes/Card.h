@@ -7,6 +7,7 @@
 #include "PlantStatus.h"
 #include "Plants.h"
 #include "Global.h"
+#include "FontConfig.h"
 using namespace std;
 using namespace map;
 using namespace cocos2d;
@@ -82,7 +83,7 @@ public:
 		plantsTypeName = className;
 		addListener();
 		setCost();
-		auto sunLabel = Label::createWithTTF(to_string(cost), "Font\\TianShiYanTi.ttf", 5);
+		auto sunLabel = Label::createWithTTF(*(FontConfig::getInstance()),to_string(cost));
 		sunLabel->setPosition(14, 5.5f);
 		sunLabel->setTextColor(Color4B::BLACK);
 		sprite->addChild(sunLabel, 2);
