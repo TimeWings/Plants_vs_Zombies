@@ -61,6 +61,8 @@
 #include "BombZombie.h"
 #include "Gargantuar.h"
 #include "ImpZombie.h"
+#include "LevelManager.h"
+#include "MenuButton.h"
 #include <iostream>
 #include <typeinfo>
 using namespace map;
@@ -149,6 +151,8 @@ test::test()
 	auto unSelectCard29 = new UnSelectCard<Magnet>(Point(startX += offsetX, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);
 	*/
+	MenuButton::addListener();
+	MenuButton::enable();
 
 	GameStart = true;
 	drawRect();
