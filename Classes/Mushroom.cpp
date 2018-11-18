@@ -36,7 +36,7 @@ bool Mushroom::isWorking()
 	{
 		if (this->getRow() == x->getRow() && x->getImg()->getPositionX() < visibleSize.width 
 			&& map::Point2Rank(x->getImg()->getPosition()).second - this->getCol() <= attackCol
-			&& map::Point2Rank(x->getImg()->getPosition()).second - this->getCol() >= 0)
+			&& x->getImg()->getPositionX() > this->getImg()->getPositionX())
 		{
 			return true;
 		}
