@@ -310,6 +310,9 @@
     <ClCompile Include="..\Classes\Ladder.cpp">
       <Filter>src\Entity\Plants</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\DuckZombie.cpp">
+      <Filter>src\Entity\Zombie</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -597,6 +600,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CardBank.h">
       <Filter>src\Entity\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DuckZombie.h">
+      <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Ladder.h">
       <Filter>src\Entity\Plants</Filter>
