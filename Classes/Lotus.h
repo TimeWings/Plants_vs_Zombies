@@ -3,6 +3,8 @@
 USING_NS_CC;
 class Lotus :public Plants
 {
+private:
+	bool isButton = false;
 public:
 	Lotus(Point position, int row, int col);
 	virtual bool isWorking();//是否能工作

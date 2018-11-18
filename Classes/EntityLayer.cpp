@@ -1,5 +1,6 @@
 #include "EntityLayer.h"
 #include "Global.h"
+#include "LadderEquip.h"
 #include "Zombie.h"
 #include "Bullet.h"
 #include <stdio.h>
@@ -40,6 +41,7 @@ bool EntityLayer::init()
 	this->schedule(schedule_selector(EntityLayer::Check_isAttack_Plant), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_isWorking_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
+	this->schedule(schedule_selector(EntityLayer::Check_Zombie_Climb), 0.1);
 	return true;
 }
 void EntityLayer::Check_Collision(float t)
@@ -185,7 +187,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		bool jump = false;
 		if (!zombie->hasHead()) jump = true;
 		for (auto i : *(zombie->getDebuff())) {
-			if (i == Freezing || i == DrivingOut||i== Jumping_Tag) {
+			if (i == Freezing || i == DrivingOut||i== Jumping_Tag||i== Climb_Tag) {
 				jump = true;
 				break;
 			}
@@ -210,7 +212,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		else if (strcmp(typeid(*zombie).name(), "class MinerZombie") == 0) {
 			if (zombiex <= plantx) {
 				PlantStatus *ps = map::find(zombie_rank.first, zombie_rank.second);
-				if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Tomb") != 0) {
+				if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Tomb") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Ladder") != 0) {
 					flag = true;
 					p = ps;
 				}
@@ -218,7 +220,7 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		}
 		else if (zombiex >= plantx) {
 			PlantStatus *ps = map::find(zombie_rank.first, zombie_rank.second);
-			if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Tomb") != 0){
+			if (ps != nullptr && ps->plantVector.size() > 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Lucker") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Tomb") != 0 && strcmp(typeid(*(ps->plantVector.at(0))).name(), "class Ladder") != 0){
 				flag = true;
 				p = ps;
 			}
@@ -234,7 +236,6 @@ void EntityLayer::Check_isAttack_Zombie(float t)
 		}
 	}
 }
-
 void EntityLayer::Check_Lost_head_Zombie(float t) {
 	for (int i = 0; i < readyZombies.size(); i++)
 	{
@@ -260,7 +261,29 @@ void EntityLayer::Check_Lost_Equip_Zombie(float t) {
 		}
 	}
 }
-
+void EntityLayer::Check_Zombie_Climb(float t)
+{
+	for (auto x : readyZombies)
+	{
+		bool climb = false;
+		for (auto z : *(x->getDebuff()))
+		{
+			if (z == Climb_Tag)
+			{
+				climb = true;
+				break;
+			}
+		}
+		if (climb)continue;
+		for (auto y : LadderEquip::LadderSprite)
+		{
+			if (x->getRow() == map::Point2Rank(y->getPosition()).first&&x->getImg()->getBoundingBox().intersectsRect(y->getBoundingBox())&&x->getImg()->getPositionX()>y->getPositionX())
+			{
+				x->Climb_Animation(y);
+			}
+		}
+	}
+}
 void EntityLayer::Check_Death(float t)
 {
 	for (int i = 0; i < plantstatus.size(); i++)

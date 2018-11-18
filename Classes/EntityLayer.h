@@ -20,6 +20,7 @@ private:
 	void Check_isAttack_Zombie(float t);
 	void Check_Lost_head_Zombie(float t);
 	void Check_Lost_Equip_Zombie(float t);
+	void Check_Zombie_Climb(float t);
 	void Check_isAttack_Plant(float t);
 	void Check_isWorking_Zombie(float t);
 	void clearNode(Node * pSender);

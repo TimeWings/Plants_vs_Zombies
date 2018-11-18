@@ -304,6 +304,12 @@
     <ClCompile Include="..\Classes\ImpZombie.cpp">
       <Filter>src\Entity\Zombie</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\LadderEquip.cpp">
+      <Filter>src\Entity\Equip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Ladder.cpp">
+      <Filter>src\Entity\Plants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -591,6 +597,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\CardBank.h">
       <Filter>src\Entity\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Ladder.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LadderEquip.h">
+      <Filter>src\Entity\Equip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
