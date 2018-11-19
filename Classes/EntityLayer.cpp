@@ -265,6 +265,10 @@ void EntityLayer::Check_Zombie_Climb(float t)
 {
 	for (auto x : readyZombies)
 	{
+		if (strcmp(typeid(*x).name(), "class MinerZombie") == 0|| strcmp(typeid(*x).name(), "class Gargantuar") == 0)
+		{
+			continue;
+		}
 		bool climb = false;
 		for (auto z : *(x->getDebuff()))
 		{
