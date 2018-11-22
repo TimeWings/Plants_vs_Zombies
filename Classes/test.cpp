@@ -53,6 +53,7 @@
 #include "Zomboni.h"
 #include "SmallMushRoom.h"
 #include "Title.h"
+#include "DuckZombie.h"
 #include "FootBallZombie.h"
 #include "SelectCardBG.h"
 #include "CardBank.h"
@@ -61,6 +62,7 @@
 #include "BombZombie.h"
 #include "Gargantuar.h"
 #include "ImpZombie.h"
+#include "Ladder.h"
 #include "LevelManager.h"
 #include "MenuButton.h"
 #include <iostream>
@@ -195,7 +197,7 @@ test::test()
 	new Card<Tomb>(Point(20, 180));
 	new Card<GraveBuster>(Point(40, 180));
 	new ZombieCard<Zomboni>(Point(60, 180));
-	new Card<GraveBuster>(Point(80, 180));
+	new Card<Ladder>(Point(80, 180));
 	new ZombieCard<NewspaperZombie>(Point(20, 140));
 	new Card<HeroThunder>(Point(40, 140));
 	new ZombieCard<DoorZombie>(Point(60, 140));
@@ -210,7 +212,8 @@ test::test()
 	new Card<WaterShooter>(Point(80, 60));
 	new ZombieCard<Gargantuar>(Point(100, 60));
 	new ZombieCard<ImpZombie>(Point(20, 20));
-	new ZombieCard<MinerZombie>(Point(120, 60));
+	new ZombieCard<MinerZombie>(Point(40, 20));
+	new ZombieCard<DuckZombie>(Point(60, 20));
 	
 }
 void test::drawRect()

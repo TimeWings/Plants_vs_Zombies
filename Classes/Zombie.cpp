@@ -205,6 +205,33 @@ void Zombie::Stop_Animation()
 	}
 }
 
+void Zombie::Climb_Animation(Sprite* sp)
+{
+	this->getDebuff()->push_back(Climb_Tag);
+	this->setWalkSpeed(this->getPreWalkSpeed()*3);
+	double time = map::BlockSize.first*1.8 / getPreWalkSpeed();
+	MoveBy* mb = MoveBy::create(time/2, Point(0,sp->getContentSize().height/2*sp->getScaleY()+ this->getImg()->getContentSize().height/2* this->getImg()->getScaleY()));
+	auto fun = [this](Node*psender)
+	{
+		for (int i = 0; i < getDebuff()->size(); i++)
+		{
+			if (getDebuff()->at(i) == Climb_Tag)
+			{
+				getDebuff()->erase(getDebuff()->begin() + i);
+				break;
+			}
+		}
+		this->setWalkSpeed(this->getPreWalkSpeed()/3);
+		this->Move();
+		this->setMeeting(false);
+	};
+	auto call = CallFuncN::create(fun);
+	Sequence *sequence = Sequence::create(mb, mb->reverse(), call, NULL);
+	this->getImg()->runAction(sequence);
+	this->Move();
+	this->setMeeting(false);
+}
+
 void Zombie::Lost_Equip()
 {
 	if (hasEquip()) {

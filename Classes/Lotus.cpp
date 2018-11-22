@@ -27,6 +27,20 @@ bool Lotus::isWorking()
 
 void Lotus::work()
 {
+	PlantStatus* plantstatus = map::find(this->getRow(), this->getCol());
+	if (plantstatus != NULL)
+	{
+		for (int i = 0; i < plantstatus->plantVector.size(); i++)
+		{
+			Plants* x = plantstatus->plantVector.at(i);
+			if (strcmp(typeid(*x).name(), "class Lotus") == 0&&i!= plantstatus->plantVector.size()-1)
+			{
+				plantstatus->plantVector.erase(plantstatus->plantVector.begin() + i);
+				plantstatus->plantVector.push_back(this);
+				break;
+			}
+		}
+	}
 }
 
 void Lotus::Die()

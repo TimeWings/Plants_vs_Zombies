@@ -7,7 +7,8 @@
 USING_NS_CC;
 
 #define Animation_Tag 12347
-#define Jumping_Tag 123481
+#define Jumping_Tag 123481//½©Ê¬ÌøÔ¾
+#define Climb_Tag 5556777//½©Ê¬ÅÀÂ¥ÌÝ
 
 class Zombie : public Entity 
 {
@@ -65,5 +66,6 @@ public:
 	void clear(Node * pSender);
 	void clear_from_vector(Node * pSender);
 	void Stop_Animation();
+	void Climb_Animation(Sprite* sp);
 	virtual void Lost_Equip();
 };

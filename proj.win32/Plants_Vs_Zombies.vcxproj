@@ -166,6 +166,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\DoorZombie.cpp" />
     <ClCompile Include="..\Classes\DoubleBullet.cpp" />
     <ClCompile Include="..\Classes\DoublePeaShooter.cpp" />
+    <ClCompile Include="..\Classes\DuckZombie.cpp" />
     <ClCompile Include="..\Classes\Entity.cpp" />
     <ClCompile Include="..\Classes\EntityLayer.cpp" />
     <ClCompile Include="..\Classes\FireBullet.cpp" />
@@ -184,6 +185,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\IceShooter.cpp" />
     <ClCompile Include="..\Classes\ImpZombie.cpp" />
     <ClCompile Include="..\Classes\JannuDaruku.cpp" />
+    <ClCompile Include="..\Classes\Ladder.cpp" />
+    <ClCompile Include="..\Classes\LadderEquip.cpp" />
     <ClCompile Include="..\Classes\Lancer.cpp" />
     <ClCompile Include="..\Classes\LancerGun.cpp" />
     <ClCompile Include="..\Classes\Landslock.cpp" />
@@ -261,6 +264,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\DoorZombie.h" />
     <ClInclude Include="..\Classes\DoubleBullet.h" />
     <ClInclude Include="..\Classes\DoublePeaShooter.h" />
+    <ClInclude Include="..\Classes\DuckZombie.h" />
     <ClInclude Include="..\Classes\Entity.h" />
     <ClInclude Include="..\Classes\EntityLayer.h" />
     <ClInclude Include="..\Classes\FireBullet.h" />
@@ -279,6 +283,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\IceShooter.h" />
     <ClInclude Include="..\Classes\ImpZombie.h" />
     <ClInclude Include="..\Classes\JannuDaruku.h" />
+    <ClInclude Include="..\Classes\Ladder.h" />
+    <ClInclude Include="..\Classes\LadderEquip.h" />
     <ClInclude Include="..\Classes\Lancer.h" />
     <ClInclude Include="..\Classes\LancerGun.h" />
     <ClInclude Include="..\Classes\Landslock.h" />

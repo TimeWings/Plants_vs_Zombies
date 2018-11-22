@@ -185,7 +185,7 @@ public:
 		int count = 0;
 		for (auto x : ps->plantVector)
 		{
-			if (strcmp(typeid(*x).name(), "class Cushaw") != 0 && strcmp(typeid(*x).name(), "class Lotus") != 0)
+			if (strcmp(typeid(*x).name(), "class Cushaw") != 0 && strcmp(typeid(*x).name(), "class Lotus") != 0&& strcmp(typeid(*x).name(), "class Ladder") != 0)
 			{
 				count++;
 			}
@@ -212,6 +212,11 @@ public:
 		if (strcmp(str, "class Shovel") == 0)
 		{
 			std::cout << "铲子能种植" << std::endl;
+			return true;
+		}
+		if (strcmp(str, "class Ladder") == 0)
+		{
+			std::cout << "梯子可以种植" << std::endl;
 			return true;
 		}
 		if (type == 0)
