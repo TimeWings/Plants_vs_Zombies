@@ -89,6 +89,13 @@ enum class PlantsEnum
 	Lotus,
 	Lantern,
 	DoorZombie,
-	Magnet
+	Magnet,
+	Clover,
+	GraveBuster,
+	HeroThunder,
+	SmallMushRoom,
+	WhiteJannu,
+	Thunder,
+	WaterShooter
 };
 

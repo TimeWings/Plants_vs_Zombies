@@ -248,7 +248,7 @@ void LevelManager::createAllCard()
 	unSelectingCardsEntity.push_back(unSelectCard19);
 	auto unSelectCard20 = new UnSelectCard<Lancer>(Point(startX += offsetX, startY), PlantsEnum::Lancer);
 	unSelectingCardsEntity.push_back(unSelectCard20);
-	auto unSelectCard21 = new UnSelectCard<Shovel>(Point(startX += offsetX, startY), PlantsEnum::Shovel);
+	auto unSelectCard21 = new UnSelectCard<Clover>(Point(startX += offsetX, startY), PlantsEnum::Clover);
 	unSelectingCardsEntity.push_back(unSelectCard21);
 	startX = 5;
 	startY -= offsetY;
@@ -270,7 +270,18 @@ void LevelManager::createAllCard()
 	startY -= offsetY;
 	auto unSelectCard29 = new UnSelectCard<Magnet>(Point(startX += offsetX, startY), PlantsEnum::Magnet);
 	unSelectingCardsEntity.push_back(unSelectCard29);
-	
+	auto unSelectCard30 = new UnSelectCard<GraveBuster>(Point(startX += offsetX, startY), PlantsEnum::GraveBuster);
+	unSelectingCardsEntity.push_back(unSelectCard30);
+	auto unSelectCard31 = new UnSelectCard<HeroThunder>(Point(startX += offsetX, startY), PlantsEnum::HeroThunder);
+	unSelectingCardsEntity.push_back(unSelectCard31);
+	auto unSelectCard32 = new UnSelectCard<SmallMushRoom>(Point(startX += offsetX, startY), PlantsEnum::SmallMushRoom);
+	unSelectingCardsEntity.push_back(unSelectCard32);
+	auto unSelectCard33 = new UnSelectCard<WhiteJannu>(Point(startX += offsetX, startY), PlantsEnum::WhiteJannu);
+	unSelectingCardsEntity.push_back(unSelectCard33);
+	auto unSelectCard34 = new UnSelectCard<Thunder>(Point(startX += offsetX, startY), PlantsEnum::Thunder);
+	unSelectingCardsEntity.push_back(unSelectCard34);
+	auto unSelectCard35 = new UnSelectCard<WaterShooter>(Point(startX += offsetX, startY), PlantsEnum::WaterShooter);
+	unSelectingCardsEntity.push_back(unSelectCard35);
 }
 
 void LevelManager::loadLevel(int level)
@@ -281,7 +292,7 @@ void LevelManager::loadLevel(int level)
 	background->clear();
 	background = new Background();
 	scene->addChild(EntityLayer::getInstance());
-	Director::getInstance()->replaceScene(scene);
+	Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene, Color3B(0, 0, 0)));
 	currentLevel = level;
 	GameStart = false;
 
