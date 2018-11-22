@@ -1,14 +1,14 @@
 #pragma once
 #include "Entity.h"
-#include "EntityLayer.h"
 #include "ui/CocosGUI.h"
 using namespace ui;
 
-class LevelManager:public Entity
+class MainMenu: public Entity
 {
 public:
-	LevelManager();
-	~LevelManager();
+	MainMenu();
+	~MainMenu();
+
 	void show();
 	void hide();
 	void clear();
@@ -19,19 +19,19 @@ public:
 	static void showAllUI();
 	static void createAllCard();
 
-	static LevelManager* getInstance()
+	static MainMenu* getInstance()
 	{
 		if (instance == nullptr)
-			instance = new LevelManager();
+			instance = new MainMenu();
 		return instance;
 	}
 
 private:
 	bool showing = false;
-	std::vector<Button*> buttons;
+	Button* retryButton;
+	Button* levelButton;
+	Button* exitButton;
 	Button* closeButton;
-	static LevelManager* instance;
-	static int currentLevel;
-	//static int targetLevel;
-	static int bg[16];
+	static MainMenu* instance;
 };
+

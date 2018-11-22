@@ -69,27 +69,28 @@
 #include "Ladder.h"
 #include "LevelManager.h"
 #include "MenuButton.h"
+#include "MainMenu.h"
 using namespace ui;
 using namespace map;
 
 LevelManager* LevelManager::instance = nullptr;
 int LevelManager::currentLevel = 1;
-int LevelManager::bg[11] = { -1,0,0,1,1,2,2,3,3,4,4 };
+int LevelManager::bg[16] = { -1,0,0,0,1,1,1,2,2,2,3,3,3,4,4,4 };
 
 LevelManager::LevelManager()
 {
 	auto layer = EntityLayer::getInstance();
 	auto s = Director::getInstance()->getWinSize();
-	auto bg = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\LevelManager.png"));
+	auto bg = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\dialog.png"));
 	bg->setAnchorPoint(Point(0.5f, 0.5f));
-	bg->setPosition(s.width/2, s.height/2);
-	bg->setScale(1.6f);
+	bg->setPosition(s.width/2, s.height/2-20);
+	bg->setContentSize(Size(300, 300));
 	layer->addChild(bg, 1500);
 	setImg(bg);
 
-	auto closeButton = Button::create("UI\\close.png", "UI\\close.png", "UI\\close.png");
+	closeButton = Button::create("UI\\close.png", "UI\\close.png", "UI\\close.png");
 	getImg()->addChild(closeButton);
-	closeButton->setPosition(Point(180,110));
+	closeButton->setPosition(Point(250,240));
 	closeButton->setScale(1.5f);
 	closeButton->addTouchEventListener([&](Ref* sender, ui::Widget::TouchEventType type)
 	{
@@ -104,8 +105,8 @@ LevelManager::LevelManager()
 			break;
 		}
 	});
-	int startX = 40;
-	int startY = 80;
+	int startX = 90;
+	int startY = 210;
 	int offsetX = 30;
 	int offsetY = 30;
 	int x, y;
@@ -139,6 +140,7 @@ LevelManager::LevelManager()
 				break;
 			}
 		});
+		buttons.push_back(button);
 	}
 }
 
@@ -158,6 +160,9 @@ void LevelManager::show()
 		childerns.at(i)->setOpacity(0);
 		childerns.at(i)->runAction(fadein->clone());
 	}
+	for (int i = 0; i < buttons.size(); i++)
+		buttons[i]->setEnabled(true);
+	closeButton->setEnabled(true);
 	showing = true;
 }
 
@@ -170,11 +175,18 @@ void LevelManager::hide()
 	{
 		childerns.at(i)->runAction(fadeout->clone());
 	}
+	for (int i = 0; i < buttons.size(); i++)
+		buttons[i]->setEnabled(false);
+	closeButton->setEnabled(true);
 	showing = false;
 }
 
 void LevelManager::clear()
 {
+	for (int i = 0; i < buttons.size(); i++)
+		buttons[i]->removeFromParent();
+	buttons.clear();
+	closeButton->removeFromParent();
 	getImg()->removeFromParent();
 	instance = nullptr;
 }
@@ -183,6 +195,7 @@ void LevelManager::clearAllUI()
 {
 	SelectCardBG::getInstance()->clear();
 	CardBank::getInstance()->clear();
+	MainMenu::getInstance()->clear();
 	getInstance()->clear();
 	GameStartButton::clear();
 	MenuButton::clear();
@@ -286,6 +299,8 @@ void LevelManager::createAllCard()
 
 void LevelManager::loadLevel(int level)
 {
+	if (level <= 0)
+		level = currentLevel;
 	auto scene = Scene::create();
 	EntityLayer::create();
 	Background::type = bg[level];

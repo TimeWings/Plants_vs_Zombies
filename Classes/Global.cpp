@@ -17,7 +17,7 @@ namespace map
 	std::vector<PlantStatus*>plantstatus;
 	Background* background;
     bool GameStart = false;
-	int totalLevelCount = 10;
+	int totalLevelCount = 15;
 	int MapRow = 0;
 	int MapCol = 0;
 	PlantStatus* find(int row, int col)

@@ -1,6 +1,7 @@
 #include "MenuButton.h"
 #include "LevelManager.h"
 #include "FontConfig.h"
+#include "MainMenu.h"
 
 Button* MenuButton::instance;
 
@@ -16,12 +17,14 @@ MenuButton::~MenuButton()
 
 Button* MenuButton::create(Point position)
 {
-	auto button = Button::create("UI\\SelectCardButton.png", "UI\\SelectCardButton_Light.png", "UI\\SelectCardButton.png");
+	auto button = Button::create("UI\\button.png", "UI\\button.png", "UI\\button.png");
 	button->setPosition(position);
-	button->setScale(2.0f);
+	button->setScale(1.5f);
 	auto label = Label::createWithTTF(*(FontConfig::getInstance()),"Menu");
 	label->setTextColor(Color4B::BLACK);
-	button->setTitleLabel(label);
+	label->setPosition(Point(18, 6.5f));
+	label->setScale(1.3f);
+	button->addChild(label);
 	button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
 
 	EntityLayer::getInstance()->addChild(button, 1000);
@@ -55,8 +58,8 @@ void MenuButton::addListener()
 		case ui::Widget::TouchEventType::BEGAN:
 			break;
 		case ui::Widget::TouchEventType::ENDED:
-			if (LevelManager::getInstance()->isShow() == false)
-				LevelManager::getInstance()->show();
+			if (MainMenu::getInstance()->isShow() == false)
+				MainMenu::getInstance()->show();
 			break;
 		default:
 			break;

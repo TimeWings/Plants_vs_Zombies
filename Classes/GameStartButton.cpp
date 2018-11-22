@@ -2,6 +2,7 @@
 #include "Global.h"
 #include "EntityLayer.h"
 #include "SelectCardBG.h"
+#include "FontConfig.h"
 using namespace map;
 Button* GameStartButton::instance = nullptr;
 
@@ -15,8 +16,12 @@ Button* GameStartButton::create(Point position)
 	auto button = Button::create("UI\\SelectCardButton.png", "UI\\SelectCardButton_Light.png", "UI\\SelectCardButton.png");
 	button->setPosition(position);
 	button->setScale(2.0f);
-	button->setTitleText("GameStart");
-	button->setTitleFontSize(4.0f);
+	auto label = Label::createWithTTF(*(FontConfig::getInstance()), "GameStart");
+	label->setTextColor(Color4B::BLACK);
+	label->setScale(0.8f);
+	button->setTitleLabel(label);
+	button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
+
 	
 	EntityLayer::getInstance()->addChild(button, 196);
 	return button;

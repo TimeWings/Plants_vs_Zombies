@@ -196,6 +196,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Lotus.cpp" />
     <ClCompile Include="..\Classes\Lucker.cpp" />
     <ClCompile Include="..\Classes\Magnet.cpp" />
+    <ClCompile Include="..\Classes\MainMenu.cpp" />
     <ClCompile Include="..\Classes\Melancholy.cpp" />
     <ClCompile Include="..\Classes\MelancholyBullet.cpp" />
     <ClCompile Include="..\Classes\MenuButton.cpp" />
@@ -294,6 +295,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Lotus.h" />
     <ClInclude Include="..\Classes\Lucker.h" />
     <ClInclude Include="..\Classes\Magnet.h" />
+    <ClInclude Include="..\Classes\MainMenu.h" />
     <ClInclude Include="..\Classes\Melancholy.h" />
     <ClInclude Include="..\Classes\MelancholyBullet.h" />
     <ClInclude Include="..\Classes\MenuButton.h" />
