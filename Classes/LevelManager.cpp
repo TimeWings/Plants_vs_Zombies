@@ -106,7 +106,7 @@ LevelManager::LevelManager()
 		}
 	});
 	int startX = 90;
-	int startY = 210;
+	int startY = 215;
 	int offsetX = 30;
 	int offsetY = 30;
 	int x, y;
@@ -313,12 +313,13 @@ void LevelManager::loadLevel(int level)
 
 	clearAllUI();
 	showAllUI();
-	sunCnt.first = 0;
+	sunCnt.first = 9999;
 	CardBank::updateSunLabel();
 	for (int i = 0; i < readyCards.size(); i++)
 		readyCards[i]->clear();
 	readyCards.clear();
 	createAllCard();
 
-	
+	for (int i = 0; i < plantstatus.size(); i++)
+		plantstatus[i]->Enabled = true;
 }

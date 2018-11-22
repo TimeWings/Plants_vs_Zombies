@@ -75,6 +75,7 @@ void GameStartButton::addListener()
 			for (int i = 0; i < readyCards.size(); i++)
 			{
 				readyCards[i]->getImg()->setVisible(true);
+				readyCards[i]->removeListener();
 				readyCards[i]->addListener();
 			}
 			disable();
