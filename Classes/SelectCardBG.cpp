@@ -13,7 +13,7 @@ SelectCardBG::SelectCardBG()
 	bg->setAnchorPoint(Point(0,0));
 	bg->setPosition(8, 25);
 	bg->setScale(2.0f);
-	layer->addChild(bg, 5);
+	layer->addChild(bg, 195);
 	setImg(bg);
 }
 
@@ -35,4 +35,5 @@ void SelectCardBG::hide()
 void SelectCardBG::clear()
 {
 	getImg()->removeFromParent();
+	instance = nullptr;
 }

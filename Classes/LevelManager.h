@@ -11,7 +11,12 @@ public:
 	void hide();
 	void clear();
 	bool isShow();
-	
+
+	static void loadLevel(int);
+	static void clearAllUI();
+	static void showAllUI();
+	static void createAllCard();
+
 	static LevelManager* getInstance()
 	{
 		if (instance == nullptr)
@@ -20,7 +25,9 @@ public:
 	}
 
 private:
-	static LevelManager* instance;
-	int currentLevel;
 	bool showing = false;
+	static LevelManager* instance;
+	static int currentLevel;
+	//static int targetLevel;
+	static int bg[11];
 };

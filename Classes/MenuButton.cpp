@@ -22,7 +22,7 @@ Button* MenuButton::create(Point position)
 	auto label = Label::createWithTTF(*(FontConfig::getInstance()),"Menu");
 	label->setTextColor(Color4B::BLACK);
 	button->setTitleLabel(label);
-	button->setTitleAlignment(TextHAlignment::CENTER);
+	button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
 
 	EntityLayer::getInstance()->addChild(button, 1000);
 	return button;
@@ -43,6 +43,7 @@ void MenuButton::disable()
 void MenuButton::clear()
 {
 	getInstance()->removeFromParent();
+	instance = nullptr;
 }
 
 void MenuButton::addListener()

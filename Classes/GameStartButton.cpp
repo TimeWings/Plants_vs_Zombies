@@ -18,7 +18,7 @@ Button* GameStartButton::create(Point position)
 	button->setTitleText("GameStart");
 	button->setTitleFontSize(4.0f);
 	
-	EntityLayer::getInstance()->addChild(button, 10);
+	EntityLayer::getInstance()->addChild(button, 196);
 	return button;
 }
 
@@ -42,6 +42,7 @@ void GameStartButton::disable()
 void GameStartButton::clear()
 {
 	getInstance()->removeFromParent();
+	instance = nullptr;
 }
 
 void GameStartButton::addListener()
@@ -57,12 +58,15 @@ void GameStartButton::addListener()
 			GameStart = true;
 			for (int i = 0; i < unSelectingCardsEntity.size(); i++)
 			{
-				unSelectingCardsEntity[i]->getImg()->setVisible(false);
+				unSelectingCardsEntity[i]->clear();
 			}
+			unSelectingCardsEntity.clear();
 			for (int i = 0; i < selectingCardsEntity.size(); i++)
 			{
-				selectingCardsEntity[i]->getImg()->setVisible(false);
+				selectingCardsEntity[i]->clear();
 			}
+			selectingCardsEntity.clear();
+			selectingCards.clear();
 			for (int i = 0; i < readyCards.size(); i++)
 			{
 				readyCards[i]->getImg()->setVisible(true);

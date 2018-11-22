@@ -66,6 +66,7 @@ public:
 
 		plantsTypeName = className;
 		this->plantsEnum = plantsEnum;
+		isSelecting = false;
 		addListener();
 		setCost();
 		auto sunLabel = Label::createWithTTF(*(FontConfig::getInstance()),to_string(cost));
@@ -96,13 +97,14 @@ public:
 				{
 					selectingCards.push_back(plantsEnum);
 					//auto entity = new SelectCard<T>(position, plantsEnum);
-					auto moveTo = MoveTo::create(0.3f, Point(37 + selectingCards.size() * 29, 290));
+					auto moveTo = MoveTo::create(0.3f, Point(37 + (selectingCardsEntity.size()+1) * 29, 290));
 					getImg()->stopAllActions();
 					getImg()->runAction(moveTo);
 					//entity->plantSprite->runAction(moveTo);
-					selectingCardsEntity.push_back(this);
+					
 					isSelecting = true;
-					auto card = new Card<T>(Point(37 + selectingCards.size() * 29, 290));
+					auto card = new Card<T>(Point(37 + (selectingCardsEntity.size()+1) * 29, 290));
+					selectingCardsEntity.push_back(this);
 					readyCards.push_back(card);
 				}
 				else
@@ -142,7 +144,5 @@ public:
 		};
 		Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, getImg());
 	}
-
-	
 };
 

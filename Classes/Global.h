@@ -7,6 +7,8 @@
 #include "PlantStatus.h"
 #include "SelectCard.h"
 #include "CardEntity.h"
+#include "Background.h"
+
 #define Icing 0 //¼õËÙ
 #define Freezing 1 //±ù¶³
 #define DrivingOut 2 //Çý¸Ï
@@ -39,5 +41,7 @@ namespace map
 	extern Point Rank2Point(int row, int col);
 	extern std::pair<int, int>Point2Rank(Point point);
 	extern bool GameStart;
+	extern Background* background;
+	extern int totalLevelCount;
 }
 

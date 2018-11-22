@@ -33,5 +33,10 @@ public:
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener1);
 
 	}
+	virtual void clear()
+	{
+		getImg()->removeFromParent();
+		removeListener();
+	}
 	virtual void setCost();
 };

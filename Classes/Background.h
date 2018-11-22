@@ -9,5 +9,6 @@ public:
 public:
 	Background();
 	void initPlantStatus();
+	void clear();
 };
 

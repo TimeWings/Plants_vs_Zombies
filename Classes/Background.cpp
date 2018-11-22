@@ -200,3 +200,18 @@ void Background::initPlantStatus()
 }
 
 //Ä£°å½ÌÑ§ http://www.mamicode.com/info-detail-247772.html
+
+void Background::clear()
+{
+	getImg()->removeFromParent();
+	if (Cloud != nullptr)
+	{
+		Cloud->removeFromParent();
+		Cloud = nullptr;
+	}
+	if (holesStencil != nullptr)
+	{
+		holesStencil->removeFromParent();
+		holesStencil = nullptr;
+	}
+}

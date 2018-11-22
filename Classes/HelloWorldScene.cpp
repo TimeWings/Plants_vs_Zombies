@@ -99,7 +99,7 @@ void HelloWorld::GameIn(float t)
 	//loading->clear();
 	title->clear(this);
 	this->addChild(EntityLayer::create());
-	new Background();
+	background = new Background();
 	//test a = test();
 	this->scheduleOnce(schedule_selector(HelloWorld::moveCamera), 1.0f);
 }

@@ -15,7 +15,9 @@ namespace map
 	std::pair<float, float >BlockSize(38.0f, 46.0f);
 	std::pair<float, float >Deviation(95, 35);
 	std::vector<PlantStatus*>plantstatus;
+	Background* background;
     bool GameStart = false;
+	int totalLevelCount = 10;
 	int MapRow = 0;
 	int MapCol = 0;
 	PlantStatus* find(int row, int col)

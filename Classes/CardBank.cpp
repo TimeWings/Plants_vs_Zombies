@@ -14,7 +14,7 @@ CardBank::CardBank()
 	bg->setAnchorPoint(Point(0, 0));
 	bg->setPosition(8, 265);
 	bg->setScale(2.4f);
-	layer->addChild(bg, 5);
+	layer->addChild(bg, 195);
 	setImg(bg);
 }
 
@@ -32,7 +32,7 @@ void CardBank::updateSunLabel()
 		sunLabel->setPosition(28.5f, 274);
 		sunLabel->setTextColor(Color4B::BLACK);
 		sunLabel->setAlignment(TextHAlignment::CENTER);
-		EntityLayer::getInstance()->addChild(sunLabel, 6);
+		EntityLayer::getInstance()->addChild(sunLabel, 196);
 	}
 	sunLabel->setString(std::to_string(sunCnt.first));
 	std::cout << "sun:" << sunCnt.first << std::endl;
@@ -57,4 +57,6 @@ void CardBank::clear()
 	getImg()->removeFromParent();
 	if (sunLabel != nullptr)
 		sunLabel->removeFromParent();
+	sunLabel = nullptr;
+	instance = nullptr;
 }
