@@ -11,6 +11,7 @@
 #include "MenuButton.h"
 #include "MainMenu.h"
 #include "AllEntity.h"
+#include "Global.h"
 
 using namespace ui;
 using namespace map;
@@ -247,6 +248,7 @@ void LevelManager::createAllCard()
 
 void LevelManager::loadLevel(int level)
 {
+	init();
 	if (level <= 0)
 		level = currentLevel;
 	auto scene = Scene::create();
@@ -256,15 +258,10 @@ void LevelManager::loadLevel(int level)
 
 	EntityLayer::create();
 	Background::type = bg[level];
-	//background->clear();
-	background = new Background();
 	scene->addChild(EntityLayer::getInstance());
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene, Color3B(0, 0, 0)));
 	currentLevel = level;
-	GameStart = false;
 
-	//showAllUI();
-	//createAllCard();
 	sunCnt.first = 0;
 	CardBank::updateSunLabel();
 	for (int i = 0; i < readyCards.size(); i++)
@@ -272,22 +269,15 @@ void LevelManager::loadLevel(int level)
 	readyCards.clear();
 	if (shovel != nullptr)
 		shovel->clear();
-	
-
-	for (int i = 0; i < plantstatus.size(); i++)
-		plantstatus[i]->Enabled = true;
 	shovel = new Card<Shovel>(Point(460, 300), true);
 	test();
+	background = new Background();
+	drawRect();
+
 }
 
 void LevelManager::test()
 {
-	//auto titleScene = new TitleScene();
-	//Director::getInstance()->replaceScene(titleScene);
-	//Director::getInstance()->runWithScene(new TitleScene());
-	//new Loading();
-	//PlantsEnum::type plantsEnum = PlantsEnum::PeaShooter;
-	//std::cout << PlantsEnum::ToString(plantsEnum) << std::endl;
 
 	CardBank::getInstance()->show();
 
@@ -295,7 +285,6 @@ void LevelManager::test()
 	MenuButton::enable();
 
 	GameStart = true;
-	drawRect();
 
 	sunCnt.first = 9999;
 	CardBank::updateSunLabel();

@@ -24,4 +24,5 @@ private:
 	void Check_isAttack_Plant(float t);
 	void Check_isWorking_Zombie(float t);
 	void clearNode(Node * pSender);
+	void showInfo(float t);
 };

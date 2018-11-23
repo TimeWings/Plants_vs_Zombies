@@ -71,9 +71,13 @@ void PeaShooter::Die()
 		allframe.pushBack(frame);
 	}
 	Animation* an = Animation::createWithSpriteFrames(allframe, 0.05);
-	//ActionInterval * fadeout = FadeOut::create(0.5);
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
+	auto fun = [this](Node*pSender)
+	{
+		pSender->removeFromParent();
+		delete this;
+	};
+	auto actionDone = CallFuncN::create(fun);
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	sp->runAction(sequence);
 }
@@ -120,6 +124,6 @@ void PeaShooter::clear(Node *pSender)
 {
 	//std::cout << "ÉÁÉÁËÀÍö" << std::endl;
 	pSender->removeFromParent();
-	delete this;
+	//delete this;
 }
 

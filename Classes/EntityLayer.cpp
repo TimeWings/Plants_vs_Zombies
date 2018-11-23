@@ -42,6 +42,7 @@ bool EntityLayer::init()
 	this->schedule(schedule_selector(EntityLayer::Check_isWorking_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Zombie_Climb), 0.1);
+	this->schedule(schedule_selector(EntityLayer::showInfo), 0.1);
 	return true;
 }
 void EntityLayer::Check_Collision(float t)
@@ -307,5 +308,15 @@ void EntityLayer::Check_Death(float t)
 void EntityLayer::clearNode(Node * pSender)
 {
 	pSender->removeFromParent();
+}
+
+void EntityLayer::showInfo(float t)
+{
+	std::cout << "子弹容量：" << readyBullet.size() << std::endl;
+	std::cout << "植物容量：" << readyPlants.size() << std::endl;
+	std::cout << "僵尸容量：" << readyZombies.size() << std::endl;
+	std::cout << "格子状态容量：" << plantstatus.size() << std::endl;
+	
+
 }
 

@@ -159,4 +159,5 @@ void HelloWorld::moveCamera(float delta)
 void HelloWorld::LoadingCard(Node* pSender)
 {
 	LevelManager::test();
+	GameStart = true;
 }
