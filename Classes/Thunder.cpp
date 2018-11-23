@@ -142,7 +142,7 @@ void Thunder::createThunder(Point startPoint, Point endPoint, Zombie* zombie)
 	}
 	EntityLayer* bl = EntityLayer::getInstance();
 	bl->addChild(sp, zombie->getRow() * 3 - 2);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Thunder::clearNode, this));
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	sp->runAction(sequence);
 	

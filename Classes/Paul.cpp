@@ -147,7 +147,7 @@ bool Paul::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_event)
 			allframe.pushBack(frame);
 		}
 		Animation* an = Animation::createWithSpriteFrames(allframe, 0.1);
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(Paul::clear, this));
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(Paul::clearNode, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), Animate::create(an), actionDone, NULL);
 		this->AimSprite->runAction(sequence);
 		return true;

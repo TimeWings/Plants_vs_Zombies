@@ -48,7 +48,7 @@ void Magnet::Die()
 			break;
 		}
 	}
-	clear(this->getImg());
+	clearNode(this->getImg());
 }
 
 void Magnet::Self_Animation()

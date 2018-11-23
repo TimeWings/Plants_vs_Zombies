@@ -81,7 +81,7 @@ void WhiteJannu::creatSprite()
 
 		x->getImg()->addChild(sp);
 		//bl->addChild(sp, x->getRow() * 3 - 3);
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(WhiteJannu::clearNode, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 		sp->runAction(sequence);
 		//¼ÓÑª5µã
@@ -106,7 +106,7 @@ void WhiteJannu::creatSprite()
 		sp1->setScaleY(x->getImg()->getContentSize().height / sp1->getContentSize().height);
 		x->getImg()->addChild(sp1);
 		//bl->addChild(sp1, x->getRow() * 3 - 3);
-		auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(PeaShooter::clear, this));
+		auto actionDone1 = CallFuncN::create(CC_CALLBACK_1(WhiteJannu::clearNode, this));
 		auto actionDone2 = CallFuncN::create(CC_CALLBACK_1(WhiteJannu::cleanBuff, this, x));
 		Sequence *sequence1 = Sequence::create(Animate::create(an1), CCDelayTime::create(1.3), actionDone1, actionDone2, NULL);
 		sp1->runAction(sequence1);

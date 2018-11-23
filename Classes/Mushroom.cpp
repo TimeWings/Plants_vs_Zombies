@@ -104,7 +104,7 @@ void Mushroom::Die()
 			break;
 		}
 	}
-	clear(this->getImg());
+	clearNode(this->getImg());
 }
 
 

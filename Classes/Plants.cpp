@@ -72,7 +72,35 @@ void Plants::addLayer(Node * entity)
 	EntityLayer* bl = EntityLayer::getInstance();
 	bl->addChild(entity, _row*3-3);
 }
+void Plants::Die()
+{
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
+	Sprite * sp = this->getImg();
+	ActionInterval * fadeout = FadeOut::create(0.5);
+	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Plants::clear, this));
+	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+	sp->runAction(sequence);
+}
+void Plants::clear(Node * pSender)
+{
+	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
+	delete this;
 
+}
+void Plants::clearNode(Node * pSender)
+{
+	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
+}
 std::vector<int>* Plants::getbuff()
 {
 	return &buff;

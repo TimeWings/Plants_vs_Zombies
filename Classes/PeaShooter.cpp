@@ -48,40 +48,6 @@ void PeaShooter::work()
 		
 }
 
-void PeaShooter::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite*sp = this->getImg();
-
-	//SpriteFrame *sp1;
-	char str[100] = { 0 };
-	Vector<SpriteFrame*> allframe;
-	for (int i = 1; i <= 27; i++)
-	{
-		sprintf(str, "PeaShooter\\Death\\%d.png", i);
-		auto sprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
-		auto frame = sprite->getSpriteFrame();
-		allframe.pushBack(frame);
-	}
-	Animation* an = Animation::createWithSpriteFrames(allframe, 0.05);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto fun = [this](Node*pSender)
-	{
-		pSender->removeFromParent();
-		delete this;
-	};
-	auto actionDone = CallFuncN::create(fun);
-	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
-	sp->runAction(sequence);
-}
-
 
 void PeaShooter::Attacked()
 {
@@ -118,12 +84,5 @@ void PeaShooter::CreateBullet()
 	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleY()/ 4 + sp->getPositionY());
 	Bullet *pb = new PeaBullet(a,this->getRow());
 	setNewBirthTime();
-}
-
-void PeaShooter::clear(Node *pSender)
-{
-	//std::cout << "ÉÁÉÁËÀÍö" << std::endl;
-	pSender->removeFromParent();
-	//delete this;
 }
 
