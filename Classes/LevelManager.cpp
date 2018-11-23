@@ -144,6 +144,11 @@ LevelManager::LevelManager()
 	}
 }
 
+LevelManager::~LevelManager()
+{
+
+}
+
 bool LevelManager::isShow()
 {
 	return showing;
@@ -188,6 +193,7 @@ void LevelManager::clear()
 	buttons.clear();
 	closeButton->removeFromParent();
 	getImg()->removeFromParent();
+	delete instance;
 	instance = nullptr;
 }
 
