@@ -24,6 +24,7 @@ void ZombieEquipment::setMetal(bool Metal)
 void ZombieEquipment::Die()
 {
 	getImg()->removeFromParent();
+	delete this;
 }
 
 void ZombieEquipment::Move()

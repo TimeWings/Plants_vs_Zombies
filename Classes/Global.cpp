@@ -21,6 +21,35 @@ namespace map
 	int totalLevelCount = 15;
 	int MapRow = 0;
 	int MapCol = 0;
+	void init()
+	{
+		while (readyBullet.size() != 0)
+		{
+			auto x = readyBullet.front();
+			readyBullet.erase(readyBullet.begin());
+			delete x;
+		}
+		while (readyPlants.size() != 0)
+		{
+			auto x = readyPlants.front();
+			readyPlants.erase(readyPlants.begin());
+			delete x;
+		}
+		while (readyZombies.size() != 0)
+		{
+			auto x = readyZombies.front();
+			readyZombies.erase(readyZombies.begin());
+			delete x;
+		}
+		readySun.clear();
+		selectingCards.clear();
+		selectingCardsEntity.clear();
+		unSelectingCardsEntity.clear();
+		readyCards.clear();
+		sunCnt.first = 0;
+		plantstatus.clear();
+		GameStart = false;
+	}
 	PlantStatus* find(int row, int col)
 	{
 		for (PlantStatus* x : plantstatus)
@@ -32,22 +61,23 @@ namespace map
 		}
 		return NULL;
 	}
+	Plants* findPlant(PlantStatus* plantstatus, const char* name)
+	{
+		for (Plants* x : plantstatus->plantVector)
+		{
+			if (strcmp(typeid(*x).name(), name) == 0)
+			{
+				return x;
+			}
+		}
+		return NULL;
+	}
 	void RemoveRegister(const char * plant_name, int row, int col)
 	{
 		PlantStatus* ps = find(row, col);
 		if (ps != NULL)
 		{
-			for (int i = 0; i < ps->plantVector.size(); i++)
-			{
-				if (strcmp(typeid(*(ps->plantVector.at(i))).name(),plant_name)==0)
-				{
-					
-					ps->plantVector.at(i)->Die();
-					ps->plantVector.erase(ps->plantVector.begin() + i);
-					std::cout << plant_name << "从植物列表移除成功并且死亡" << std::endl;
-					return;
-				}
-			}
+			RemoveRegister(findPlant(ps, plant_name));
 		}
 		else
 		{

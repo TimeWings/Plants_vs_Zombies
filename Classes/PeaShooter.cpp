@@ -120,5 +120,6 @@ void PeaShooter::clear(Node *pSender)
 {
 	//std::cout << "ÉÁÉÁËÀÍö" << std::endl;
 	pSender->removeFromParent();
+	delete this;
 }
 

@@ -219,4 +219,5 @@ void Zomboni::clear(Node* pSender)
 {
 	pSender->removeFromParent();
 	pSender->removeAllChildrenWithCleanup(true);
+	delete this;
 }

@@ -183,6 +183,7 @@ void Zombie::clear(Node * pSender)
 {
 	pSender->removeFromParent();
 	pSender->removeAllChildrenWithCleanup(true);
+	delete this;
 }
 
 void Zombie::clear_from_vector(Node * pSender)

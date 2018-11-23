@@ -37,6 +37,7 @@ namespace map
 	extern std::pair<float, float >Deviation;
 	extern int MapRow;
 	extern int MapCol;
+	extern void init();
 	extern std::vector<PlantStatus*>plantstatus;
 	extern PlantStatus* find(int row, int col);
 	extern void RemoveRegister(const char * plant_name,int row, int col);
