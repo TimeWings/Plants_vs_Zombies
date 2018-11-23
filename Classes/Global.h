@@ -3,11 +3,13 @@
 #include "Bullet.h"
 #include "Plants.h"
 #include "Zombie.h"
+#include "Shovel.h"
 #include "PlantsEnum.h"
 #include "PlantStatus.h"
 #include "SelectCard.h"
 #include "CardEntity.h"
 #include "Background.h"
+#include "Card.h"
 
 #define Icing 0 //¼õËÙ
 #define Freezing 1 //±ù¶³
@@ -26,6 +28,7 @@ extern std::vector<PlantsEnum> selectingCards;
 extern std::vector<CardEntity*> selectingCardsEntity;
 extern std::vector<CardEntity*> unSelectingCardsEntity;
 extern std::vector<CardEntity*> readyCards;
+extern Card<Shovel>* shovel;
 
 namespace map 
 {

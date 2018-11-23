@@ -8,6 +8,7 @@ std::vector<PlantsEnum> selectingCards;
 std::vector<CardEntity*> selectingCardsEntity;
 std::vector<CardEntity*> unSelectingCardsEntity;
 std::vector<CardEntity*> readyCards;
+Card<Shovel>* shovel;
 namespace map
 {
 	std::pair<int, std::pair<double, double> >sunCnt(0, std::make_pair(27, 295));

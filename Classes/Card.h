@@ -8,8 +8,8 @@
 #include "Plants.h"
 #include "Global.h"
 #include "FontConfig.h"
-using namespace std;
-using namespace map;
+//using namespace std;
+//using namespace map;
 using namespace cocos2d;
 
 template <class T>
@@ -88,6 +88,22 @@ public:
 		sunLabel->setTextColor(Color4B::BLACK);
 		sprite->addChild(sunLabel, 2);
 	}
+	Card(Point position, bool shovel)
+	{
+		string className = typeid(T).name();
+		className = className.erase(0, 6);
+		string str = string("Card\\") + className + string(".png");
+		auto shovelSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str));
+		shovelSprite->setPosition(position);
+		shovelSprite->setScale(1.0f);
+		//shovelSprite->setContentSize(Size(18, 24));
+		shovelSprite->retain();
+		this->setImg(shovelSprite);
+		addLayer(shovelSprite, 200);
+		cost = 0;
+		plantsTypeName = className;
+		addListener();
+	}
 	void addListener()
 	{
 		listener = EventListenerTouchOneByOne::create();
@@ -157,6 +173,11 @@ public:
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener);
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener1);
 
+	}
+	void clear()
+	{
+		getImg()->removeFromParent();
+		removeListener();
 	}
 	PlantStatus* find(int row, int col)
 	{

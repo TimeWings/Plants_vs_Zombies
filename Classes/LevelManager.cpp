@@ -302,24 +302,30 @@ void LevelManager::loadLevel(int level)
 	if (level <= 0)
 		level = currentLevel;
 	auto scene = Scene::create();
+	clearAllUI();
+	EntityLayer::getInstance()->removeAllChildrenWithCleanup(true);
+	EntityLayer::getInstance()->removeFromParent();
+
 	EntityLayer::create();
 	Background::type = bg[level];
-	background->clear();
+	//background->clear();
 	background = new Background();
 	scene->addChild(EntityLayer::getInstance());
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene, Color3B(0, 0, 0)));
 	currentLevel = level;
 	GameStart = false;
 
-	clearAllUI();
 	showAllUI();
 	sunCnt.first = 9999;
 	CardBank::updateSunLabel();
 	for (int i = 0; i < readyCards.size(); i++)
 		readyCards[i]->clear();
 	readyCards.clear();
+	if (shovel != nullptr)
+		shovel->clear();
 	createAllCard();
 
 	for (int i = 0; i < plantstatus.size(); i++)
 		plantstatus[i]->Enabled = true;
+	shovel = new Card<Shovel>(Point(460, 300), true);
 }
