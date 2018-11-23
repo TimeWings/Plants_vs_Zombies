@@ -26,6 +26,9 @@ public:
 		return instance;
 	}
 
+	static void test();
+	static void drawRect();
+
 private:
 	bool showing = false;
 	std::vector<Button*> buttons;
