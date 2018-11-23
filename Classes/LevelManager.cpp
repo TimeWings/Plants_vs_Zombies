@@ -263,19 +263,21 @@ void LevelManager::loadLevel(int level)
 	currentLevel = level;
 	GameStart = false;
 
-	showAllUI();
-	sunCnt.first = 9999;
+	//showAllUI();
+	//createAllCard();
+	sunCnt.first = 0;
 	CardBank::updateSunLabel();
 	for (int i = 0; i < readyCards.size(); i++)
 		readyCards[i]->clear();
 	readyCards.clear();
 	if (shovel != nullptr)
 		shovel->clear();
-	createAllCard();
+	
 
 	for (int i = 0; i < plantstatus.size(); i++)
 		plantstatus[i]->Enabled = true;
 	shovel = new Card<Shovel>(Point(460, 300), true);
+	test();
 }
 
 void LevelManager::test()
