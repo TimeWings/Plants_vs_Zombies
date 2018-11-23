@@ -58,5 +58,6 @@ void CardBank::clear()
 	if (sunLabel != nullptr)
 		sunLabel->removeFromParent();
 	sunLabel = nullptr;
+	delete instance;
 	instance = nullptr;
 }

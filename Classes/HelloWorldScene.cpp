@@ -41,6 +41,7 @@
 #include <string>
 #include "test.h"
 #include "Background.h"
+#include "LevelManager.h"
 #include <direct.h>
 USING_NS_CC;
 using namespace std;
@@ -157,5 +158,5 @@ void HelloWorld::moveCamera(float delta)
 
 void HelloWorld::LoadingCard(Node* pSender)
 {
-	test a = test();
+	LevelManager::test();
 }

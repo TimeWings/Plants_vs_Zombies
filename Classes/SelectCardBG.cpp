@@ -35,5 +35,6 @@ void SelectCardBG::hide()
 void SelectCardBG::clear()
 {
 	getImg()->removeFromParent();
+	delete instance;
 	instance = nullptr;
 }

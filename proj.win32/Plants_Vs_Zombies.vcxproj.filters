@@ -634,6 +634,9 @@
     <ClInclude Include="..\Classes\MainMenu.h">
       <Filter>src\Entity\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\AllEntity.h">
+      <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

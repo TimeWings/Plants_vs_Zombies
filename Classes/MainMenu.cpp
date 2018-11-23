@@ -161,5 +161,6 @@ void MainMenu::clear()
 	exitButton->removeFromParent();
 	closeButton->removeFromParent();
 	getImg()->removeFromParent();
+	delete instance;
 	instance = nullptr;
 }
