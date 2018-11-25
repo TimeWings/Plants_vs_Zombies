@@ -48,19 +48,6 @@ void riceShooter::work()
 	}
 }
 
-void riceShooter::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	clear(this->getImg());
-}
-
 void riceShooter::Self_Animation()
 {
 	//Qµ¯Ð§¹û
@@ -102,8 +89,3 @@ void riceShooter::CreateBullet()
 	setNewBirthTime();
 }
 
-void riceShooter::clear(Node * pSender)
-{
-
-	pSender->removeFromParent();
-}

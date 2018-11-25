@@ -18,7 +18,6 @@ public:
 	void CheckZombies();
 	void JumpTo(Zombie * zombie);
 	void press(Node * pSender, Zombie * zombie);
-	virtual void Die();
 	//特有的自身动画
 	void Self_Animation();
 	//被打之后的事件

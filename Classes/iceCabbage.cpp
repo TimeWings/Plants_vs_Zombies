@@ -63,7 +63,7 @@ void iceCabbage::creatSprite()
 	sp->setPosition(Point(this->position.x, this->position.y));
 	addLayer(sp);
 	
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clear, this));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(iceCabbage::clearNode, this));
 	Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 	sp->runAction(sequence);
 	///±¬Õ¨¶¯»­

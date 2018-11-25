@@ -80,23 +80,6 @@ void GraveBuster::readyDie(Node* pSender)
 	if(plant!=NULL)
 	plant->setHp(-1);
 }
-void GraveBuster::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(GraveBuster::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
 
 void GraveBuster::Attacked()
 {
@@ -107,7 +90,3 @@ void GraveBuster::Attacked()
 	sp->runAction(sequence);
 }
 
-void GraveBuster::clear(Node * pSender)
-{
-	pSender->removeFromParent();
-}

@@ -12,7 +12,6 @@ public:
 	virtual void work();
 	void Blow(Node * pSender);
 	void readyDie(Node * pSender);
-	virtual void Die();
 	//被打之后的事件
 	virtual void Attacked();
 	//清理精灵

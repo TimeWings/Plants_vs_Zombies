@@ -94,17 +94,4 @@ void Mushroom::clearBullet(Node *pSender)
 	//Self_Animation();
 }
 
-void Mushroom::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	clearNode(this->getImg());
-}
-
 

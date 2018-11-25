@@ -10,7 +10,6 @@ public:
 	Magnet(Point position, int row, int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
-	virtual void Die();
 	void Self_Animation();
 	//清理精灵
 	void attractEquiment();

@@ -7,7 +7,6 @@ class Sunflower :public Plants
 public:
 	Sunflower(Point position,int row,int col);
 	void work();
-	void Die();
 	void Attacked();
 	void Self_Animation();
 	void CreateSun();

@@ -67,17 +67,6 @@ void PotatoMine::work()
 	}
 }
 
-void PotatoMine::Die()
-{
-	clear(this->getImg());
-}
-
-void PotatoMine::removeSprite(Node *pSender)
-{
-	std::cout << "精灵移除" << std::endl;
-	pSender->removeFromParent();
-}
-
 void PotatoMine::Self_Animation()
 {
 	if (this->bornFinish)
@@ -155,20 +144,11 @@ void PotatoMine::CreateBullet(Zombie* zombie)
 	{
 		std::cout << "哈桑爆炸" << std::endl;
 		//马上移除容器并消除精灵
-		clear(this->getImg());
+		this->setHp(-1);
 		//定义爆炸效果
 		auto sp = Sprite::createWithTexture(TextureCache::getInstance()->addImage("PotatoMine\\Explode1.png"));
 		sp->retain();
 		sp->setScale(0.6);
-
-		//if (zombie->getImg()->getPositionX() >= this->getImg()->getPositionX())
-		//{
-		//	sp->setPosition(Point(position.x + 10, position.y + 20));
-		//}
-		//else
-		//{
-		//	sp->setPosition(Point(position.x - 10, position.y + 20));
-		//}
 		sp->setPosition(zombie->getImg()->getPosition());
 
 		addLayer(sp);
@@ -184,7 +164,7 @@ void PotatoMine::CreateBullet(Zombie* zombie)
 		}
 		Animation* an = Animation::createWithSpriteFrames(allframe, 0.2);
 		//播放完动画之后消除精灵
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::removeSprite, this));
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(PotatoMine::clearNode, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 		sp->runAction(sequence);
 	}
@@ -195,19 +175,4 @@ void PotatoMine::CreateBullet(Zombie* zombie)
 	Point a = zombie->getImg()->getPosition();
 	//只需要new一颗自己的子弹就行
 	Bullet *pb = new PotatoBullet(a,this->getRow());
-}
-
-void PotatoMine::clear(Node *pSender)
-{
-	std::cout << "容器移除" << std::endl;
-	pSender->removeFromParent();
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	this->setHp(-1);
 }

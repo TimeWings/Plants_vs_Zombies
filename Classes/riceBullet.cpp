@@ -94,7 +94,7 @@ void riceBullet::move()
 		CCRotateBy* rotate = CCRotateBy::create(2, 1200);
 		CCSpawn* spawn = CCSpawn::create(test, rotate, NULL);
 		CallFuncN* actionDone = actionDone = CallFuncN::create(CC_CALLBACK_1(PeaBullet::clear, this));
-		CCSequence* sequence = CCSequence::create(spawn, actionDone, NULL);
+		CCSequence* sequence = CCSequence::create(spawn, CCDelayTime::create(0.3) ,actionDone, NULL);
 		sp->runAction(sequence);
 	}
 }

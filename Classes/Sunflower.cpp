@@ -25,24 +25,6 @@ void Sunflower::work()
 	CreateSun();
 }
 
-void Sunflower::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Sunflower::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
-
 void Sunflower::Attacked()
 {
 	Sprite* sp = this->getImg();
@@ -116,10 +98,6 @@ void Sunflower::clearSun(Node *pSender, Sprite *sunFlower)
 	readySun.erase(sunFlower);
 }
 
-void Sunflower::clear(Node * pSender)
-{
-	pSender->removeFromParent();
-}
 
 
 

@@ -38,19 +38,6 @@ void Magnet::work()
 	}
 }
 
-void Magnet::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	clearNode(this->getImg());
-}
-
 void Magnet::Self_Animation()
 {
 	Sprite *sp = this->getImg();

@@ -14,6 +14,5 @@ public:
 	virtual void CreateBullet();
 	void Self_Animation();
 	void clearBullet(Node * pSender, HeroLuckerBullet * bp);
-	void Die();
 	virtual bool isWorking();
 };

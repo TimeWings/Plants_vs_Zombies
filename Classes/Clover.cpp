@@ -80,24 +80,6 @@ void Clover::readyDie(Node * pSender)
 {
 	this->setHp(0);
 }
-void Clover::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Clover::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
-
 
 void Clover::Attacked()
 {
@@ -106,10 +88,4 @@ void Clover::Attacked()
 	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
 	Sequence *sequence = Sequence::create(tintto1, tintto2, NULL);
 	sp->runAction(sequence);
-}
-
-void Clover::clear(Node * pSender)
-{
-	pSender->removeFromParent();
-	pSender->removeAllChildrenWithCleanup(true);
 }

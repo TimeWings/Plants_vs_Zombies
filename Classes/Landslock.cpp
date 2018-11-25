@@ -142,18 +142,6 @@ void Landslock::clearNode(Node * sPender, Sprite* sp)
 	sp->removeFromParent();
 }
 
-void Landslock::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	this->getImg()->removeFromParent();
-}
 
 void Landslock::Attacked()
 {

@@ -86,7 +86,7 @@ void PaulBullet::zombiesDie()
 			sp->retain();
 			sp->setScale(scale);
 			addLayer(sp);
-			auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
+			auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clearNode, this));
 			Sequence *sequence = Sequence::create(Animate::create(an), CCDelayTime::create(0.5), actionDone, NULL);
 			sp->runAction(sequence);
 			//าฦณýสýื้

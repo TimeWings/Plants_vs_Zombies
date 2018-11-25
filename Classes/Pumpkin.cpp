@@ -110,24 +110,6 @@ void Pumpkin::press(Node * pSender, Zombie* zombie)
 	zombie->getImg()->runAction(sequence);
 }
 
-void Pumpkin::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(this->getImg());
-	//ÑÓÊ±Ö®ºóÇå³ýÙÁ¹Ï
-	CCDelayTime* delayTime = CCDelayTime::create(0.5);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Pumpkin::clear, this));
-	Sequence *sequence = Sequence::create(delayTime, actionDone, NULL);
-	this->getImg()->runAction(sequence);
-}
-
 void Pumpkin::Self_Animation()
 {
 	Sprite *sp = this->getImg();
@@ -166,9 +148,4 @@ void Pumpkin::clearZombie(Node * pSender, Zombie* zombie)
 	//ÙÁ¹ÏÒ²ËÀµô
 	//Çå³ýÙÁ¹Ï
 	this->setHp(-1);
-}
-
-void Pumpkin::clear(Node * pSender)
-{
-	pSender->removeFromParent();
 }

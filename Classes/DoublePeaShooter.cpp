@@ -18,23 +18,7 @@ DoublePeaShooter::DoublePeaShooter(Point position,int row,int col):PeaShooter()
 	this->Self_Animation();
 	readyPlants.push_back(this);
 }
-void DoublePeaShooter::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(DoublePeaShooter::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
+
 void DoublePeaShooter::CreateBullet()
 {
 	setNewBirthTime();
@@ -56,8 +40,4 @@ void DoublePeaShooter::addBullet(Node * pSender, Sprite * sp)
 	
 	Point a = ccp(sp->getPositionX() , sp->getContentSize().height*sp->getScaleX() / 4 + sp->getPositionY());
 	Bullet *pb = new DoubleBullet(a,this->getRow());
-}
-void DoublePeaShooter::clear(Node * pSender)
-{
-	pSender->removeFromParent();
 }

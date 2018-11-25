@@ -12,13 +12,11 @@ public:
 	JannuDaruku(Point position,int row,int col);
 	virtual bool isWorking();//是否能工作
     void work();
-	void Die();
 	virtual void thisDie();
 	void Effect(Node * pSender);
 	virtual void zombiesDie();
 	virtual void creatSprite();
-	//清理精灵
-	void clear(Node * pSender);
+	void clearNode(Node * pSender);
 	// 通过 Plants 继承
 	virtual void Attacked() override;
 };

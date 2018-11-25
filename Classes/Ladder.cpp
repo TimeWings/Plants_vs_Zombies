@@ -41,7 +41,14 @@ void Ladder::Die()
 	Sprite * sp = this->getImg();
 	ActionInterval * fadeout = FadeOut::create(0.5);
 	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Nut::clear, this));
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Ladder::clear, this));
 	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
 	sp->runAction(sequence);
+}
+
+void Ladder::clear(Node * pSender)
+{
+	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
+	delete this;
 }

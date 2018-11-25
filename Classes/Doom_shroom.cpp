@@ -97,7 +97,7 @@ void Doom_shroom::zombiesDie()
 			ActionInterval * fadeout = FadeOut::create(0.5);
 			//僵尸被颜色覆盖
 			CCActionInterval * tintby = CCTintTo::create(0.2, 0, 0, 0);
-			auto actionDone = CallFuncN::create(CC_CALLBACK_1(Doom_shroom::clear, this));
+			auto actionDone = CallFuncN::create(CC_CALLBACK_1(Doom_shroom::clearNode, this));
 			Sequence *sequence = Sequence::create(tintby, fadeout, actionDone, NULL);
 			pSender->runAction(sequence);
 			//僵尸死亡粒子效果

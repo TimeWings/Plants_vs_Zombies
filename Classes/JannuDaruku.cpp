@@ -39,19 +39,6 @@ void JannuDaruku::work()
 	}
 }
 
-void JannuDaruku::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	this->getImg()->removeFromParent();
-}
-
 void JannuDaruku::thisDie()
 {
 	//贞德拉伸
@@ -147,7 +134,7 @@ void JannuDaruku::zombiesDie()
 			sp->retain();
 			sp->setScale(scale);
 			addLayer(sp);
-			auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
+			auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clearNode, this));
 			Sequence *sequence = Sequence::create(Animate::create(an), CCDelayTime::create(0.5), actionDone, NULL);
 			sp->runAction(sequence);
 			//移除数组
@@ -184,15 +171,16 @@ void JannuDaruku::creatSprite()
 		//sp->setPosition(this->position);
 		sp->setPosition(Point(x, this->position.y - this->getImg()->getContentSize().height *this->getImg()->getScaleY() / 4));
 		addLayer(sp);
-		auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clear, this));
+		auto actionDone = CallFuncN::create(CC_CALLBACK_1(JannuDaruku::clearNode, this));
 		Sequence *sequence = Sequence::create(Animate::create(an), actionDone, NULL);
 		sp->runAction(sequence);
 	}
 }
 
-void JannuDaruku::clear(Node * pSender)
+void JannuDaruku::clearNode(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 }
 
 void JannuDaruku::Attacked()

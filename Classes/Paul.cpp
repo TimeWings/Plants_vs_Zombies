@@ -62,18 +62,11 @@ void Paul::work()
 
 void Paul::Die()
 {
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
 	// fateout
 	this->getImg()->removeFromParent();
 	this->AimSprite->removeFromParent();
 	Paul::plantSelect = false;
+	Plants::Die();
 }
 
 void Paul::CreateBullet()

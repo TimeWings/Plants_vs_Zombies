@@ -23,11 +23,14 @@ HeroLuckerBullet::HeroLuckerBullet(Point position, int Plant_row)
 
 void HeroLuckerBullet::releaseZombie(Node* sPender, Zombie * zombie)
 {
-
+	if (zombie != NULL)
+	{
+		return;
+	}
 	for (int i = 0; i < zombie->getDebuff()->size(); i++)
 	{
 		if (zombie->getDebuff()->at(i) == Stick)
-		{
+		{ 
 			zombie->getDebuff()->erase(zombie->getDebuff()->begin() + i);
 			break;
 		}

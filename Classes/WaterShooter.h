@@ -7,7 +7,6 @@ class WaterShooter :public PeaShooter
 {
 public:
 	WaterShooter(Point position, int row, int col);
-	virtual void Die();
 	//²úÉú×Óµ¯
 	void CreateBullet();
 };

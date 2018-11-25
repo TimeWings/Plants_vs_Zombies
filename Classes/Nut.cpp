@@ -33,24 +33,6 @@ void Nut::work()
 {
 }
 
-void Nut::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Nut::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
-
 void Nut::Self_Animation()
 {
 	Sprite *sp = this->getImg();
@@ -73,9 +55,4 @@ void Nut::Attacked()
 	if (preScale < 0.1) return;
 	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale-0.015, preScale - 0.015);
 	sp->runAction(scaledown);
-}
-
-void Nut::clear(Node * pSender)
-{
-	pSender->removeFromParent();
 }

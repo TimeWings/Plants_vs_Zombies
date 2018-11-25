@@ -45,23 +45,6 @@ void Torch::work()
 	}
 }
 
-void Torch::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Torch::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
 
 void Torch::Self_Animation()
 {
@@ -90,9 +73,4 @@ void Torch::Attacked()
 void Torch::CreateBullet(Bullet*bullet)
 {
 	new FireBullet(this->getRow(),bullet,this->getImg()->getContentSize().width*this->getImg()->getScaleX());
-}
-
-void Torch::clear(Node * pSender)
-{
-	pSender->removeFromParent();
 }

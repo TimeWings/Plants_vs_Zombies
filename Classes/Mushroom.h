@@ -17,5 +17,4 @@ public:
 	virtual void CreateBullet();
 	virtual void Self_Animation();
 	void clearBullet(Node *pSender);
-	void Die();
 };

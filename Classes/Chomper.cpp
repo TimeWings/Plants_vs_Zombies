@@ -106,23 +106,6 @@ void Chomper::resume(Node* pSender)
 	isEating = false;
 	this->Self_Animation();
 }
-void Chomper::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Chomper::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
 
 void Chomper::Self_Animation()
 {
@@ -151,11 +134,6 @@ void Chomper::Attacked()
 	sp->runAction(sequence);
 }
 
-
-void Chomper::clear(Node * pSender)
-{
-	pSender->removeFromParent();
-}
 void Chomper::clear1(Node * pSender,Sprite* sp)
 {
 	sp->getActionManager()->removeAllActionsFromTarget(sp);

@@ -18,18 +18,6 @@ WaterShooter::WaterShooter(Point position, int row, int col)
 	readyPlants.push_back(this);
 }
 
-void WaterShooter::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	this->getImg()->removeFromParent();
-}
 
 void WaterShooter::CreateBullet()
 {

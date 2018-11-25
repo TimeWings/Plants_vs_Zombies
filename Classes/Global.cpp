@@ -1,4 +1,6 @@
 #include "Global.h"
+#include"LadderEquip.h"
+#include "Zomboni.h"
 #include <iostream>
 std::vector <Bullet*> readyBullet;
 std::vector <Plants*> readyPlants;
@@ -46,6 +48,9 @@ namespace map
 		selectingCardsEntity.clear();
 		unSelectingCardsEntity.clear();
 		readyCards.clear();
+		Zomboni::IceSprite.clear();
+		LadderEquip::LadderSprite.clear();
+
 		sunCnt.first = 0;
 		plantstatus.clear();
 		GameStart = false;

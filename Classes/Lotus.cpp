@@ -43,24 +43,6 @@ void Lotus::work()
 	}
 }
 
-void Lotus::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Lotus::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
-
 void Lotus::Self_Animation()
 {
 	char str[100] = { 0 };
@@ -84,9 +66,4 @@ void Lotus::Attacked()
 	CCActionInterval * tintto2 = CCTintTo::create(0.2, 255, 255, 255);
 	Sequence *sequence = Sequence::create(tintto1, tintto2, NULL);
 	sp->runAction(sequence);
-}
-
-void Lotus::clear(Node * pSender)
-{
-	pSender->removeFromParent();
 }

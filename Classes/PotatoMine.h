@@ -14,7 +14,6 @@ public:
 	PotatoMine(Point position, int row,int col);
 	virtual bool isWorking();//是否能工作
 	virtual void work();
-	virtual void Die();
 	void removeSprite(Node * pSender);
 	//出生之后的自身动画
 	void Self_Animation();

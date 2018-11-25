@@ -12,7 +12,6 @@ public:
 	virtual bool isWorking();//是否能工作
 	virtual void work();
 	void readyDie(Node * pSender);
-	virtual void Die();
 	//被打之后的事件
 	virtual void Attacked();
 	//清理精灵

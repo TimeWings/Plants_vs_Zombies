@@ -24,19 +24,6 @@ HeroLucker::HeroLucker(Point position, int row, int col)
 	readyPlants.push_back(this);
 }
 
-void HeroLucker::Die()
-{
-	this->getImg()->removeFromParent();
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-}
-
 bool HeroLucker::isWorking()
 {
 	if(readyZombies.size() > 0)

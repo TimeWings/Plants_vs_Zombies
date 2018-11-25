@@ -14,7 +14,6 @@ public:
 	virtual void work();
 	void Eat(Zombie * zombie);
 	void resume(Node * pSender);
-	virtual void Die();
 	//特有的自身动画
 	void Self_Animation();
 	//被打之后的事件

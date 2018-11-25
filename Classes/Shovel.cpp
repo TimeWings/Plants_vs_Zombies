@@ -35,34 +35,10 @@ void Shovel::work()
 	}
 }
 
-void Shovel::Die()
-{
-	for (int i = 0; i < readyPlants.size(); i++)
-	{
-		if (readyPlants.at(i) == this)
-		{
-			readyPlants.erase(readyPlants.begin() + i);
-			break;
-		}
-	}
-	Sprite * sp = this->getImg();
-	ActionInterval * fadeout = FadeOut::create(0.5);
-	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
-	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Shovel::clear, this));
-	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
-	sp->runAction(sequence);
-}
-
 void Shovel::Self_Animation()
 {
 }
 
 void Shovel::Attacked()
 {
-}
-
-void Shovel::clear(Node *pSender)
-{
-	pSender->removeFromParent();
-	pSender->removeAllChildrenWithCleanup(true);
 }
