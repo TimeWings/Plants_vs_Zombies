@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "CardEntity.h"
 #include "EntityLayer.h"
+#include "UILayer.h"
 #include "PlantStatus.h"
 #include "Plants.h"
 #include "PlantsEnum.h"
@@ -28,13 +29,13 @@ public:
 
 	void addLayer(Node * entity, int order = 0)
 	{
-		EntityLayer* layer = EntityLayer::getInstance();
+		UILayer* layer = UILayer::getInstance();
 		layer->addChild(entity, order);
 	}
 
 	void removeLayer(Node * entity)
 	{
-		EntityLayer* layer = EntityLayer::getInstance();
+		UILayer* layer = UILayer::getInstance();
 		layer->removeChild(entity);
 	}
 

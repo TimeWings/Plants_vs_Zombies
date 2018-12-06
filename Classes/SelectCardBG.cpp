@@ -1,6 +1,6 @@
 #include "SelectCardBG.h"
 #include "cocos2d.h"
-#include "EntityLayer.h"
+#include "UILayer.h"
 #include "Global.h"
 using namespace cocos2d;
 using namespace map;
@@ -8,7 +8,7 @@ SelectCardBG* SelectCardBG::instance = nullptr;
 
 SelectCardBG::SelectCardBG()
 {
-	auto layer = EntityLayer::getInstance();
+	auto layer = UILayer::getInstance();
 	auto bg = Sprite::create("UI\\SelectCard_BG.png");
 	bg->setAnchorPoint(Point(0,0));
 	bg->setPosition(8, 25);

@@ -38,6 +38,7 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();
+	void updateSun(float delta);
 
 	void preLoading();
 
@@ -50,6 +51,8 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 	void moveCamera(float delta);
+	void moveCameraRight(float delta);
+	void moveCameraLeft(float delta);
 	void LoadingCard(Node* pSender);
 };
 

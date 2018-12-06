@@ -1,8 +1,9 @@
 #include "GameStartButton.h"
 #include "Global.h"
-#include "EntityLayer.h"
+#include "UILayer.h"
 #include "SelectCardBG.h"
 #include "FontConfig.h"
+#include "HelloWorldScene.h"
 using namespace map;
 Button* GameStartButton::instance = nullptr;
 
@@ -23,7 +24,7 @@ Button* GameStartButton::create(Point position)
 	button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
 
 	
-	EntityLayer::getInstance()->addChild(button, 196);
+	UILayer::getInstance()->addChild(button, 196);
 	return button;
 }
 
@@ -60,7 +61,7 @@ void GameStartButton::addListener()
 			break;
 		case ui::Widget::TouchEventType::ENDED:
 			std::cout << "GameStart Button Clicked" << std::endl;
-			GameStart = true;
+			//GameStart = true;
 			for (int i = 0; i < unSelectingCardsEntity.size(); i++)
 			{
 				unSelectingCardsEntity[i]->clear();
@@ -80,6 +81,7 @@ void GameStartButton::addListener()
 			}
 			disable();
 			SelectCardBG::getInstance()->hide();
+			Director::getInstance()->getRunningScene()->scheduleOnce(schedule_selector(HelloWorld::moveCameraLeft), 0.5f);
 			break;
 		default:
 			break;

@@ -3,6 +3,7 @@
 #include <typeinfo>
 #include "Entity.h"
 #include "EntityLayer.h"
+#include "UILayer.h"
 #include "CardEntity.h"
 #include "PlantStatus.h"
 #include "Plants.h"
@@ -43,13 +44,13 @@ public:
 
 	void addLayer(Node * entity,int order=0)
 	{
-		EntityLayer* layer = EntityLayer::getInstance();
+		UILayer* layer = UILayer::getInstance();
 		layer->addChild(entity,order);
 	}
 
 	void removeLayer(Node * entity)
 	{
-		EntityLayer* layer = EntityLayer::getInstance();
+		UILayer* layer = UILayer::getInstance();
 		layer->removeChild(entity);
 	}
 	Card(Point position)

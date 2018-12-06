@@ -2,6 +2,7 @@
 #include "LevelManager.h"
 #include "FontConfig.h"
 #include "MainMenu.h"
+#include "UILayer.h"
 
 Button* MenuButton::instance;
 
@@ -27,7 +28,7 @@ Button* MenuButton::create(Point position)
 	button->addChild(label);
 	button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
 
-	EntityLayer::getInstance()->addChild(button, 1000);
+	UILayer::getInstance()->addChild(button, 1000);
 	return button;
 }
 

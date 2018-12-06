@@ -325,6 +325,9 @@
     <ClCompile Include="..\Classes\MainMenu.cpp">
       <Filter>src\Entity\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\UILayer.cpp">
+      <Filter>src\Layer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -516,9 +519,6 @@
     <ClInclude Include="..\Classes\DoorZombie.h">
       <Filter>src\Entity\Zombie</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\SelectCard.h">
-      <Filter>src\Entity\Map</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\PlantsEnum.h">
       <Filter>src\Entity\Map</Filter>
     </ClInclude>
@@ -636,6 +636,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AllEntity.h">
       <Filter>src\Entity\Plants</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\UILayer.h">
+      <Filter>src\Layer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@
 #include "FontConfig.h"
 #include "LevelManager.h"
 #include "ui/CocosGUI.h"
+#include "UILayer.h"
 using namespace ui;
 using namespace map;
 
@@ -11,7 +12,7 @@ MainMenu* MainMenu::instance;
 
 MainMenu::MainMenu()
 {
-	auto layer = EntityLayer::getInstance();
+	auto layer = UILayer::getInstance();
 	auto s = Director::getInstance()->getWinSize();
 	auto bg = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\dialog.png"));
 	bg->setAnchorPoint(Point(0.5f, 0.5f));

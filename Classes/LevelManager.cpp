@@ -14,6 +14,7 @@
 #include "Shovel.h"
 #include "Global.h"
 #include "HelloWorldScene.h"
+#include "UILayer.h"
 
 using namespace ui;
 using namespace map;
@@ -25,7 +26,7 @@ int LevelManager::bg[16] = { -1,0,0,0,1,1,1,2,2,2,3,3,3,4,4,4 };
 
 LevelManager::LevelManager()
 {
-	auto layer = EntityLayer::getInstance();
+	auto layer = UILayer::getInstance();
 	auto s = Director::getInstance()->getWinSize();
 	auto bg = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\dialog.png"));
 	bg->setAnchorPoint(Point(0.5f, 0.5f));
@@ -155,12 +156,26 @@ void LevelManager::clearAllUI()
 
 void LevelManager::showAllUI()
 {
-	SelectCardBG::getInstance()->show();
+	
 	CardBank::getInstance()->show();
-	GameStartButton::addListener();
-	GameStartButton::enable();
+	
 	MenuButton::addListener();
 	MenuButton::enable();
+}
+
+void LevelManager::showSelectCard()
+{
+	SelectCardBG::getInstance()->show();
+	GameStartButton::addListener();
+	GameStartButton::enable();
+	createAllCard();
+}
+
+void LevelManager::gameStart()
+{
+	GameStart = true;
+	Director::getInstance()->getRunningScene()->scheduleOnce(schedule_selector(HelloWorld::updateSun), 0.5f);
+	Director::getInstance()->getRunningScene()->schedule(schedule_selector(HelloWorld::updateSun), 8.0f);
 }
 
 void LevelManager::createAllCard()
@@ -258,14 +273,17 @@ void LevelManager::loadLevel(int level)
 	clearAllUI();
 	EntityLayer::getInstance()->removeAllChildrenWithCleanup(true);
 	EntityLayer::getInstance()->removeFromParent();
-
 	EntityLayer::create();
-	Background::type = bg[level];
+	UILayer::getInstance()->removeAllChildrenWithCleanup(true);
+	UILayer::getInstance()->removeFromParent();
+	UILayer::create();
+
 	scene->addChild(EntityLayer::getInstance());
+	scene->addChild(UILayer::getInstance());
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene, Color3B(0, 0, 0)));
 	currentLevel = level;
 
-	sunCnt.first = 0;
+	sunCnt.first = 9999;
 	CardBank::updateSunLabel();
 	for (int i = 0; i < readyCards.size(); i++)
 		readyCards[i]->clear();
@@ -273,11 +291,14 @@ void LevelManager::loadLevel(int level)
 	if (shovel != nullptr)
 		shovel->clear();
 	shovel = new Card<Shovel>(Point(460, 300), true);
+	Background::type = bg[level];
 	background = new Background();
 
 	showAllUI();
-	createAllCard();
+	
 	//test();
+	
+	scene->scheduleOnce(schedule_selector( HelloWorld::moveCameraRight),1.0f);
 }
 
 

@@ -27,14 +27,7 @@
 #include "SimpleAudioEngine.h"
 #include "EntityLayer.h"
 #include "Bullet.h"
-#include "PeaBullet.h"
-#include "PeaShooter.h"
-#include "Sunflower.h"
-#include "DoublePeaShooter.h"
-#include "IceShooter.h"
-#include "PotatoMine.h"
 #include "Global.h"
-#include "BasicZombie.h"
 #include <iostream>
 #include "Weeds.h"
 #include <io.h>
@@ -42,6 +35,7 @@
 #include "test.h"
 #include "Background.h"
 #include "LevelManager.h"
+#include "UILayer.h"
 #include <direct.h>
 USING_NS_CC;
 using namespace std;
@@ -157,8 +151,48 @@ void HelloWorld::moveCamera(float delta)
 	camera->runAction(actionDone);
 }
 
+void HelloWorld::moveCameraRight(float delta)
+{
+	auto camera = Camera::getDefaultCamera();
+	auto moveBy = MoveBy::create(1.5f, Vec2(150, 0));
+	auto showSelectCard = CallFuncN::create(std::bind(&LevelManager::showSelectCard));
+	Sequence *sequence = Sequence::create(moveBy, DelayTime::create(0.4f), showSelectCard, NULL);
+	camera->runAction(sequence);
+	UILayer::getInstance()->runAction(moveBy->clone());
+}
+
+void HelloWorld::moveCameraLeft(float delta)
+{
+	auto camera = Camera::getDefaultCamera();
+	auto moveBy = MoveBy::create(1.5f, Vec2(-150, 0));
+	auto actionDone = CallFuncN::create(std::bind(&LevelManager::gameStart));
+	Sequence *sequence = Sequence::create(moveBy, DelayTime::create(0.3f), actionDone, NULL);
+	camera->runAction(sequence);
+	UILayer::getInstance()->runAction(moveBy->clone());
+}
+
 void HelloWorld::LoadingCard(Node* pSender)
 {
 	//LevelManager::test();
 	//GameStart = true;
+}
+
+void HelloWorld::updateSun(float delta)
+{
+	if (GameStart == false)
+		return;
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	auto x = random(10, (int)visibleSize.width - 10);
+	auto y = (int)visibleSize.height;
+	
+	auto spSun = Sprite::createWithTexture(TextureCache::getInstance()->addImage("sun.png"));
+	Point position = Point(x, y);
+	spSun->setPosition(position);
+	spSun->setScale(0.5);
+	EntityLayer::getInstance()->addChild(spSun);
+	auto moveBy = MoveBy::create(4.5f, Point(0, -visibleSize.height + 30.0f));
+	spSun->runAction(moveBy);
+
+	//spSun->runAction(reveseseq);
+	//readySun.insert(sp, spSun);
 }

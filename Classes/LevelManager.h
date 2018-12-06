@@ -19,7 +19,9 @@ public:
 	static void loadLevel(int);
 	static void clearAllUI();
 	static void showAllUI();
+	static void showSelectCard();
 	static void createAllCard();
+	static void gameStart();
 
 	static LevelManager* getInstance()
 	{
