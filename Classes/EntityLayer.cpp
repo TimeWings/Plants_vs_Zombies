@@ -132,13 +132,33 @@ bool EntityLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_e
 			}
 			//std::cout << "获得太阳，当前太阳数：" << sunCnt.first << std::endl;
 			Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sun);
-			MoveTo *moveTo = MoveTo::create(2, ccp(sunCnt.second.first, sunCnt.second.second));
-			CCActionInterval * rotate = CCRotateTo::create(2, 180);
+			MoveTo *moveTo = MoveTo::create(1, ccp(sunCnt.second.first, sunCnt.second.second));
+			CCActionInterval * rotate = CCRotateTo::create(1, 180);
 			CCFiniteTimeAction * spawn = CCSpawn::create(moveTo, rotate, NULL);
 			auto actionDone = CallFuncN::create(CC_CALLBACK_1(EntityLayer::clearNode, this));
 			CCFiniteTimeAction * reveseseq = CCSequence::create(spawn, actionDone, NULL);
 			sun->runAction(reveseseq);
 			readySun.erase(x);
+		}
+	}
+	for (int j=0;j<dropSun.size();j++)
+	{
+		Sprite *sun = dropSun[j];
+		if (touchPos.x > sun->getPositionX() - sun->getContentSize().width / 2 * sun->getScaleX() && touchPos.x < sun->getPositionX() + sun->getContentSize().width / 2 * sun->getScaleX()
+			&& touchPos.y< sun->getPositionY() + sun->getContentSize().height / 2 * sun->getScaleY() && touchPos.y>sun->getPositionY() - sun->getContentSize().height / 2 * sun->getScaleY())
+		{
+			sunCnt.first += 25;
+			CardBank::updateSunLabel();
+			//std::cout << "获得太阳，当前太阳数：" << sunCnt.first << std::endl;
+			Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sun);
+			MoveTo *moveTo = MoveTo::create(1, ccp(sunCnt.second.first, sunCnt.second.second));
+			CCActionInterval * rotate = CCRotateTo::create(1, 180);
+			CCFiniteTimeAction * spawn = CCSpawn::create(moveTo, rotate, NULL);
+			auto actionDone = CallFuncN::create(CC_CALLBACK_1(EntityLayer::clearNode, this));
+			CCFiniteTimeAction * reveseseq = CCSequence::create(spawn, actionDone, NULL);
+			sun->runAction(reveseseq);
+			dropSun.erase(dropSun.begin() + j);
+			j--;
 		}
 	}
 	return false;

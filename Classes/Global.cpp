@@ -10,6 +10,7 @@ std::vector<PlantsEnum> selectingCards;
 std::vector<CardEntity*> selectingCardsEntity;
 std::vector<CardEntity*> unSelectingCardsEntity;
 std::vector<CardEntity*> readyCards;
+std::vector<Sprite*> dropSun;
 
 namespace map
 {
@@ -48,6 +49,7 @@ namespace map
 		selectingCardsEntity.clear();
 		unSelectingCardsEntity.clear();
 		readyCards.clear();
+		dropSun.clear();
 		Zomboni::IceSprite.clear();
 		LadderEquip::LadderSprite.clear();
 

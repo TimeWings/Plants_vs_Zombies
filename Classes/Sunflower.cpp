@@ -1,5 +1,6 @@
 #include "Sunflower.h"
 #include "Global.h"
+#include "UILayer.h"
 #include <time.h>
 #include <iostream>
 #include <sys/timeb.h>
@@ -61,7 +62,7 @@ void Sunflower::CreateSun()
 	Point a = Point(sp->getPositionX(), sp->getPositionY() + sp->getContentSize().height / 2 * sp->getScaleY());
 	spSun->setPosition(a);
 	spSun->setScale(0.5);
-	addLayer(spSun);
+	UILayer::getInstance()->addChild(spSun, 200);
 
 	Point b = Point(sp->getPositionX() - sp->getContentSize().width / 2 * sp->getScaleX() - spSun->getContentSize().width / 2 * spSun->getScale(), sp->getPositionY());
 	float height = sp->getContentSize().height / 2 * sp->getScaleX();

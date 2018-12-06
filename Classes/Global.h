@@ -27,6 +27,7 @@ extern std::vector<PlantsEnum> selectingCards;
 extern std::vector<CardEntity*> selectingCardsEntity;
 extern std::vector<CardEntity*> unSelectingCardsEntity;
 extern std::vector<CardEntity*> readyCards;
+extern std::vector<Sprite*> dropSun;
 
 namespace map 
 {

@@ -189,10 +189,10 @@ void HelloWorld::updateSun(float delta)
 	Point position = Point(x, y);
 	spSun->setPosition(position);
 	spSun->setScale(0.5);
-	EntityLayer::getInstance()->addChild(spSun);
+	UILayer::getInstance()->addChild(spSun, 200);
 	auto moveBy = MoveBy::create(4.5f, Point(0, -visibleSize.height + 30.0f));
 	spSun->runAction(moveBy);
-
+	dropSun.push_back(spSun);
 	//spSun->runAction(reveseseq);
 	//readySun.insert(sp, spSun);
 }

@@ -174,7 +174,7 @@ void LevelManager::showSelectCard()
 void LevelManager::gameStart()
 {
 	GameStart = true;
-	Director::getInstance()->getRunningScene()->scheduleOnce(schedule_selector(HelloWorld::updateSun), 0.5f);
+	Director::getInstance()->getRunningScene()->scheduleOnce(schedule_selector(HelloWorld::updateSun), 1.0f);
 	Director::getInstance()->getRunningScene()->schedule(schedule_selector(HelloWorld::updateSun), 8.0f);
 }
 
@@ -283,7 +283,7 @@ void LevelManager::loadLevel(int level)
 	Director::getInstance()->replaceScene(TransitionFade::create(0.5, scene, Color3B(0, 0, 0)));
 	currentLevel = level;
 
-	sunCnt.first = 9999;
+	sunCnt.first = 0;
 	CardBank::updateSunLabel();
 	for (int i = 0; i < readyCards.size(); i++)
 		readyCards[i]->clear();
