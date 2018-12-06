@@ -3,6 +3,7 @@
 #include "LadderEquip.h"
 #include "Zombie.h"
 #include "Bullet.h"
+#include "CardBank.h"
 #include <stdio.h>
 #include <math.h>
 #include <sys/timeb.h>
@@ -112,7 +113,8 @@ bool EntityLayer::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * unused_e
 		if (touchPos.x > sun->getPositionX() - sun->getContentSize().width / 2 * sun->getScaleX() && touchPos.x < sun->getPositionX() + sun->getContentSize().width / 2 * sun->getScaleX()
 			&& touchPos.y< sun->getPositionY() + sun->getContentSize().height / 2 * sun->getScaleY() && touchPos.y>sun->getPositionY() - sun->getContentSize().height / 2 * sun->getScaleY())
 		{
-			sunCnt.first++;
+			sunCnt.first += 25;
+			CardBank::updateSunLabel();
 			Plants *plant = NULL;
 			for (int i = 0; i < readyPlants.size(); i++)
 			{

@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "EntityLayer.h"
 #include "ui/CocosGUI.h"
+#include "Shovel.h"
+#include "Card.h"
 using namespace ui;
 
 class LevelManager:public Entity
@@ -31,6 +33,7 @@ public:
 
 private:
 	bool showing = false;
+	static Card<Shovel>* shovel;
 	std::vector<Button*> buttons;
 	Button* closeButton;
 	static LevelManager* instance;

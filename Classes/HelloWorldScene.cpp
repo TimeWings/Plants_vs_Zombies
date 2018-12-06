@@ -100,9 +100,10 @@ void HelloWorld::GameIn(float t)
 	//loading->clear();
 	title->clear(this);
 	this->addChild(EntityLayer::create());
-	background = new Background();
+	LevelManager::loadLevel(1);
+	//background = new Background();
 	//test a = test();
-	this->scheduleOnce(schedule_selector(HelloWorld::moveCamera), 1.0f);
+	//this->scheduleOnce(schedule_selector(HelloWorld::moveCamera), 1.0f);
 }
 string&  HelloWorld::replace_all(string&   str, const   string&   old_value, const   string&   new_value)
 {
@@ -158,6 +159,6 @@ void HelloWorld::moveCamera(float delta)
 
 void HelloWorld::LoadingCard(Node* pSender)
 {
-	LevelManager::test();
-	GameStart = true;
+	//LevelManager::test();
+	//GameStart = true;
 }

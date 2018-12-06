@@ -20,7 +20,7 @@ public:
 	static Button* getInstance()
 	{
 		if (instance == nullptr)
-			instance = create(Point(120, 35));
+			instance = create(Point(120, 40));
 		return instance;
 	}
 

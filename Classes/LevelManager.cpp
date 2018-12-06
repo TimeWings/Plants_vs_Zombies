@@ -11,12 +11,15 @@
 #include "MenuButton.h"
 #include "MainMenu.h"
 #include "AllEntity.h"
+#include "Shovel.h"
 #include "Global.h"
+#include "HelloWorldScene.h"
 
 using namespace ui;
 using namespace map;
 
 LevelManager* LevelManager::instance = nullptr;
+Card<Shovel>* LevelManager::shovel = nullptr;
 int LevelManager::currentLevel = 1;
 int LevelManager::bg[16] = { -1,0,0,0,1,1,1,2,2,2,3,3,3,4,4,4 };
 
@@ -270,11 +273,13 @@ void LevelManager::loadLevel(int level)
 	if (shovel != nullptr)
 		shovel->clear();
 	shovel = new Card<Shovel>(Point(460, 300), true);
-	test();
 	background = new Background();
-	drawRect();
 
+	showAllUI();
+	createAllCard();
+	//test();
 }
+
 
 void LevelManager::test()
 {
@@ -341,6 +346,7 @@ void LevelManager::test()
 	new ZombieCard<ImpZombie>(Point(20, 20));
 	new ZombieCard<MinerZombie>(Point(40, 20));
 	new ZombieCard<DuckZombie>(Point(60, 20));
+	drawRect();
 }
 
 void LevelManager::drawRect()

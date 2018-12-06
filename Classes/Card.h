@@ -59,7 +59,7 @@ public:
 		
 		sprite->retain();
 		//sprite->setScale(0.15f);
-		sprite->setContentSize(Size(20, 30));
+		sprite->setContentSize(Size(27, 38));
 		//this->Scale = this->getImg()->getScale();
 		//sprite->setAnchorPoint(Point(0.5f, 0.5f));
 		sprite->setPosition(position);
@@ -74,14 +74,14 @@ public:
 		position1.y += 4;
 		plantSprite->setPosition(position1);
 		//plantSprite->setScale(0.2f);
-		plantSprite->setContentSize(Size(18, 24));
+		plantSprite->setContentSize(Size(16, 20));
 		plantSprite->retain();
 		//addLayer(plantSprite,200);
 		sprite->addChild(plantSprite);
-		//sprite->setVisible(false);
+		sprite->setVisible(false);
 
 		plantsTypeName = className;
-		addListener();
+		//addListener();
 		setCost();
 		auto sunLabel = Label::createWithTTF(*(FontConfig::getInstance()),to_string(cost));
 		sunLabel->setPosition(14, 5.5f);
