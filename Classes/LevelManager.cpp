@@ -326,9 +326,9 @@ void LevelManager::loadLevel(int level)
 	background = new Background();
 
 	showAllUI();
-	
-	//test();
-	
+#ifdef debug
+	test();
+#endif
 	scene->scheduleOnce(schedule_selector( HelloWorld::moveCameraRight),1.0f);
 	scene->unschedule(schedule_selector(HelloWorld::updateSun));
 	scene->unschedule(schedule_selector(HelloWorld::updateZombie));

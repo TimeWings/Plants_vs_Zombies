@@ -80,9 +80,11 @@ public:
 		//addLayer(plantSprite,200);
 		sprite->addChild(plantSprite);
 		sprite->setVisible(false);
-
+#ifdef debug
+		sprite->setVisible(true);
+		addListener();
+#endif
 		plantsTypeName = className;
-		//addListener();
 		setCost();
 		auto sunLabel = Label::createWithTTF(*(FontConfig::getInstance()),to_string(cost));
 		sunLabel->setPosition(14, 5.5f);
