@@ -83,6 +83,7 @@ public:
 #ifdef debug
 		sprite->setVisible(true);
 		addListener();
+		sprite->setContentSize(Size(20, 30));
 #endif
 		plantsTypeName = className;
 		setCost();
