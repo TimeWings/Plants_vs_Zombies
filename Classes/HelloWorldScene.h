@@ -39,6 +39,8 @@ public:
 
     virtual bool init();
 	void updateSun(float delta);
+	void updateZombie(float delta);
+	void checkWinAndLose(float delta);
 
 	void preLoading();
 

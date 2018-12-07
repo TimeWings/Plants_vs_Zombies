@@ -347,6 +347,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\WhiteJannu.h" />
     <ClInclude Include="..\Classes\Zombie.h" />
     <ClInclude Include="..\Classes\ZombieCard.h" />
+    <ClInclude Include="..\Classes\ZombieEnum.h" />
     <ClInclude Include="..\Classes\ZombieEquipment.h" />
     <ClInclude Include="..\Classes\Zomboni.h" />
     <ClInclude Include="main.h" />

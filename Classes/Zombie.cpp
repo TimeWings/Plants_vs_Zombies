@@ -1,10 +1,17 @@
 #include "Zombie.h"
 #include "EntityLayer.h"
 #include "Global.h"
+#include "LevelManager.h"
 #include <sys/timeb.h>
 Zombie::Zombie()
 {
 	this->BirthTime = 0;
+}
+
+Zombie::~Zombie()
+{
+	LevelManager::kill++;
+	std::cout << "僵尸死了，当前共杀死了" << LevelManager::kill << "只僵尸" << std::endl;
 }
 
 int Zombie::getHp()

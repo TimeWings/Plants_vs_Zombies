@@ -196,3 +196,13 @@ void HelloWorld::updateSun(float delta)
 	//spSun->runAction(reveseseq);
 	//readySun.insert(sp, spSun);
 }
+
+void HelloWorld::updateZombie(float delta)
+{
+	LevelManager::createZombie();
+}
+
+void HelloWorld::checkWinAndLose(float delta)
+{
+	LevelManager::checkWin();
+}

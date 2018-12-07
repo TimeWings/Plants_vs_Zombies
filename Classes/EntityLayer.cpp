@@ -43,7 +43,7 @@ bool EntityLayer::init()
 	this->schedule(schedule_selector(EntityLayer::Check_isWorking_Zombie), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Death), 0.1);
 	this->schedule(schedule_selector(EntityLayer::Check_Zombie_Climb), 0.1);
-	this->schedule(schedule_selector(EntityLayer::showInfo), 0.1);
+	//this->schedule(schedule_selector(EntityLayer::showInfo), 0.1);
 	return true;
 }
 void EntityLayer::Check_Collision(float t)
@@ -81,7 +81,7 @@ void EntityLayer::Check_Collision(float t)
 						continue;
 					}
 				}
-				std::cout << "子弹碰撞了" << std::endl;
+				//std::cout << "子弹碰撞了" << std::endl;
 				bullet->Hit_Animation(zombie);
 				if (sp->getTag() == Penetrable_tag)
 				{
@@ -341,4 +341,5 @@ void EntityLayer::showInfo(float t)
 	
 
 }
+
 

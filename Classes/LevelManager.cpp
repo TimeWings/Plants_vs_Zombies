@@ -15,6 +15,7 @@
 #include "Global.h"
 #include "HelloWorldScene.h"
 #include "UILayer.h"
+#include "ZombieEnum.h"
 
 using namespace ui;
 using namespace map;
@@ -23,6 +24,31 @@ LevelManager* LevelManager::instance = nullptr;
 Card<Shovel>* LevelManager::shovel = nullptr;
 int LevelManager::currentLevel = 1;
 int LevelManager::bg[16] = { -1,0,0,0,1,1,1,2,2,2,3,3,3,4,4,4 };
+int LevelManager::kill = 0;
+int LevelManager::zombieCount = 0;
+int LevelManager::zombie[16][36] =
+{
+	{0},
+	{15,0,0,0,1,1,0,2,1,0,2,1,0,2,1,3},
+	{20,0,0,0,1,1,2,6,2,3,6,3,1,6,2,0,1,3,0,6,5},
+	{25,0,0,0,1,1,2,0,9,3,3,2,1,6,7,0,5,7,1,9,2,6,0,8,8,9},
+
+	{15,0,0,0,1,1,4,4,1,2,4,0,3,2,6,6},
+	{20,0,0,1,1,2,4,4,6,5,4,6,7,4,4,9,7,9,3,4,2},
+	{25,0,0,1,1,2,4,6,4,5,4,7,6,2,8,3,10,8,0,1,9,4,9,7,7,10},
+
+	{15,0,0,1,1,2,2,3,11,11,7,6,2,6,7},
+	{20,0,0,1,1,2,3,11,11,6,6,5,7,8,2,11,9,9,3,5,10},
+	{25,0,0,1,1,2,3,6,5,6,11,11,7,3,11,9,9,2,1,0,3,3,5,12},
+
+	{15,0,0,1,1,2,2,3,6,6,5,3,11,11,11},
+	{20,0,0,1,2,2,3,5,6,6,7,7,8,11,11,11,5,9,9,6,12},
+	{25,0,0,1,1,2,2,3,3,5,6,6,5,7,8,8,9,9,11,11,10,11,11,12,12},
+
+	{10,0,0,0,0,1,1,2,1,3,6},
+	{15,0,0,0,1,1,2,2,3,6,6,0,2,11,10},
+	{20,0,0,1,1,6,2,3,3,6,6,5,5,0,3,2,1,7,7,3,12}
+};
 
 LevelManager::LevelManager()
 {
@@ -174,8 +200,11 @@ void LevelManager::showSelectCard()
 void LevelManager::gameStart()
 {
 	GameStart = true;
-	Director::getInstance()->getRunningScene()->scheduleOnce(schedule_selector(HelloWorld::updateSun), 1.0f);
-	Director::getInstance()->getRunningScene()->schedule(schedule_selector(HelloWorld::updateSun), 8.0f);
+	auto scene = Director::getInstance()->getRunningScene();
+	scene->scheduleOnce(schedule_selector(HelloWorld::updateSun), 1.0f);
+	scene->schedule(schedule_selector(HelloWorld::updateSun), 5.0f);
+	scene->schedule(schedule_selector(HelloWorld::updateZombie), 12.0f);
+	scene->schedule(schedule_selector(HelloWorld::checkWinAndLose), 1.0f);
 }
 
 void LevelManager::createAllCard()
@@ -267,6 +296,8 @@ void LevelManager::createAllCard()
 void LevelManager::loadLevel(int level)
 {
 	init();
+	zombieCount = 0;
+	kill = 0;
 	if (level <= 0)
 		level = currentLevel;
 	auto scene = Scene::create();
@@ -299,8 +330,64 @@ void LevelManager::loadLevel(int level)
 	//test();
 	
 	scene->scheduleOnce(schedule_selector( HelloWorld::moveCameraRight),1.0f);
+	scene->unschedule(schedule_selector(HelloWorld::updateSun));
+	scene->unschedule(schedule_selector(HelloWorld::updateZombie));
 }
 
+void LevelManager::createZombie()
+{
+	auto scene = Director::getInstance()->getRunningScene();
+	if (zombieCount == zombie[currentLevel][0])
+	{
+		cout << "僵尸已出完，不再出新的僵尸" << endl;
+		scene->unschedule(schedule_selector(HelloWorld::updateZombie));
+		return;
+	}
+	auto row = random(1, MapRow);
+	if (currentLevel == 4 || currentLevel == 5 || currentLevel == 6)
+	{
+		while (row == 3 || row == 4)
+			row = random(1, MapRow);
+	}
+	std::cout << row << endl;
+	Point position = Rank2Point(row, MapCol);
+	position.x += 100;
+	position.y += 15;
+	
+	auto zombieType = zombie[currentLevel][++zombieCount];
+	switch (zombieType)
+	{
+		case 0 :new BasicZombie(position, row, MapCol); break;
+		case 1 :new RoadblockZombie(position, row, MapCol); break;
+		case 2 :new BucketZombie(position, row, MapCol); break;
+		case 3 :new DoorZombie(position, row, MapCol); break;
+		case 4 :
+			row = random(3, 4);
+			position = Rank2Point(row, MapCol);
+			position.x += 100;
+			position.y += 15;
+			new DuckZombie(position, row, MapCol); break;
+		case 5:new FootBallZombie(position, row, MapCol); break;
+		case 6:new NewspaperZombie(position, row, MapCol); break;
+		case 7:new MinerZombie(position, row, MapCol); break;
+		case 8:new PoleVaultingZombie(position, row, MapCol); break;
+		case 9 :new BombZombie(position, row, MapCol); break;
+		case 10 :new Zomboni(position, row, MapCol); break;
+		case 11 :new ImpZombie(position, row, MapCol); break;
+		case 12:new Gargantuar(position, row, MapCol); break;
+	}
+}
+
+void LevelManager::checkWin()
+{
+	auto scene = Director::getInstance()->getRunningScene();
+	if (kill == zombie[currentLevel][0])
+	{
+		cout << "你赢了，不再出阳光和僵尸" << endl;
+		scene->unschedule(schedule_selector(HelloWorld::updateSun));
+		scene->unschedule(schedule_selector(HelloWorld::updateZombie));
+	}
+}
 
 void LevelManager::test()
 {

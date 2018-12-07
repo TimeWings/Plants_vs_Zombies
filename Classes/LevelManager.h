@@ -22,6 +22,9 @@ public:
 	static void showSelectCard();
 	static void createAllCard();
 	static void gameStart();
+	static void createZombie();
+	static void checkWin();
+	static void checkLose();
 
 	static LevelManager* getInstance()
 	{
@@ -32,6 +35,7 @@ public:
 
 	static void test();
 	static void drawRect();
+	static int kill;
 
 private:
 	bool showing = false;
@@ -42,4 +46,6 @@ private:
 	static int currentLevel;
 	//static int targetLevel;
 	static int bg[16];
+	static int zombieCount;
+	static int zombie[16][36];
 };

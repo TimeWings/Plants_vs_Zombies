@@ -28,6 +28,7 @@ protected:
 	void setWalkSpeed(double WalkSpeed);
 public:
 	Zombie(); //¹¹Ôìº¯Êý
+	~Zombie();
 	int getHp();
 	void setHp(int hp);
 	int getRow();

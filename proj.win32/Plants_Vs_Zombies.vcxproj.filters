@@ -640,6 +640,9 @@
     <ClInclude Include="..\Classes\UILayer.h">
       <Filter>src\Layer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\ZombieEnum.h">
+      <Filter>src\Entity\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
