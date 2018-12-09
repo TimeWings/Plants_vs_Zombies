@@ -12,7 +12,56 @@ MainMenu* MainMenu::instance;
 
 MainMenu::MainMenu()
 {
-	auto layer = UILayer::getInstance();
+	
+}
+
+
+MainMenu::~MainMenu()
+{
+}
+
+bool MainMenu::isShow()
+{
+	return showing;
+}
+
+void MainMenu::show()
+{
+	pauseScene = CCScene::create();
+	pauseLayer = Layer::create();
+	pauseScene->addChild(pauseLayer, 1);
+	//增加部分：使用Game界面中截图的sqr纹理图片创建Sprite
+  //并将Sprite添加到GamePause场景层中
+  //得到窗口的大小
+	
+	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+	CCRenderTexture *renderTexture = CCRenderTexture::create(visibleSize.width, visibleSize.height);
+
+	//遍历当前类的所有子节点信息，画入renderTexture中。
+	//这里类似截图。
+	renderTexture->begin();
+	EntityLayer::getInstance()->getParent()->visit();
+	renderTexture->end();
+
+	CCSprite *back_spr = CCSprite::createWithTexture(renderTexture->getSprite()->getTexture());
+	back_spr->setPosition(ccp(visibleSize.width / 2, visibleSize.height / 2)); //放置位置,这个相对于中心位置。
+	back_spr->setFlipY(true);            //翻转，因为UI坐标和OpenGL坐标不同
+	//back_spr->setColor(Color3B::GRAY); //图片颜色变灰色
+	pauseScene->addChild(back_spr);
+
+	//将游戏界面暂停，压入场景堆栈。并切换到GamePause界面
+	CCDirector::sharedDirector()->pushScene(pauseScene);
+	auto camera = Camera::getDefaultCamera();
+	camera->pause();
+	auto UIlayer = UILayer::getInstance();
+	UIlayer->pause();
+	auto childerns = UIlayer->getChildren();
+	for (int i = 0; i < childerns.size(); i++)
+	{
+		childerns.at(i)->pause();
+	}
+	
+	auto layer = pauseLayer;
 	auto s = Director::getInstance()->getWinSize();
 	auto bg = Sprite::createWithTexture(TextureCache::getInstance()->addImage("UI\\dialog.png"));
 	bg->setAnchorPoint(Point(0.5f, 0.5f));
@@ -109,24 +158,11 @@ MainMenu::MainMenu()
 			break;
 		}
 	});
-}
 
-
-MainMenu::~MainMenu()
-{
-}
-
-bool MainMenu::isShow()
-{
-	return showing;
-}
-
-void MainMenu::show()
-{
 	FadeIn* fadein = FadeIn::create(0.3f);
 	getImg()->setOpacity(0);
 	getImg()->runAction(fadein);
-	auto childerns = getImg()->getChildren();
+	childerns = getImg()->getChildren();
 	for (int i = 0; i < childerns.size(); i++)
 	{
 		childerns.at(i)->setOpacity(0);
@@ -141,6 +177,7 @@ void MainMenu::show()
 
 void MainMenu::hide()
 {
+	
 	FadeOut* fadeout = FadeOut::create(0.3f);
 	getImg()->runAction(fadeout);
 	auto childerns = getImg()->getChildren();
@@ -153,15 +190,29 @@ void MainMenu::hide()
 	exitButton->setEnabled(false);
 	closeButton->setEnabled(false);
 	showing = false;
+	CCDirector::sharedDirector()->popScene();
+	auto camera = Camera::getDefaultCamera();
+	camera->resume();
+	auto UIlayer = UILayer::getInstance();
+	UIlayer->resume();
+	childerns = UIlayer->getChildren();
+	for (int i = 0; i < childerns.size(); i++)
+	{
+		childerns.at(i)->resume();
+	}
 }
 
 void MainMenu::clear()
 {
-	retryButton->removeFromParent();
-	levelButton->removeFromParent();
-	exitButton->removeFromParent();
-	closeButton->removeFromParent();
-	getImg()->removeFromParent();
+	//retryButton->removeFromParent();
+	//levelButton->removeFromParent();
+	//exitButton->removeFromParent();
+	//closeButton->removeFromParent();
+	//getImg()->removeFromParent();
 	delete instance;
 	instance = nullptr;
+	//if (pauseLayer != nullptr)
+	//	pauseLayer->removeFromParent();
+	//if (pauseScene != nullptr)
+	//	pauseScene->removeFromParent();
 }

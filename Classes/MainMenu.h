@@ -27,6 +27,8 @@ private:
 	Button* levelButton;
 	Button* exitButton;
 	Button* closeButton;
+	Layer* pauseLayer = nullptr;
+	Scene* pauseScene = nullptr;
 	static MainMenu* instance;
 };
 
