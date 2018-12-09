@@ -34,7 +34,7 @@ void MainMenu::show()
   //并将Sprite添加到GamePause场景层中
   //得到窗口的大小
 	
-	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();
+	auto visibleSize = Director::getInstance()->getWinSize();
 	CCRenderTexture *renderTexture = CCRenderTexture::create(visibleSize.width, visibleSize.height);
 
 	//遍历当前类的所有子节点信息，画入renderTexture中。
