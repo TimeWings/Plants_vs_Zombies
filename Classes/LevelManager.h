@@ -36,6 +36,7 @@ public:
 	static void test();
 	static void drawRect();
 	static int kill;
+	static int currentLevel;
 
 private:
 	bool showing = false;
@@ -43,7 +44,6 @@ private:
 	std::vector<Button*> buttons;
 	Button* closeButton;
 	static LevelManager* instance;
-	static int currentLevel;
 	//static int targetLevel;
 	static int bg[16];
 	static int zombieCount;

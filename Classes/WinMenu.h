@@ -3,30 +3,30 @@
 #include "ui/CocosGUI.h"
 using namespace ui;
 
-class MainMenu: public Entity
+class WinMenu: Entity
 {
 public:
-	MainMenu();
-	~MainMenu();
+	WinMenu();
+	~WinMenu();
 
 	void show();
 	void hide();
 	void clear();
 	bool isShow();
 
-	static MainMenu* getInstance()
+	static WinMenu* getInstance()
 	{
 		if (instance == nullptr)
-			instance = new MainMenu();
+			instance = new WinMenu();
 		return instance;
 	}
 
 private:
 	bool showing = false;
 	Button* retryButton;
-	Button* levelButton;
+	Button* nextButton;
 	Button* exitButton;
-	Button* closeButton;
-	static MainMenu* instance;
+	//Button* closeButton;
+	static WinMenu* instance;
 };
 

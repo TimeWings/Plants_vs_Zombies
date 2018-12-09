@@ -328,6 +328,9 @@
     <ClCompile Include="..\Classes\UILayer.cpp">
       <Filter>src\Layer</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\WinMenu.cpp">
+      <Filter>src\Entity\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -642,6 +645,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ZombieEnum.h">
       <Filter>src\Entity\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WinMenu.h">
+      <Filter>src\Entity\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

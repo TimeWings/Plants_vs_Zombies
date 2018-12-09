@@ -242,6 +242,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\WaterShooter.cpp" />
     <ClCompile Include="..\Classes\Weeds.cpp" />
     <ClCompile Include="..\Classes\WhiteJannu.cpp" />
+    <ClCompile Include="..\Classes\WinMenu.cpp" />
     <ClCompile Include="..\Classes\Zombie.cpp" />
     <ClCompile Include="..\Classes\ZombieEquipment.cpp" />
     <ClCompile Include="..\Classes\Zomboni.cpp" />
@@ -345,6 +346,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\WaterShooter.h" />
     <ClInclude Include="..\Classes\Weeds.h" />
     <ClInclude Include="..\Classes\WhiteJannu.h" />
+    <ClInclude Include="..\Classes\WinMenu.h" />
     <ClInclude Include="..\Classes\Zombie.h" />
     <ClInclude Include="..\Classes\ZombieCard.h" />
     <ClInclude Include="..\Classes\ZombieEnum.h" />

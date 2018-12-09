@@ -135,6 +135,8 @@ public:
 					className = className.erase(0, 6);
 					string str = string("Card\\") + className + string(".png");
 					plantFollowSprite = Sprite::createWithTexture(TextureCache::getInstance()->addImage(str.c_str()));
+					if(className != "Shovel" && className != "Lotus" && className != "Clover"
+						&& className != "Cushaw" && className != "Chomper")
 					plantFollowSprite->setContentSize(Size(18, 24));
 					plantFollowSprite->setPosition(clickLocation);
 					plantFollowSprite->retain();

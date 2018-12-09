@@ -16,6 +16,7 @@
 #include "HelloWorldScene.h"
 #include "UILayer.h"
 #include "ZombieEnum.h"
+#include "WinMenu.h"
 
 using namespace ui;
 using namespace map;
@@ -178,6 +179,7 @@ void LevelManager::clearAllUI()
 	getInstance()->clear();
 	GameStartButton::clear();
 	MenuButton::clear();
+	WinMenu::getInstance()->clear();
 }
 
 void LevelManager::showAllUI()
@@ -381,11 +383,14 @@ void LevelManager::createZombie()
 void LevelManager::checkWin()
 {
 	auto scene = Director::getInstance()->getRunningScene();
-	if (kill == zombie[currentLevel][0])
+	if (zombieCount == zombie[currentLevel][0] && readyZombies.size() == 0)
 	{
 		cout << "你赢了，不再出阳光和僵尸" << endl;
 		scene->unschedule(schedule_selector(HelloWorld::updateSun));
 		scene->unschedule(schedule_selector(HelloWorld::updateZombie));
+		scene->unschedule(schedule_selector(HelloWorld::checkWinAndLose));
+		
+		WinMenu::getInstance()->show();
 	}
 }
 
