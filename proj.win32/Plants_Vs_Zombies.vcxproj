@@ -193,6 +193,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Lantern.cpp" />
     <ClCompile Include="..\Classes\LevelManager.cpp" />
     <ClCompile Include="..\Classes\Loading.cpp" />
+    <ClCompile Include="..\Classes\LoseMenu.cpp" />
     <ClCompile Include="..\Classes\Lotus.cpp" />
     <ClCompile Include="..\Classes\Lucker.cpp" />
     <ClCompile Include="..\Classes\Magnet.cpp" />
@@ -295,6 +296,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Lantern.h" />
     <ClInclude Include="..\Classes\LevelManager.h" />
     <ClInclude Include="..\Classes\Loading.h" />
+    <ClInclude Include="..\Classes\LoseMenu.h" />
     <ClInclude Include="..\Classes\Lotus.h" />
     <ClInclude Include="..\Classes\Lucker.h" />
     <ClInclude Include="..\Classes\Magnet.h" />

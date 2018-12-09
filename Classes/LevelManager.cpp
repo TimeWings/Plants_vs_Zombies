@@ -17,6 +17,7 @@
 #include "UILayer.h"
 #include "ZombieEnum.h"
 #include "WinMenu.h"
+#include "LoseMenu.h"
 
 using namespace ui;
 using namespace map;
@@ -180,6 +181,8 @@ void LevelManager::clearAllUI()
 	GameStartButton::clear();
 	MenuButton::clear();
 	WinMenu::getInstance()->clear();
+	LoseMenu::getInstance()->clear();
+
 }
 
 void LevelManager::showAllUI()
@@ -391,6 +394,29 @@ void LevelManager::checkWin()
 		scene->unschedule(schedule_selector(HelloWorld::checkWinAndLose));
 		
 		WinMenu::getInstance()->show();
+	}
+}
+
+void LevelManager::checkLose()
+{
+	auto scene = Director::getInstance()->getRunningScene();
+	bool isLose = false;
+	for (int i = 0; i < readyZombies.size(); i++)
+	{
+		if (readyZombies[i]->getImg()->getPosition().x <= 0)
+		{
+			isLose = true;
+			break;
+		}
+	}
+	if (isLose)
+	{
+		cout << "你输了，不再出阳光和僵尸" << endl;
+		scene->unschedule(schedule_selector(HelloWorld::updateSun));
+		scene->unschedule(schedule_selector(HelloWorld::updateZombie));
+		scene->unschedule(schedule_selector(HelloWorld::checkWinAndLose));
+
+		LoseMenu::getInstance()->show();
 	}
 }
 

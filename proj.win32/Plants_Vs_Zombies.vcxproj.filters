@@ -331,6 +331,9 @@
     <ClCompile Include="..\Classes\WinMenu.cpp">
       <Filter>src\Entity\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\LoseMenu.cpp">
+      <Filter>src\Entity\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -647,6 +650,9 @@
       <Filter>src\Entity\Map</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\WinMenu.h">
+      <Filter>src\Entity\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoseMenu.h">
       <Filter>src\Entity\UI</Filter>
     </ClInclude>
   </ItemGroup>

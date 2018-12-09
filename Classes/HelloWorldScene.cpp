@@ -156,9 +156,9 @@ void HelloWorld::moveCameraRight(float delta)
 	auto camera = Camera::getDefaultCamera();
 	auto moveBy = MoveBy::create(1.5f, Vec2(150, 0));
 	auto showSelectCard = CallFuncN::create(std::bind(&LevelManager::showSelectCard));
-	Sequence *sequence = Sequence::create(moveBy, DelayTime::create(0.4f), showSelectCard, NULL);
-	camera->runAction(sequence);
-	UILayer::getInstance()->runAction(moveBy->clone());
+	Sequence *sequence = Sequence::create(moveBy->reverse(), DelayTime::create(0.4f), showSelectCard, NULL);
+	EntityLayer::getInstance()->runAction(sequence);
+	//UILayer::getInstance()->runAction(moveBy->clone());
 }
 
 void HelloWorld::moveCameraLeft(float delta)
@@ -166,9 +166,9 @@ void HelloWorld::moveCameraLeft(float delta)
 	auto camera = Camera::getDefaultCamera();
 	auto moveBy = MoveBy::create(1.5f, Vec2(-150, 0));
 	auto actionDone = CallFuncN::create(std::bind(&LevelManager::gameStart));
-	Sequence *sequence = Sequence::create(moveBy, DelayTime::create(0.3f), actionDone, NULL);
-	camera->runAction(sequence);
-	UILayer::getInstance()->runAction(moveBy->clone());
+	Sequence *sequence = Sequence::create(moveBy->reverse(), DelayTime::create(0.3f), actionDone, NULL);
+	EntityLayer::getInstance()->runAction(sequence);
+	//UILayer::getInstance()->runAction(moveBy->clone());
 }
 
 void HelloWorld::LoadingCard(Node* pSender)
@@ -205,4 +205,5 @@ void HelloWorld::updateZombie(float delta)
 void HelloWorld::checkWinAndLose(float delta)
 {
 	LevelManager::checkWin();
+	LevelManager::checkLose();
 }
