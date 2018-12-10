@@ -182,7 +182,11 @@ void LevelManager::clearAllUI()
 	MenuButton::clear();
 	WinMenu::getInstance()->clear();
 	LoseMenu::getInstance()->clear();
-
+	if (HelloWorld::CDRect != nullptr)
+	{
+		HelloWorld::CDRect->removeFromParent();
+		HelloWorld::CDRect = nullptr;
+	}
 }
 
 void LevelManager::showAllUI()
