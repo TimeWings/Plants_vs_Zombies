@@ -79,13 +79,17 @@ Background::Background()
 		holesStencil = Node::create();
 		
 		auto clippingNode = ClippingNode::create();
+		clippingNode->setScale(2.0f);
 		clippingNode->setStencil(holesStencil);
 		clippingNode->setInverted(true);
 		clippingNode->setAlphaThreshold(0);
 		auto floor = LayerColor::create(Color4B(0, 0, 0, 200));
 		clippingNode->addChild(floor);
 		layer->addChild(clippingNode,190);
-		
+		//auto drawNode = DrawNode::create();
+		//auto size = Director::getInstance()->getWinSize();
+		//drawNode->drawSolidRect(Point(0, 0), Point(size.width + 200.0f, size.height), Color4F(0.1f, 0.1f, 0.1f, 0.8f));
+		//layer->addChild(drawNode, 190);
 	}
 	else if (type == 3)
 	{

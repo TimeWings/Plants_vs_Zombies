@@ -35,9 +35,9 @@ void MainMenu::show()
   //得到窗口的大小
 	
 	auto visibleSize = Director::getInstance()->getWinSize();
-	CCRenderTexture *renderTexture = CCRenderTexture::create(visibleSize.width, visibleSize.height);
+	CCRenderTexture *renderTexture = CCRenderTexture::create(visibleSize.width, visibleSize.height, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
 
-	//遍历当前类的所有子节点信息，画入renderTexture中。
+	//遍历当前层的所有子节点信息，画入renderTexture中。
 	//这里类似截图。
 	renderTexture->begin();
 	EntityLayer::getInstance()->getParent()->visit();
@@ -46,7 +46,6 @@ void MainMenu::show()
 	CCSprite *back_spr = CCSprite::createWithTexture(renderTexture->getSprite()->getTexture());
 	back_spr->setPosition(ccp(visibleSize.width / 2, visibleSize.height / 2)); //放置位置,这个相对于中心位置。
 	back_spr->setFlipY(true);            //翻转，因为UI坐标和OpenGL坐标不同
-	//back_spr->setColor(Color3B::GRAY); //图片颜色变灰色
 	pauseScene->addChild(back_spr);
 
 	//将游戏界面暂停，压入场景堆栈。并切换到GamePause界面
