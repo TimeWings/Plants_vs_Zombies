@@ -41,6 +41,7 @@ public:
 	void updateSun(float delta);
 	void updateZombie(float delta);
 	void updateCD(float delta);
+	void updateProgressBar(float delta);
 	void checkWinAndLose(float delta);
 
 	void preLoading();

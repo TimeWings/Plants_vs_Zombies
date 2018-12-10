@@ -18,6 +18,7 @@
 #include "ZombieEnum.h"
 #include "WinMenu.h"
 #include "LoseMenu.h"
+#include "ProgressBar.h"
 
 using namespace ui;
 using namespace map;
@@ -182,6 +183,7 @@ void LevelManager::clearAllUI()
 	MenuButton::clear();
 	WinMenu::getInstance()->clear();
 	LoseMenu::getInstance()->clear();
+	ZombieProgressBar::getInstance()->clear();
 	if (HelloWorld::CDRect != nullptr)
 	{
 		HelloWorld::CDRect->removeFromParent();
@@ -214,6 +216,7 @@ void LevelManager::gameStart()
 	scene->schedule(schedule_selector(HelloWorld::updateSun), 5.0f);
 	scene->schedule(schedule_selector(HelloWorld::updateZombie), 12.0f);
 	scene->schedule(schedule_selector(HelloWorld::updateCD), 0.1f);
+	scene->schedule(schedule_selector(HelloWorld::updateProgressBar), 1.0f);
 	scene->schedule(schedule_selector(HelloWorld::checkWinAndLose), 1.0f);
 }
 
@@ -423,6 +426,12 @@ void LevelManager::checkLose()
 
 		LoseMenu::getInstance()->show();
 	}
+}
+
+void LevelManager::updateProgressBar()
+{
+	ZombieProgressBar::getInstance()->setCurrentValue((float)zombieCount/zombie[currentLevel][0] * 100);
+	std::cout << ZombieProgressBar::getInstance()->getCurrentValue() << endl;
 }
 
 void LevelManager::test()

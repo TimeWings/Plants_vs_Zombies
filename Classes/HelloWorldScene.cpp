@@ -35,6 +35,7 @@
 #include "test.h"
 #include "Background.h"
 #include "LevelManager.h"
+#include "ProgressBar.h"
 #include "UILayer.h"
 #include <direct.h>
 USING_NS_CC;
@@ -237,6 +238,11 @@ void HelloWorld::updateCD(float delta)
 		}
 	}
 	UILayer::getInstance()->addChild(CDRect, 201);
+}
+
+void HelloWorld::updateProgressBar(float delta)
+{
+	LevelManager::updateProgressBar();
 }
 
 void HelloWorld::checkWinAndLose(float delta)

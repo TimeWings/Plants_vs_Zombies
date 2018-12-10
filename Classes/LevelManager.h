@@ -25,6 +25,7 @@ public:
 	static void createZombie();
 	static void checkWin();
 	static void checkLose();
+	static void updateProgressBar();
 
 	static LevelManager* getInstance()
 	{
