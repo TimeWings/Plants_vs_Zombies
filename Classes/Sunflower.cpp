@@ -62,7 +62,7 @@ void Sunflower::CreateSun()
 	Point a = Point(sp->getPositionX(), sp->getPositionY() + sp->getContentSize().height / 2 * sp->getScaleY());
 	spSun->setPosition(a);
 	spSun->setScale(0.5);
-	UILayer::getInstance()->addChild(spSun, 200);
+	UILayer::getInstance()->addChild(spSun, 202);
 
 	Point b = Point(sp->getPositionX() - sp->getContentSize().width / 2 * sp->getScaleX() - spSun->getContentSize().width / 2 * spSun->getScale(), sp->getPositionY());
 	float height = sp->getContentSize().height / 2 * sp->getScaleX();

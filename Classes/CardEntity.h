@@ -8,6 +8,8 @@ class CardEntity: public Entity
 {
 public:
 	int cost = 0;
+	float CD = 0;
+	float remainCD = 0;
 	bool isSelecting = false;
 	PlantsEnum plantsEnum = PlantsEnum::IceShooter;
 	std::string plantsTypeName;
@@ -40,4 +42,5 @@ public:
 		removeListener();
 	}
 	virtual void setCost();
+	virtual void setCD();
 };

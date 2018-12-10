@@ -41,6 +41,8 @@ USING_NS_CC;
 using namespace std;
 using namespace map;
 
+DrawNode* HelloWorld::CDRect = nullptr;
+
 Scene* HelloWorld::createScene()
 {
     return HelloWorld::create();
@@ -189,7 +191,7 @@ void HelloWorld::updateSun(float delta)
 	Point position = Point(x, y);
 	spSun->setPosition(position);
 	spSun->setScale(0.5);
-	UILayer::getInstance()->addChild(spSun, 200);
+	UILayer::getInstance()->addChild(spSun, 202);
 	auto moveBy = MoveBy::create(4.5f, Point(0, -visibleSize.height + 30.0f));
 	spSun->runAction(moveBy);
 	dropSun.push_back(spSun);
@@ -200,6 +202,41 @@ void HelloWorld::updateSun(float delta)
 void HelloWorld::updateZombie(float delta)
 {
 	LevelManager::createZombie();
+}
+
+void HelloWorld::updateCD(float delta)
+{
+	if (CDRect != nullptr)
+	{
+		CDRect->removeFromParent();
+		CDRect = nullptr;
+	}
+	CDRect = DrawNode::create();
+	for (int i = 0; i < readyCards.size(); i++)
+	{
+		auto card = readyCards[i];
+		card->remainCD -= 0.1f;
+		if (card->remainCD < 0)
+			card->remainCD = 0;
+		Point position = card->getImg()->getPosition();
+		Size size = card->getImg()->getContentSize();
+		auto oPosition = position;
+		oPosition.x -= size.width/2;
+		oPosition.y -= size.height/2;
+		auto dPosition = oPosition;
+		dPosition.x += size.width;
+		dPosition.y += size.height * (card->remainCD / card->CD);
+		CDRect->drawSolidRect(oPosition, dPosition,Color4F(0.1f, 0.1f, 0.1f, 0.6f));
+
+		if (sunCnt.first < card->cost)
+		{
+			dPosition = oPosition;
+			dPosition.x += size.width;
+			dPosition.y += size.height;
+			CDRect->drawSolidRect(oPosition, dPosition, Color4F(0.1f, 0.1f, 0.1f, 0.6f));
+		}
+	}
+	UILayer::getInstance()->addChild(CDRect, 201);
 }
 
 void HelloWorld::checkWinAndLose(float delta)

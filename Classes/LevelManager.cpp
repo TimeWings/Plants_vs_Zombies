@@ -209,6 +209,7 @@ void LevelManager::gameStart()
 	scene->scheduleOnce(schedule_selector(HelloWorld::updateSun), 1.0f);
 	scene->schedule(schedule_selector(HelloWorld::updateSun), 5.0f);
 	scene->schedule(schedule_selector(HelloWorld::updateZombie), 12.0f);
+	scene->schedule(schedule_selector(HelloWorld::updateCD), 0.1f);
 	scene->schedule(schedule_selector(HelloWorld::checkWinAndLose), 1.0f);
 }
 

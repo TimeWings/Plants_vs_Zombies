@@ -87,6 +87,7 @@ public:
 #endif
 		plantsTypeName = className;
 		setCost();
+		setCD();
 		auto sunLabel = Label::createWithTTF(*(FontConfig::getInstance()),to_string(cost));
 		sunLabel->setPosition(14, 5.5f);
 		sunLabel->setTextColor(Color4B::BLACK);
@@ -114,7 +115,7 @@ public:
 		listener1 = EventListenerMouse::create();
 		listener->onTouchBegan = [=](Touch* touch, Event *event)
 		{
-			if (sunCnt.first >= cost)
+			if (sunCnt.first >= cost && remainCD <= 0)
 				canClick = true;
 			else
 				canClick = false;
@@ -317,6 +318,7 @@ public:
 						ps1->plantVector.push_back(plant);
 						sunCnt.first -= cost;
 						CardBank::updateSunLabel();
+						remainCD = CD;
 						return;
 					}
 					PlantStatus* ps2 = find(row, col + 1);
@@ -330,6 +332,7 @@ public:
 						ps2->plantVector.push_back(plant);
 						sunCnt.first -= cost;
 						CardBank::updateSunLabel();
+						remainCD = CD;
 						return;
 					}
 					std::cout << "只有一个投手,不可放置" << std::endl;
@@ -347,6 +350,7 @@ public:
 				ps->plantVector.push_back(PutPlant<T>(Rank2Point(row, col), row, col));
 				sunCnt.first -= cost;
 				CardBank::updateSunLabel();
+				remainCD = CD;
 			}
 		}
 		else 

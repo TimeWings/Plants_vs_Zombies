@@ -40,6 +40,7 @@ public:
     virtual bool init();
 	void updateSun(float delta);
 	void updateZombie(float delta);
+	void updateCD(float delta);
 	void checkWinAndLose(float delta);
 
 	void preLoading();
@@ -56,6 +57,7 @@ public:
 	void moveCameraRight(float delta);
 	void moveCameraLeft(float delta);
 	void LoadingCard(Node* pSender);
+	static DrawNode* CDRect;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
