@@ -80,11 +80,7 @@ public:
 		//addLayer(plantSprite,200);
 		sprite->addChild(plantSprite);
 		sprite->setVisible(false);
-#ifdef debug
-		sprite->setVisible(true);
-		addListener();
-		sprite->setContentSize(Size(20, 30));
-#endif
+
 		plantsTypeName = className;
 		setCost();
 		setCD();
@@ -92,6 +88,13 @@ public:
 		sunLabel->setPosition(14, 5.5f);
 		sunLabel->setTextColor(Color4B::BLACK);
 		sprite->addChild(sunLabel, 2);
+#ifdef debug
+		sprite->setVisible(true);
+		addListener();
+		sprite->setContentSize(Size(20, 30));
+		CD = 0;
+		remainCD = 0;
+#endif
 	}
 	Card(Point position, bool shovel)
 	{
