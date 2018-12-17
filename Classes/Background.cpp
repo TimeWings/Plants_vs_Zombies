@@ -79,7 +79,7 @@ Background::Background()
 		holesStencil = Node::create();
 		
 		auto clippingNode = ClippingNode::create();
-		clippingNode->setScale(2.0f);
+		clippingNode->setScale(1.0f);
 		clippingNode->setStencil(holesStencil);
 		clippingNode->setInverted(true);
 		clippingNode->setAlphaThreshold(0);
