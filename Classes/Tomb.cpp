@@ -28,14 +28,14 @@ Tomb::Tomb(Point position, int row, int col)
 	sp->setScale(2.2);
 	sp->setPosition(position);
 	this->setHp(3);
-	this->setInterval(7000);
+	this->setNewBirthTime();
+	this->setInterval(30000);
 	//普通植物直接播放自身动画
 	this->Self_Animation();
 	//添加到植物层
 	addLayer(sp);
 	//添加到已创建植物容器，其他行为操作都在此处
 	readyPlants.push_back(this);
-
 	PlantStatus* plantstatus = map::find(this->getRow(), this->getCol());
 	std::cout << this->getRow() << "    " << this->getCol() << std::endl;
 	if (plantstatus != NULL)

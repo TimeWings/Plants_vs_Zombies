@@ -14,6 +14,9 @@ public:
 	void Self_Animation();
 	//被打之后的事件
 	virtual void Attacked();
+
+	void Die();
+
 	//清理精灵
 	void clear(Node * pSender);
 

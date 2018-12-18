@@ -74,13 +74,31 @@ void Lantern::Attacked()
 	CCScaleTo * scaledown = CCScaleTo::create(0.3f, preScale - 0.015, preScale - 0.015);
 	sp->runAction(scaledown);
 }
-
+void Lantern::Die()
+{
+	for (int i = 0; i < readyPlants.size(); i++)
+	{
+		if (readyPlants.at(i) == this)
+		{
+			readyPlants.erase(readyPlants.begin() + i);
+			break;
+		}
+	}
+	Sprite * sp = this->getImg();
+	ActionInterval * fadeout = FadeOut::create(0.5);
+	Director::getInstance()->getActionManager()->removeAllActionsFromTarget(sp);
+	auto actionDone = CallFuncN::create(CC_CALLBACK_1(Lantern::clear, this));
+	Sequence *sequence = Sequence::create(fadeout, actionDone, NULL);
+	sp->runAction(sequence);
+}
 void Lantern::clear(Node * pSender)
 {
 	pSender->removeFromParent();
+	pSender->removeAllChildrenWithCleanup(true);
 	if (maskImg != NULL)
 	{
 		std::cout << "asfjkf" << std::endl;
 		maskImg->removeFromParent();
 	}
+	delete this;
 }

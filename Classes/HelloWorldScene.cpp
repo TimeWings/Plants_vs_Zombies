@@ -137,8 +137,14 @@ void HelloWorld::getFiles(string prePath,string path, vector<string>& files, vec
 			{
 				string str0 = p.assign(path).append("\\").append(fileinfo.name);
 				string str1 = replace_all(str0, prePath + "\\", "");
-				files.push_back(str1);
-				ownname.push_back(fileinfo.name);
+				auto index = str1.find(".png");
+				auto index1 = str1.find(".jpg");
+
+				if (index != string::npos|| index1 != string::npos)
+				{
+					files.push_back(str1);
+					ownname.push_back(fileinfo.name);
+				}
 			}
 		} while (_findnext(hFile, &fileinfo) == 0);
 		_findclose(hFile);

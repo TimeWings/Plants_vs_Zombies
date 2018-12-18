@@ -138,4 +138,5 @@ void Chomper::clear1(Node * pSender,Sprite* sp)
 {
 	sp->getActionManager()->removeAllActionsFromTarget(sp);
 	sp->removeFromParent();
+	delete sp;
 }

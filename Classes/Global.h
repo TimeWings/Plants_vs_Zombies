@@ -1,5 +1,5 @@
 #pragma once
-#define debug
+//#define debug
 #include "cocos2d.h"
 #include "Bullet.h"
 #include "Plants.h"
