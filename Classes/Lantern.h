@@ -19,5 +19,5 @@ public:
 
 	//ÇåÀí¾«Áé
 	void clear(Node * pSender);
-
+	virtual void Die();
 };
