@@ -118,6 +118,7 @@ public:
 		listener1 = EventListenerMouse::create();
 		listener->onTouchBegan = [=](Touch* touch, Event *event)
 		{
+			cout << plantsTypeName << endl;
 			if (sunCnt.first >= cost && remainCD <= 0)
 				canClick = true;
 			else
@@ -182,7 +183,7 @@ public:
 	{
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener);
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener1);
-
+		std::cout<<plantsTypeName << "¼àÌýÆ÷ÒÑÒÆ³ý" << std::endl;
 	}
 	void clear()
 	{

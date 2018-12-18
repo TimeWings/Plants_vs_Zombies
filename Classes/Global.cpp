@@ -48,7 +48,7 @@ namespace map
 		selectingCards.clear();
 		selectingCardsEntity.clear();
 		unSelectingCardsEntity.clear();
-		readyCards.clear();
+		//readyCards.clear();
 		dropSun.clear();
 		Zomboni::IceSprite.clear();
 		LadderEquip::LadderSprite.clear();

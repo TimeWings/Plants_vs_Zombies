@@ -3,6 +3,7 @@
 #include "EntityLayer.h"
 #include "UILayer.h"
 #include "PlantsEnum.h"
+#include <iostream>
 
 class CardEntity: public Entity
 {
@@ -34,7 +35,7 @@ public:
 	{
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener);
 		Director::getInstance()->getEventDispatcher()->removeEventListener(listener1);
-
+		std::cout << "¼àÌýÆ÷ÒÑÒÆ³ý" << std::endl;
 	}
 	virtual void clear()
 	{

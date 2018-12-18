@@ -330,7 +330,10 @@ void LevelManager::loadLevel(int level)
 	sunCnt.first = 0;
 	CardBank::updateSunLabel();
 	for (int i = 0; i < readyCards.size(); i++)
+	{
 		readyCards[i]->clear();
+		//cout << "clear" << i << endl;
+	}
 	readyCards.clear();
 	if (shovel != nullptr)
 		shovel->clear();
