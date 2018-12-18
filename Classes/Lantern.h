@@ -16,5 +16,5 @@ public:
 	virtual void Attacked();
 	//ÇåÀí¾«Áé
 	void clear(Node * pSender);
-
+	virtual void Die();
 };
