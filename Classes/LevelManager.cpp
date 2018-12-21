@@ -352,6 +352,8 @@ void LevelManager::loadLevel(int level)
 
 void LevelManager::createZombie()
 {
+	if (GameStart == false)
+		return;
 	auto scene = Director::getInstance()->getRunningScene();
 	if (zombieCount == zombie[currentLevel][0])
 	{
