@@ -38,9 +38,11 @@
 #include "ProgressBar.h"
 #include "UILayer.h"
 #include <direct.h>
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 using namespace std;
 using namespace map;
+using namespace CocosDenshion;
 
 DrawNode* HelloWorld::CDRect = nullptr;
 
@@ -62,6 +64,11 @@ bool HelloWorld::init()
 	auto ss = Director::getInstance()->getTextureCache()->getCachedTextureInfo();
 	log("%s", ss.c_str());
 	preLoading();
+	auto audio = SimpleAudioEngine::getInstance();
+
+	// set the background music and continuously play it.
+	audio->playBackgroundMusic("Sound\\title.mp3", true);
+
     return true;
 }
 void HelloWorld::preLoading()

@@ -4,6 +4,10 @@
 #include "SelectCardBG.h"
 #include "FontConfig.h"
 #include "HelloWorldScene.h"
+#include "SimpleAudioEngine.h"
+#include "LevelManager.h"
+
+using namespace CocosDenshion;
 using namespace map;
 Button* GameStartButton::instance = nullptr;
 
@@ -23,9 +27,39 @@ Button* GameStartButton::create(Point position)
 	button->setTitleLabel(label);
 	button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
 
-	
 	UILayer::getInstance()->addChild(button, 196);
 	return button;
+}
+
+void GameStartButton::playBGM()
+{
+	auto audio = SimpleAudioEngine::getInstance();
+
+	// set the background music and continuously play it.
+	audio->stopBackgroundMusic();
+	switch (LevelManager::currentLevel)
+	{
+	case 1:
+	case 2:
+	case 3:audio->playBackgroundMusic("Sound\\day.mp3", true);
+		break;
+	case 4:
+	case 5:
+	case 6:audio->playBackgroundMusic("Sound\\water.mp3", true);
+		break;
+	case 7:
+	case 8:
+	case 9:audio->playBackgroundMusic("Sound\\night.mp3", true);
+		break;
+	case 10:
+	case 11:
+	case 12:audio->playBackgroundMusic("Sound\\cloud.mp3", true);
+		break;
+	case 13:
+	case 14:
+	case 15:audio->playBackgroundMusic("Sound\\night2.mp3", true);
+		break;
+	}
 }
 
 
@@ -79,9 +113,11 @@ void GameStartButton::addListener()
 				//readyCards[i]->removeListener();
 				readyCards[i]->addListener();
 			}
+			
 			disable();
 			SelectCardBG::getInstance()->hide();
 			Director::getInstance()->getRunningScene()->scheduleOnce(schedule_selector(HelloWorld::moveCameraLeft), 0.5f);
+			playBGM();
 			break;
 		default:
 			break;

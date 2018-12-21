@@ -26,5 +26,6 @@ public:
 
 private:
 	static Button* instance;
+	static void playBGM();
 };
 

@@ -19,9 +19,11 @@
 #include "WinMenu.h"
 #include "LoseMenu.h"
 #include "ProgressBar.h"
+#include "SimpleAudioEngine.h"
 
 using namespace ui;
 using namespace map;
+using namespace CocosDenshion;
 
 LevelManager* LevelManager::instance = nullptr;
 Card<Shovel>* LevelManager::shovel = nullptr;
@@ -309,6 +311,11 @@ void LevelManager::createAllCard()
 void LevelManager::loadLevel(int level)
 {
 	init();
+	auto audio = SimpleAudioEngine::getInstance();
+
+	// set the background music and continuously play it.
+	audio->stopBackgroundMusic();
+	audio->playBackgroundMusic("Sound\\select.mp3", true);
 	zombieCount = 0;
 	kill = 0;
 	if (level <= 0)
